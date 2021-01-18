@@ -49,9 +49,15 @@ class Marque
      */
     private $Gamme;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="camera")
+     */
+    private $films;
+
     public function __construct()
     {
         $this->Gamme = new ArrayCollection();
+        $this->films = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,6 +150,33 @@ class Marque
             if ($gamme->getMarque() === $this) {
                 $gamme->setMarque(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Film[]
+     */
+    public function getFilms(): Collection
+    {
+        return $this->films;
+    }
+
+    public function addFilm(Film $film): self
+    {
+        if (!$this->films->contains($film)) {
+            $this->films[] = $film;
+            $film->addCamera($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFilm(Film $film): self
+    {
+        if ($this->films->removeElement($film)) {
+            $film->removeCamera($this);
         }
 
         return $this;
