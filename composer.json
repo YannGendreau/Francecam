@@ -42,7 +42,7 @@
     },
     "require-dev": {
         "symfony/debug-pack": "*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.28",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*"
     },
