@@ -163,22 +163,5 @@ class Marque
         return $this->films;
     }
 
-    public function addFilm(Film $film): self
-    {
-        if (!$this->films->contains($film)) {
-            $this->films[] = $film;
-            $film->addCamera($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFilm(Film $film): self
-    {
-        if ($this->films->removeElement($film)) {
-            $film->removeCamera($this);
-        }
-
-        return $this;
-    }
+    
 }

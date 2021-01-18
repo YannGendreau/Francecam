@@ -44,14 +44,20 @@ class Film
      */
     private $pays;
 
+    // /**
+    //  * @ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films")
+    //  */
+    // private $camera;
+
     /**
-     * @ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films")
+     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films")
      */
-    private $camera;
+    private $cameras;
 
     public function __construct()
     {
         $this->camera = new ArrayCollection();
+        $this->cameras = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,27 +125,35 @@ class Film
         return $this;
     }
 
-    /**
-     * @return Collection|Marque[]
-     */
-    public function getCamera(): Collection
-    {
-        return $this->camera;
-    }
+    // /**
+    //  * @return Collection|Marque[]
+    //  */
+    // public function getCamera(): Collection
+    // {
+    //     return $this->camera;
+    // }
 
-    public function addCamera(Marque $camera): self
-    {
-        if (!$this->camera->contains($camera)) {
-            $this->camera[] = $camera;
-        }
+    // public function addCamera(Marque $camera): self
+    // {
+    //     if (!$this->camera->contains($camera)) {
+    //         $this->camera[] = $camera;
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function removeCamera(Marque $camera): self
     {
         $this->camera->removeElement($camera);
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Modele[]
+     */
+    public function getCameras(): Collection
+    {
+        return $this->cameras;
     }
 }

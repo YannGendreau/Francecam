@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ModeleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -86,6 +88,16 @@ class Modele
      * @ORM\ManyToOne(targetEntity=Gamme::class, inversedBy="Modele")
      */
     private $gamme;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="cameras")
+     */
+    private $films;
+
+    public function __construct()
+    {
+        $this->films = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -260,6 +272,16 @@ class Modele
 
         return $this;
     }
+
+    /**
+     * @return Collection|Film[]
+     */
+    public function getFilms(): Collection
+    {
+        return $this->films;
+    }
+
+    
 
     
 }
