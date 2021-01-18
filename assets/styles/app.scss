@@ -82,6 +82,8 @@ $smartphone: 700px;
 $cardFilm: 250px;
 $cardCam: 190px;
 
+$buttonNav: 1.4rem;
+
 /*----Margin----*/
 $mTop:50px;
 
@@ -169,7 +171,7 @@ a {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 100%;
+    width: 60%;
     // margin-left: 50px;
     // border: 1px solid chartreuse;
 
@@ -241,6 +243,7 @@ a {
 .drop {
     position: static;
     margin-right: 20px;
+    cursor: pointer;
 
     &:last-child {
         // margin-right: 400px;
@@ -260,6 +263,7 @@ a {
     opacity: 1;
     transition: 250ms;
     transition-delay: 500ms;
+
     // transition-delay: 250ms;
     //   border: 1px solid rgb(255, 187, 0);
 }
@@ -311,6 +315,7 @@ header {
                 // color: #fff;
                 color: rgb(255, 255, 255);
                 text-transform: uppercase;
+                font-size: $buttonNav;
                 display: block;
                 position: relative;
                 margin-left: 20px;
@@ -330,7 +335,7 @@ header {
         }
 
         .searchTop {
-            width: 30%;
+            width: 25%;
             height: 13px;
             display: inline-flex;
             justify-content: center;
@@ -347,19 +352,22 @@ header {
         }
 
         .connect {
-            width: 10%;
+            width: 15%;
             height: 57px;
             @include flex-space-center();
+            margin: 0 5px 0 5px;
 
             li {
                 a {
                     color: white;
-                    // font-size: 1rem;
+                    font-size: $buttonNav;
                     text-decoration: none;
+                    text-transform: uppercase;
                 }
 
                 .iconUser {
-                    width: 35px;
+                    width: 30px;
+
                 }
             }
         }
