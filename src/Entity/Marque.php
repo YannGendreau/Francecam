@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MarqueRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,21 @@ class Marque
      * @ORM\Column(type="date")
      */
     private $created;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $website;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Gamme::class, mappedBy="marque")
+     */
+    private $Gamme;
+
+    public function __construct()
+    {
+        $this->Gamme = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +103,48 @@ class Marque
     public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
+
+        return $this;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(string $website): self
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Gamme[]
+     */
+    public function getGamme(): Collection
+    {
+        return $this->Gamme;
+    }
+
+    public function addGamme(Gamme $gamme): self
+    {
+        if (!$this->Gamme->contains($gamme)) {
+            $this->Gamme[] = $gamme;
+            $gamme->setMarque($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGamme(Gamme $gamme): self
+    {
+        if ($this->Gamme->removeElement($gamme)) {
+            // set the owning side to null (unless already changed)
+            if ($gamme->getMarque() === $this) {
+                $gamme->setMarque(null);
+            }
+        }
 
         return $this;
     }
