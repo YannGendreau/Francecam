@@ -1,7 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends 'navbar/layout.html.twig' %}
 
 {% block title %}Bienvenu sur Francecam
 {% endblock %}
 
-{% block body %}test
+{% block content %}
+	<div id="container">
+		<div class="searchBlock">
+
+			<div class="searchCenter">
+				<div class="logoSearch">
+					<img src="{{asset('build/images/FRANCECAM-logo.png')}}" alt="">
+					<h1>Francecam</h1>
+				</div>
+
+				<div class="logline">
+					<h2>La base de données des caméras
+						<!-- <br> -->
+						du cinéma francophone</h2>
+				</div>
+
+				<div class="search">
+
+					<div class="searchBarCenter">
+						<div class="formTop">
+							<label for="">Rechercher</label>
+						</div>
+						<input type="search" placeholder="Un film, une caméra...">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# <div
+							class="homeCameraList">{% include "includes/_homeCameraList.html.twig" %}
+						</div> #}
+	</div>
 {% endblock %}
