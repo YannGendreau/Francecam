@@ -1,4 +1,1907 @@
+/* -----------------------------------------------
+  Resets
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+html {
+    box-sizing: border-box;
+
+    // color: #ddd;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", "Open Sans", sans-serif;
+    font-size: 14px;
+    // line-height: 1;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*-----------------------------------------------------
+    Mixins
+  ------------------------------------------------------*/
+
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-end {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+@mixin flex-space-center {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@mixin flex-start-center {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@mixin flex-center-start {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/*------------------------------------------------------
+    Variables
+  -------------------------------------------------------*/
+
+
+
+
+/*----couleurs----*/
+$megamenu-bg:RGBA(219, 237, 243, 0.97);
+$nav-color: #283149;
+$titleCard: #404b69;
+$titleDisplay: #191e2b;
+$titleFont: #f73859;
+$fondClair: rgb(235, 241, 236);
+$main-color: gradient(rgb(248, 248, 248), rgb(201, 201, 201));
+$nav-dd-color: rgb(207, 219, 215);
+
+/*----tailles----*/
+$tablet: 845px;
+$smartphone: 700px;
+$cardFilm: 250px;
+$cardCam: 190px;
+
+/*----Margin----*/
+$mTop:50px;
+
+// /*----couleurs fonts----*/
+// $titleFont:rgb(168, 214, 168);
+// $titleFont:rgb(151, 44, 44);
+// $titleFont:rgb(155, 218, 164);
+
+// $megamenu-bg: #dbedf3;
+// $main-color: white;
+// $main-color: radial-gradient(rgb(248, 248, 248), rgb(201, 201, 201));
+$main-color: gradient(rgb(248, 248, 248), rgb(20, 20, 20));
+// $fondClair: rgb(235, 241, 236);
+// $nav-color: #dbe0ec;
+// $megamenu-bg : rgb(211, 216, 200);
+
+// // $main-color: rgb(255, 255, 255);
+// // $main-color: radial-gradient(#797979, rgb(51, 51, 51));
+// $main-color: radial-gradient(rgb(248, 248, 248), rgb(201, 201, 201));
+// // $main-color: radial-gradient(rgb(66, 66, 66), rgb(20, 20, 20));
+// // $main-color: black;
+// $nav-color: rgb(29, 57, 71);
+// // $nav-color: rgb(67, 77, 82);
+// $bgColorDark: rgb(22, 29, 32);
+// $font-link-color: rgb(212, 224, 230);
+// $nav-dd-color: rgb(207, 219, 215);
+// $nav-hover-color: rgb(189, 192, 181);
+// $bgCardDark: rgb(31, 43, 61);
+// $fondClair: rgb(235, 241, 236);
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------------------------------
+    Fonts
+  --------------------------------------------------*/
+@font-face {
+    font-family: TheBoldFont;
+    src: url(../fonts/theboldfont.ttf);
+}
+
+/* ------------------------------------------------
+    Style par défaut
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 body {
-    background: url('../images/textured-black-plastic-close-up-02.png');
-    background-color: rgb(221, 221, 221);
+    background: $main-color;
+}
+
+.superContainer {
+    // height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+// h1 {
+//   font-size: 40px;
+//   font-weight: 700;
+//   // margin-bottom: 20px;
+//   // margin-top: 20px;
+// }
+
+// h2 {
+//   font-size: 15px;
+//   font-weight: 600;
+//   margin-bottom: 30px;
+//   margin-top: 10px;
+// }
+
+
+
+/*----------------------------------------------
+    Navbar
+  -----------------------------------------------*/
+.containerNav {
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    // margin-left: 50px;
+    // border: 1px solid chartreuse;
+
+}
+
+.mega-menu {
+
+    // background: rgba(207, 219, 215, 0.95);
+    background: $megamenu-bg;
+    display: none;
+    opacity: 0;
+    left: 0px;
+    position: absolute;
+    text-align: left;
+    width: 100%;
+    z-index: 2;
+
+    .h3 {
+
+        height: 30px;
+        // background: rgb(39, 43, 39);
+        background: $titleDisplay;
+        @include flex-center();
+        // width: 240px;
+        width: 100%;
+
+        &:last-child {
+            // background-color: $titleFont;
+            border: 1x solid red;
+            background-color: $titleFont;
+            width: 500px;
+        }
+
+        h3 {
+            text-transform: uppercase;
+            color: $megamenu-bg;
+        }
+    }
+
+
+    ul {
+        float: left;
+        margin-bottom: 20px;
+        // width: 240px;
+        width: 20%;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    a {
+        border-bottom: 1px solid #ddd;
+        text-transform: capitalize;
+        // color: black;
+        color: $titleDisplay;
+        display: block;
+        font-size: 1.2rem;
+        padding: 10px 10px;
+        opacity: 1;
+
+        &:hover {
+            // color: #1e331a;
+            // font-weight: bold;
+        }
+    }
+}
+
+.drop {
+    position: static;
+    margin-right: 20px;
+
+    &:last-child {
+        // margin-right: 400px;
+        padding-right: 200px;
+    }
+}
+
+.drop>a:after {
+    font-size: 12px;
+    padding-left: 6px;
+    position: relative;
+    top: -1px;
+}
+
+.drop:hover .mega-menu {
+    display: block;
+    opacity: 1;
+    transition: 250ms;
+    transition-delay: 500ms;
+    // transition-delay: 250ms;
+    //   border: 1px solid rgb(255, 187, 0);
+}
+
+.ul-reset {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*------------------------------------------------
+      Navigation 
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+header {
+
+    display: flex;
+
+    nav {
+        width: 100%;
+        background: $nav-color;
+        position: relative;
+        @include flex-start-center();
+        z-index: 1;
+        height: 70px;
+
+        .logoFrancecam {
+            width: 10%;
+            display: flex;
+            justify-content: center;
+
+            a {
+                // margin: auto;
+
+                img {
+                    width: 30px;
+                }
+            }
+        }
+
+        ul>li {
+            display: block;
+            font-size: 14px;
+            padding: 0 15px;
+            position: relative;
+
+            // &:first-child {padding-left: 0;}
+            // &:last-child {padding-right: 0;}
+            a {
+                // color: #fff;
+                color: rgb(255, 255, 255);
+                text-transform: uppercase;
+                display: block;
+                position: relative;
+                margin-left: 20px;
+                margin-right: 20px;
+                padding: 20px 0;
+                //   padding-right: 20px;
+                border-bottom: 3px solid transparent;
+
+            }
+
+            &:hover>a {
+                color: #69aae0;
+                // color: $titleCard;
+                border-bottom: 3px solid $titleDisplay;
+                ;
+            }
+        }
+
+        .searchTop {
+            width: 30%;
+            height: 13px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            input {
+                width: 80%;
+                background: $nav-dd-color;
+                height: 30px;
+                border: none;
+                border-radius: 2px;
+            }
+
+        }
+
+        .connect {
+            width: 10%;
+            height: 57px;
+            @include flex-space-center();
+
+            li {
+                a {
+                    color: white;
+                    // font-size: 1rem;
+                    text-decoration: none;
+                }
+
+                .iconUser {
+                    width: 35px;
+                }
+            }
+        }
+    }
+
+    /* Clearfix
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+    .cf:before,
+    .cf:after {
+        content: " ";
+        display: table;
+        clear: both;
+    }
+
+    .cf:after {
+        clear: both;
+
+    }
+}
+
+
+#container {
+    @include flex-center-start();
+    min-height: 100vh;
+
+    .searchBlock {
+        width: 100%;
+        @include flex-center();
+        // height: 100vh;
+        min-height: 400px;
+        background: black;
+        // background-image: url("/build/images/francecam-bg.5a18b23c.jpg");
+        // background-image: url("/build/images/francecam-bg2-80dpi.jpg");
+        background-image: url("/build/images/textured-black-plastic-close-up-02.png");
+        // background-image: url("/build/images/fond-francecam-012021-02.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center top;
+        background-size: cover;
+        flex-wrap: wrap;
+
+        .searchCenter {
+            margin-top: 20px;
+            margin: auto;
+            justify-content: center;
+
+            .logoSearch {
+                @include flex-center();
+                margin-bottom: 20px;
+
+                img {
+                    width: 100px;
+                    // border: 1px solid white;
+                    margin-left: 40px;
+                }
+
+                h1 {
+                    font-family: TheBoldFont, Arial, Helvetica, sans-serif;
+                    font-size: 5rem;
+                    text-transform: uppercase;
+                    color: white;
+                    // border: 1px solid white;
+                    margin-right: 40px;
+                }
+
+            }
+
+            .logline {
+                @include flex-center();
+                justify-content: center;
+
+                h2 {
+                    // font-family: Arial, Helvetica, sans-serif;
+                    font-family: 'Roboto Condensed', sans-serif;
+                    font-weight: 2rem;
+                    color: white;
+                    text-align: center;
+                }
+            }
+
+            .search {
+                width: 500px;
+                margin-top: 20px;
+
+                // background: coral;
+                // border: 2px solid rgb(207, 207, 207); 
+                border-radius: 10px;
+                @include flex-center();
+                flex-wrap: wrap;
+
+
+
+                .searchBarCenter {
+                    width: 100%;
+
+                    .formTop {
+                        width: 100%;
+                        background-color: rgb(22, 22, 22);
+                        height: 25px;
+                        display: flex;
+                        align-items: center;
+                        border-top-left-radius: 7px;
+                        border-top-right-radius: 7px;
+
+                        label {
+                            width: 100%;
+                            padding-left: 10px;
+                            color: $nav-dd-color;
+                            // font-family: Arial, Helvetica, sans-serif;
+                            font-family: 'Roboto Condensed', sans-serif;
+                            text-transform: uppercase;
+                            font-size: 0.8rem;
+                        }
+                    }
+
+                    input {
+                        width: 100%;
+                        // background: $nav-dd-color;
+                        background: $megamenu-bg;
+                        // background-image: radial-gradient($nav-hover-color, rgb(85, 97, 80));
+                        box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+                            0 0 0 2px rgb(255, 255, 255),
+                            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+                        // box-shadow: inset 0px 0px 25px 1px rgb(0, 0, 0);
+                        // width: 400px;
+                        height: 50px;
+                        border: none;
+                        border-bottom-left-radius: 7px;
+                        border-bottom-right-radius: 7px;
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .homeCameraList {
+        width: 1200px;
+        margin: auto;
+    }
+}
+
+
+.footer {
+    width: 100%;
+    background: $nav-color;
+    // position: absolute;
+    // bottom: 0;
+    height: 100px;
+
+    p {
+        color: white;
+    }
+}
+
+
+/*-----------------------------------------
+    Cartes liste de films 
+  ------------------------------------------------------*/
+
+.tableauCamFilm {
+    margin-top: 20px;
+    @include flex-space-center();
+    flex-wrap: wrap;
+}
+
+.tableau {
+
+    /* -----------FLEX FINAL----------------------*/
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    /*------------GRID TEMPLATE------------------*/
+    // display: grid;
+    // grid-auto-flow: column;
+
+    // grid-template-columns: 1fr 1fr 1fr;
+    // grid-template-rows: 1fr;
+    // grid-template-areas: 
+    // "affiche affiche affiche"
+    // ;
+}
+
+.cardGrid {
+
+    width: 20%;
+    min-width: 150px;
+    margin: 5px;
+
+    .cardSm {
+
+        // border: 1px solid rgb(47, 0, 255);
+
+        position: relative;
+        // margin-bottom: 10px;
+        height: $cardFilm;
+
+        // width: 100%;
+        .imgCard {
+            display: block;
+            // width: 150px;
+            height: $cardFilm;
+
+            img {
+
+                width: 100%;
+                height: $cardFilm;
+                object-fit: cover;
+
+                // width: 200px;
+            }
+        }
+
+        .description__overlay--blur {
+            backdrop-filter: blur(2px);
+        }
+
+        .description__overlay>* {
+            transition: transform 0.25s;
+
+            // &:hover {}
+        }
+
+        .description__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            // background: rgba(161, 196, 167, 0.7);
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s,
+                transform 0.25s;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            h3 {
+                color: rgb(211, 211, 211);
+                text-transform: uppercase
+            }
+
+            h2 {
+                // color: rgb(0, 0, 0);
+                color: rgb(255, 255, 255);
+                padding: 5px;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            h5 {
+                // color: grey;
+                color: $megamenu-bg;
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+.cardGridCam {
+
+    width: 30%;
+    min-width: 140px;
+    margin: 3px;
+
+    .cardSmCam {
+
+        // border: 1px solid rgb(47, 0, 255);
+
+        position: relative;
+        // margin-bottom: 10px;
+        height: $cardCam;
+
+
+        .smDescriptionOverlay {
+
+            position: absolute;
+            top: 2px;
+            left: 5px;
+
+            // z-index: 1;
+            h5 {
+                color: rgba(32, 48, 46, 0.7);
+            }
+
+            em {
+                display: inline-block;
+                color: rgba(32, 48, 46, 0.7);
+            }
+        }
+
+        .imgCardCam {
+            display: block;
+            height: $cardCam;
+
+            img {
+
+                width: 100%;
+                height: $cardCam;
+                object-fit: cover;
+            }
+        }
+
+        .description__overlay--blur {
+            backdrop-filter: blur(2px);
+        }
+
+        .description__overlay>* {
+            transition: transform 0.25s;
+
+            // &:hover {}
+        }
+
+        .description__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            // background: rgba(161, 196, 167, 0.7);
+            background: rgba(32, 48, 46, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s,
+                transform 0.25s;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            h3 {
+                color: lightgrey;
+                text-transform: uppercase
+            }
+
+            h2 {
+                // color: rgb(0, 0, 0);
+                color: rgb(255, 255, 255);
+                padding: 5px;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            h5 {
+                // color: grey;
+                color: $megamenu-bg;
+                opacity: 0.5;
+            }
+
+
+        }
+    }
+}
+
+
+
+
+/*
+  .gradientD {
+    grid-column: 1 / 5;
+    grid-row: 2/6;
+  
+    background: linear-gradient(to bottom right, rgb(199, 199, 199), $fondClair);
+    // background: linear-gradient(to bottom right, rgb(18, 46, 53), rgb(59, 76, 80));
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgb(255, 255, 255),
+      0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    z-index: -1;
+  }
+  
+  @media screen and (min-width: $smartphone) {
+    .cardFilmD {
+      margin-top: 50px;
+      width: 1200px;
+      display: grid;
+      grid-template-columns: 0.2fr 300px 1fr 1fr;
+      // grid-template-rows: 1fr auto auto minmax(200px ,auto)  100px 3fr;
+      grid-template-rows: 100px auto auto minmax(150px, auto) 100px 300px;
+      grid-template-areas:
+        ". picFilm . . "
+        "sideCard picFilm titre titre"
+        "sideCard picFilm info info"
+        "sideCard picFilm synopsis synopsis"
+        "sideCard picFilm artisteDiv artisteDiv"
+        "cam cam cam cam";
+  
+      // margin: 10px;
+      h4 {
+        color: $titleFont;
+        text-transform: uppercase;
+      }
+    }
+  }
+  
+  @media screen and (max-width: $smartphone) {
+  
+    .cardFilmD {
+      margin-top: 10px;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr minmax(1fr, auto) 1fr 1fr;
+      grid-template-areas:
+        "."
+        "picFilm"
+        "titre"
+        "info"
+        "synopsis"
+        "artisteDiv"
+        "cam";
+  
+  
+  
+      img {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+  
+      .gradientD {
+        grid-column: 1;
+        grid-row: 1/7;
+        background: linear-gradient(to bottom, rgb(255, 0, 0), $fondClair);
+        box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+          0 0 0 1px rgb(146, 146, 146),
+          0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        z-index: -1;
+      }
+  
+  
+    }
+  }
+  
+  .sideCardD {
+    grid-area: sideCard;
+    // background:$bgCardDark;
+    // background:$fondClair;
+  
+    border-top-left-radius: 10px;
+  
+  }
+  
+  .picFilmD {
+    grid-area: picFilm;
+    // border: 1px solid rgb(149, 159, 201);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  
+    img {
+      max-width: 300px;
+      //  z-index: 1;
+      box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+      //  min-width: 250px;
+    }
+  
+    .emptyImg {
+      height: 200px;
+      width: 200px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      background: white;
+  
+      box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+      //  min-width: 250px;
+    }
+  }
+  
+  
+  #titreD {
+    grid-area: titre;
+    background: $titleCard;
+    // background: $bgCardDark;
+    // background: $fondClair;
+    // border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 10px;
+  
+    .titreContainerD {
+  
+      width: 90%;
+  
+      // border: 1px solid red;
+      h1 {
+        font-size: 3rem;
+        color: $titleFont;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+  }
+  
+  .infoD {
+    background: $titleCard;
+    // background:$bgCardDark;
+    // background:$fondClair;
+    grid-area: info;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  
+    .dateGenreTimeD {
+      // border: 1px solid white;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 50%;
+  
+      span {
+        color: $titleFont;
+        opacity: 0.5;
+      }
+    }
+  
+  
+  }
+  
+  .synopsisD {
+    // background:$fondClair;
+    grid-area: synopsis;
+    padding: 10px 10px;
+    font-family: 'Paytone One', sans-serif;
+  
+  
+  
+    // border: 1px solid white;
+    .synopsisTitreD {}
+  
+    .synopsisContenuD {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      p {
+        // color: white;
+        color: rgb(0, 0, 0);
+  
+      }
+    }
+  }
+  
+  .artisteDivD {
+    // background: $bgCardDark;
+    // background: $fondClair;
+    grid-area: artisteDiv;
+    // border: 1px solid white;
+    // padding-bottom: 10px;
+  
+    // display: flex;
+    // justify-content: space-around;
+    // align-content: center;
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "real dp"
+    ;
+  
+    padding: 10px 10px;
+  
+  
+    // p{
+    //     // color: white
+    //     color: black;
+    // }
+  
+  
+    .realDivD {
+      // border: 1px solid rgb(255, 0, 0);
+      grid-area: real;
+  
+      .realTitreD {
+        h4 {
+          color: $titleFont;
+          // color: black;
+        }
+      }
+  
+      .realNamedD {
+  
+        // display: flex;
+        // justify-content: flex-start;
+        // align-content: center;
+        a {
+          color: blue;
+        }
+  
+  
+      }
+    }
+  
+    .dpDivD {
+      grid-area: dp;
+  
+      .dpTitreD {
+        h4 {
+          color: $titleFont;
+        }
+      }
+  
+      .dpNamedD {
+        a {
+          color: blue;
+        }
+  
+        background: green;
+      }
+  
+    }
+  }
+  
+  
+  
+  .cameraFilmD {
+    grid-area: cam;
+    margin-top: 1rem;
+    padding: 5px;
+    // background: $fondClair;
+    background: url("/build/images/textured-black-plastic-close-up-02.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    background-size: cover;
+    border-radius: 10px;
+  
+    h3 {
+      text-align: center;
+    }
+  
+    // width: 800px;
+  
+    //     display: flex ;
+    //     justify-content: center;
+    //     align-items: center;
+    //   background: rgb(255, 255, 255);
+  
+    .camResultD {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+  
+      .cardCamD {
+        margin-top: 10px;
+        width: 200px;
+        height: 200px;
+        background: white;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+        grid-template-areas:
+          "imgcam"
+          "desccam";
+        box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+          0 0 0 2px rgb(255, 255, 255),
+          0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+        ;
+        border-radius: 5px;
+  
+        .cardImg {
+          width: 185px;
+          height: 185px;
+          object-fit: contain;
+          // border: 1px solid red;
+  
+          img {
+            width: 185px;
+            grid-area: imgcam;
+  
+          }
+  
+        }
+  
+  
+  
+  
+        h4 {
+          grid-area: desccam;
+          text-align: center;
+          color: black;
+          text-transform: uppercase;
+        }
+      }
+    }
+  
+  }
+  
+  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tableauFilm {
+    margin-top: 50px;
+    // border: 1px solid rgb(77, 56, 56);
+    width: 1200px;
+    // display: flex;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "filterFilm filmResults"
+    ;
+
+    .searchList {
+        // border: 1px solid rgb(25, 0, 255);
+        grid-area: filterFilm;
+        @include flex-center();
+        // width: 20%;
+    }
+
+    .showList {
+        // border: 1px solid rgb(25, 0, 255);
+
+        grid-area: filmResults;
+        // width: 80%;
+    }
+}
+
+/*
+  .tableauCamera {
+    // border: 1px solid blue;
+    width: 1000px;
+    // display: flex;
+    // justify-content: flex-start;
+    // align-items: flex-start;
+    // flex-wrap: wrap;
+  
+  
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "cameraSearch cameraList";
+  
+    .cameraSearch {
+      // border: 1px solid rgb(255, 0, 0);
+      grid-area: cameraSearch;
+      // width: 20%;
+    }
+  
+    .cameraList {
+      // border: 1px solid rgb(0, 255, 128);
+  
+      grid-area: cameraList;
+      // width: 80%;
+    }
+  
+  }
+  */
+
+
+/*--------------------------------------------
+    Card Show
+  ---------------------------------------------*/
+.gradientC {
+    grid-column: 1 / 3;
+    grid-row: 2/4;
+
+    background: linear-gradient(to bottom right, rgb(199, 199, 199), $fondClair);
+    // background: linear-gradient(to bottom right, rgb(18, 46, 53), rgb(59, 76, 80));
+
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    z-index: -1;
+}
+
+.cardShow {
+    margin-top: $mTop;
+    display: grid;
+    grid-template-columns: 430px 1fr;
+    grid-template-rows: 50px 80px 1fr 1fr;
+    grid-template-areas:
+        "img ."
+        "img titre"
+        "img texte"
+        "desc desc";
+    // border: 1px solid red;
+    width: 1000px;
+    color: black;
+
+
+    .imgShow {
+
+        // border: 1px solid red;
+        grid-area: img;
+        width: 430px;
+        height: 430px;
+
+        img {
+            object-fit: cover;
+
+            width: 430px;
+            height: 430px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+    }
+
+    .camTitre {
+        grid-area: titre;
+        @include flex-center-start();
+        background: $nav-color;
+        border-top-right-radius: 20px;
+
+
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            color: $titleFont;
+            // color: rgb(64, 97, 64);
+        }
+    }
+
+    .camText {
+        grid-area: texte;
+        padding-top: 30px;
+        // border: 1px solid green;
+    }
+
+
+    .camDescription {
+        // border: 1px solid red;
+        grid-area: desc;
+
+        .camShowDetail {
+            h3 {
+                display: inline-block;
+            }
+
+            p {
+                display: inline-block;
+            }
+
+            height: 300px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas: "titre"
+            "techshort"
+            ;
+
+
+
+
+
+
+            /*
+        .camTechShort {
+          grid-area: techshort;
+          background: $titleCard;
+          padding-left: 20px;
+          // border: 1px solid rgb(0, 47, 255);
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+          grid-template-areas:
+            "site"
+            "type"
+            "format"
+            "sortie"
+            "const"
+            "pays"
+            "mount"
+          ;
+  
+          h3 {
+            color: $titleFont;
+          }
+  
+          p {
+            color: white;
+          }
+  
+          .camWebsite {
+            grid-area: site;
+  
+  
+          }
+  
+          .camType {
+            grid-area: type;
+  
+  
+          }
+  
+          .camFormat {
+            grid-area: format;
+  
+          }
+  
+          .camSortie {
+            grid-area: sortie;
+  
+          }
+  
+          .camConstructeur {
+            grid-area: const;
+  
+          }
+  
+          .camPays {
+            grid-area: pays;
+  
+          }
+  
+          .camMount {
+            grid-area: mount;
+  
+          }
+        }
+  
+  
+  
+   */
+        }
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+.filterFilmLeft {
+    width: 200px;
+    // border: 1px solid red;
+
+    h4 {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 1.7rem;
+        // color: $nav-color;
+        color: $titleCard;
+        margin: 10px 0 10px 0;
+    }
+
+    .form-group {}
+
+    #genres {
+        // margin-top: 10px;
+        border-bottom: 2px solid $titleFont;
+
+        .form-check {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+
+            label {}
+
+        }
+
+    }
+
+    #q {
+        width: 100%;
+        height: 30px;
+        margin: 10px 0 10px 0;
+        padding-left: 5px;
+        background: $megamenu-bg;
+        border: none;
+    }
+
+    fieldset {
+        border: none;
+
+        // input {
+
+        //   width: 25px;
+        //   height: 25px;
+        //   background: blue;
+        // }
+
+    }
+
+    #annee {
+        // margin-top: 10px;
+        border-bottom: 2px solid $titleFont;
+
+        .form-check {
+            margin-bottom: 1rem;
+
+
+        }
+    }
+
+    .form-check-label {
+        font-size: 1.2rem;
+        margin-left: 10px;
+    }
+
+    button {
+        // width: 50%;
+        // height: 30px;
+        // font-size: 1.2rem;
+        // cursor: pointer;
+        margin: auto;
+        width: 50%;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background: #cbd6e0;
+        font-family: 'Roboto Condensed', sans-serif;
+        // text-transform: uppercase;
+        font-size: 1.5rem;
+        border-radius: 20px;
+        margin-top: 20px;
+
+        &:hover {
+            background: $titleCard;
+            color: white;
+
+        }
+    }
+}
+
+
+
+
+/*----------------------------------------------------------------------------------------------*/
+
+.tableauCamera {
+    display: grid;
+    width: 1200px;
+
+    // height: 500px;
+    margin-top: $mTop;
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "img desc"
+        "spec spec"
+    ;
+    // border: 1px solid green;
+
+
+
+    .imageCam {
+        grid-area: img;
+        margin: auto;
+        min-height: 350px;
+
+        .imgCam {
+            // position: absolute;
+            // margin-bottom: 60px;
+
+            img {
+
+                width: 400px;
+            }
+        }
+
+        .imgMov {
+            @include flex-center();
+
+            img {
+                width: 300px;
+            }
+        }
+
+        .imgMovShadow {
+
+            // position: relative;
+            // transform: translateY(-5px);
+
+            z-index: -1;
+
+            img {
+                width: 400px;
+                opacity: 0.2;
+            }
+        }
+
+
+
+
+    }
+
+    .descriptionCam {
+        grid-area: desc;
+        // width: 500px;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-rows: auto auto 2fr;
+        grid-template-areas:
+            "titre"
+            "overview"
+            "summary"
+
+        ;
+
+
+        .titreCam {
+            grid-area: titre;
+            text-align: center;
+            top: 0;
+            align-items: flex-start;
+
+
+            h1 {
+                font-family: 'Oswald', sans-serif;
+                // font-family: 'Bebas Neue', cursive;
+                font-size: 4.5rem;
+                color: $nav-color;
+                text-transform: uppercase;
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .trait {
+                height: 4px;
+                background: $titleFont;
+                border-radius: 10px;
+            }
+
+            .overview {
+
+                grid-area: overview;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                ;
+
+                div {
+                    width: 70%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    h5 {
+                        font-size: 1.3rem;
+                        // font-style: italic;
+                        font-family: 'Roboto Condensed', sans-serif;
+                        color: #919ab1;
+                    }
+
+                    span {
+                        font-size: 1.5rem;
+                        // font-style: italic;
+                        font-family: 'Roboto Condensed', sans-serif;
+
+                        color: #919ab1;
+                    }
+
+                }
+            }
+        }
+
+
+
+        .summary {
+            grid-area: summary;
+            padding: 5% 0 5% 0;
+            text-align: justify;
+            font-family: 'Roboto Condensed', sans-serif;
+            // font-family: 'Bebas Neue', cursive;
+            color: #404b69;
+            font-size: 1.7rem;
+            // border: 1px solid rgb(38, 0, 255);
+
+
+        }
+
+    }
+
+    .descriptionFilm {
+
+        grid-area: desc;
+        // width: 500px;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-rows: 125px auto auto;
+        grid-template-areas:
+            "titre"
+            "summary"
+            "artiste"
+        ;
+
+        .titreCam {
+            grid-area: titre;
+            text-align: center;
+            top: 0;
+            // display: flex;
+            // justify-content: center;
+            align-items: flex-start;
+            // color: #283149;
+            // background: #00ff00;
+            // border: 1px solid red;
+
+
+
+            h1 {
+                font-family: 'Oswald', sans-serif;
+                // font-family: 'Bebas Neue', cursive;
+                font-size: 4rem;
+                color: #283149;
+                text-transform: uppercase;
+            }
+
+            .trait {
+                height: 4px;
+                background: $titleFont;
+                border-radius: 2px;
+                opacity: 0.5;
+            }
+
+            .overview {
+                grid-area: overview;
+                /*
+        font-size: 1.5rem;
+        // font-weight: bold;
+        font-style: italic;
+        font-family: 'Roboto Condensed', sans-serif;
+        // font-family: 'Bebas Neue', cursive;
+        color: #919ab1;
+        */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                ;
+
+                // border: 1px solid rgb(128, 0, 0);
+                div {
+                    width: 70%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    h5 {
+                        font-size: 1.3rem;
+                        // font-style: italic;
+                        font-family: 'Roboto Condensed', sans-serif;
+
+                        color: #919ab1;
+                    }
+
+                    span {
+                        font-size: 1.5rem;
+                        // font-style: italic;
+                        font-family: 'Roboto Condensed', sans-serif;
+
+                        color: #919ab1;
+                    }
+
+                }
+            }
+
+        }
+
+
+
+        .summary {
+            h4 {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 1.7rem;
+                // color: $nav-color;
+                color: $titleFont;
+                margin-bottom: 10px;
+            }
+
+            grid-area: summary;
+            padding: 5% 0 5% 0;
+            text-align: justify;
+            font-family: 'Roboto Condensed',
+            sans-serif;
+            // font-family: 'Bebas Neue', cursive;
+            color: $titleCard;
+            font-size: 1.7rem;
+            // border: 1px solid rgb(38, 0, 255);
+        }
+
+
+
+        .artisteDivD {
+
+            grid-area: artiste;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas:
+                "real dp"
+            ;
+
+            // padding: 10px 10px;
+            h4 {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 1.7rem;
+                // color: $nav-color;
+                color: $titleFont;
+                // margin-bottom: 5px;
+            }
+
+            p {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 1.7rem;
+                color: $titleCard;
+            }
+
+            .addArtist {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 1.7rem;
+                font-style: italic;
+                color: grey;
+            }
+
+
+
+            .realDivD {
+                grid-area: real;
+
+                .realTitreD {}
+
+                .realNamedD {
+                    a {
+                        h3 {
+                            // color: $titleCard;
+                        }
+                    }
+                }
+            }
+
+            .dpDivD {
+                grid-area: dp;
+
+                .dpTitreD {
+                    a {
+                        h4 {}
+                    }
+
+                }
+
+                .dpNamedD {
+                    a {
+                        h3 {
+                            // font-family: 'Roboto Condensed', sans-serif;
+                            // color: $titleCard;
+                            // font-size: 1.7rem;
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+    .specCam {
+        grid-area: spec;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 20px;
+
+
+
+        .tabContainer {
+            // display: flex;
+            // justify-content: center;
+            // align-items: flex-start;
+            height: 250px;
+            width: 100%;
+
+
+            .buttonContainer {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-content: center;
+                background: #cbd6e0;
+                // height: 30px;
+                height: 15%;
+                border-radius: 20px;
+
+
+                button {
+                    width: 15%;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    background: #cbd6e0;
+                    font-family: 'Roboto Condensed', sans-serif;
+                    text-transform: uppercase;
+                    font-size: 1.5rem;
+
+                    &:first-child {
+                        border-top-left-radius: 20px;
+                        border-bottom-left-radius: 20px;
+                    }
+
+                    &:hover {
+                        border-bottom: 3px solid $titleDisplay;
+
+                    }
+                }
+
+                .active {
+                    color: #cbd6e0;
+                    background: $titleDisplay;
+                }
+            }
+
+            .contentCam {
+
+                .tabPanel {
+                    margin-top: 20px;
+                    height: 450px;
+
+                    .videoFrame {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                table {
+
+                    width: 100%;
+                    font-family: 'Bebas Neue', cursive;
+                    border-collapse: collapse;
+
+                    .tableauTitre {
+                        background-color: #a3b7be;
+                        // width: 15%;
+                        // height: 30px;
+
+                        th {
+                            // color: #fff;
+
+                            color: #283149;
+                            text-transform: uppercase;
+                            font-size: 1rem;
+                            width: 10%;
+                            min-width: 100px;
+                            height: 50px;
+                            // padding: 10px;
+                            font-family: 'Roboto Condensed', sans-serif;
+                            // font-family: 'Bebas Neue', cursive;
+
+                        }
+                    }
+
+                    .tableauCell {
+                        // padding: 10px;
+
+                        th {
+                            // background: rgb(255, 255, 255);
+                            // color: #283149;
+                            // border: 1px solid white;
+                            height: 50px;
+                            color: black;
+                            // border: 1px solid #ffffff;
+
+                            // padding: 10px;
+
+                            font-family: 'Roboto Condensed', sans-serif;
+                            // text-transform: uppercase;
+
+                            // font-family: 'Bebas Neue', cursive;
+                        }
+                    }
+                }
+
+                .posters {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+
+
+
+                    a {
+                        width: 30%;
+                        min-width: 180px;
+
+
+                        img {
+                            width: 30%;
+                            min-width: 180px;
+                        }
+
+                    }
+
+
+                }
+
+            }
+
+        }
+    }
+
+
+
+
+
+
 }
