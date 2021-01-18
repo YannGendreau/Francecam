@@ -1,0 +1,207 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<header>
+		<nav>
+			<div class="logoFrancecam">
+				<a href="{{path('accueil')}}"><img src="{{asset('build/images/FRANCECAM-logo.png')}}" alt=""></a>
+			</div>
+			<ul
+				class="containerNav ul-reset">
+				<!-- <ul class="container "> -->
+				<li class='drop'>
+					<a href='{{path('camera_list')}}'>Caméras</a>
+					<div class='mega-menu'>
+						<div class="containerNav cf">
+							<ul class="ul-reset">
+								<div class="h3">
+									<h3>Formats</h3>
+								</div>
+								<li>
+									<a href='#'>16mm / Super 16</a>
+								</li>
+								<li>
+									<a href='#'>35mm / Super 35</a>
+								</li>
+
+							</ul>
+							<!-- .ul-reset -->
+							<ul class="ul-reset">
+								<div class="h3">
+									<h3>Marques</h3>
+								</div>
+								<li>
+									<a href='#'>Aaton
+									</a>
+								</li>
+								<li>
+									<a href='#'>ARRI
+									</a>
+								</li>
+								<li>
+									<a href='#'>Debrie</a>
+								</li>
+								<li>
+									<a href='#'>Eclair</a>
+								</li>
+								<li>
+									<a href='#'>Mitchell</a>
+								</li>
+								<li>
+									<a href='#'>Moviecam</a>
+								</li>
+								<li>
+									<a href='#'>Panavision</a>
+								</li>
+
+							</ul>
+							<!-- .ul-reset -->
+							<ul class="ul-reset">
+								<div class="h3">
+									<h3>Décennies</h3>
+								</div>
+								<li>
+									<a href='#'>1930</a>
+								</li>
+								<li>
+									<a href='#'>1940</a>
+								</li>
+								<li>
+									<a href='#'>1950</a>
+								</li>
+								<li>
+									<a href='#'>1960</a>
+								</li>
+								<li>
+									<a href='#'>1970</a>
+								</li>
+								<li>
+									<a href='#'>1980</a>
+								</li>
+								<li>
+									<a href='#'>1990</a>
+								</li>
+							</ul>
+							<!-- .ul-reset -->
+
+						</div>
+						<!-- .container -->
+					</div>
+					<!-- .mega-menu -->
+				</li>
+				<!-- .droppable -->
+				<li class='drop'>
+					<a href='{{path('film')}}'>Films</a>
+					<div class='mega-menu'>
+						<div class="container cf">
+
+							<ul class="ul-reset">
+								<div class="h3">
+									<h3>Genres</h3>
+								</div>
+								<li>
+									<a href='#'>Action</a>
+								</li>
+								<li>
+									<a href='#'>Comédie</a>
+								</li>
+								<li>
+									<a href="">Drame</a>
+								</li>
+								<li>
+									<a href='#'>Polar</a>
+								</li>
+								<li>
+									<a href='#'>Fantastique</a>
+								</li>
+								<li>
+									<a href='#'>Horreur</a>
+								</li>
+								<li>
+									<a href='#'>Science Fiction</a>
+								</li>
+
+							</ul>
+
+							<!-- .ul-reset-->
+							<ul class="ul-reset">
+								<div class="h3">
+									<h3>Décennies</h3>
+								</div>
+								<li>
+									<a href='#'>1930</a>
+								</li>
+								<li>
+									<a href='#'>1940</a>
+								</li>
+								<li>
+									<a href='#'>1950</a>
+								</li>
+								<li>
+									<a href='#'>1960</a>
+								</li>
+								<li>
+									<a href='#'>1970</a>
+								</li>
+								<li>
+									<a href='#'>1980</a>
+								</li>
+								<li>
+									<a href='#'>1990</a>
+								</li>
+							</ul>
+							<!-- .ul-reset -->
+						{# <ul class="ul-reset">
+																																																		<div class="h3">
+																																																			<h3>Heading 3</h3>
+																																																		</div>
+																																																		<li>
+																																																			<a href='{{path('film')}}'>Tous les films</a>
+																																																		</li>
+																																										
+																																																	</ul> #}
+							<!-- .ul-reset -->
+
+						</div>
+						<!-- .container -->
+					</div>
+					<!-- .mega-menu-->
+				</li>
+				<!-- .droppable -->
+			</ul>
+			<!-- .container .ul-reset -->
+
+
+			<div
+				class="searchTop">
+				{# {% if app.request.uri != "/home"  %}
+																																																																																																																										
+																																																																																																																									{% endif %} #}
+				{% if app.request.attributes.get('_route') != 'accueil' %}
+					{% include "includes/_searchtop.html.twig" %}
+				{% endif %}
+			</div>
+
+			<div class="connect">
+				<li>
+					<a href="">Connexion</a>
+				</li>
+
+				<li><img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt=""></li>
+
+			</div>
+		</nav>
+	</header>
+
+	{# <main class="superContainer"> #}
+	{% block content %}{% endblock %}
+	{# </main> #}
+	{% block footer %}
+		<div class="footer">
+			<p>le bloc footer</p>
+		</div>
+
+
+	{% endblock %}
+{% endblock %}
