@@ -25,15 +25,21 @@ class Gamme
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="gamme")
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="gamme", cascade={"all"})
      */
     private $marque;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Modele::class, mappedBy="gamme", cascade={"all"})
+     */
+    private $modeles;
 
 
 
     public function __construct()
     {
         $this->Modele = new ArrayCollection();
+        $this->modeles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -61,6 +67,36 @@ class Gamme
     public function setMarque(?Marque $marque): self
     {
         $this->marque = $marque;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Modele[]
+     */
+    public function getModeles(): Collection
+    {
+        return $this->modeles;
+    }
+
+    public function addModele(Modele $modele): self
+    {
+        if (!$this->modeles->contains($modele)) {
+            $this->modeles[] = $modele;
+            $modele->setGamme($this);
+        }
+
+        return $this;
+    }
+
+    public function removeModele(Modele $modele): self
+    {
+        if ($this->modeles->removeElement($modele)) {
+            // set the owning side to null (unless already changed)
+            if ($modele->getGamme() === $this) {
+                $modele->setGamme(null);
+            }
+        }
 
         return $this;
     }

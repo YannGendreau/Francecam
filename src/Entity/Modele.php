@@ -84,6 +84,11 @@ class Modele
      */
     private $sync;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Gamme::class, inversedBy="modeles", cascade={"all"})
+     */
+    private $gamme;
+
 
 
     public function __construct()
@@ -249,6 +254,18 @@ class Modele
     public function setSync(string $sync): self
     {
         $this->sync = $sync;
+
+        return $this;
+    }
+
+    public function getGamme(): ?Gamme
+    {
+        return $this->gamme;
+    }
+
+    public function setGamme(?Gamme $gamme): self
+    {
+        $this->gamme = $gamme;
 
         return $this;
     }

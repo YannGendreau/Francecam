@@ -45,12 +45,12 @@ class Marque
     private $creation;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Film::class, inversedBy="marques")
+     * @ORM\ManyToMany(targetEntity=Film::class, inversedBy="marques", cascade={"all"})
      */
     private $film;
 
     /**
-     * @ORM\OneToMany(targetEntity=Gamme::class, mappedBy="marque")
+     * @ORM\OneToMany(targetEntity=Gamme::class, mappedBy="marque", cascade={"all"})
      */
     private $gamme;
 
@@ -180,6 +180,11 @@ class Marque
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
   
