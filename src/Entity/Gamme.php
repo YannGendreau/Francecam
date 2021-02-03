@@ -22,17 +22,14 @@ class Gamme
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="Gamme")
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="gamme")
      */
     private $marque;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Modele::class, mappedBy="gamme")
-     */
-    private $Modele;
+
 
     public function __construct()
     {
@@ -44,14 +41,14 @@ class Gamme
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
@@ -68,33 +65,7 @@ class Gamme
         return $this;
     }
 
-    /**
-     * @return Collection|Modele[]
-     */
-    public function getModele(): Collection
-    {
-        return $this->Modele;
-    }
 
-    public function addModele(Modele $modele): self
-    {
-        if (!$this->Modele->contains($modele)) {
-            $this->Modele[] = $modele;
-            $modele->setGamme($this);
-        }
 
-        return $this;
-    }
 
-    public function removeModele(Modele $modele): self
-    {
-        if ($this->Modele->removeElement($modele)) {
-            // set the owning side to null (unless already changed)
-            if ($modele->getGamme() === $this) {
-                $modele->setGamme(null);
-            }
-        }
-
-        return $this;
-    }
 }

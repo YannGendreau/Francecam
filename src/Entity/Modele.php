@@ -84,15 +84,7 @@ class Modele
      */
     private $sync;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Gamme::class, inversedBy="Modele")
-     */
-    private $gamme;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="cameras")
-     */
-    private $films;
 
     public function __construct()
     {
@@ -261,25 +253,8 @@ class Modele
         return $this;
     }
 
-    public function getGamme(): ?Gamme
-    {
-        return $this->gamme;
-    }
 
-    public function setGamme(?Gamme $gamme): self
-    {
-        $this->gamme = $gamme;
 
-        return $this;
-    }
-
-    /**
-     * @return Collection|Film[]
-     */
-    public function getFilms(): Collection
-    {
-        return $this->films;
-    }
 
     
 

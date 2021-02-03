@@ -6,6 +6,7 @@ use App\Repository\FilmRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * @ORM\Entity(repositoryClass=FilmRepository::class)
@@ -22,7 +23,7 @@ class Film
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $titre;
+    private $title;
 
     /**
      * @ORM\Column(type="integer")
@@ -30,34 +31,31 @@ class Film
     private $duree;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $sortie;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $synopsis;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer",  length = 4)
      */
-    private $pays;
-
-    // /**
-    //  * @ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films")
-    //  */
-    // private $camera;
+    private $decade;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films")
+     * @ORM\Column(type="integer")
      */
-    private $cameras;
+    private $sortie;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Marque::class, mappedBy="film")
+     */
+    private $marques;
+
+
 
     public function __construct()
     {
-        $this->camera = new ArrayCollection();
-        $this->cameras = new ArrayCollection();
+        $this->marque = new ArrayCollection();
+        $this->marques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,14 +63,14 @@ class Film
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titre;
+        return $this->title;
     }
 
-    public function setTitre(string $titre): self
+    public function setTitle(string $title): self
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
@@ -89,18 +87,6 @@ class Film
         return $this;
     }
 
-    public function getSortie(): ?\DateTimeInterface
-    {
-        return $this->sortie;
-    }
-
-    public function setSortie(\DateTimeInterface $sortie): self
-    {
-        $this->sortie = $sortie;
-
-        return $this;
-    }
-
     public function getSynopsis(): ?string
     {
         return $this->synopsis;
@@ -113,47 +99,56 @@ class Film
         return $this;
     }
 
-    public function getPays(): ?string
+    public function getDecade(): ?int
     {
-        return $this->pays;
+        return $this->decade;
     }
 
-    public function setPays(string $pays): self
+    public function setDecade(int $decade): self
     {
-        $this->pays = $pays;
+        $this->decade = $decade;
 
         return $this;
     }
 
-    // /**
-    //  * @return Collection|Marque[]
-    //  */
-    // public function getCamera(): Collection
-    // {
-    //     return $this->camera;
-    // }
-
-    // public function addCamera(Marque $camera): self
-    // {
-    //     if (!$this->camera->contains($camera)) {
-    //         $this->camera[] = $camera;
-    //     }
-
-    //     return $this;
-    // }
-
-    public function removeCamera(Marque $camera): self
+    public function getSortie(): ?int
     {
-        $this->camera->removeElement($camera);
+        return $this->sortie;
+    }
+
+    public function setSortie(int $sortie): self
+    {
+        $this->sortie = $sortie;
 
         return $this;
     }
 
     /**
-     * @return Collection|Modele[]
+     * @return Collection|Marque[]
      */
-    public function getCameras(): Collection
+    public function getMarques(): Collection
     {
-        return $this->cameras;
+        return $this->marques;
     }
+
+    public function addMarque(Marque $marque): self
+    {
+        if (!$this->marques->contains($marque)) {
+            $this->marques[] = $marque;
+            $marque->addFilm($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMarque(Marque $marque): self
+    {
+        if ($this->marques->removeElement($marque)) {
+            $marque->removeFilm($this);
+        }
+
+        return $this;
+    }
+
+   
 }

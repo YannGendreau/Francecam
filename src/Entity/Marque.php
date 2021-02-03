@@ -22,7 +22,7 @@ class Marque
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -32,32 +32,35 @@ class Marque
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $pays;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $created;
+    private $website;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $website;
+    private $pays;
+
+    /**
+     * @ORM\Column(type="integer", length=4)
+     */
+    private $creation;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Film::class, inversedBy="marques")
+     */
+    private $film;
 
     /**
      * @ORM\OneToMany(targetEntity=Gamme::class, mappedBy="marque")
      */
-    private $Gamme;
+    private $gamme;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="camera")
-     */
-    private $films;
+ 
 
     public function __construct()
     {
-        $this->Gamme = new ArrayCollection();
-        $this->films = new ArrayCollection();
+       
+        $this->film = new ArrayCollection();
+        $this->gamme = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,14 +68,14 @@ class Marque
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
@@ -89,30 +92,6 @@ class Marque
         return $this;
     }
 
-    public function getPays(): ?string
-    {
-        return $this->pays;
-    }
-
-    public function setPays(string $pays): self
-    {
-        $this->pays = $pays;
-
-        return $this;
-    }
-
-    public function getCreated(): ?\DateTimeInterface
-    {
-        return $this->created;
-    }
-
-    public function setCreated(\DateTimeInterface $created): self
-    {
-        $this->created = $created;
-
-        return $this;
-    }
-
     public function getWebsite(): ?string
     {
         return $this->website;
@@ -125,18 +104,66 @@ class Marque
         return $this;
     }
 
+    public function getPays(): ?string
+    {
+        return $this->pays;
+    }
+
+    public function setPays(string $pays): self
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getCreation(): ?string
+    {
+        return $this->creation;
+    }
+
+    public function setCreation(string $creation): self
+    {
+        $this->creation = $creation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Film[]
+     */
+    public function getFilm(): Collection
+    {
+        return $this->film;
+    }
+
+    public function addFilm(Film $film): self
+    {
+        if (!$this->film->contains($film)) {
+            $this->film[] = $film;
+        }
+
+        return $this;
+    }
+
+    public function removeFilm(Film $film): self
+    {
+        $this->film->removeElement($film);
+
+        return $this;
+    }
+
     /**
      * @return Collection|Gamme[]
      */
     public function getGamme(): Collection
     {
-        return $this->Gamme;
+        return $this->gamme;
     }
 
     public function addGamme(Gamme $gamme): self
     {
-        if (!$this->Gamme->contains($gamme)) {
-            $this->Gamme[] = $gamme;
+        if (!$this->gamme->contains($gamme)) {
+            $this->gamme[] = $gamme;
             $gamme->setMarque($this);
         }
 
@@ -145,7 +172,7 @@ class Marque
 
     public function removeGamme(Gamme $gamme): self
     {
-        if ($this->Gamme->removeElement($gamme)) {
+        if ($this->gamme->removeElement($gamme)) {
             // set the owning side to null (unless already changed)
             if ($gamme->getMarque() === $this) {
                 $gamme->setMarque(null);
@@ -155,13 +182,5 @@ class Marque
         return $this;
     }
 
-    /**
-     * @return Collection|Film[]
-     */
-    public function getFilms(): Collection
-    {
-        return $this->films;
-    }
-
-    
+  
 }
