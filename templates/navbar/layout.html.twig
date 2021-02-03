@@ -96,7 +96,7 @@
 				<li
 					class='drop'>
 					{# <a href='{{path('film')}}'>Films</a> #}
-					<a href=''>Films</a>
+					<a href='{{path('films')}}'>Films</a>
 					<div class='mega-menu'>
 						<div class="container cf">
 
@@ -157,14 +157,14 @@
 							</ul>
 							<!-- .ul-reset -->
 						{# <ul class="ul-reset">
-																																																																										<div class="h3">
-																																																																											<h3>Heading 3</h3>
-																																																																										</div>
-																																																																										<li>
-																																																																											<a href='{{path('film')}}'>Tous les films</a>
-																																																																										</li>
-																																																																		
-																																																																									</ul> #}
+																																																																																																																										<div class="h3">
+																																																																																																																											<h3>Heading 3</h3>
+																																																																																																																										</div>
+																																																																																																																										<li>
+																																																																																																																											<a href='{{path('film')}}'>Tous les films</a>
+																																																																																																																										</li>
+																																																																																																																		
+																																																																																																																									</ul> #}
 							<!-- .ul-reset -->
 
 						</div>
@@ -180,8 +180,8 @@
 			<div
 				class="searchTop">
 				{# {% if app.request.uri != "/home"  %}
-																																																																																																																																										
-																																																																																																																																									{% endif %} #}
+																																																																																																																																																																										
+																																																																																																																																																																									{% endif %} #}
 				{% if app.request.attributes.get('_route') != 'accueil' %}
 					{# {% include "includes/_searchtop.html.twig" %} #}
 				{% endif %}
