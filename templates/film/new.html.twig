@@ -1,0 +1,12 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}Ajoutez un film
+{% endblock %}
+
+{% block body %}
+	<h1>Ajoutez un film</h1>
+
+	{{ include('film/_form.html.twig') }}
+
+	<a href="{{ path('film_index') }}">back to list</a>
+{% endblock %}

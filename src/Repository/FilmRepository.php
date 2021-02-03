@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Film;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Data\FilmSearchData;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Film|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,79 @@ class FilmRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Film::class);
+    }
+
+
+
+      /**
+    * @return Film[]
+    */
+
+    public function findSearch(FilmSearchData $search): array
+    {
+        $query = $this
+                    ->createQueryBuilder('f')
+                    ->select('f','m')
+                    // ->select('f', 'g', 'm')
+                    // ->leftJoin('f.genre', 'g')
+                    ->leftJoin('f.marques', 'm')
+                   
+                    ;
+                    
+        if (!empty($search->q)) {
+            $query = $query
+                    ->andWhere('f.titre LIKE :q')
+                    // ->orWhere('f.annee LIKE :q')
+                    ->setParameter('q', "%{$search->q}%")
+                    ;
+        }
+
+        // if (!empty($search->genres)) {
+        //     $query = $query
+        //         ->andWhere('g.id IN (:genres)')
+        //         ->setParameter('genres', $search->genres)
+        //         ;
+        // }
+
+        // if (!empty($search->sortie)) {
+        //     $query = $query
+        //         ->andWhere('f.sortie IN (:sortie)')
+        //         ->setParameter('sortie', $search->sortie)
+        //         ;
+
+        if (!empty($search->annee)) {
+             $query = $query
+            ->andWhere('f.annee IN (:annee)')
+            ->setParameter('annee', $search->annee)
+            ;
+            }
+
+        if (!empty($search->decade)) {
+            $query = $query
+            ->andWhere('f.decade IN (:decade)')
+            ->setParameter('decade', $search->decade)
+            ;
+            }
+
+        // if (!empty($search->annee)) {
+        //     $query = $query
+        //     ->andWhere('f.decade IN (:decade)')
+        //     ->setParameter('decade', $search->annee)
+        //     ;
+        //     }
+
+
+
+        if (!empty($search->marques)) {
+            $query = $query
+            ->andWhere('m.id IN (:marques)')
+            ->setParameter('marques', $search->marques)
+            ;
+        }
+
+            // dump($query->getQuery());
+            return $query->getQuery()->getResult();
+        
     }
 
     // /**

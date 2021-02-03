@@ -1,0 +1,35 @@
+<div class="tableau">
+	{% for film in films %}
+		<div class="cardGrid">
+			<div class="cardSm">
+				<div class="imgCard">
+					<a href=""><img src="" alt="placeholder"></a>
+					{# <a href=""><img src={{film.img}} alt="placeholder"></a> #}
+				</div>
+				{# <a href="{{path('film_show', {slug:film.slug, id:film.id})}}"> #}
+				{# <a href="{{path('film_show', {slug: film.slug,})}}"> #}
+				<a href="{{path('film_show', {slug: film.slug,})}}">
+					<div class="description__overlay description__overlay--blur">
+
+
+						<h2>
+							{{film.title}}
+						</h2>
+
+						{# <h5>{{film.genre}}</h5>
+																														
+																																				{% for g in film.genre %}
+																														
+																																					<h5>{{g.nom}}</h5>
+																														
+																																				{% endfor %} #}
+
+
+					</div>
+				</a>
+
+
+			</div>
+		</div>
+	{% endfor %}
+</div>

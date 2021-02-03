@@ -1,0 +1,242 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}
+	{{film.title}}
+{% endblock %}
+
+{% block content %}
+
+	<div id="container">
+		<div class="tableauCamera">
+			<div
+				class="imageCam">
+				{# <div class="imgMov"><img src="{{film.img}}" alt=""></div> #}
+				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
+			</div>
+			<div class="descriptionFilm">
+				<div class="titreCam">
+					<h1>{{film.title}}
+					</h1>
+					<div class="overview">
+						<div>
+							{# <h5>{{film.duree}} #}
+							<h5>{{film.getRuntime(film.duree)}}</h5>
+							<span>-</span>
+							{# <h5>{{film.genre.nom}}</h5> #}
+							<span>-</span>
+							{# <h5>{{film.sortie|date('Y')}}</h5> #}
+							<h5>{{film.sortie}}</h5>
+
+						</div>
+
+					</div>
+					<div class="trait"></div>
+
+				</div>
+				<div class="summary">
+					<h4>Résumé</h4>
+					<p>{{film.synopsis}}</p>
+				</div>
+
+
+				<div class="artisteDivD">
+					<div class="realDivD">
+						<div class="realTitreD">
+							<h4>Réalisation</h4>
+						</div>
+						<div
+							class="realNameD">{# {% if film.directors | length > 0 %}
+																																																																																																{% for director in film.directors %}
+																																																																																								
+																																																																																																	<a href="">
+																																																																																																		<p>{{director.nom}}</p>
+																																																																																																	</a>
+																																																																																								
+																																																																																								
+																																																																																																{% endfor %}
+																																																																																															{% elseif film.directors | length > 1 %}
+																																																																																																<a href="#">
+																																																																																																	<p>{{director.nom}}</p>
+																																																																																																</a>
+																																																																																																<br>
+																																																																																															{% else %}
+																																																																																																<a href="#">
+																																																																																																	<p class="addArtist">Ajouter un réalisateur</p>
+																																																																																																</a>
+																																																																																															{% endif %} #}
+						</div>
+					</div>
+					<div class="dpDivD">
+						<div class="dpTitreD">
+							<h4>Direction de la photographie</h4>
+						</div>
+
+						<div
+							class="dpNameD">{# {% if film.dops | length > 0 %}
+																																																																																								{% for dop in film.dops %}
+																																																																																
+																																																																																
+																																																																																									<a href="#">
+																																																																																										<p>{{dop.nom}}</p>
+																																																																																									</a>
+																																																																																
+																																																																																
+																																																																																								{% endfor %}
+																																																																																							{% else %}
+																																																																																
+																																																																																
+																																																																																								<a href="#">
+																																																																																									<p class="addArtist">Ajouter un directeur</p>
+																																																																																								</a>
+																																																																																							</p>
+																																																																																
+																																																																																
+																																																																																						{% endif %} #}
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="specCam">
+				<div class="tabContainer">
+					<div class="buttonContainer">
+						<button class="active">Caméras</button>
+						<button>Fiches</button>
+						<button>Vidéos</button>
+					</div>
+					<div class="contentCam">
+
+						<div class="tabPanel" style="display: block;">
+							<div>
+								<div
+									class="tableauCamFilm">{# {% if film.modele | length > 0 %}
+																																																																																																			{% for camera in film.modele %}
+																																																																																									
+																																																																																																				<div class="cardGridCam">
+																																																																																																					<div class="cardSmCam">
+																																																																																																						<div class="imgCardCam">
+																																																																																																							<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src={{camera.image}} alt="placeholder"></a>
+																																																																																																						</div>
+																																																																																																						<a href="{{path('camera_show', {slug:camera.slug} )}}">
+																																																																																																							<div class="smDescriptionOverlay">
+																																																																																																								<em>{{camera.camera.marque}}
+																																																																																																									{{camera.camera.gamme}}
+																																																																																																									{{camera.name}}</em>
+																																																																																																							</div>
+																																																																																																							<div class="description__overlay description__overlay--blur">
+																																																																																									
+																																																																																																								<h3>{{camera.camera.marque}}
+																																																																																									
+																																																																																																								</h3>
+																																																																																																								<h2>{{camera.camera.gamme}}
+																																																																																									
+																																																																																																									{{camera.name}}</h2>
+																																																																																									
+																																																																																																								<h5>
+																																																																																																									<em>{{camera.cameraFormat.name}}</em>
+																																																																																																								</h5>
+																																																																																																								<br>
+																																																																																																								<h5>
+																																																																																																									<em>{{camera.cameraFormat.cameraType.name}}</em>
+																																																																																																								</h5>
+																																																																																																							</div>
+																																																																																																						</a>
+																																																																																									
+																																																																																									
+																																																																																																					</div>
+																																																																																																				</div>
+																																																																																																			{% endfor %}
+																																																																																									
+																																																																																																		{% elseif film.modele | length < 1 %}
+																																																																																									
+																																																																																																			{% for m in film.marque %}
+																																																																																									
+																																																																																																				<div class="cardGridCam">
+																																																																																																					<div class="cardSmCam">
+																																																																																																						<div class="imgCardCam">
+																																																																																																							<a href="{{path('marque_show', {slug: m.slug} )}}"><img src={{m.img}} alt="placeholder"></a>
+																																																																																																						</div>
+																																																																																																						<a href="{{path('marque_show', {slug: m.slug} )}}">
+																																																																																																							<div class="smDescriptionOverlay">
+																																																																																																								<em>{{m.nom}}</em>
+																																																																																																							</div>
+																																																																																																							<div class="description__overlay description__overlay--blur">
+																																																																																									
+																																																																																																								<h2>{{m.nom}}
+																																																																																									
+																																																																																																								</h2>
+																																																																																									
+																																																																																																							</div>
+																																																																																																						</a>
+																																																																																									
+																																																																																									
+																																																																																																					</div>
+																																																																																																				</div>
+																																																																																																			{% endfor %}
+																																																																																									
+																																																																																																			{# {% else if film.modele | length > 1 || film.marque | length > 1 %} 
+																																																																																								{% else %}
+																																																																																
+																																																																																									<p>pas de camera</p>
+																																																																																
+																																																																																								{% endif %}
+																																																																																							#}
+
+
+								</div>
+							</div>
+						</div>
+						<div class="tabPanel" style="display: none;">
+
+							<h2>LISTE DES FILMS</h2>
+
+						</div>
+						<div class="tabPanel" style="display: none;"></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<h1>Film</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ film.id }}</td>
+			</tr>
+			<tr>
+				<th>Title</th>
+				<td>{{ film.title }}</td>
+			</tr>
+			<tr>
+				<th>Duree</th>
+				<td>{{ film.duree }}</td>
+			</tr>
+			<tr>
+				<th>Synopsis</th>
+				<td>{{ film.synopsis }}</td>
+			</tr>
+			<tr>
+				<th>Decade</th>
+				<td>{{ film.decade }}</td>
+			</tr>
+			<tr>
+				<th>Sortie</th>
+				<td>{{ film.sortie }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('film_index') }}">back to list</a>
+
+	<a href="{{ path('film_edit', {'slug': film.slug}) }}">edit</a>
+
+	{{ include('film/_delete_form.html.twig') }}
+{% endblock %}
