@@ -21,15 +21,18 @@ class FilmType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
+                'label' => false,
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez entrer le titre du film.']),
                 ]])
             ->add('duree', IntegerType::class , [
+                'label' => false,
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez saisir la durée du film.']),
                     ]
             ])
             ->add('synopsis', TextareaType::class, [
+                'label' => false,
                 'constraints'=> [
                     new NotBlank(['message' => 'Veuillez saisir le synopsis du film.']),
                     new Length([
@@ -37,16 +40,24 @@ class FilmType extends AbstractType
                         'maxMessage' => 'Le synopsis doit comporter au maximum {{ limit }} caractères'
                     ])
             ]] )
-            ->add('decade')
+            // ->add('decade', EntityType::class, [
+            //     'class'         => Film::class,
+            //     'placeholder'   => 'Choisir une marque de caméra',
+            //     'mapped'        => false,
+            //     'required'      => false
+                
+            //     ])
             ->add('sortie', ChoiceType::class, [
+                'label' => false,
                 'choices'       =>$this->getYears(1897),
                 'placeholder'   => 'Choisir une année'
             ])
             ->add('marques', EntityType::class, [
+                'label' => false,
                 'class'         => Marque::class,
                 'placeholder'   => 'Choisir une marque de caméra',
                 'mapped'        => false,
-                'required'        => false,
+                'required'      => false,
             ])
         ;
     }

@@ -1,4 +1,40 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button class="btn">{{ button_label|default('Enregistrer') }}</button>
-{{ form_end(form) }}
+<div id="film">
+
+
+	{{ form_start(form) }}
+
+
+	{# {{ form_widget(form) }} #}
+	<div class="rowFormTitle">
+		<div>
+			<h3>Titre</h3>
+			{{form_row(form.title)}}
+		</div>
+	</div>
+
+	<div class="rowFormDetails">
+
+		<div class="sortie">
+			<h3>Date de sortie</h3>
+			{{form_row(form.sortie)}}
+		</div>
+
+		<div class="duree">
+			<h3>Durée</h3>
+			{{form_row(form.duree)}}
+		</div>
+	</div>
+
+	<div class="rowFormSynopsis">
+		<h3>Synopsis</h3>
+		{{form_row(form.synopsis)}}
+	</div>
+	<div class="rowFormCamera">
+		<h3>Caméras</h3>
+		{{form_row(form.marques)}}
+	</div>
+
+
+	<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+	{{ form_end(form) }}
+</div>
