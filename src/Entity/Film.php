@@ -60,11 +60,19 @@ class Film
     private $slug;
 
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="films")
+     */
+    private $genre;
+
+
 
     public function __construct()
     {
         $this->marque = new ArrayCollection();
         $this->marques = new ArrayCollection();
+
+        $this->genre = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -222,6 +230,41 @@ class Film
 
    
      // @ORM\ManyToMany(targetEntity=Marque::class, mappedBy="film", cascade={"all"})
+
+     /**
+      * @return Collection|Genre[]
+      */
+     public function getGenres(): Collection
+     {
+         return $this->genres;
+     }
+
+     public function addGenre(Genre $genre): self
+     {
+         if (!$this->genres->contains($genre)) {
+             $this->genres[] = $genre;
+             $genre->addFilm($this);
+         }
+
+         return $this;
+     }
+
+     public function removeGenre(Genre $genre): self
+     {
+         if ($this->genres->removeElement($genre)) {
+             $genre->removeFilm($this);
+         }
+
+         return $this;
+     }
+
+     /**
+      * @return Collection|Genre[]
+      */
+     public function getGenre(): Collection
+     {
+         return $this->genre;
+     }
 
 
 }

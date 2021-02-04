@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Film;
+use App\Entity\Genre;
 use App\Entity\Marque;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -56,6 +57,13 @@ class FilmType extends AbstractType
                 'label' => false,
                 'class'         => Marque::class,
                 'placeholder'   => 'Choisir une marque de caméra',
+                'mapped'        => false,
+                'required'      => false,
+            ])
+            ->add('genres', EntityType::class, [
+                'label' => false,
+                'class'         => Genre::class,
+                'placeholder'   => 'Choisir un genre',
                 'mapped'        => false,
                 'required'      => false,
             ])

@@ -1571,10 +1571,10 @@ header {
         .rowFormDetails {
             grid-area: details;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: 1fr;
             grid-template-areas:
-                "date duree"
+                "date duree genre"
             ;
 
             .sortie {
@@ -1583,6 +1583,10 @@ header {
 
             .duree {
                 grid-area: duree;
+            }
+
+            .genre {
+                grid-area: genre;
             }
         }
 

@@ -15,6 +15,7 @@
 				<th>Synopsis</th>
 				<th>Decade</th>
 				<th>Sortie</th>
+				<th>Genres</th>
 				<th>marque</th>
 				<th>actions</th>
 			</tr>
@@ -28,6 +29,11 @@
 					<td>{{ film.synopsis }}</td>
 					<td>{{ film.decade }}</td>
 					<td>{{ film.sortie }}</td>
+					<td>
+						{% for g in film.genre %}
+							{{ g.name }}
+						{% endfor %}
+					</td>
 					<td>
 						{% for m in film.marques %}
 							{{ m.name }}
