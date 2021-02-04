@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\FilmRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Marque;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert; 
+use App\Repository\FilmRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * @ORM\Entity(repositoryClass=FilmRepository::class)
@@ -37,7 +38,7 @@ class Film
     private $synopsis;
 
     /**
-     * @ORM\Column(type="integer",  length = 4)
+     * @ORM\Column(type="string",  length = 4, nullable = true)
      */
     private $decade;
 
@@ -47,7 +48,8 @@ class Film
     private $sortie;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Marque::class, mappedBy="film", cascade={"all"})
+     * @ORM\ManyToMany(targetEntity=Marque::class, inversedBy="film", cascade={"all"})
+     * 
      */
     private $marques;
 
@@ -122,16 +124,20 @@ class Film
         return $this;
     }
 
-    public function getDecade(): ?int
+    public function getDecade(): ?string
     {
         return $this->decade;
     }
 
-    public function setDecade(int $decade): self
+    public function setDecade(string $decade): self
     {
         
         // $this->decade = $decade;
         $this->decade = $decade;
+        // $date = $this->sortie;
+        // $dateStr = strval($date);
+        // $decade = substr($dateStr ,1 ,3) . '0';
+        // $this->decade = $decade;
 
         return $this;
 
@@ -146,7 +152,14 @@ class Film
         return $this->marques;
     }
 
-   
+    // public function addMarques(Marque $marque): self
+    // {
+    //     if (!$this->marques->contains($marque)) {
+    //         $this->marques[] = $marque;
+    //     }
+
+    //     return $this;
+    // }
 
     public function addMarque(Marque $marque): self
     {
@@ -167,11 +180,11 @@ class Film
         return $this;
     }
 
-    public function toDecade(int $sortie, int $decade )
+    public function toDecade(int $sortie): int
     {
-        $decade = substr($sortie, 1, 3) . 0;
+        return substr($sortie, 1, 3) . 0;
 
-        return $decade;
+        // return $decade;
     }
 
     public function getRuntime(int $duree)
@@ -208,4 +221,7 @@ class Film
     }
 
    
+     // @ORM\ManyToMany(targetEntity=Marque::class, mappedBy="film", cascade={"all"})
+
+
 }

@@ -46,19 +46,18 @@ class FilmController extends AbstractController
     public function new(Request $request): Response
     {
         $film = new Film();
+        
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
 
-        
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->getDoctrine()->getManager(); 
             $entityManager->persist($film);
-            
             $entityManager->flush();
 
             return $this->redirectToRoute('film_index');
         }
+        dump($form);
 
         return $this->render('film/new.html.twig', [
             'film' => $film,

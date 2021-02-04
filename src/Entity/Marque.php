@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\MarqueRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Film;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MarqueRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=MarqueRepository::class)
@@ -25,27 +26,28 @@ class Marque
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $website;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pays;
 
     /**
-     * @ORM\Column(type="integer", length=4)
+     * @ORM\Column(type="integer", length=4, nullable=true)
      */
     private $creation;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Film::class, inversedBy="marques", cascade={"all"})
+     * 
+     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="marques")
      */
     private $film;
 
@@ -136,6 +138,14 @@ class Marque
         return $this->film;
     }
 
+    // public function addFilm(Film $film): self
+    // {
+    //     if (!$this->film->contains($film)) {
+    //         $this->film[] = $film;
+    //         $film->addMarques($this);
+    //     }
+    // }
+
     public function addFilm(Film $film): self
     {
         if (!$this->film->contains($film)) {
@@ -182,10 +192,13 @@ class Marque
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->name;
     }
 
+
+    
+  // @ORM\ManyToMany(targetEntity=Film::class, inversedBy="marques", cascade={"all"})
   
 }
