@@ -45,26 +45,25 @@ class FilmController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $film = new Film();
-        
-        $form = $this->createForm(FilmType::class, $film);
+        $form = $this->createForm(FilmType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager(); 
+            $entityManager = $this->getDoctrine()->getManager();
+            $film = $form->getData();
             $entityManager->persist($film);
             $entityManager->flush();
-
+       
             return $this->redirectToRoute('film_index');
         }
-        dump($form);
-
+ 
         return $this->render('film/new.html.twig', [
-            'film' => $film,
+            // 'film' => $film,
             'form' => $form->createView(),
         ]);
     }
 
+ 
     /**
      * @Route("/{slug}", name="film_show", methods={"GET"})
      */
@@ -126,5 +125,11 @@ class FilmController extends AbstractController
             "films" => $films,
             'form' => $form->createView()
         ]);
+    }
+
+    private function toDecade(int $sortie)
+    {
+        return round($sortie/10, 0, PHP_ROUND_HALF_DOWN)* 10; 
+
     }
 }

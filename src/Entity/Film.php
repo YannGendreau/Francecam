@@ -38,7 +38,7 @@ class Film
     private $synopsis;
 
     /**
-     * @ORM\Column(type="string",  length = 4, nullable = true)
+     * @ORM\Column(type="integer",  length = 4, nullable = true)
      */
     private $decade;
 
@@ -48,9 +48,10 @@ class Film
     private $sortie;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Marque::class, inversedBy="film", cascade={"all"})
      * 
-     */
+    *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films")
+    */
+    
     private $marques;
 
     /**
@@ -59,20 +60,51 @@ class Film
      */
     private $slug;
 
-
     /**
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="films")
      */
-    private $genre;
+    private $genres;
 
-
+    
 
     public function __construct()
     {
-        $this->marque = new ArrayCollection();
         $this->marques = new ArrayCollection();
+        $this->genres = new ArrayCollection();
+    }
 
-        $this->genre = new ArrayCollection();
+    // public function toDecade(int $sortie): int
+    // {
+    //     return substr($sortie, 1, 3) . 0;
+
+    //     // return $decade;
+    // }
+
+    public function getRuntime(int $duree)
+    {
+        $minutes = $duree;
+
+        $hours = floor($minutes / 60);
+        $min = $minutes - ($hours * 60);
+
+        if($hours < 1 && $min > 1){
+            $runtime = $min. " min";
+        }elseif($hours > 1 && $min < 1){
+            $runtime = $hours." h ";
+        }elseif($hours > 1 && $min <= 9){
+            $runtime = $hours." h ". "0" .$min. " min";
+        }else{
+            $runtime = $hours." h ".$min. " min";
+        }
+    
+              return $runtime;
+
+        }
+
+
+    public function __toString()
+    {
+        return $this->title;
     }
 
     public function getId(): ?int
@@ -116,9 +148,21 @@ class Film
         return $this;
     }
 
+    public function getDecade(): ?int
+    {
+        return $this->decade;
+    }
 
+    public function setDecade(?int $decade): self
+    {
 
-    
+        // $sortie = $this->sortie;
+        $decade = round($this->sortie/10, 0, PHP_ROUND_HALF_DOWN)* 10;
+
+        $this->decade = $decade;
+
+        return $this;
+    }
 
     public function getSortie(): ?int
     {
@@ -132,90 +176,6 @@ class Film
         return $this;
     }
 
-    public function getDecade(): ?string
-    {
-        return $this->decade;
-    }
-
-    public function setDecade(string $decade): self
-    {
-        
-        // $this->decade = $decade;
-        $this->decade = $decade;
-        // $date = $this->sortie;
-        // $dateStr = strval($date);
-        // $decade = substr($dateStr ,1 ,3) . '0';
-        // $this->decade = $decade;
-
-        return $this;
-
-        // return $decade;
-    }
-
-    /**
-     * @return Collection|Marque[]
-     */
-    public function getMarques(): Collection
-    {
-        return $this->marques;
-    }
-
-    // public function addMarques(Marque $marque): self
-    // {
-    //     if (!$this->marques->contains($marque)) {
-    //         $this->marques[] = $marque;
-    //     }
-
-    //     return $this;
-    // }
-
-    public function addMarque(Marque $marque): self
-    {
-        if (!$this->marques->contains($marque)) {
-            $this->marques[] = $marque;
-            $marque->addFilm($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMarque(Marque $marque): self
-    {
-        if ($this->marques->removeElement($marque)) {
-            $marque->removeFilm($this);
-        }
-
-        return $this;
-    }
-
-    public function toDecade(int $sortie): int
-    {
-        return substr($sortie, 1, 3) . 0;
-
-        // return $decade;
-    }
-
-    public function getRuntime(int $duree)
-    {
-        $minutes = $duree;
-
-        $hours = floor($minutes / 60);
-        $min = $minutes - ($hours * 60);
-
-        if($hours < 1 && $min > 1){
-            $runtime = $min. " min";
-        }elseif($hours > 1 && $min < 1){
-            $runtime = $hours." h ";
-        }elseif($hours > 1 && $min <= 9){
-            $runtime = $hours." h ". "0" .$min. " min";
-        }else{
-            $runtime = $hours." h ".$min. " min";
-        }
-    
-              return $runtime;
-
-        }
-
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -228,43 +188,60 @@ class Film
         return $this;
     }
 
-   
-     // @ORM\ManyToMany(targetEntity=Marque::class, mappedBy="film", cascade={"all"})
+    /**
+     * @return Collection|Marque[]
+     */
+    public function getMarques(): Collection
+    {
+        return $this->marques;
+    }
 
-     /**
-      * @return Collection|Genre[]
-      */
-     public function getGenres(): Collection
-     {
-         return $this->genres;
-     }
+    public function addMarque(Marque $marque): self
+    {
+        if (!$this->marques->contains($marque)) {
+            $this->marques[] = $marque;
+        }
 
-     public function addGenre(Genre $genre): self
-     {
-         if (!$this->genres->contains($genre)) {
-             $this->genres[] = $genre;
-             $genre->addFilm($this);
-         }
+        return $this;
+    }
 
-         return $this;
-     }
+    public function removeMarque(Marque $marque): self
+    {
+        $this->marques->removeElement($marque);
 
-     public function removeGenre(Genre $genre): self
-     {
-         if ($this->genres->removeElement($genre)) {
-             $genre->removeFilm($this);
-         }
+        return $this;
+    }
 
-         return $this;
-     }
+    /**
+     * @return Collection|Genre[]
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
 
-     /**
-      * @return Collection|Genre[]
-      */
-     public function getGenre(): Collection
-     {
-         return $this->genre;
-     }
+    public function addGenre(Genre $genre): self
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres[] = $genre;
+        }
 
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): self
+    {
+        $this->genres->removeElement($genre);
+
+        return $this;
+    }
+
+    public function toDecade($sortie)
+    {
+        $decade = round($sortie/10, 0, PHP_ROUND_HALF_DOWN)* 10;
+        return $decade;
+    }
+
+    
 
 }

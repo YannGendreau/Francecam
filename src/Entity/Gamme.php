@@ -25,12 +25,12 @@ class Gamme
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="gamme", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="gamme")
      */
     private $marque;
 
     /**
-     * @ORM\OneToMany(targetEntity=Modele::class, mappedBy="gamme", cascade={"all"})
+     * @ORM\OneToMany(targetEntity=Modele::class, mappedBy="gamme", cascade={"persist"})
      */
     private $modeles;
 
@@ -99,6 +99,11 @@ class Gamme
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
 

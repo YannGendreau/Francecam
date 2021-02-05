@@ -25,7 +25,7 @@ class Genre
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="genre")
+     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="genres", cascade={"persist"})
      */
     private $films;
 
@@ -49,6 +49,12 @@ class Genre
         $this->name = $name;
 
         return $this;
+    }
+
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     /**
@@ -76,11 +82,6 @@ class Genre
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->name;
     }
 
 }

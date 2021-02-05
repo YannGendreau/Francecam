@@ -41,13 +41,7 @@ class FilmType extends AbstractType
                         'maxMessage' => 'Le synopsis doit comporter au maximum {{ limit }} caractères'
                     ])
             ]] )
-            // ->add('decade', EntityType::class, [
-            //     'class'         => Film::class,
-            //     'placeholder'   => 'Choisir une marque de caméra',
-            //     'mapped'        => false,
-            //     'required'      => false
-                
-            //     ])
+           
             ->add('sortie', ChoiceType::class, [
                 'label' => false,
                 'choices'       =>$this->getYears(1897),
@@ -57,17 +51,29 @@ class FilmType extends AbstractType
                 'label' => false,
                 'class'         => Marque::class,
                 'placeholder'   => 'Choisir une marque de caméra',
-                'mapped'        => false,
+                'choice_label' => 'name',
+                // 'mapped'        => true,
                 'required'      => false,
+                // 'by_reference'  => false
+                'multiple' => true,
+                'expanded' => true
             ])
             ->add('genres', EntityType::class, [
                 'label' => false,
                 'class'         => Genre::class,
+                'choice_label' => 'name',
                 'placeholder'   => 'Choisir un genre',
-                'mapped'        => false,
+                // 'mapped'        => true,
                 'required'      => false,
+                // 'by_reference'  => false,
+                'multiple' => true,
+                'expanded' => true
+          
             ])
+     
+            
         ;
+       
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -32,25 +32,25 @@ class FilmRepository extends ServiceEntityRepository
                     ->createQueryBuilder('f')
                     ->select('f','m')
                     // ->select('f', 'g', 'm')
-                    // ->leftJoin('f.genre', 'g')
+                    ->leftJoin('f.genres', 'g')
                     ->leftJoin('f.marques', 'm')
                    
                     ;
                     
         if (!empty($search->q)) {
             $query = $query
-                    ->andWhere('f.titre LIKE :q')
+                    ->andWhere('f.title LIKE :q')
                     // ->orWhere('f.annee LIKE :q')
                     ->setParameter('q', "%{$search->q}%")
                     ;
         }
 
-        // if (!empty($search->genres)) {
-        //     $query = $query
-        //         ->andWhere('g.id IN (:genres)')
-        //         ->setParameter('genres', $search->genres)
-        //         ;
-        // }
+        if (!empty($search->genres)) {
+            $query = $query
+                ->andWhere('g.id IN (:genres)')
+                ->setParameter('genres', $search->genres)
+                ;
+        }
 
         // if (!empty($search->sortie)) {
         //     $query = $query
@@ -71,13 +71,6 @@ class FilmRepository extends ServiceEntityRepository
             ->setParameter('decade', $search->decade)
             ;
             }
-
-        // if (!empty($search->annee)) {
-        //     $query = $query
-        //     ->andWhere('f.decade IN (:decade)')
-        //     ->setParameter('decade', $search->annee)
-        //     ;
-        //     }
 
 
 

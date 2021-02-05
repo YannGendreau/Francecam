@@ -47,48 +47,13 @@ class SearchFilmForm extends AbstractType
                 ]
 
             ])
-            // ->add('genres', EntityType::class,[
-            //     'label' => false,
-            //     'required'=> false,
-            //     'class' => Genre::class,
-            //     'expanded'=> true,
-            //     'multiple' => true
-            // ])
-
-
-            // ->add('annee', EntityType::class,[
-            //     'label' => false,
-            //     'required'=> false,
-            //     'class' => Film::class,
-            //     'expanded'=> true,
-            //     'multiple' => true,
-            //     // 'choices' => function (FilmRepository $er) {
-            //     //     return $er->groupByDecadeSql();
-            //     //     // return $er->createQueryBuilder('s')
-            //     //     // ->select('s.sortie')
-            //     //     // ;
-            //     // }
-            //     // 'query_builder' => function (FilmRepository $er) {
-            //     //     return $er->groupByDecadeSqlDeux();
-            //     //     // return $er->createQueryBuilder('s')
-            //     //     // ->select('s.sortie')
-            //     //     // ;
-            //     // }
-            //     ])
-
-
-            // ->add('annee', ChoiceType::class, [
-            //     // 'choice_value'=> '[decade]',
-            //     // 'mapped' => false,
-            //     'label' => false,
-            //     'choices' => $this->filmRepository->groupByDecadeSql(),
-            //     'choice_label' => function($choice, $key, $value){
-            //         return $value;
-            //     },
-            //     'expanded' => true,
-            //     'multiple' => true,
-               
-            // ])
+            ->add('genres', EntityType::class,[
+                'label' => false,
+                'required'=> false,
+                'class' => Genre::class,
+                'expanded'=> true,
+                'multiple' => true
+            ])
             ->add('decade', ChoiceType::class, [
                 // 'choice_value'=> '[decade]',
                 // 'mapped' => false,
@@ -106,9 +71,6 @@ class SearchFilmForm extends AbstractType
                     '2010' => '2010',
                     '2020' => '2020'
                 ],
-                // 'choice_label' => function($choice, $key, $value){
-                //     return $value;
-                // },
                 'expanded' => true,
                 'multiple' => true,
                

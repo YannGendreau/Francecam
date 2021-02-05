@@ -19,12 +19,12 @@ class FilmSearchData{
      */
     public $q = '';
 
-    // /**
-    //  * Tableau de genres
-    //  *
-    //  * @var Genre
-    //  */
-    // public $genres = [];
+    /**
+     * Tableau de genres
+     *
+     * @var Genre
+     */
+    public $genres = [];
 
     /**
      * Tableau de date de sortie

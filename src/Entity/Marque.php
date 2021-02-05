@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MarqueRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=MarqueRepository::class)
@@ -46,22 +47,28 @@ class Marque
     private $creation;
 
     /**
-     * 
-     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="marques")
+     *
+     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="marques", cascade ={"persist"})
+     *
      */
-    private $film;
+    private $films;
 
     /**
-     * @ORM\OneToMany(targetEntity=Gamme::class, mappedBy="marque", cascade={"all"})
+     * @ORM\OneToMany(targetEntity=Gamme::class, mappedBy="marque", cascade={"persist"})
      */
     private $gamme;
 
- 
+        /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+
 
     public function __construct()
     {
-       
-        $this->film = new ArrayCollection();
+        $this->films = new ArrayCollection();
         $this->gamme = new ArrayCollection();
     }
 
@@ -87,7 +94,7 @@ class Marque
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -99,7 +106,7 @@ class Marque
         return $this->website;
     }
 
-    public function setWebsite(string $website): self
+    public function setWebsite(?string $website): self
     {
         $this->website = $website;
 
@@ -111,53 +118,21 @@ class Marque
         return $this->pays;
     }
 
-    public function setPays(string $pays): self
+    public function setPays(?string $pays): self
     {
         $this->pays = $pays;
 
         return $this;
     }
 
-    public function getCreation(): ?string
+    public function getCreation(): ?int
     {
         return $this->creation;
     }
 
-    public function setCreation(string $creation): self
+    public function setCreation(?int $creation): self
     {
         $this->creation = $creation;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Film[]
-     */
-    public function getFilm(): Collection
-    {
-        return $this->film;
-    }
-
-    // public function addFilm(Film $film): self
-    // {
-    //     if (!$this->film->contains($film)) {
-    //         $this->film[] = $film;
-    //         $film->addMarques($this);
-    //     }
-    // }
-
-    public function addFilm(Film $film): self
-    {
-        if (!$this->film->contains($film)) {
-            $this->film[] = $film;
-        }
-
-        return $this;
-    }
-
-    public function removeFilm(Film $film): self
-    {
-        $this->film->removeElement($film);
 
         return $this;
     }
@@ -192,13 +167,51 @@ class Marque
         return $this;
     }
 
-    public function __toString(): string
+    public function __toString()
     {
         return $this->name;
     }
 
+    /**
+     * @return Collection|Film[]
+     */
+    public function getFilms(): Collection
+    {
+        return $this->films;
+    }
+
+    public function addFilm(Film $film): self
+    {
+        if (!$this->films->contains($film)) {
+            $this->films[] = $film;
+            $film->addMarque($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFilm(Film $film): self
+    {
+        if ($this->films->removeElement($film)) {
+            $film->removeMarque($this);
+        }
+
+        return $this;
+    }
 
     
-  // @ORM\ManyToMany(targetEntity=Film::class, inversedBy="marques", cascade={"all"})
-  
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+
+
 }
