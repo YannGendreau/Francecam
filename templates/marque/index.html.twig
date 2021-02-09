@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Marque index
+{% endblock %}
+
+{% block body %}
+	<h1>Marque index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Website</th>
+				<th>Pays</th>
+				<th>Creation</th>
+				<th>Slug</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for marque in marques %}
+				<tr>
+					<td>{{ marque.id }}</td>
+					<td>{{ marque.name }}</td>
+					<td>{{ marque.description }}</td>
+					<td>{{ marque.website }}</td>
+					<td>{{ marque.pays }}</td>
+					<td>{{ marque.creation }}</td>
+					<td>{{ marque.slug }}</td>
+					<td>
+						<a href="{{ path('marque_show', {'slug': marque.slug}) }}">show</a>
+						<a href="{{ path('marque_edit', {'slug': marque.slug}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('marque_new') }}">Create new</a>
+{% endblock %}

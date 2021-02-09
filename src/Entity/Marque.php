@@ -54,22 +54,28 @@ class Marque
     private $films;
 
     /**
-     * @ORM\OneToMany(targetEntity=Gamme::class, mappedBy="marque", cascade={"persist"})
-     */
-    private $gamme;
-
-        /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Modele::class, mappedBy="marque", cascade={"persist"})
+     */
+    private $modeles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Camera::class, mappedBy="marque")
+     */
+    private $cameras;
 
     public function __construct()
     {
         $this->films = new ArrayCollection();
         $this->gamme = new ArrayCollection();
+        $this->modeles = new ArrayCollection();
+        $this->cameras = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -137,36 +143,6 @@ class Marque
         return $this;
     }
 
-    /**
-     * @return Collection|Gamme[]
-     */
-    public function getGamme(): Collection
-    {
-        return $this->gamme;
-    }
-
-    public function addGamme(Gamme $gamme): self
-    {
-        if (!$this->gamme->contains($gamme)) {
-            $this->gamme[] = $gamme;
-            $gamme->setMarque($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGamme(Gamme $gamme): self
-    {
-        if ($this->gamme->removeElement($gamme)) {
-            // set the owning side to null (unless already changed)
-            if ($gamme->getMarque() === $this) {
-                $gamme->setMarque(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->name;
@@ -211,6 +187,74 @@ class Marque
 
         return $this;
     }
+
+    /**
+     * @return Collection|Modele[]
+     */
+    public function getModeles(): Collection
+    {
+        return $this->modeles;
+    }
+
+    public function addModele(Modele $modele): self
+    {
+        if (!$this->modeles->contains($modele)) {
+            $this->modeles[] = $modele;
+            $modele->setMarque($this);
+        }
+
+        return $this;
+    }
+
+    public function removeModele(Modele $modele): self
+    {
+        if ($this->modeles->removeElement($modele)) {
+            // set the owning side to null (unless already changed)
+            if ($modele->getMarque() === $this) {
+                $modele->setMarque(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Camera[]
+     */
+    public function getCameras(): Collection
+    {
+        return $this->cameras;
+    }
+
+    public function addCamera(Camera $camera): self
+    {
+        if (!$this->cameras->contains($camera)) {
+            $this->cameras[] = $camera;
+            $camera->setMarque($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCamera(Camera $camera): self
+    {
+        if ($this->cameras->removeElement($camera)) {
+            // set the owning side to null (unless already changed)
+            if ($camera->getMarque() === $this) {
+                $camera->setMarque(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
+
+
+  
+ 
 
 
 
