@@ -44,24 +44,24 @@
 						</div>
 						<div
 							class="realNameD">{# {% if film.directors | length > 0 %}
-																																																																																																																																																																																																																																								{% for director in film.directors %}
-																																																																																																																																																																																																																																
-																																																																																																																																																																																																																																									<a href="">
-																																																																																																																																																																																																																																										<p>{{director.nom}}</p>
-																																																																																																																																																																																																																																									</a>
-																																																																																																																																																																																																																																
-																																																																																																																																																																																																																																
-																																																																																																																																																																																																																																								{% endfor %}
-																																																																																																																																																																																																																																							{% elseif film.directors | length > 1 %}
-																																																																																																																																																																																																																																								<a href="#">
-																																																																																																																																																																																																																																									<p>{{director.nom}}</p>
-																																																																																																																																																																																																																																								</a>
-																																																																																																																																																																																																																																								<br>
-																																																																																																																																																																																																																																							{% else %}
-																																																																																																																																																																																																																																								<a href="#">
-																																																																																																																																																																																																																																									<p class="addArtist">Ajouter un réalisateur</p>
-																																																																																																																																																																																																																																								</a>
-																																																																																																																																																																																																																																							{% endif %} #}
+																																																																																																																																																																																																																																																																																																																																																																																{% for director in film.directors %}
+																																																																																																																																																																																																																																																																																																																																																																								
+																																																																																																																																																																																																																																																																																																																																																																																	<a href="">
+																																																																																																																																																																																																																																																																																																																																																																																		<p>{{director.nom}}</p>
+																																																																																																																																																																																																																																																																																																																																																																																	</a>
+																																																																																																																																																																																																																																																																																																																																																																								
+																																																																																																																																																																																																																																																																																																																																																																								
+																																																																																																																																																																																																																																																																																																																																																																																{% endfor %}
+																																																																																																																																																																																																																																																																																																																																																																															{% elseif film.directors | length > 1 %}
+																																																																																																																																																																																																																																																																																																																																																																																<a href="#">
+																																																																																																																																																																																																																																																																																																																																																																																	<p>{{director.nom}}</p>
+																																																																																																																																																																																																																																																																																																																																																																																</a>
+																																																																																																																																																																																																																																																																																																																																																																																<br>
+																																																																																																																																																																																																																																																																																																																																																																															{% else %}
+																																																																																																																																																																																																																																																																																																																																																																																<a href="#">
+																																																																																																																																																																																																																																																																																																																																																																																	<p class="addArtist">Ajouter un réalisateur</p>
+																																																																																																																																																																																																																																																																																																																																																																																</a>
+																																																																																																																																																																																																																																																																																																																																																																															{% endif %} #}
 						</div>
 					</div>
 					<div class="dpDivD">
@@ -71,25 +71,25 @@
 
 						<div
 							class="dpNameD">{# {% if film.dops | length > 0 %}
-																																																																																																																																																																																																																																{% for dop in film.dops %}
-																																																																																																																																																																																																																								
-																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																	<a href="#">
-																																																																																																																																																																																																																																		<p>{{dop.nom}}</p>
-																																																																																																																																																																																																																																	</a>
-																																																																																																																																																																																																																								
-																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																{% endfor %}
-																																																																																																																																																																																																																															{% else %}
-																																																																																																																																																																																																																								
-																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																<a href="#">
-																																																																																																																																																																																																																																	<p class="addArtist">Ajouter un directeur</p>
-																																																																																																																																																																																																																																</a>
-																																																																																																																																																																																																																															</p>
-																																																																																																																																																																																																																								
-																																																																																																																																																																																																																								
-																																																																																																																																																																																																																														{% endif %} #}
+																																																																																																																																																																																																																																																																																																																																																																								{% for dop in film.dops %}
+																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																									<a href="#">
+																																																																																																																																																																																																																																																																																																																																																																										<p>{{dop.nom}}</p>
+																																																																																																																																																																																																																																																																																																																																																																									</a>
+																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																								{% endfor %}
+																																																																																																																																																																																																																																																																																																																																																																							{% else %}
+																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																								<a href="#">
+																																																																																																																																																																																																																																																																																																																																																																									<p class="addArtist">Ajouter un directeur</p>
+																																																																																																																																																																																																																																																																																																																																																																								</a>
+																																																																																																																																																																																																																																																																																																																																																																							</p>
+																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																
+																																																																																																																																																																																																																																																																																																																																																																						{% endif %} #}
 						</div>
 
 
@@ -112,44 +112,44 @@
 								<div
 									class="tableauCamFilm">
 									{# {% if film.modele | length > 0 %}
-																																														{% for camera in film.modele %}
-																																				
-																																															<div class="cardGridCam">
-																																																<div class="cardSmCam">
-																																																	<div class="imgCardCam">
-																																																		<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src={{camera.image}} alt="placeholder"></a>
-																																																	</div>
-																																																	<a href="{{path('camera_show', {slug:camera.slug} )}}">
-																																																		<div class="smDescriptionOverlay">
-																																																			<em>{{camera.camera.marque}}
-																																																				{{camera.camera.gamme}}
-																																																				{{camera.name}}</em>
-																																																		</div>
-																																																		<div class="description__overlay description__overlay--blur">
-																																				
-																																																			<h3>{{camera.camera.marque}}
-																																				
-																																																			</h3>
-																																																			<h2>{{camera.camera.gamme}}
-																																				
-																																																				{{camera.name}}</h2>
-																																				
-																																																			<h5>
-																																																				<em>{{camera.cameraFormat.name}}</em>
-																																																			</h5>
-																																																			<br>
-																																																			<h5>
-																																																				<em>{{camera.cameraFormat.cameraType.name}}</em>
-																																																			</h5>
-																																																		</div>
-																																																	</a>
-																																				
-																																				
-																																																</div>
-																																															</div>
-																																														{% endfor %}
-																																				
-																																													{% elseif film.modele | length < 1 %} #}
+																																																																																																																																																																																																							{% for camera in film.modele %}
+																																																																																																																																																																																													
+																																																																																																																																																																																																								<div class="cardGridCam">
+																																																																																																																																																																																																									<div class="cardSmCam">
+																																																																																																																																																																																																										<div class="imgCardCam">
+																																																																																																																																																																																																											<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src={{camera.image}} alt="placeholder"></a>
+																																																																																																																																																																																																										</div>
+																																																																																																																																																																																																										<a href="{{path('camera_show', {slug:camera.slug} )}}">
+																																																																																																																																																																																																											<div class="smDescriptionOverlay">
+																																																																																																																																																																																																												<em>{{camera.camera.marque}}
+																																																																																																																																																																																																													{{camera.camera.gamme}}
+																																																																																																																																																																																																													{{camera.name}}</em>
+																																																																																																																																																																																																											</div>
+																																																																																																																																																																																																											<div class="description__overlay description__overlay--blur">
+																																																																																																																																																																																													
+																																																																																																																																																																																																												<h3>{{camera.camera.marque}}
+																																																																																																																																																																																													
+																																																																																																																																																																																																												</h3>
+																																																																																																																																																																																																												<h2>{{camera.camera.gamme}}
+																																																																																																																																																																																													
+																																																																																																																																																																																																													{{camera.name}}</h2>
+																																																																																																																																																																																													
+																																																																																																																																																																																																												<h5>
+																																																																																																																																																																																																													<em>{{camera.cameraFormat.name}}</em>
+																																																																																																																																																																																																												</h5>
+																																																																																																																																																																																																												<br>
+																																																																																																																																																																																																												<h5>
+																																																																																																																																																																																																													<em>{{camera.cameraFormat.cameraType.name}}</em>
+																																																																																																																																																																																																												</h5>
+																																																																																																																																																																																																											</div>
+																																																																																																																																																																																																										</a>
+																																																																																																																																																																																													
+																																																																																																																																																																																													
+																																																																																																																																																																																																									</div>
+																																																																																																																																																																																																								</div>
+																																																																																																																																																																																																							{% endfor %}
+																																																																																																																																																																																													
+																																																																																																																																																																																																						{% elseif film.modele | length < 1 %} #}
 
 									{% for m in film.marques %}
 
@@ -177,11 +177,11 @@
 								{% endfor %}
 
 								{# {% else if film.modele | length > 1 || film.marque | length > 1 %}
-																																												{% else %}
-																																			
-																																													<p>pas de camera</p>
-																																			
-																																												{% endif %} #}
+																																																																																																																																																																																				{% else %}
+																																																																																																																																																																											
+																																																																																																																																																																																					<p>pas de camera</p>
+																																																																																																																																																																											
+																																																																																																																																																																																				{% endif %} #}
 
 
 							</div>
@@ -192,7 +192,14 @@
 						<h2>LISTE DES FILMS</h2>
 
 					</div>
-					<div class="tabPanel" style="display: none;"></div>
+					<div class="tabPanel" style="display: none;">
+						{% for cam in film.camera %}
+							{# {{cam.marqueModele}} #}
+							{{cam.cameraName()}}
+						{% endfor %}
+
+
+					</div>
 
 				</div>
 			</div>

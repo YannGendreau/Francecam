@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Camera index{% endblock %}
+
+{% block body %}
+    <h1>Camera index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for camera in cameras %}
+            <tr>
+                <td>{{ camera.id }}</td>
+                <td>
+                    <a href="{{ path('camera_show', {'id': camera.id}) }}">show</a>
+                    <a href="{{ path('camera_edit', {'id': camera.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('camera_new') }}">Create new</a>
+{% endblock %}

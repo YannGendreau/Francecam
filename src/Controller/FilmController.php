@@ -51,6 +51,7 @@ class FilmController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $film = $form->getData();
+            dd($film);
             $entityManager->persist($film);
             $entityManager->flush();
        

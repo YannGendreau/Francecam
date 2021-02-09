@@ -65,12 +65,25 @@ class Film
      */
     private $genres;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films")
+     */
+    private $modeles;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films")
+     */
+    private $camera;
+
     
 
     public function __construct()
     {
         $this->marques = new ArrayCollection();
+        $this->marques = new Collection();
         $this->genres = new ArrayCollection();
+        $this->modeles = new ArrayCollection();
+        $this->camera = new ArrayCollection();
     }
 
     // public function toDecade(int $sortie): int
@@ -240,6 +253,54 @@ class Film
     {
         $decade = round($sortie/10, 0, PHP_ROUND_HALF_DOWN)* 10;
         return $decade;
+    }
+
+    /**
+     * @return Collection|Modele[]
+     */
+    public function getModeles(): Collection
+    {
+        return $this->modeles;
+    }
+
+    public function addModele(Modele $modele): self
+    {
+        if (!$this->modeles->contains($modele)) {
+            $this->modeles[] = $modele;
+        }
+
+        return $this;
+    }
+
+    public function removeModele(Modele $modele): self
+    {
+        $this->modeles->removeElement($modele);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Camera[]
+     */
+    public function getCamera(): Collection
+    {
+        return $this->camera;
+    }
+
+    public function addCamera(Camera $camera): self
+    {
+        if (!$this->camera->contains($camera)) {
+            $this->camera[] = $camera;
+        }
+
+        return $this;
+    }
+
+    public function removeCamera(Camera $camera): self
+    {
+        $this->camera->removeElement($camera);
+
+        return $this;
     }
 
     

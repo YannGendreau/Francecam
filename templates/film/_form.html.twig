@@ -34,9 +34,14 @@
 		<h3>Synopsis</h3>
 		{{form_row(form.synopsis)}}
 	</div>
+	{# <div class="rowFormCamera" id="cam_list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e('html_attr')}}"> #}
 	<div class="rowFormCamera">
 		<h3>Caméras</h3>
-		{{form_row(form.marques)}}
+
+		{# {{{form_row(form.camera)}} {% for camera in form.camera %}
+									{{form_row(camera)}}
+								{% endfor %} #}
+		{{ form_row(form.marques) }}
 	</div>
 
 
