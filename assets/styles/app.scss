@@ -85,6 +85,11 @@ $cardCam: 190px;
 /*----Margin----*/
 $mTop:50px;
 
+
+/*----font size----*/
+$formTitleField: 1.3rem;
+
+
 // /*----couleurs fonts----*/
 // $titleFont:rgb(168, 214, 168);
 // $titleFont:rgb(151, 44, 44);
@@ -1525,12 +1530,8 @@ header {
                         }
 
                     }
-
-
                 }
-
             }
-
         }
     }
 }
@@ -1558,10 +1559,19 @@ header {
             div {
                 width: 100%;
 
+                h3 {
+                    font-family: 'Roboto Condensed', sans-serif;
+                    font-size: $formTitleField;
+                    // color: $nav-color;
+                    color: $titleFont;
+                }
+
                 input {
-                    height: 30px;
+                    height: 40px;
                     border-radius: 5px;
                     width: 80%;
+                    padding-left: 8px;
+                    font-size: 1.2rem;
                 }
             }
         }
@@ -1578,29 +1588,93 @@ header {
             ;
 
             .sortie {
+                h3 {
+                    font-family: 'Roboto Condensed', sans-serif;
+                    font-size: $formTitleField;
+                    // color: $nav-color;
+                    color: $titleFont;
+                }
+
                 grid-area: date;
             }
 
             .duree {
+                h3 {
+                    font-family: 'Roboto Condensed', sans-serif;
+                    font-size: $formTitleField;
+                    // color: $nav-color;
+                    color: $titleFont;
+                }
+
                 grid-area: duree;
             }
 
             .genre {
                 grid-area: genre;
+
+
+                h3 {
+                    font-family: 'Roboto Condensed', sans-serif;
+                    font-size: $formTitleField;
+                    // color: $nav-color;
+                    color: $titleFont;
+                }
+
+                .form-group {
+                    margin-top: 4px;
+                    border: none;
+                    height: 70px;
+
+                    #film_genres {
+                        display: inline-flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        flex-wrap: wrap;
+
+                        .form-check {
+                            display: inline-block;
+                            padding-right: 10px;
+                            padding-bottom: 7px;
+
+                            // border: 1px solid red;
+                            label {
+                                font-size: 1.2rem;
+                            }
+                        }
+                    }
+                }
+
+
+
             }
         }
 
         .rowFormSynopsis {
+            h3 {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: $formTitleField;
+                // color: $nav-color;
+                color: $titleFont;
+            }
+
             grid-area: synopsis;
 
-            textarea {
+            .form-control {
                 height: 80px;
                 border-radius: 5px;
                 width: 80%;
+                resize: none;
             }
         }
 
         .rowFormCamera {
+            h3 {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: $formTitleField;
+                // color: $nav-color;
+                color: $titleFont;
+            }
+
             grid-area: camera;
         }
     }
