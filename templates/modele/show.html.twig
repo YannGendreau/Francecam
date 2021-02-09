@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modele
+{% endblock %}
+
+{% block body %}
+	<h1>Modele</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ modele.id }}</td>
+			</tr>
+			<tr>
+				<th>Marque</th>
+				<pre>
+                    {{ dump(modele.marque) }}
+                </pre>
+				<td>{{ modele.marque }}</td>
+			</tr>
+			<tr>
+				<th>Name</th>
+				<td>{{ modele.name }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ modele.description }}</td>
+			</tr>
+			<tr>
+				<th>Image</th>
+				<td>{{ modele.image }}</td>
+			</tr>
+			<tr>
+				<th>Noise</th>
+				<td>{{ modele.noise }}</td>
+			</tr>
+			<tr>
+				<th>Shutter</th>
+				<td>{{ modele.shutter }}</td>
+			</tr>
+			<tr>
+				<th>Mount</th>
+				<td>{{ modele.mount }}</td>
+			</tr>
+			<tr>
+				<th>Framerate</th>
+				<td>{{ modele.framerate }}</td>
+			</tr>
+			<tr>
+				<th>Perfs</th>
+				<td>{{ modele.perfs }}</td>
+			</tr>
+			<tr>
+				<th>Magazine</th>
+				<td>{{ modele.magazine }}</td>
+			</tr>
+			<tr>
+				<th>Voltage</th>
+				<td>{{ modele.voltage }}</td>
+			</tr>
+			<tr>
+				<th>Weight</th>
+				<td>{{ modele.weight }}</td>
+			</tr>
+			<tr>
+				<th>View</th>
+				<td>{{ modele.view }}</td>
+			</tr>
+			<tr>
+				<th>Sync</th>
+				<td>{{ modele.sync }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('modele_index') }}">back to list</a>
+
+	<a href="{{ path('modele_edit', {'id': modele.id}) }}">edit</a>
+
+	{{ include('modele/_delete_form.html.twig') }}
+{% endblock %}

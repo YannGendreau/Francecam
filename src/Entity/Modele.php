@@ -6,6 +6,7 @@ use App\Repository\ModeleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ModeleRepository::class)
@@ -22,7 +23,7 @@ class Modele
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -30,7 +31,7 @@ class Modele
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $image;
 
@@ -85,15 +86,29 @@ class Modele
     private $sync;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Gamme::class, inversedBy="modeles", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="modeles", fetch="EAGER")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\Type(type="App\Entity\Marque")
+     * @Assert\Valid
      */
-    private $gamme;
+    private $marque;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="modeles", cascade={"persist"})
+     */
+    private $films;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Camera::class, mappedBy="modele")
+     */
+    private $camera;
 
 
     public function __construct()
     {
         $this->films = new ArrayCollection();
+        $this->marques = new ArrayCollection();
+        $this->camera = new ArrayCollection();
     }
 
 
@@ -102,14 +117,14 @@ class Modele
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
@@ -258,22 +273,81 @@ class Modele
         return $this;
     }
 
-    public function getGamme(): ?Gamme
+
+    public function __toString()
     {
-        return $this->gamme;
+        return $this->name;
     }
 
-    public function setGamme(?Gamme $gamme): self
+    public function getMarque(): ?Marque
     {
-        $this->gamme = $gamme;
+        return $this->marque;
+    }
+
+    public function setMarque(?Marque $marque): self
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Film[]
+     */
+    public function getFilms(): Collection
+    {
+        return $this->films;
+    }
+
+    public function addFilm(Film $film): self
+    {
+        if (!$this->films->contains($film)) {
+            $this->films[] = $film;
+            $film->addModele($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFilm(Film $film): self
+    {
+        if ($this->films->removeElement($film)) {
+            $film->removeModele($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Camera[]
+     */
+    public function getCamera(): Collection
+    {
+        return $this->camera;
+    }
+
+    public function addCamera(Camera $camera): self
+    {
+        if (!$this->camera->contains($camera)) {
+            $this->camera[] = $camera;
+            $camera->setModele($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCamera(Camera $camera): self
+    {
+        if ($this->camera->removeElement($camera)) {
+            // set the owning side to null (unless already changed)
+            if ($camera->getModele() === $this) {
+                $camera->setModele(null);
+            }
+        }
 
         return $this;
     }
 
 
-
-
-    
-
-    
+ 
 }
