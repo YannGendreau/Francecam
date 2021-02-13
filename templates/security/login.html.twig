@@ -1,0 +1,24 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}Hello SecurityController!
+{% endblock %}
+
+
+{% block content %}
+	<h1>LogIn</h1>
+	<form novalidate method="POST">
+		<div>
+			<label for="email">Email</label><br>
+			<input type="email" id="email" name="email" required autofocus>
+		</div>
+		<div>
+			<label for="password">Password</label><br>
+			<input type="password" id="password" name="password" required>
+		</div>
+
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+		<input type="submit" value="Sign In">
+
+	</form>
+{% endblock %}
