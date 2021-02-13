@@ -8,9 +8,11 @@ use App\Repository\MarqueRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * @ORM\Entity(repositoryClass=MarqueRepository::class)
+ * @Assert\Traverse
  */
 class Marque
 {
@@ -72,9 +74,9 @@ class Marque
     public function __construct()
     {
         $this->films = new ArrayCollection();
-        $this->gamme = new ArrayCollection();
+        // $this->gamme = new ArrayCollection();
         $this->modeles = new ArrayCollection();
-        $this->cameras = new ArrayCollection();
+        // $this->cameras = new ArrayCollection();
 
     }
 

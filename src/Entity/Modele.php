@@ -107,8 +107,8 @@ class Modele
     public function __construct()
     {
         $this->films = new ArrayCollection();
-        $this->marques = new ArrayCollection();
-        $this->camera = new ArrayCollection();
+        // $this->marques = new ArrayCollection();
+        // $this->camera = new ArrayCollection();
     }
 
 

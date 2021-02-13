@@ -3,15 +3,17 @@
 namespace App\Entity;
 
 use App\Entity\Marque;
+use App\Entity\Modele;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FilmRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert; 
+// use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * @ORM\Entity(repositoryClass=FilmRepository::class)
+
  */
 class Film
 {
@@ -48,10 +50,9 @@ class Film
     private $sortie;
 
     /**
-     * 
+     * @var Collection|Marque[]
     *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films")
     */
-    
     private $marques;
 
     /**
@@ -66,6 +67,7 @@ class Film
     private $genres;
 
     /**
+     * @var Collection|Modele[]
      * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films")
      */
     private $modeles;
@@ -80,10 +82,9 @@ class Film
     public function __construct()
     {
         $this->marques = new ArrayCollection();
-        $this->marques = new Collection();
         $this->genres = new ArrayCollection();
         $this->modeles = new ArrayCollection();
-        $this->camera = new ArrayCollection();
+        // $this->camera = new ArrayCollection();
     }
 
     // public function toDecade(int $sortie): int

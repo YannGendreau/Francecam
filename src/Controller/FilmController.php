@@ -45,13 +45,14 @@ class FilmController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        // $film = new Film;
         $form = $this->createForm(FilmType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $film = $form->getData();
-            dd($film);
+            // dd($film);
             $entityManager->persist($film);
             $entityManager->flush();
        

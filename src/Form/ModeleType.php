@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Marque;
 use App\Entity\Modele;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,7 +39,7 @@ class ModeleType extends AbstractType
             ->add('weight')
             ->add('view')
             ->add('sync')
-            ->add('marque')
+            // ->add('marque')
             // ->add('films')
         ;
     }
