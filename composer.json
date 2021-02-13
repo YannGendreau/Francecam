@@ -40,7 +40,8 @@
         "symfony/webpack-encore-bundle": "^1.9",
         "symfony/yaml": "*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^1.16"
     },
     "require-dev": {
         "symfony/debug-bundle": "^5.2",
@@ -48,7 +49,8 @@
         "symfony/stopwatch": "^5.2",
         "symfony/test-pack": "*",
         "symfony/var-dumper": "^5.2",
-        "symfony/web-profiler-bundle": "^5.2"
+        "symfony/web-profiler-bundle": "^5.2",
+        "theofidry/psysh-bundle": "^4.3"
     },
     "config": {
         "optimize-autoloader": true,
