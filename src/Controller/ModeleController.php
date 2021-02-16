@@ -49,7 +49,7 @@ class ModeleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="modele_show", methods={"GET"})
+     * @Route("/{slug}", name="modele_show", methods={"GET"})
      */
     public function show(Modele $modele): Response
     {
@@ -59,7 +59,7 @@ class ModeleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="modele_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="modele_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Modele $modele): Response
     {
@@ -79,7 +79,7 @@ class ModeleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="modele_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="modele_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Modele $modele): Response
     {

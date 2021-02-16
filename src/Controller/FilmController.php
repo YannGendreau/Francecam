@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Film;
-use App\Entity\Marque;
 use App\Form\FilmType;
 use App\Data\FilmSearchData;
 use App\Form\SearchFilmForm;
@@ -45,16 +44,17 @@ class FilmController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        // $film = new Film;
-        $form = $this->createForm(FilmType::class);
+        $film = new Film;
+        $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $film = $form->getData();
-            // dd($film);
             $entityManager->persist($film);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Nouveau film enregistré');
        
             return $this->redirectToRoute('film_index');
         }
@@ -86,6 +86,8 @@ class FilmController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Film modifié avec succès');
 
             return $this->redirectToRoute('film_index');
         }

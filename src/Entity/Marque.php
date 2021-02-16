@@ -74,9 +74,8 @@ class Marque
     public function __construct()
     {
         $this->films = new ArrayCollection();
-        // $this->gamme = new ArrayCollection();
         $this->modeles = new ArrayCollection();
-        // $this->cameras = new ArrayCollection();
+        $this->cameras = new ArrayCollection();
 
     }
 

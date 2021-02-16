@@ -103,11 +103,16 @@ class Modele
      */
     private $camera;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
 
     public function __construct()
     {
         $this->films = new ArrayCollection();
-        // $this->marques = new ArrayCollection();
+        $this->marques = new ArrayCollection();
         // $this->camera = new ArrayCollection();
     }
 
@@ -344,6 +349,18 @@ class Modele
                 $camera->setModele(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

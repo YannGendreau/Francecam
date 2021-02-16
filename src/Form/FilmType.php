@@ -8,7 +8,9 @@ use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Form\CameraType;
 use App\Form\ModeleType;
+use App\Form\CameraFormType;
 use App\Repository\MarqueRepository;
+use App\Repository\ModeleRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
@@ -27,14 +29,24 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class FilmType extends AbstractType
 {
+    private $marque;
 
-    // public function __construct(Marque $marque)
-    // {
-    //     $this->marque = $marque;
-    // }
+    public function __construct(Marque $marque)
+    {
+        $this->marque = $marque;
+    }
     
+    /**
+     * Formulaire nouveau Film
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+
         $builder
             ->add('title', TextType::class, [
                 'label' => false,
@@ -72,7 +84,7 @@ class FilmType extends AbstractType
                 'multiple'      => true,
                 'expanded'      => true
           
-            ])
+            ])          
             ->add('marques', EntityType::class, [
                 'label' => false,
                 'class'             => Marque::class,
@@ -80,17 +92,44 @@ class FilmType extends AbstractType
                 'choice_label'      => 'name',
                 'required'          => false,
                 'by_reference'      => false,
-                'multiple'          => true,
                 'auto_initialize'   => false,
-                // 'expanded' => true
+                'multiple'          => true
+ 
             ])
-        ;
+        
 
+
+
+        // $builder->get('marques')->addEventListener(
+        //     FormEvents::POST_SUBMIT,
+        //     function (FormEvent $event){
+        //         $form = $event->getForm();
+        //         // dd($form->getParent());
+        //         $form->getParent()->add('modeles', EntityType::class, [
+        //             'class'             => Modele::class,
+        //             'placeholder'       => 'Sélectionnez le modele',
+        //             // 'mapped'            => false,
+        //             // 'required'          => false,
+        //             // 'auto_initialize'   => false,
+        //             'choices'           => $form->getData()->getModeles(),
+        //             // 'by_reference'      => false,
+        //             // 'multiple'          => true,
+        //             // 'expanded'          => false,
+        //         //     'query_builder' => function (ModeleRepository $er) {
+        //         //         return $er->createQueryBuilder('m')
+        //         //             ->select('m.name');
+        //         //     }
+        //         ]);
+            
+        //     }
+        // )
+;
        
-        $formModele = function (FormInterface $form, ?Marque $marque) {
+        $formModele = function (FormInterface $form, Marque $marque = null) {
             // Renvoie un formulaire avec la liste des modeles
             // Array vide si null
             $modeles = null === $marque ? [] : $marque->getModeles();
+
             $form->add('modeles', EntityType::class, [
                     'class'             => Modele::class,
                     'placeholder'       => 'choisir le modele',
@@ -98,40 +137,42 @@ class FilmType extends AbstractType
                     'multiple'          => true,
                     'required'          => false,
                     'by_reference'      => false,
-                    'auto_initialize'   => false,
+                    // 'auto_initialize'   => false,
             ]);
-        };
-    
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($formModele) {
-                    // Entité Film (normalement)
-                    $data = $event->getData();
-                    //S'il y a des données, on appelle la méthode getModeles() sur l'entité Marque
-                    $data != null ? $marque = $event->getData()->getModeles() :  $marque = null;
-                    // if ($data != null) {
-                    //     $marque = $event->getData()->getModeles();
-                    // }else{
-                    //     $marque = null; 
-                    // }
-                  
-        // dd($data);
-                    //Closure. On injecte le formulaire et getModeles()
-                    $formModele($event->getForm(), $marque);
         }
-        );
+    ;
+        // $builder->addEventListener(
+        //     FormEvents::PRE_SUBMIT,
+        //     function (FormEvent $event) use ($formModele) {
+        //             // Entité Film (normalement)
+              
+        //             $data = $event->getData();
+        //             // dd($data);
+        //             //S'il y a des données, on appelle la méthode getModeles() sur l'entité Marque
+        //             $data != null ? $marque = $data->getModeles() :  $marque = null;
+        //             // if ($data != null) {
+        //             //     $marque = $event->getData()->getModeles();
+        //             // }else{
+        //             //     $marque = null; 
+        //             // }
+                  
+        //             // dd($data);
+        //             //Closure. On injecte le formulaire et getModeles()
+        //             $formModele($event->getForm(), $marque);
+        //     }
+        // );
     
-        $builder->get('marques')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($formModele) {
-                    //récupère les données du champ marques
-                    $marque = $event->getForm()->getData();
-                    // dd($marque);
-                    //Closure. Injection du formaulaire parent les données du champ marques
-                    $formModele($event->getForm()->getParent(), $marque);
-            }
-        );
-    }
+        // $builder->get('marques')->addEventListener(
+        //     FormEvents::POST_SUBMIT,
+        //     function (FormEvent $event) use ($formModele) {
+        //             //récupère les données du champ marques
+        //             $marque = $event->getForm()->getData();
+        //             // dd($marque);
+        //             //Closure. Injection du formulaire parent les données du champ marques
+        //             $formModele($event->getForm()->getParent(), $marque);
+        //     }
+        // );
+    
 
 
 
@@ -171,33 +212,36 @@ class FilmType extends AbstractType
         // );
         // dump($builder->getForm());
        
-          
+    
 
-    // private function addCameraField(FormInterface $form, ?Marque $marque)
-    // {
-    //     $builder = $form->getConfig()->getFormFactory()->createNamedBuilder(
-    //         'modeles',
-    //         EntityType::class,
-    //         null,
-    //         [
-    //             'class'           => Modele::class,
-    //             'placeholder'     => 'Sélectionnez un modele',
-    //             // 'mapped'          => false,
-    //             'required'        => false,
-    //             'auto_initialize' => false,
-    //             'choices'         => $marque ? $marque->getModeles() : [],
-    //             'multiple'          =>true
-    //         ]
-    //     );
-    //     // $builder->addEventListener(
-    //     //     FormEvents::POST_SUBMIT,
-    //     //     function (FormEvent $event) {
-    //     //         $form = $event->getForm();
-    //     //         $this->addVilleField($form->getParent(), $form->getData());
-    //     //     }
-    //     // );
-    //     $form->add($builder->getForm());
-    // }
+//     private function addCameraField(FormInterface $form, ?Marque $marque)
+//     {
+//         $builder = $form->getConfig()->getFormFactory()->createNamedBuilder(
+//             'modeles',
+//             EntityType::class,
+//             null,
+//             [
+//                 'class'           => Modele::class,
+//                 'placeholder'     => 'Sélectionnez un modele',
+//                 // 'mapped'          => false,
+//                 'required'        => false,
+//                 'auto_initialize' => false,
+//                 'choices'         => $marque ? $marque->getModeles() : [],
+//                 'multiple'          =>true
+//             ]
+//         );
+//         // $builder->addEventListener(
+//         //     FormEvents::POST_SUBMIT,
+//         //     function (FormEvent $event) {
+//         //         $form = $event->getForm();
+//         //         $this->addVilleField($form->getParent(), $form->getData());
+//         //     }
+//         // );
+//         $form->add($builder->getForm());
+    
+// ;
+}
+
 
     public function configureOptions(OptionsResolver $resolver)
     {
