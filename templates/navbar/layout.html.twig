@@ -34,27 +34,30 @@
 									<h3>Marques</h3>
 								</div>
 								<li>
-									<a href='#'>Aaton
+									<a href="{{path('marque_show', {slug: 'aaton'})}}">Aaton
 									</a>
 								</li>
 								<li>
-									<a href='#'>ARRI
+									<a href='{{path('marque_show', {slug: 'arri'})}}'>ARRI
 									</a>
 								</li>
 								<li>
-									<a href='#'>Debrie</a>
+									<a href='{{path('marque_show', {slug: 'debrie'})}}'>Debrie</a>
 								</li>
 								<li>
-									<a href='#'>Eclair</a>
+									<a href='{{path('marque_show', {slug: 'eclair'})}}'>Eclair</a>
 								</li>
 								<li>
-									<a href='#'>Mitchell</a>
+									<a href='{{path('marque_show', {slug: 'mitchell'})}}'>Mitchell</a>
 								</li>
 								<li>
-									<a href='#'>Moviecam</a>
+									<a href='{{path('marque_show', {slug: 'moviecam'})}}'>Moviecam</a>
 								</li>
 								<li>
-									<a href='#'>Panavision</a>
+									<a href='{{path('marque_show', {slug: 'panavision'})}}'>Panavision</a>
+								</li>
+								<li>
+									<a href=''>Toutes les marques</a>
 								</li>
 
 							</ul>
@@ -157,14 +160,14 @@
 							</ul>
 							<!-- .ul-reset -->
 						{# <ul class="ul-reset">
-																																																																																																																										<div class="h3">
-																																																																																																																											<h3>Heading 3</h3>
-																																																																																																																										</div>
-																																																																																																																										<li>
-																																																																																																																											<a href='{{path('film')}}'>Tous les films</a>
-																																																																																																																										</li>
-																																																																																																																		
-																																																																																																																									</ul> #}
+																																																																																																																																																																				<div class="h3">
+																																																																																																																																																																					<h3>Heading 3</h3>
+																																																																																																																																																																				</div>
+																																																																																																																																																																				<li>
+																																																																																																																																																																					<a href='{{path('film')}}'>Tous les films</a>
+																																																																																																																																																																				</li>
+																																																																																																																																																												
+																																																																																																																																																																			</ul> #}
 							<!-- .ul-reset -->
 
 						</div>
@@ -180,8 +183,8 @@
 			<div
 				class="searchTop">
 				{# {% if app.request.uri != "/home"  %}
-																																																																																																																																																																										
-																																																																																																																																																																									{% endif %} #}
+																																																																																																																																																																																																						
+																																																																																																																																																																																																					{% endif %} #}
 				{% if app.request.attributes.get('_route') != 'accueil' %}
 					{# {% include "includes/_searchtop.html.twig" %} #}
 				{% endif %}
@@ -189,8 +192,12 @@
 
 			<div class="connect">
 				<li>
-					<a href="">Connexion</a>
+					<a href="{{path('app_login')}}">Connexion</a>
 				</li>
+				<li>
+					<a href="{{path('app_logout')}}">Déconnexion</a>
+				</li>
+
 
 				<li><img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt=""></li>
 
