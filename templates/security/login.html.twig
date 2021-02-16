@@ -16,7 +16,7 @@
 			<input type="password" id="password" name="password" required>
 		</div>
 
-		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token('login_form') }}">
 
 		<input type="submit" value="Sign In">
 

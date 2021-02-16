@@ -30,6 +30,9 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    App\Entity\Marque:
+        autowire: true
+
 
     # parameters:
     #     app.path.product_images: /uploads/images/products
