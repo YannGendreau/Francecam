@@ -10,25 +10,17 @@
 				{# <a href="{{path('film_show', {slug: film.slug,})}}"> #}
 				<a href="{{path('film_show', {slug: film.slug,})}}">
 					<div class="description__overlay description__overlay--blur">
-
-
 						<h2>
 							{{film.title}}
 						</h2>
-
-						{# <h5>{{film.genre}}</h5>
-																														
-																																				{% for g in film.genre %}
-																														
-																																					<h5>{{g.nom}}</h5>
-																														
-																																				{% endfor %} #}
-
+						<div class="genreOverlay">
+							{% for g in film.genres %}
+								<em>{{g.name}}</em>
+							{% endfor %}
+						</div>
 
 					</div>
 				</a>
-
-
 			</div>
 		</div>
 	{% endfor %}

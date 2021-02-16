@@ -4,6 +4,11 @@
 {% endblock %}
 
 {% block content %}
+	{% for message in app.flashes('success') %}
+		<div id="success">
+			<h2>{{message}}</h2>
+		</div>
+	{% endfor %}
 	<h1>Film index</h1>
 
 	<table class="table">
