@@ -95,7 +95,7 @@ $mTop:50px;
 
 
 /*----font size----*/
-$formTitleField: 1.3rem;
+$formTitleField: 1.1rem;
 
 
 // /*----couleurs fonts----*/
@@ -343,7 +343,7 @@ header {
         }
 
         .searchTop {
-            width: 30%;
+            width: 25%;
             height: 13px;
             display: inline-flex;
             justify-content: center;
@@ -361,20 +361,21 @@ header {
 
         .connect {
 
-            width: 10%;
+            width: 25%;
             height: 57px;
             @include flex-space-center();
-            border: 1px solid rgb(216, 0, 0);
+            padding-right: 20px;
 
             li {
                 a {
                     color: white;
                     // font-size: 1rem;
                     text-decoration: none;
+                    text-transform: uppercase;
                 }
 
                 .iconUser {
-                    width: 35px;
+                    width: 30px;
                 }
             }
         }
@@ -1533,8 +1534,9 @@ header {
 
     form {
         display: grid;
+        border: 1px solid lightgray;
         grid-template-columns: 1fr 3fr;
-        grid-template-rows: 1fr 2fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
         grid-template-areas:
             "pic titre "
             "pic details"
@@ -1591,7 +1593,7 @@ header {
             ;
 
             .sortie {
-                @include flex-space-center();
+                @include flex-center-start();
 
                 h3 {
                     @include font-form-film();
@@ -1604,22 +1606,18 @@ header {
             }
 
             .duree {
-                @include flex-space-center();
+                grid-area: duree;
+                @include flex-center-start();
 
                 h3 {
                     @include font-form-film();
                     font-size: $formTitleField;
                 }
-
-                // border: 1px solid red;
-                grid-area: duree;
-
             }
 
             .genre {
                 grid-area: genre;
-                // border: 1px solid red;
-                @include flex-space-center();
+                @include flex-center-start();
 
                 h3 {
                     @include font-form-film();
@@ -1642,16 +1640,12 @@ header {
                             padding-right: 10px;
                             padding-bottom: 7px;
 
-                            // border: 1px solid red;
                             label {
-                                font-size: 1.2rem;
+                                font-size: 1rem;
                             }
                         }
                     }
                 }
-
-
-
             }
         }
 
@@ -1689,8 +1683,7 @@ header {
 
         .rowFormCamera {
             grid-area: camera;
-            // border: 1px solid red;
-            @include flex-space-center();
+
 
 
             h3 {
@@ -1699,7 +1692,7 @@ header {
             }
 
             .marqueModele {
-                @include flex-space-center();
+                // @include flex-space-center();
                 // display: inline;
             }
 
@@ -1707,18 +1700,20 @@ header {
 
         .btn {
             grid-area: btn;
-            height: 30px;
-            width: 30%;
+            height: 15px;
+            width: 100%;
             background: $titleCard;
             cursor: pointer;
             border: none;
             color: white;
             font-family: 'Roboto Condensed', sans-serif;
+            text-transform: uppercase;
             transition: 250ms;
 
 
             &:hover {
-                transform: scale(1.1);
+                // transform: scale(1.1);
+                height: 30px;
                 border-radius: 5px;
                 background: $titleDisplay;
 
@@ -1758,6 +1753,7 @@ header {
     }
 
     #success {
+        z-index: 2;
         height: 80px;
         background: rgb(56, 187, 56);
         @include flex-center();

@@ -30,9 +30,14 @@ class CameraController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        // $camera = new Camera();
-        $form = $this->createForm(CameraType::class);
+        $camera = new Camera();
+        $form = $this->createForm(CameraType::class, $camera);
         $form->handleRequest($request);
+
+        $marque = $camera->getMarque();
+        $modele = $camera->getModele();
+        $camera->setMarqueModele($marque, $modele);
+    
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();

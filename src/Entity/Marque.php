@@ -5,15 +5,18 @@ namespace App\Entity;
 use App\Entity\Film;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MarqueRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert; 
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=MarqueRepository::class)
- * @Assert\Traverse
+ * @Vich\Uploadable()
  */
+
 class Marque
 {
     /**
@@ -62,7 +65,7 @@ class Marque
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity=Modele::class, mappedBy="marque", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Modele::class, mappedBy="marque", cascade={"persist"}, fetch="EAGER")
      */
     private $modeles;
 
@@ -71,11 +74,29 @@ class Marque
      */
     private $cameras;
 
+         /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $logoName;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="marque_images", fileNameProperty="logoName")
+     */
+    private $logoFile;
+
+        /**
+        *
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         $this->films = new ArrayCollection();
         $this->modeles = new ArrayCollection();
         $this->cameras = new ArrayCollection();
+        $this->updatedAt = new \DateTime();
 
     }
 
@@ -249,14 +270,53 @@ class Marque
         return $this;
     }
 
+    /**
+     * Get the value of marqueName
+     */ 
+    public function getLogoName()
+    {
+        return $this->logoName;
+    }
 
+    /**
+     * Set the value of logoName
+     *
+     * @return  self
+     */ 
+    public function setLogoName($logoName)
+    {
+        $this->logoName = $logoName;
 
+        return $this;
+    }
 
+    /**
+     * Get the value of logoFile
+     *
+     * @return  File|null
+     */ 
+    public function getLogoFile()
+    {
+        return $this->logoFile;
+    }
 
+    /**
+     * Set the value of logoFile
+     *
+     * @param  File|null  $logoFile
+     *
+     * @return  self
+     */ 
+    public function setLogoFile($logoFile)
+    {
+        $this->logoFile = $logoFile;
 
-  
- 
+        if($logoFile) {
+            $this->updatedAt = new \DateTime();
+        }
 
+        return $this;
+    }
 
-
+    
 }

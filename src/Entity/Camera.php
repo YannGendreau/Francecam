@@ -37,7 +37,7 @@ class Camera
 
     /**
      * Undocumented variable
-     *@ORM\Column(type="string", length=255)
+     *@ORM\Column(type="string", length=255, nullable= true)
      * 
      */
     private $marqueModele;
@@ -109,8 +109,9 @@ class Camera
     }
 
  
-    public function setMarqueModele($marqueModele) 
+    public function setMarqueModele($marqueModele)
     {
+        
         $this->marqueModele = $marqueModele;
 
         return $this;
@@ -123,13 +124,9 @@ class Camera
 
     public function __toString()
     {
-        return $this->marqueModele;
+        return $this->marque. ' '. $this->modele;
     }
 
-    public function cameraName()
-    {
-        return $this->marque . ' ' . $this->modele;
-    }
 
   
 }

@@ -19,6 +19,15 @@ class CameraRepository extends ServiceEntityRepository
         parent::__construct($registry, Camera::class);
     }
 
+    public function findByAllModeles()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.modele', 'ASC')
+            ->getQuery()
+            ->execute()
+        ;
+    }
+
     // /**
     //  * @return Camera[] Returns an array of Camera objects
     //  */

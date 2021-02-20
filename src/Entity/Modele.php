@@ -36,52 +36,52 @@ class Modele
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $noise;
 
     /**
-     * @ORM\Column(type="string", length=255)
+    * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $shutter;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $mount;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $framerate;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $perfs;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $magazine;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $voltage;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $weight;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $view;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $sync;
 
@@ -114,6 +114,7 @@ class Modele
         $this->films = new ArrayCollection();
         $this->marques = new ArrayCollection();
         // $this->camera = new ArrayCollection();
+      
     }
 
 
@@ -366,5 +367,5 @@ class Modele
     }
 
 
- 
+
 }
