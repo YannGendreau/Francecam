@@ -5,16 +5,33 @@
 
 
 {% block content %}
+
+
+	{% include "/includes/flashes/_flash_message.html.twig" %}
+
+	{% for message in app.flashes('info') %}
+		<div id="success">
+			<h2>{{message}}</h2>
+		</div>
+	{% endfor %}
+
 	<h1>LogIn</h1>
 	<form novalidate method="POST">
 		<div>
 			<label for="email">Email</label><br>
-			<input type="email" id="email" name="email" required autofocus>
+			<input type="email" id="email" name="email" value="{{app.session.get(constant('App\\Controller\\SecurityController::LAST_EMAIL'))}}" required autofocus>
 		</div>
 		<div>
 			<label for="password">Password</label><br>
 			<input type="password" id="password" name="password" required>
 		</div>
+		<div>
+			<label for="_remember_me">
+				<input type="checkbox" id="_remember_me" name="_remember_me">
+				Garder la session ouverte
+			</label>
+		</div>
+
 
 		<input type="hidden" name="csrf_token" value="{{ csrf_token('login_form') }}">
 

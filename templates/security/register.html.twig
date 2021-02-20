@@ -1,0 +1,23 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}S'inscrire
+{% endblock %}
+
+
+{% block content %}
+
+
+	{% include "/includes/flashes/_flash_message.html.twig" %}
+
+	{% for message in app.flashes('info') %}
+		<div id="success">
+			<h2>{{message}}</h2>
+		</div>
+	{% endfor %}
+
+	<h1>S'inscrire</h1>
+	{{form_start(registrationForm)}}
+	{{form_widget(registrationForm)}}
+	<input type="submit" value="register" class="btn" novalidate>
+	{{form_end(registrationForm)}}
+{% endblock %}

@@ -5,10 +5,16 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="users")
+ * @UniqueEntity(
+ * *     fields={"email"},
+ *       message="Vous êtes déjà enregistré"
+ * )
  */
 class User implements UserInterface
 {
@@ -16,21 +22,26 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Email(message="Entrez une adresse Email")
+     * @Assert\NotBlank(message="Veuillez saisir une adresse Email")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     
      */
     private $password;
 
@@ -105,7 +116,7 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-        //Pas utilisé si un melleur encrypteur est appelé.
+        //Pas utilisé si un meilleur encrypteur est appelé.
     }
 
     /**
@@ -116,7 +127,6 @@ class User implements UserInterface
     public function getUsername()
     {
         return $this->email;
-
     }
 
     /**
