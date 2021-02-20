@@ -2,18 +2,19 @@
 
 namespace App\Entity;
 
+use DateTime;
 use App\Entity\Marque;
 use App\Entity\Modele;
+use App\Entity\Director;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FilmRepository;
-use DateTime;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FilmRepository::class)
@@ -84,19 +85,26 @@ class Film
       /**
      * @ORM\Column(type="string", length=100)
      */
-    private $thumbnail;
+    private $poster;
 
     /**
      * @var File|null
-     * @Vich\UploadableField(mapping="thumbnails", fileNameProperty="thumbnail")
+     * @Vich\UploadableField(mapping="posters", fileNameProperty="poster")
      */
-    private $thumbnailFile;
+    private $posterFile;
 
     /**
         *
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Director::class, inversedBy="films")
+     */
+    private $directors;
+
+
 
     
 
@@ -107,6 +115,8 @@ class Film
         $this->modeles = new ArrayCollection();
         // $this->camera = new ArrayCollection();
         $this->updatedAt = new \DateTime();
+        $this->directors = new ArrayCollection();
+       
     }
 
     // public function toDecade(int $sortie): int
@@ -331,9 +341,9 @@ class Film
      * @return null|File
      
      */ 
-    public function getThumbnailFile(): ?File
+    public function getPosterFile(): ?File
     {
-        return $this->thumbnailFile;
+        return $this->posterFile;
     }
 
     /**
@@ -341,11 +351,11 @@ class Film
      *@param null|File
      * @return  self
      */ 
-    public function setThumbnailFile(?File $thumbnailFile)
+    public function setPosterFile(?File $posterFile)
     {
-        $this->thumbnailFile = $thumbnailFile;
+        $this->posterFile = $posterFile;
 
-        if($thumbnailFile) {
+        if($posterFile) {
             $this->updatedAt = new \DateTime();
         }
 
@@ -353,22 +363,47 @@ class Film
     }
 
     /**
-     * Get the value of thumbnail
+     * Get the value of poster
      */ 
-    public function getThumbnail()
+    public function getPoster()
     {
-        return $this->thumbnail;
+        return $this->poster;
     }
 
     /**
-     * Set the value of thumbnail
+     * Set the value of poster
      *
      * @return  self
      */ 
-    public function setThumbnail($thumbnail)
+    public function setPoster($poster)
     {
-        $this->thumbnail = $thumbnail;
+        $this->poster = $poster;
 
         return $this;
     }
+
+    /**
+     * @return Collection|Director[]
+     */
+    public function getDirectors(): Collection
+    {
+        return $this->directors;
+    }
+
+    public function addDirector(Director $director): self
+    {
+        if (!$this->directors->contains($director)) {
+            $this->directors[] = $director;
+        }
+
+        return $this;
+    }
+
+    public function removeDirector(Director $director): self
+    {
+        $this->directors->removeElement($director);
+
+        return $this;
+    }
+
 }
