@@ -27,11 +27,11 @@ class FilmCrudController extends AbstractCrudController
     {
         
 
-        $imageFile = Field::new('thumbnailFile')
+        $imageFile = Field::new('posterFile')
         ->setFormType(VichImageType::class);
-        $image = ImageField::new('thumbnail')
-        ->setBasePath('build/images/thumbnails')
-        ->setUploadDir('/public/build/images/thumbnails/')
+        $image = ImageField::new('poster')
+        ->setBasePath('build/images/posters')
+        ->setUploadDir('/public/build/images/posters/')
         ->hideOnForm();
         
 
