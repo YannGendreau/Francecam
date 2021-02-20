@@ -6,6 +6,7 @@ use App\Entity\Film;
 use App\Entity\Genre;
 use App\Entity\Marque;
 use App\Entity\Modele;
+use App\Entity\Director;
 use App\Form\CameraType;
 use App\Form\ModeleType;
 use App\Form\CameraFormType;
@@ -17,6 +18,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -26,7 +28,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class FilmType extends AbstractType
 {
@@ -94,7 +95,18 @@ class FilmType extends AbstractType
                 'multiple'          => true,
                 'auto_initialize'   => false,
             ])
-            ->add('thumbnailFile', VichImageType::class)
+            ->add('posterFile', VichImageType::class)
+            ->add('directors', EntityType::class, [
+                'label'             => false,
+                'class'             => Director::class,
+                'placeholder'       => 'Réalisation',
+                'choice_label'      => 'name',
+                'required'          => false,
+                'by_reference'      => false,
+                'multiple'          => true,
+                'auto_initialize'   => false,
+            ])
+            // ->add('directors', TextType::class)
         ;
 
         $builder->get('marques')->addEventListener(
