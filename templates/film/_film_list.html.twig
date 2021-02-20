@@ -3,8 +3,10 @@
 		<div class="cardGrid">
 			<div class="cardSm">
 				<div class="imgCard">
-					<a href=""><img src="" alt="placeholder"></a>
-					{# <a href=""><img src={{film.img}} alt="placeholder"></a> #}
+					{% if film.thumbnail %}
+						<a href=""><img src="/build/images/thumbnails/{{film.thumbnail}}" alt=" placeholder"></a>
+					{% endif %}
+					{# <a href=""><img src="" alt="placeholder"></a> #}
 				</div>
 				{# <a href="{{path('film_show', {slug:film.slug, id:film.id})}}"> #}
 				{# <a href="{{path('film_show', {slug: film.slug,})}}"> #}

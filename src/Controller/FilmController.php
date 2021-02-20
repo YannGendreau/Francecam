@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Film;
+use App\Entity\Marque;
 use App\Form\FilmType;
 use App\Data\FilmSearchData;
 use App\Form\SearchFilmForm;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/film")
@@ -41,12 +43,16 @@ class FilmController extends AbstractController
 
     /**
      * @Route("/new", name="film_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
         $film = new Film;
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
+
+        $sortie = $film->getSortie();
+        $film->setDecade($sortie);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -83,6 +89,8 @@ class FilmController extends AbstractController
     {
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
+        $sortie = $film->getSortie();
+        $film->setDecade($sortie);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();

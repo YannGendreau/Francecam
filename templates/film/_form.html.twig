@@ -38,6 +38,7 @@
 			<div>
 				<h3>Genres</h3>
 				{{form_row(form.genres)}}
+
 			</div>
 		</div>
 	</div>
@@ -57,12 +58,13 @@
 		<h3>Caméras</h3>
 
 		{# {{{form_row(form.camera)}} {% for camera in form.camera %}
-																																																																																									{{form_row(camera)}}
-																																																																																								{% endfor %} #}
+																																																																																																																											{{form_row(camera)}}
+																																																																																																																										{% endfor %} #}
 		{# {{form_widget(form.camera)}} #}
 		<div class="marqueModele">
-			{{ form_row(form.marques) }}
-			{# {{ form_row(form.modeles) }} #}
+			{{ form_widget(form.marques) }}
+		{# {{ form_row(form.marques) }} #}
+			{# {{ form_row(form.modele) }} #}
 		</div>
 	</div>
 

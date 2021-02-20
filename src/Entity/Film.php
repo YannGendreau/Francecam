@@ -6,14 +6,18 @@ use App\Entity\Marque;
 use App\Entity\Modele;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FilmRepository;
+use DateTime;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-// use Symfony\Component\Validator\Constraints as Assert; 
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=FilmRepository::class)
-
+* @Vich\Uploadable()
  */
 class Film
 {
@@ -40,12 +44,12 @@ class Film
     private $synopsis;
 
     /**
-     * @ORM\Column(type="integer",  length = 4, nullable = true)
+     * @ORM\Column(type="integer")
      */
     private $decade;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", length = 4)
      */
     private $sortie;
 
@@ -77,6 +81,23 @@ class Film
      */
     private $camera;
 
+      /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $thumbnail;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="thumbnails", fileNameProperty="thumbnail")
+     */
+    private $thumbnailFile;
+
+    /**
+        *
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
     
 
     public function __construct()
@@ -85,6 +106,7 @@ class Film
         $this->genres = new ArrayCollection();
         $this->modeles = new ArrayCollection();
         // $this->camera = new ArrayCollection();
+        $this->updatedAt = new \DateTime();
     }
 
     // public function toDecade(int $sortie): int
@@ -169,9 +191,8 @@ class Film
 
     public function setDecade(?int $decade): self
     {
-
         // $sortie = $this->sortie;
-        $decade = round($this->sortie/10, 0, PHP_ROUND_HALF_DOWN)* 10;
+        $decade = substr($this->sortie, 0, 3) . 0;
 
         $this->decade = $decade;
 
@@ -304,6 +325,50 @@ class Film
         return $this;
     }
 
-    
+  
+    /**
+     * Get
+     * @return null|File
+     
+     */ 
+    public function getThumbnailFile(): ?File
+    {
+        return $this->thumbnailFile;
+    }
 
+    /**
+     * Set /*
+     *@param null|File
+     * @return  self
+     */ 
+    public function setThumbnailFile(?File $thumbnailFile)
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        if($thumbnailFile) {
+            $this->updatedAt = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of thumbnail
+     */ 
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * Set the value of thumbnail
+     *
+     * @return  self
+     */ 
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
 }
