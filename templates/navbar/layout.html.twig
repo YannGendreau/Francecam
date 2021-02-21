@@ -160,14 +160,14 @@
 							</ul>
 							<!-- .ul-reset -->
 						{# <ul class="ul-reset">
-																																																																																																																																																																																																																																						<div class="h3">
-																																																																																																																																																																																																																																							<h3>Heading 3</h3>
-																																																																																																																																																																																																																																						</div>
-																																																																																																																																																																																																																																						<li>
-																																																																																																																																																																																																																																							<a href='{{path('film')}}'>Tous les films</a>
-																																																																																																																																																																																																																																						</li>
-																																																																																																																																																																																																																														
-																																																																																																																																																																																																																																					</ul> #}
+																																																																																																																																																																																																																																																																				<div class="h3">
+																																																																																																																																																																																																																																																																					<h3>Heading 3</h3>
+																																																																																																																																																																																																																																																																				</div>
+																																																																																																																																																																																																																																																																				<li>
+																																																																																																																																																																																																																																																																					<a href='{{path('film')}}'>Tous les films</a>
+																																																																																																																																																																																																																																																																				</li>
+																																																																																																																																																																																																																																																												
+																																																																																																																																																																																																																																																																			</ul> #}
 							<!-- .ul-reset -->
 
 						</div>
@@ -183,8 +183,8 @@
 			<div
 				class="searchTop">
 				{# {% if app.request.uri != "/home"  %}
-																																																																																																																																																																																																																																																		
-																																																																																																																																																																																																																																																	{% endif %} #}
+																																																																																																																																																																																																																																																																						
+																																																																																																																																																																																																																																																																					{% endif %} #}
 				{% if app.request.attributes.get('_route') != 'accueil' %}
 					{# {% include "includes/_searchtop.html.twig" %} #}
 				{% endif %}
@@ -192,9 +192,12 @@
 
 			<div class="connect">
 				{% if app.user %}
-					<li>
-						<a href="#">{{app.user.email}}</a>
-					</li>
+					<div class="profile">
+						<li>
+							<a href="#">{{app.user.name}}</a>
+						</li>
+						<li><img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt=""></li>
+					</div>
 					<li>
 						<a href="{{path('app_logout')}}">Déconnexion</a>
 					</li>
@@ -209,8 +212,6 @@
 
 				{% endif %}
 
-
-				<li><img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt=""></li>
 
 			</div>
 		</nav>
