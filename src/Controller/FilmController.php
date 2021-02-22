@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/film")
@@ -133,6 +134,10 @@ class FilmController extends AbstractController
       
         $films = $this->repository->findSearch($data);
 
+        if(!$films){
+            throw new NotFoundHttpException('Pas de films');
+        }
+
         return $this->render('film/film_list.html.twig', [
             "films" => $films,
             'form' => $form->createView()
@@ -143,5 +148,17 @@ class FilmController extends AbstractController
     {
         return round($sortie/10, 0, PHP_ROUND_HALF_DOWN)* 10; 
 
+    }
+
+    /**
+     * Validation 
+     *
+     * @Route("/validate", name="film_validate")
+     */
+    public function validateFilm(Film $film): Response
+    {
+        return $this->render('film/film_validation.html.twig', [
+           "film" => $film
+        ]);
     }
 }
