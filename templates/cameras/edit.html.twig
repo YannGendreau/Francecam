@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Cameras{% endblock %}
+
+{% block body %}
+    <h1>Edit Cameras</h1>
+
+    {{ include('cameras/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('cameras_index') }}">back to list</a>
+
+    {{ include('cameras/_delete_form.html.twig') }}
+{% endblock %}

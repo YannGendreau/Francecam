@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cameras{% endblock %}
+
+{% block body %}
+    <h1>Create new Cameras</h1>
+
+    {{ include('cameras/_form.html.twig') }}
+
+    <a href="{{ path('cameras_index') }}">back to list</a>
+{% endblock %}
