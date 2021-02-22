@@ -115,7 +115,7 @@
 
 							<div class="posters">
 								{% if camera.films %}
-									{% for film in camera.films %}
+									{% for film in camera.films |slice(0, 6) %}
 										<div class="cardGrid">
 											<div class="cardSm">
 												<div class="imgCard">
@@ -154,55 +154,55 @@
 
 
 	{# <h1>Cameras</h1>
-									
-									    <table class="table">
-									        <tbody>
-									            <tr>
-									                <th>Id</th>
-									                <td>{{ camera.id }}</td>
-									            </tr>
-									            <tr>
-									                <th>Marque</th>
-									                <td>{{ camera.marque }}</td>
-									            </tr>
-									            <tr>
-									                <th>Modele</th>
-									                <td>{{ camera.modele }}</td>
-									            </tr>
-									            <tr>
-									                <th>Description</th>
-									                <td>{{ camera.description }}</td>
-									            </tr>
-									            <tr>
-									                <th>Noise</th>
-									                <td>{{ camera.noise }}</td>
-									            </tr>
-									            <tr>
-									                <th>Mount</th>
-									                <td>{{ camera.mount }}</td>
-									            </tr>
-									            <tr>
-									                <th>Voltage</th>
-									                <td>{{ camera.voltage }}</td>
-									            </tr>
-									            <tr>
-									                <th>Weight</th>
-									                <td>{{ camera.weight }}</td>
-									            </tr>
-									            <tr>
-									                <th>View</th>
-									                <td>{{ camera.view }}</td>
-									            </tr>
-									            <tr>
-									                <th>Slug</th>
-									                <td>{{ camera.slug }}</td>
-									            </tr>
-									        </tbody>
-									    </table>
-									
-									    <a href="{{ path('cameras_index') }}">back to list</a>
-									
-									    <a href="{{ path('cameras_edit', {'id': camera.id}) }}">edit</a>
-									
-									    {{ include('cameras/_delete_form.html.twig') }} #}
+											
+											    <table class="table">
+											        <tbody>
+											            <tr>
+											                <th>Id</th>
+											                <td>{{ camera.id }}</td>
+											            </tr>
+											            <tr>
+											                <th>Marque</th>
+											                <td>{{ camera.marque }}</td>
+											            </tr>
+											            <tr>
+											                <th>Modele</th>
+											                <td>{{ camera.modele }}</td>
+											            </tr>
+											            <tr>
+											                <th>Description</th>
+											                <td>{{ camera.description }}</td>
+											            </tr>
+											            <tr>
+											                <th>Noise</th>
+											                <td>{{ camera.noise }}</td>
+											            </tr>
+											            <tr>
+											                <th>Mount</th>
+											                <td>{{ camera.mount }}</td>
+											            </tr>
+											            <tr>
+											                <th>Voltage</th>
+											                <td>{{ camera.voltage }}</td>
+											            </tr>
+											            <tr>
+											                <th>Weight</th>
+											                <td>{{ camera.weight }}</td>
+											            </tr>
+											            <tr>
+											                <th>View</th>
+											                <td>{{ camera.view }}</td>
+											            </tr>
+											            <tr>
+											                <th>Slug</th>
+											                <td>{{ camera.slug }}</td>
+											            </tr>
+											        </tbody>
+											    </table>
+											
+											    <a href="{{ path('cameras_index') }}">back to list</a>
+											
+											    <a href="{{ path('cameras_edit', {'id': camera.id}) }}">edit</a>
+											
+											    {{ include('cameras/_delete_form.html.twig') }} #}
 {% endblock %}

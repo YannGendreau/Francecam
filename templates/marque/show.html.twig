@@ -116,7 +116,7 @@
 						<div class="tabPanel" style="display: none;">
 							<div class="posters">
 								{% if marque.films %}
-									{% for film in marque.films %}
+									{% for film in marque.films |slice(0, 6) %}
 										<div class="cardGrid">
 											<div class="cardSm">
 												<div class="imgCard">
@@ -132,10 +132,15 @@
 												</a>
 											</div>
 										</div>
+
 									{% endfor %}
+									<div>
+										<a href="">Voir plus</a>
+									</div>
 								{% else %}
 									<p>Pas de Films</p>
 								{% endif %}
+
 							</div>
 						</div>
 						<div class="tabPanel" style="display: none;"></div>
@@ -146,43 +151,43 @@
 	</div>
 
 	{# <h1>Marque</h1>
-																																																
-																																																	<table class="table">
-																																																		<tbody>
-																																																			<tr>
-																																																				<th>Id</th>
-																																																				<td>{{ marque.id }}</td>
-																																																			</tr>
-																																																			<tr>
-																																																				<th>Name</th>
-																																																				<td>{{ marque.name }}</td>
-																																																			</tr>
-																																																			<tr>
-																																																				<th>Description</th>
-																																																				<td>{{ marque.description }}</td>
-																																																			</tr>
-																																																			<tr>
-																																																				<th>Website</th>
-																																																				<td>{{ marque.website }}</td>
-																																																			</tr>
-																																																			<tr>
-																																																				<th>Pays</th>
-																																																				<td>{{ marque.pays }}</td>
-																																																			</tr>
-																																																			<tr>
-																																																				<th>Creation</th>
-																																																				<td>{{ marque.creation }}</td>
-																																																			</tr>
-																																																			<tr>
-																																																				<th>Slug</th>
-																																																				<td>{{ marque.slug }}</td>
-																																																			</tr>
-																																																		</tbody>
-																																																	</table>
-																																																
-																																																	<a href="{{ path('marque_index') }}">back to list</a>
-																																																
-																																																	<a href="{{ path('marque_edit', {'slug': marque.slug}) }}">edit</a>
-																																																
-																																																	{{ include('marque/_delete_form.html.twig') }} #}
+																																																			
+																																																				<table class="table">
+																																																					<tbody>
+																																																						<tr>
+																																																							<th>Id</th>
+																																																							<td>{{ marque.id }}</td>
+																																																						</tr>
+																																																						<tr>
+																																																							<th>Name</th>
+																																																							<td>{{ marque.name }}</td>
+																																																						</tr>
+																																																						<tr>
+																																																							<th>Description</th>
+																																																							<td>{{ marque.description }}</td>
+																																																						</tr>
+																																																						<tr>
+																																																							<th>Website</th>
+																																																							<td>{{ marque.website }}</td>
+																																																						</tr>
+																																																						<tr>
+																																																							<th>Pays</th>
+																																																							<td>{{ marque.pays }}</td>
+																																																						</tr>
+																																																						<tr>
+																																																							<th>Creation</th>
+																																																							<td>{{ marque.creation }}</td>
+																																																						</tr>
+																																																						<tr>
+																																																							<th>Slug</th>
+																																																							<td>{{ marque.slug }}</td>
+																																																						</tr>
+																																																					</tbody>
+																																																				</table>
+																																																			
+																																																				<a href="{{ path('marque_index') }}">back to list</a>
+																																																			
+																																																				<a href="{{ path('marque_edit', {'slug': marque.slug}) }}">edit</a>
+																																																			
+																																																				{{ include('marque/_delete_form.html.twig') }} #}
 {% endblock %}
