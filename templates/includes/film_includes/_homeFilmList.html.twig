@@ -1,0 +1,21 @@
+<div class="postersHome">
+
+	{% for film in films |slice(0, 5) %}
+		<div class="cardGrid">
+			<div class="cardSm">
+				<div class="imgCard">
+					<a href=""><img src="" alt="placeholder"></a>
+					{# <a href=""><img src={{film.img}} alt="placeholder"></a> #}
+				</div>
+				<a href="{{path('film_show', {slug: film.slug,})}}">
+					<div class="description__overlay description__overlay--blur">
+						<h2>
+							{{film.title}}
+						</h2>
+					</div>
+				</a>
+			</div>
+		</div>
+	{% endfor %}
+
+</div>

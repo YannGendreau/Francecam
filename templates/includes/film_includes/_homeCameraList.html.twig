@@ -1,0 +1,21 @@
+{% for camera in cameras %}
+	<div class="cardGridCam">
+		<div class="cardSmCam">
+			<div
+				class="imgCardCam">
+				{# <a href="{{path('modele_show', {slug:camera.slug} )}}"><img src={{camera.image}} alt="placeholder"></a> #}
+				<a href="{{path('cameras_show', {slug:camera.slug} )}}"><img src="alt=" placeholder""></a>
+			</div>
+			<a href="{{path('cameras_show', {slug:camera.slug} )}}">
+				<div class="smDescriptionOverlay">
+					<em>{{camera.marque}}
+						{{camera.modele}}</em>
+				</div>
+				<div class="description__overlay description__overlay--blur">
+					<h3>{{camera.marque}}</h3>
+					<h2>{{camera.modele}}</h2>
+				</div>
+			</a>
+		</div>
+	</div>
+{% endfor %}
