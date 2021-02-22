@@ -1,0 +1,15 @@
+{% extends 'navbar/layout.html.twig' %}
+{% block title %}
+	Liste des Utilisateurs
+{% endblock %}
+{% block content %}
+	<h1>Liste des Utilisateurs</h1>
+	{% for user in users %}
+		<p>{{user.name}}</p>
+		<p>{{user.email}}</p>
+		<p>{{user.id}}</p>
+		{% for role in user.roles %}
+			<p>{{role}}}</p>
+		{% endfor %}
+	{% endfor %}
+{% endblock %}
