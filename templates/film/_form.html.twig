@@ -1,10 +1,7 @@
 <div id="film">
 	{{ form_start(form) }}
 
-	<div class="picForm">
 
-		<p>Ajouter une image</p>
-	</div>
 	{# {{ form_widget(form) }} #}
 	<div class="rowFormTitle">
 		<div>
@@ -33,7 +30,8 @@
 			</div>
 
 		</div>
-
+	</div>
+	<div class="rowFormGenres">
 		<div class="genre">
 			<div>
 				<h3>Genres</h3>
@@ -41,6 +39,7 @@
 
 			</div>
 		</div>
+
 	</div>
 
 	<div class="rowFormSynopsis">
@@ -53,23 +52,44 @@
 		</div>
 
 	</div>
+	<div class="rowFormPoster">
+		<div>
+			<div>
+				<h3>Poster</h3>
+				{{form_row(form.posterFile)}}
+			</div>
+
+		</div>
+
+	</div>
+	<div class="rowFormArtist">
+		<div>
+			<div>
+				<h3>Artistes</h3>
+				{{ form_widget(form.directors) }}
+			</div>
+
+		</div>
+
+	</div>
 	{# <div class="rowFormCamera" id="cam_list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e('html_attr')}}"> #}
 	<div class="rowFormCamera">
 		<h3>Caméras</h3>
 
 		{# {{{form_row(form.camera)}} {% for camera in form.camera %}
-																																																																																																																															{{form_row(camera)}}
-																																																																																																																														{% endfor %} #}
+																																																																																																																																																																																									{{form_row(camera)}}
+																																																																																																																																																																																								{% endfor %} #}
 		{# {{form_widget(form.camera)}} #}
 		<div class="marqueModele">
 			{{ form_widget(form.marques) }}
-			{{ form_widget(form.directors) }}
-		{# {{ form_row(form.marques) }} #}
-			{# {{ form_row(form.modele) }} #}
+			{{ form_widget(form.cameraModele) }}
+
+
 		</div>
 	</div>
 
-
-	<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+	<div class="printBtn">
+		<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+	</div>
 	{{ form_end(form) }}
 </div>

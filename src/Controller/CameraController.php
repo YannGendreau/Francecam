@@ -49,7 +49,7 @@ class CameraController extends AbstractController
         }
 
         return $this->render('camera/new.html.twig', [
-            // 'camera' => $camera,
+            'camera' => $camera,
             'form' => $form->createView(),
         ]);
     }

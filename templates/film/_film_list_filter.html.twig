@@ -6,10 +6,15 @@
 	{{form_row(form.genres)}}
 
 	{# <h4>Année</h4>
-							{{form_row(form.annee)}} #}
+																																					{{form_row(form.annee)}} #}
 
 	<h4>Décennies</h4>
 	{{form_row(form.decade)}}
+	{# {% for decade in form.decade %}
+				<div>
+					<span>{{form_row(decade| length)}}</span>
+				</div>
+			{% endfor %} #}
 
 	<h4>Caméras</h4>
 	{{form_row(form.marques )}}

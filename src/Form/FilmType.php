@@ -6,10 +6,13 @@ use App\Entity\Film;
 use App\Entity\Genre;
 use App\Entity\Marque;
 use App\Entity\Modele;
+use App\Entity\Cameras;
 use App\Entity\Director;
 use App\Form\CameraType;
 use App\Form\ModeleType;
+use App\Form\CamerasType;
 use App\Form\CameraFormType;
+use Doctrine\ORM\EntityRepository;
 use App\Repository\MarqueRepository;
 use App\Repository\ModeleRepository;
 use Symfony\Component\Form\FormEvent;
@@ -89,41 +92,74 @@ class FilmType extends AbstractType
                 'label'             => false,
                 'class'             => Marque::class,
                 'placeholder'       => 'Choisir une marque de caméra',
-                'choice_label'      => 'name',
-                'required'          => false,
-                'by_reference'      => false,
+                // 'required'          => false,
+                // 'by_reference'      => false,
+                // 'expanded'          => true,
                 'multiple'          => true,
-                'auto_initialize'   => false,
+
+                // 'auto_initialize'   => false,
             ])
-            ->add('posterFile', VichImageType::class)
+            ->add('cameraModele', EntityType::class, [
+                'label'             => false,
+                'class'             => Cameras::class,
+                'placeholder'       => 'Choisir une caméra',
+                // 'required'          => false,
+                // // 'by_reference'      => false,
+                'multiple'          => true,
+                // "expanded"          =>true
+                // 'auto_initialize'   => false,
+            ])
+
+            // ->add('cameraModele', CamerasType::class, 
+            // [
+            //     'data_class' => null
+            // ]
+            // )
+            ->add('posterFile', VichImageType::class, [
+               
+            ])
+
+            // ->add('directors', DirectorType::class)
             ->add('directors', EntityType::class, [
                 'label'             => false,
                 'class'             => Director::class,
                 'placeholder'       => 'Réalisation',
-                'choice_label'      => 'name',
-                'required'          => false,
-                'by_reference'      => false,
+                // 'choice_label'      => 'name',
+                // 'required'          => false,
+                // 'by_reference'      => false,
                 'multiple'          => true,
-                'auto_initialize'   => false,
+                // 'auto_initialize'   => false,
             ])
-            // ->add('directors', TextType::class)
         ;
 
-        $builder->get('marques')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) {
-                $form = $event->getForm();
-                // dump($form->getData()->getModeles());
-                $form->getParent()->add('modele', EntityType::class, [
-                    'label'             => false,
-                    'class'             => Modele::class,
-                    'placeholder'       => 'Choisir un modele',
-                    'required'          => false,
-                    'mapped'            => false,
-                    // 'choices'           => $form->getData()->getModeles()
-                ]);
-            }
-        );
+        // $builder->get('marques')->addEventListener(
+        //     FormEvents::POST_SUBMIT,
+        //     function (FormEvent $event) {
+        //         $form = $event->getForm();
+        //         dd($form->getData());
+        //         $marques = $form->getData();
+               
+                
+        //         $form->getParent()->add('modeles', EntityType::class, [
+        //             'label'             => false,
+        //             'class'             => Modele::class,
+        //             'placeholder'       => 'Choisir un modele',
+        //             'required'          => false,
+        //             'mapped'            => false,
+        //             'choices'           => $form->getData()->getModeles(),
+        //             // 'choice_value' => function (Marque $marque = null) {
+
+        //             //     return $marque ? $marque->getModeles() : '';
+        //             // },
+        //             // 'choices'           => $marques->getModeles(),
+        //             // 'query_builder'     => function (EntityRepository $er ){
+        //             //     return $er->createQueryBuilder('m')
+        //             //     ->select('m.modeles')
+        //             //     ;
+        //             // }
+        //         ]);
+        //     }
+        // );
     }
           
     public function configureOptions(OptionsResolver $resolver)

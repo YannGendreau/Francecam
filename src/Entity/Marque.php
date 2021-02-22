@@ -91,12 +91,18 @@ class Marque
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Cameras::class, mappedBy="marqueRel")
+     */
+    private $cameraModele;
+
     public function __construct()
     {
         $this->films = new ArrayCollection();
         $this->modeles = new ArrayCollection();
         $this->cameras = new ArrayCollection();
         $this->updatedAt = new \DateTime();
+        $this->cameraModele = new ArrayCollection();
 
     }
 
@@ -313,6 +319,36 @@ class Marque
 
         if($logoFile) {
             $this->updatedAt = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Cameras[]
+     */
+    public function getCameraModele(): Collection
+    {
+        return $this->cameraModele;
+    }
+
+    public function addCameraModele(Cameras $cameraModele): self
+    {
+        if (!$this->cameraModele->contains($cameraModele)) {
+            $this->cameraModele[] = $cameraModele;
+            $cameraModele->setMarqueRel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCameraModele(Cameras $cameraModele): self
+    {
+        if ($this->cameraModele->removeElement($cameraModele)) {
+            // set the owning side to null (unless already changed)
+            if ($cameraModele->getMarqueRel() === $this) {
+                $cameraModele->setMarqueRel(null);
+            }
         }
 
         return $this;

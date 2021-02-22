@@ -19,6 +19,7 @@
 				<th>Genres</th>
 				<th>marque</th>
 				<th>modeles</th>
+				<th>cameras</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -44,6 +45,12 @@
 					<td>
 						{% for n in film.modeles %}
 							{{ n.name }}
+						{% endfor %}
+					</td>
+					<td>
+						{% for c in film.cameraModele %}
+							{{ c.marque }}
+							{{ c.modele }}
 						{% endfor %}
 					</td>
 

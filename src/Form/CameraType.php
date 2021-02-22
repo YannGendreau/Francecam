@@ -6,6 +6,7 @@ use App\Entity\Camera;
 use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Repository\CameraRepository;
+use App\Repository\ModeleRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
@@ -20,7 +21,7 @@ class CameraType extends AbstractType
 {
     private $repository;
 
-    public  function __construct(CameraRepository $repository)
+    public  function __construct(ModeleRepository $repository)
     {
        return $this->repository = $repository;         
     }
@@ -33,42 +34,37 @@ class CameraType extends AbstractType
             ->add('marque', EntityType::class, [
                 'label'         => false,
                 'class'         => Marque::class,
-                // 'choice_label'  => 'name',
+                'choice_label'  => 'name',
                 'placeholder'   => 'Choisir la marque',
-                'mapped'        => true,
-                'required'      => false,
+                'mapped'        => false,
+                // 'required'      => false,
                 'by_reference'  => false,
-                'multiple'      => true,
+                // 'multiple'      => true,
                 // 'expanded'      => true,
                 
             ])
         ;
-         $builder->get('marque')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function(FormEvent $event){
-                $form = $event->getForm();
-              $data= $form->getData();
-            //   dd($data);
-                $form->getParent()->add('modele', EntityType::class, [
-                    'class'             => Modele::class,
-                    'placeholder'       => 'Sélectionnez le modèle',
-                    // 'choice_label'      => 'name',
-                    'mapped'            => false,
-                    'required'          => false,
-                    'auto_initialize'   => false,
-                    // 'choices'           => $form->getData(),
-                    // 'choices'           => $this->repository->findAll(),
-                    'by_reference'  => false,
-                ]);
+        //  $builder->get('marque')->addEventListener(
+        //     FormEvents::POST_SUBMIT,
+        //     function(FormEvent $event){
+        //         $form = $event->getForm();
+        //       $data= $form->getData();
+        //     //   dd($data);
+        //         $form->getParent()->add('modele', EntityType::class, [
+        //             'class'             => Modele::class,
+        //             'placeholder'       => 'Sélectionnez le modèle',
+        //             // 'choice_label'      => 'name',
+        //             // 'mapped'            => false,
+        //             'required'          => false,
+        //             'auto_initialize'   => false,
+        //             // 'choices'           => $form->getData()->getModeles(),
+        //             // 'choices'           => $this->repository->findAll(),
+        //             'by_reference'  => false,
+        //         ]);
                  
-            }
-        );
+        //     }
+        // );
     }
-
-    // public function marqueNames()
-    // {
-    //     return $camera->getMarque();
-    // }
 
     public function configureOptions(OptionsResolver $resolver)
     {

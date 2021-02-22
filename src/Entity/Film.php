@@ -104,6 +104,11 @@ class Film
      */
     private $directors;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Cameras::class, inversedBy="films")
+     */
+    private $cameraModele;
+
 
 
     
@@ -116,6 +121,8 @@ class Film
         // $this->camera = new ArrayCollection();
         $this->updatedAt = new \DateTime();
         $this->directors = new ArrayCollection();
+        $this->cameraModele = new ArrayCollection();
+ 
        
     }
 
@@ -406,4 +413,29 @@ class Film
         return $this;
     }
 
+    /**
+     * @return Collection|Cameras[]
+     */
+    public function getCameraModele(): Collection
+    {
+        return $this->cameraModele;
+    }
+
+    public function addCameraModele(Cameras $cameraModele): self
+    {
+        if (!$this->cameraModele->contains($cameraModele)) {
+            $this->cameraModele[] = $cameraModele;
+        }
+
+        return $this;
+    }
+
+    public function removeCameraModele(Cameras $cameraModele): self
+    {
+        $this->cameraModele->removeElement($cameraModele);
+
+        return $this;
+    }
+
+   
 }
