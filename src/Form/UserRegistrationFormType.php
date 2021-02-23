@@ -20,14 +20,17 @@ class UserRegistrationFormType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'attr' => [
-                    'class' => 'lf--input'
+                    'class' => 'lf--input',
+                    'placeholder' => 'Nom'
                 ],
                 'label' => false,
                 
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'lf--input'
+                    'class' => 'lf--input',
+                    'placeholder' => 'Email',
+                    'autocomplete' => false
                 ],
                 'label' => false,
             ])
@@ -37,7 +40,10 @@ class UserRegistrationFormType extends AbstractType
                 'type'               => PasswordType::class,
                 'invalid_message'    => 'Les mots de passe doivent correspondre. .',
                 'options' => 
-                    ['attr' => ['class' => 'password-field, lf--input']],
+                    ['attr' => ['class' => 'password-field, lf--input',
+                    'placeholder' => 'mot de passe',
+                    
+                    ]],
                 'required'           => true,
                 // 'first_options'      => ['label' => 'Mot de passe'],
                 // 'second_options'     => ['label' => 'Confirmer le mot de passe'],

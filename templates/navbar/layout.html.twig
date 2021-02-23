@@ -104,9 +104,11 @@
 						<div class="container cf">
 
 							<ul class="ul-reset">
+
 								<div class="h3">
 									<h3>Genres</h3>
 								</div>
+								{# <div class="listMenu"> #}
 								<li>
 									<a href='#'>Action</a>
 								</li>
@@ -128,7 +130,7 @@
 								<li>
 									<a href='#'>Science Fiction</a>
 								</li>
-
+								{# </div> #}
 							</ul>
 
 							<!-- .ul-reset-->
@@ -160,14 +162,14 @@
 							</ul>
 							<!-- .ul-reset -->
 						{# <ul class="ul-reset">
-																																																																																																																																																																																																																																																																				<div class="h3">
-																																																																																																																																																																																																																																																																					<h3>Heading 3</h3>
-																																																																																																																																																																																																																																																																				</div>
-																																																																																																																																																																																																																																																																				<li>
-																																																																																																																																																																																																																																																																					<a href='{{path('film')}}'>Tous les films</a>
-																																																																																																																																																																																																																																																																				</li>
-																																																																																																																																																																																																																																																												
-																																																																																																																																																																																																																																																																			</ul> #}
+																																																																																																																																																																																																																																																																																												<div class="h3">
+																																																																																																																																																																																																																																																																																													<h3>Heading 3</h3>
+																																																																																																																																																																																																																																																																																												</div>
+																																																																																																																																																																																																																																																																																												<li>
+																																																																																																																																																																																																																																																																																													<a href='{{path('film')}}'>Tous les films</a>
+																																																																																																																																																																																																																																																																																												</li>
+																																																																																																																																																																																																																																																																																				
+																																																																																																																																																																																																																																																																																											</ul> #}
 							<!-- .ul-reset -->
 
 						</div>
@@ -183,8 +185,8 @@
 			<div
 				class="searchTop">
 				{# {% if app.request.uri != "/home"  %}
-																																																																																																																																																																																																																																																																						
-																																																																																																																																																																																																																																																																					{% endif %} #}
+																																																																																																																																																																																																																																																																																						
+																																																																																																																																																																																																																																																																																					{% endif %} #}
 				{% if app.request.attributes.get('_route') != 'accueil' %}
 					{# {% include "includes/_searchtop.html.twig" %} #}
 				{% endif %}

@@ -26,8 +26,11 @@ imagesContext.keys().forEach(imagesContext);
 
 console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
+
+
 var tabs = document.querySelectorAll(".buttonContainer button");
 var tab_wraps = document.querySelectorAll(".tabPanel");
+var border = document.getElementsByClassName(".borderBottom")[0];
 
 tabs.forEach(function(tab, tab_index){
 	tab.addEventListener("click", function(){
@@ -44,6 +47,5 @@ tabs.forEach(function(tab, tab_index){
 				content.style.display = "none";
 			}
 		})
-
 	})
 })
