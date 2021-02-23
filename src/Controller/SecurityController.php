@@ -32,7 +32,7 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', 'Votre compte à bien été crée ');
+            $this->addFlash('success', 'Bienvenue sur Francecam ! Votre compte à bien été crée. ');
 
             return $this->redirectToRoute('accueil');
         }
@@ -59,6 +59,11 @@ class SecurityController extends AbstractController
     public function logout(): Response
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+
+        $this->addFlash('info', 'Vous avez bien été déconnecté.');
+
+        //Redirection vers la page de connexion
+        return $this->redirectToRoute('app_login');
     }
 
     /**
