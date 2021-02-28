@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "copy-webpack-plugin": "6.2.1",
+        "jquery": "^3.5.1",
         "sass": "^1.32.4",
         "sass-loader": "9.0.1"
     }
