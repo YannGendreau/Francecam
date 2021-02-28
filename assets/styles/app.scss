@@ -1150,9 +1150,104 @@ header {
 }
 
 
+.allFilmsTable {
+    @include flex-center-start();
+    width: 1200px;
+    margin-top: $mTop;
+
+
+    .searchList {
+        width: 20%;
+        // background: red;
+        position: sticky;
+    }
+
+    .showList {
+        width: 80%;
+
+
+        .paginate {
+            grid-area: pagination;
+            margin: auto;
+            margin-top: 20px;
+            @include flex-center();
+            width: 70%;
+
+            ul {
+                @include flex-space-center();
+                width: 250px;
+
+                li {
+                    @include flex-center();
+                    width: 40px;
+                    height: 40px;
+                    background: $titleCard;
+                    border-radius: 5px;
+                    color: white;
+                    text-decoration: none;
+                    margin-left: 3px;
+                    transition: 250ms;
+
+                    &:first-child,
+                    &:last-child {
+                        width: 110px;
+                        height: 40px;
+                    }
+
+                    &:hover {
+                        background: $titleDisplay;
+                        height: 43px;
+                    }
+
+                    span {
+                        // width: 30px;
+                        // height: 40px;
+                    }
+
+                    a {
+                        // margin: auto;
+                        // text-decoration: none;
+                        color: grey;
+                        // display: inline-block;
+                        // width: 30px;
+                        // height: 40px;
+                        display: inline-block;
+                        position: relative;
+                        z-index: 1;
+                        padding: 1em;
+                        margin: -1em;
+                    }
+                }
+
+                .active {
+                    font-size: 1.3rem;
+                    background: $titleDisplay;
+                    height: 45px;
+
+                }
+
+                .disabled {
+                    color: rgb(207, 207, 207);
+                    font-style: italic;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
 .filterFilmLeft {
-    width: 200px;
+    width: 150px;
     position: sticky;
+
+    .filterDiv {
+        border-bottom: 2px solid $titleFont;
+    }
 
     h4 {
         font-family: 'Roboto Condensed', sans-serif;
@@ -1160,6 +1255,31 @@ header {
         // color: $nav-color;
         color: $titleCard;
         margin: 10px 0 10px 0;
+        padding-left: 5px;
+
+        &:hover {
+            transition: 250ms;
+            background: $titleDisplay;
+            color: $megamenu-bg;
+            border-radius: 5px;
+        }
+    }
+
+    #collapsible {
+        cursor: pointer;
+    }
+
+    #content {
+        // display: none;
+        overflow: hidden;
+        transition: 250ms;
+    }
+
+    .active {
+        transition: 250ms;
+        background: $titleDisplay;
+        color: $megamenu-bg;
+        border-radius: 5px;
     }
 
     form {
@@ -1169,7 +1289,7 @@ header {
 
         #genres {
             // margin-top: 10px;
-            border-bottom: 2px solid $titleFont;
+            // border-bottom: 2px solid $titleFont;
 
             .form-check {
                 // font-size: 1.2rem;
@@ -1202,7 +1322,7 @@ header {
         }
 
         #decade {
-            border-bottom: 2px solid $titleFont;
+            // border-bottom: 2px solid $titleFont;
 
             .form-check {
                 margin-bottom: 0.2rem;
@@ -1221,7 +1341,7 @@ header {
         }
 
         #marques {
-            border-bottom: 2px solid $titleFont;
+            // border-bottom: 2px solid $titleFont;
 
             .form-check {
                 margin-bottom: 0.2rem;

@@ -1,23 +1,33 @@
 <div class="filterFilmLeft">
+
 	{{form_start(form)}}
+
 	{{form_row(form.q)}}
-	<h4>Genres</h4>
 
-	{{form_row(form.genres)}}
+	<div class="filterDiv">
+		<h4 id="collapsible" class="active">Genres</h4>
 
-	{# <h4>Année</h4>
-																																					{{form_row(form.annee)}} #}
+		<div id="content" class="open">
+			<div id="list">{{form_row(form.genres)}}</div>
+		</div>
+	</div>
 
-	<h4>Décennies</h4>
-	{{form_row(form.decade)}}
-	{# {% for decade in form.decade %}
-				<div>
-					<span>{{form_row(decade| length)}}</span>
-				</div>
-			{% endfor %} #}
+	<div class="filterDiv">
+		<h4 id="collapsible" class="active">Décennies</h4>
 
-	<h4>Caméras</h4>
-	{{form_row(form.marques )}}
+		<div id="content" class="open">
+			<div id="list">{{form_row(form.decade)}}</div>
+		</div>
+	</div>
+
+	<div class="filterDiv">
+		<h4 id="collapsible" class="active">Marques</h4>
+
+		<div id="content" class="open">
+			<div id="list">{{form_row(form.marques)}}</div>
+		</div>
+	</div>
+
 	<button type='submit' class='btn btn-primary w-100'>Filtrer</button>
 	{{form_end(form)}}
 

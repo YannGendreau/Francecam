@@ -22,10 +22,50 @@ const imagesContext = require.context('../assets/images', true, /\.(png|jpg|jpeg
 imagesContext.keys().forEach(imagesContext);
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
+import $ from 'jquery';
 
 console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
+
+$(function() {
+	var b = $("#collapsible");
+	var w = $("#content");
+	var l = $("#list");
+	
+	w.height(l.outerHeight(true));
+  
+	b.click( function() {
+	
+	  if(w.hasClass('open')) {
+		w.removeClass('open');
+		w.height(0);
+	  } else {
+		w.addClass('open');
+		w.height(l.outerHeight(true));
+	  }
+
+	  if(b.hasClass('active')) {
+		b.removeClass('active');
+	  }else{
+		b.addClass('active');
+	  }
+	});
+  });
+
+// var coll = document.getElementsByClassName("collapsible");
+// var i;
+
+// for (i = 0; i < coll.length; i++) {
+//   coll[i].addEventListener("click", function() {
+//     this.classList.toggle("active");
+//     var content = this.nextElementSibling;
+//     if (content.style.display === "block") {
+//       content.style.display = "none";
+//     } else {
+//       content.style.display = "block";
+//     }
+//   });
+// }
 
 
 var tabs = document.querySelectorAll(".buttonContainer button");
