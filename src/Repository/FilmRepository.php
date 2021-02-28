@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Film;
 use App\Data\FilmSearchData;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
@@ -15,18 +17,26 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class FilmRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * Undocumented variable
+     *
+     * @var PaginatorInterface
+     */
+    private $paginator;
+
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator )
     {
         parent::__construct($registry, Film::class);
+        $this->paginator = $paginator;
     }
 
 
 
       /**
-    * @return Film[]
+    * @return PaginationInterface
     */
 
-    public function findSearch(FilmSearchData $search): array
+    public function findSearch(FilmSearchData $search): PaginationInterface
     {
         $query = $this
                     ->createQueryBuilder('f')
@@ -69,36 +79,14 @@ class FilmRepository extends ServiceEntityRepository
             ->setParameter('marques', $search->marques)
             ;
         }
-            return $query->getQuery()->getResult();
+            $query= $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            16
+
+        );
         
     }
 
-    // /**
-    //  * @return Film[] Returns an array of Film objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Film
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

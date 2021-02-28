@@ -129,6 +129,7 @@ class FilmController extends AbstractController
         // $films = $this->repository->findAll();
         
         $data = new FilmSearchData;
+        $data->page =$request->get('page', 1);
         $form = $this->createForm(SearchFilmForm::class, $data);
         $form->handleRequest($request);
       

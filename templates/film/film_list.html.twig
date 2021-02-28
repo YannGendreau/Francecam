@@ -13,7 +13,10 @@
 				{# <h1>Liste des films</h1> #}
 				{% include "film/_film_list.html.twig" %}
 			</div>
-
+			<div class="paginate">
+				{{knp_pagination_render(films)}}
+			</div>
 		</div>
+
 	</div>
 {% endblock %}

@@ -9,8 +9,14 @@ use App\Entity\Modele;
 use Doctrine\ORM\Mapping\OrderBy;
 
 
-class FilmSearchData{
-
+class FilmSearchData
+{
+    /**
+     * Undocumented variable
+     *
+     * @var integer
+     */
+    public $page;
 
     /**
      * Champ de recherche
