@@ -1,0 +1,30 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}Toutes les marques
+{% endblock %}
+
+{% block content %}
+	<div id="containerMarque">
+		<div class="flexMarque">
+			{% for marque in marques %}
+				<div class="cardGridMarque">
+					<div class="cardSmMarque">
+						<div class="imgCardMarque">
+							<a href="{{path('marque_show', {slug: marque.slug,})}}"><img src="/build/images/marques/{{marque.logoName}}" alt=" placeholder"></a>
+						</div>
+						<a href="{{path('marque_show', {slug: marque.slug,})}}">
+							<div class="description__overlay description__overlay--blur">
+								<h2>
+									{{marque.name}}
+								</h2>
+								<div class="genreOverlay"></div>
+
+							</div>
+						</a>
+					</div>
+				</div>
+
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
