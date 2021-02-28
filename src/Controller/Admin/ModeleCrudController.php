@@ -23,6 +23,7 @@ class ModeleCrudController extends AbstractCrudController
             IdField::new('id')->HideOnForm(),
             AssociationField::new('marque'),
             TextField::new('name'),
+            TextField::new('slug'),
             TextEditorField::new('description'),
            
         ];
