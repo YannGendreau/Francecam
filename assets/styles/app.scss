@@ -962,11 +962,10 @@ header {
         "filterFilm pagination"
     ;
 
-    .paginate {
-        grid-area: pagination;
-        margin: auto;
-        margin-top: 20px;
+    #paginate {
         @include flex-center();
+        grid-area: pagination;
+        // margin: 0 20px 0 20px;
         width: 70%;
 
         ul {
@@ -1168,10 +1167,11 @@ header {
 
         .paginate {
             grid-area: pagination;
-            margin: auto;
-            margin-top: 20px;
+            // margin: auto;
+            // margin-top: 20px;
+            margin: 20px 0 20px 0;
             @include flex-center();
-            width: 70%;
+            width: 100%;
 
             ul {
                 @include flex-space-center();
@@ -1186,7 +1186,7 @@ header {
                     color: white;
                     text-decoration: none;
                     margin-left: 3px;
-                    transition: 250ms;
+                    transition: 200ms;
 
                     &:first-child,
                     &:last-child {
@@ -1245,46 +1245,56 @@ header {
     width: 150px;
     position: sticky;
 
-    .filterDiv {
-        border-bottom: 2px solid $titleFont;
-    }
-
-    h4 {
-        font-family: 'Roboto Condensed', sans-serif;
-        font-size: 1.3rem;
-        // color: $nav-color;
-        color: $titleCard;
-        margin: 10px 0 10px 0;
-        padding-left: 5px;
-
-        &:hover {
-            transition: 250ms;
-            background: $titleDisplay;
-            color: $megamenu-bg;
-            border-radius: 5px;
-        }
-    }
-
-    #collapsible {
-        cursor: pointer;
-    }
-
-    #content {
-        // display: none;
-        overflow: hidden;
-        transition: 250ms;
-    }
-
-    .active {
-        transition: 250ms;
-        background: $titleDisplay;
-        color: $megamenu-bg;
-        border-radius: 5px;
-    }
-
     form {
         // @include flex-center();
 
+        .coll {
+            margin: 10px 0 10px 0;
+            padding-left: 5px;
+            transition: 0.4s;
+            cursor: pointer;
+
+            &:hover {
+                transition: 250ms;
+                background: $titleDisplay;
+                color: $megamenu-bg;
+                border-radius: 5px;
+            }
+
+            h4 {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 1.3rem;
+                color: $titleCard;
+
+                &:after {
+                    content: '\002B';
+                    color: #777;
+                    font-weight: bold;
+                    float: right;
+                    margin-left: 5px;
+                }
+            }
+        }
+
+        .active {
+            transition: 250ms;
+            background: $titleDisplay;
+            // background: red;
+            color: $megamenu-bg;
+            border-radius: 5px;
+        }
+
+        // .collapsible {
+        //     cursor: pointer;
+        //     transition: 0.4s;
+        // }
+
+        .content {
+            // display: none;
+            max-height: 0px;
+            overflow: hidden;
+            transition: max-height 0.1s ease-out;
+        }
 
 
         #genres {
@@ -2757,10 +2767,18 @@ body {
 
 
         .exo-menu {
+
             width: 100%;
             float: left;
             list-style: none;
             position: relative;
+
+            &:last-child() {
+                background: red;
+                @include flex-center-end();
+            }
+
+
 
             .iconUser {
                 width: 30px;
@@ -2855,24 +2873,22 @@ body {
     }
 
     .connexion {
-        width: 30%;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
+        width: 20%;
+        // @include flex-center();
 
         .exo-menu {
-            @include flex-center();
-            float: left;
-            list-style: none;
-            position: relative;
+
+            // @include flex-center-end();
+
 
             .icon {
-                margin-left: 20px;
+                margin-left: 30px;
 
                 .iconUser {
                     width: 30px;
                 }
             }
+
 
         }
 

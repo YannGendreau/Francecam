@@ -27,30 +27,57 @@ import $ from 'jquery';
 console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
 
-$(function() {
-	var b = $("#collapsible");
-	var w = $("#content");
-	var l = $("#list");
-	
-	w.height(l.outerHeight(true));
-  
-	b.click( function() {
-	
-	  if(w.hasClass('open')) {
-		w.removeClass('open');
-		w.height(0);
-	  } else {
-		w.addClass('open');
-		w.height(l.outerHeight(true));
-	  }
 
-	  if(b.hasClass('active')) {
-		b.removeClass('active');
-	  }else{
-		b.addClass('active');
-	  }
-	});
+var col = document.getElementsByClassName("coll");
+var i;
+
+for (i = 0; i < col.length; i++) {
+  col[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+
+    var content = this.nextElementSibling;
+
+    if (content.style.maxHeight) {
+		content.style.maxHeight = "0px";
+    } else {
+		content.style.maxHeight = content.scrollHeight + "px";
+    }
   });
+}
+
+
+
+/**
+ * -------------------------------------------------------------
+ */
+// $(function() {
+// 	var b = $("#collapsible");
+// 	var w = $("#content");
+// 	var l = $("#list");
+	
+// 	w.height(l.outerHeight(true));
+  
+// 	b.on( function() {
+		
+// 		  if(w.hasClass('open')) {
+// 		w.removeClass('open');
+// 		w.height(0);
+// 	  } else {
+// 		w.addClass('open');
+// 		w.height(l.outerHeight(true));
+// 	  }
+
+// 	  if(b.hasClass('active')) {
+// 		b.removeClass('active');
+// 	  }else{
+// 		b.addClass('active');
+// 	  }
+// 	});
+//   });
+
+/**
+ * -------------------------------------------------------------
+ */
 
 // var coll = document.getElementsByClassName("collapsible");
 // var i;
