@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -132,8 +133,14 @@ class FilmController extends AbstractController
         $data->page =$request->get('page', 1);
         $form = $this->createForm(SearchFilmForm::class, $data);
         $form->handleRequest($request);
-      
         $films = $this->repository->findSearch($data);
+        if ($request->isXmlHttpRequest()){
+            return new JsonResponse([
+                'content' => $this->renderView('film/_film_list.html.twig', ['films' =>$films]),
+                'sorting' => $this->renderView('film/_sorting.html.twig', ['films' =>$films])
+            ]);
+}
+
 
         if(!$films){
             throw new NotFoundHttpException('Pas de films');

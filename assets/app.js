@@ -11,6 +11,9 @@ import './styles/app.scss';
 // import './styles/film.scss';
 // import './styles/film2.scss';
 // import './styles/cartefilmfinal.scss';
+import Filter from './modules/Filter';
+
+new Filter(document.querySelector('.js-filter'));
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
