@@ -6,14 +6,15 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.scss';
-// import './styles/menu.scss';
-// import './styles/film.scss';
-// import './styles/film2.scss';
-// import './styles/cartefilmfinal.scss';
-import Filter from './modules/Filter';
 
-new Filter(document.querySelector('.js-filter'));
+//FICHIER CSS principal
+import './styles/app.scss';
+
+//FILTRE JS AJAX (en developpement)
+// import Filter from './modules/Filter';
+
+//JQUERY
+// new Filter(document.querySelector('.js-filter'));
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -30,29 +31,33 @@ import $ from 'jquery';
 console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
 
+// FINAL : ACCORDEON FILTRE DE RECHERCHE (en dev)
 
-var col = document.getElementsByClassName("coll");
-var i;
+// var col = document.getElementsByClassName("coll");
+// var i;
 
-for (i = 0; i < col.length; i++) {
-  col[i].addEventListener("click", function() {
-    this.classList.toggle("active");
+// for (i = 0; i < col.length; i++) {
+//   col[i].addEventListener("click", function() {
+//     this.classList.toggle("active");
 
-    var content = this.nextElementSibling;
+//     var content = this.nextElementSibling;
 
-    if (content.style.maxHeight) {
-		content.style.maxHeight = "0px";
-    } else {
-		content.style.maxHeight = content.scrollHeight + "px";
-    }
-  });
-}
+//     if (content.style.maxHeight) {
+// 		content.style.maxHeight = "0px";
+//     } else {
+// 		content.style.maxHeight = content.scrollHeight + "px";
+//     }
+//   });
+// }
 
 
 
 /**
  * -------------------------------------------------------------
  */
+
+// ACCORDEON FILTRE DE RECHERCHE (test 1)
+
 // $(function() {
 // 	var b = $("#collapsible");
 // 	var w = $("#content");
@@ -81,6 +86,7 @@ for (i = 0; i < col.length; i++) {
 /**
  * -------------------------------------------------------------
  */
+// ACCORDEON FILTRE DE RECHERCHE (test 2)
 
 // var coll = document.getElementsByClassName("collapsible");
 // var i;
@@ -97,6 +103,9 @@ for (i = 0; i < col.length; i++) {
 //   });
 // }
 
+//----------------------------------------------------------------------
+
+//TOGGLE TABS PAGE FILM, CAMERA, MARQUE
 
 var tabs = document.querySelectorAll(".buttonContainer button");
 var tab_wraps = document.querySelectorAll(".tabPanel");
