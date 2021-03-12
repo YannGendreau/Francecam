@@ -18,18 +18,18 @@
 			</div>
 		</div>
 		{#
-																																																								<div class="tableauFilm">
-																																																						
-																																																									<div class="searchList">{% include "film/_film_list_filter.html.twig" with {form: form} only %}
-																																																									</div>
-																																																									<div class="showList">
-																																																										<div class="paginate"></div>
-																																																										{# <h1>Liste des films</h1> #}
+		<div class="tableauFilm">
+		
+		<div class="searchList">{% include "film/_film_list_filter.html.twig" with {form: form} only %}
+		</div>
+		<div class="showList">
+		<div class="paginate"></div>
+		{# <h1>Liste des films</h1> #}
 		{#	{% include "film/_film_list.html.twig" %}
-																																																					</div>
-																																																					<div class="paginate">
-																																																						{{knp_pagination_render(films)}}
-																																																					</div>
-																																																				</div>#}
+		</div>
+		<div class="paginate">
+		{{knp_pagination_render(films)}}
+		</div>
+		</div>#}
 	</div>
 {% endblock %}
