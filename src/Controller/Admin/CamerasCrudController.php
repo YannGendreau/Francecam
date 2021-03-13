@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class CamerasCrudController extends AbstractCrudController
 {
@@ -21,15 +22,20 @@ class CamerasCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->HideOnForm(),
+            // AssociationField::new('marque'),
             TextField::new('marque'),
             TextField::new('modele'),
             TextField::new('slug'),
+            AssociationField::new('format'),
+            AssociationField::new('shutter'),
+            AssociationField::new('mount'),
             IntegerField::new('noise'),
-            TextField::new('mount'),
             TextField::new('view'),
             IntegerField::new('voltage'),
             IntegerField::new('weight'),
-            TextEditorField::new('description'),
+            TextEditorField::new('description')
+            
+            ,
         ];
     }
     
