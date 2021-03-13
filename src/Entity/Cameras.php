@@ -40,10 +40,7 @@ class Cameras
      */
     private $noise;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $mount;
+   
 
     /**
      * @ORM\Column(type="float")
@@ -75,10 +72,28 @@ class Cameras
      */
     private $marqueRel;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Format::class, inversedBy="cameras")
+     */
+    private $format;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Shutter::class, inversedBy="cameras")
+     */
+    private $shutter;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Mount::class, inversedBy="cameras")
+     */
+    private $mount;
+
 
     public function __construct()
     {
         $this->films = new ArrayCollection();
+        $this->format = new ArrayCollection();
+        $this->shutter = new ArrayCollection();
+        $this->mount = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,17 +149,7 @@ class Cameras
         return $this;
     }
 
-    public function getMount(): ?string
-    {
-        return $this->mount;
-    }
-
-    public function setMount(string $mount): self
-    {
-        $this->mount = $mount;
-
-        return $this;
-    }
+    
 
     public function getVoltage(): ?float
     {
@@ -222,6 +227,8 @@ class Cameras
     }
     public function __toString()
     {
+        // return $this->marque;
+        // return $this->modele ;
         return $this->marque. ' ' . $this->modele;
     }
 
@@ -233,6 +240,78 @@ class Cameras
     public function setMarqueRel(?Marque $marqueRel): self
     {
         $this->marqueRel = $marqueRel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Format[]
+     */
+    public function getFormat(): Collection
+    {
+        return $this->format;
+    }
+
+    public function addFormat(Format $format): self
+    {
+        if (!$this->format->contains($format)) {
+            $this->format[] = $format;
+        }
+
+        return $this;
+    }
+
+    public function removeFormat(Format $format): self
+    {
+        $this->format->removeElement($format);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Shutter[]
+     */
+    public function getShutter(): Collection
+    {
+        return $this->shutter;
+    }
+
+    public function addShutter(Shutter $shutter): self
+    {
+        if (!$this->shutter->contains($shutter)) {
+            $this->shutter[] = $shutter;
+        }
+
+        return $this;
+    }
+
+    public function removeShutter(Shutter $shutter): self
+    {
+        $this->shutter->removeElement($shutter);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Mount[]
+     */
+    public function getMount(): Collection
+    {
+        return $this->mount;
+    }
+
+    public function addMount(Mount $mount): self
+    {
+        if (!$this->mount->contains($mount)) {
+            $this->mount[] = $mount;
+        }
+
+        return $this;
+    }
+
+    public function removeMount(Mount $mount): self
+    {
+        $this->mount->removeElement($mount);
 
         return $this;
     }
