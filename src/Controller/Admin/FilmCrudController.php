@@ -7,9 +7,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -40,7 +42,9 @@ class FilmCrudController extends AbstractCrudController
             
             TextField::new('title'),
             AssociationField::new('genres'),
-            TextEditorField::new('synopsis'),
+            AssociationField::new('directors'),
+            AssociationField::new('dirphoto'),
+            TextareaField::new('synopsis'),
             IntegerField::new('duree'),
             IntegerField::new('sortie'),
             IntegerField::new('decade'),
@@ -48,6 +52,7 @@ class FilmCrudController extends AbstractCrudController
             AssociationField::new('marques'),
             AssociationField::new('cameraModele'),
             // AssociationField::new('camera'),
+            DateTimeField::new('createdAt')->HideOnForm(),
 
         ];
 

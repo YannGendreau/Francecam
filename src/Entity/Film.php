@@ -9,6 +9,7 @@ use App\Entity\Director;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FilmRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
+
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,9 +20,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=FilmRepository::class)
 * @Vich\Uploadable()
+
  */
 class Film
 {
+  
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -96,6 +99,7 @@ class Film
     /**
         *
      * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -108,6 +112,18 @@ class Film
      * @ORM\ManyToMany(targetEntity=Cameras::class, inversedBy="films")
      */
     private $cameraModele;
+
+    /**
+     
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Dirphoto::class, inversedBy="films")
+     */
+    private $dirphoto;
 
 
 
@@ -122,6 +138,7 @@ class Film
         $this->updatedAt = new \DateTime();
         $this->directors = new ArrayCollection();
         $this->cameraModele = new ArrayCollection();
+        $this->dirphoto = new ArrayCollection();
  
        
     }
@@ -433,6 +450,42 @@ class Film
     public function removeCameraModele(Cameras $cameraModele): self
     {
         $this->cameraModele->removeElement($cameraModele);
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    // public function setCreatedAt(\DateTimeInterface $createdAt): self
+    // {
+    //     $this->createdAt = $createdAt;
+
+    //     return $this;
+    // }
+
+    /**
+     * @return Collection|Dirphoto[]
+     */
+    public function getDirphoto(): Collection
+    {
+        return $this->dirphoto;
+    }
+
+    public function addDirphoto(Dirphoto $dirphoto): self
+    {
+        if (!$this->dirphoto->contains($dirphoto)) {
+            $this->dirphoto[] = $dirphoto;
+        }
+
+        return $this;
+    }
+
+    public function removeDirphoto(Dirphoto $dirphoto): self
+    {
+        $this->dirphoto->removeElement($dirphoto);
 
         return $this;
     }

@@ -8,6 +8,8 @@ use App\Entity\Mount;
 use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Entity\Cameras;
+use App\Entity\Director;
+use App\Entity\Dirphoto;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -43,5 +45,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('User', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Camera', 'fas fa-camera', Cameras::class);
         yield MenuItem::linkToCrud('Mount', 'fas fa-circle', Mount::class);
+        yield MenuItem::linkToCrud('Réalisation', 'fas fa-circle', Director::class);
+        yield MenuItem::linkToCrud('Photo', 'fas fa-circle', Dirphoto::class);
     }
 }
