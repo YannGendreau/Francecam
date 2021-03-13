@@ -88,8 +88,8 @@ $titleCard: #404b69;
 $titleDisplay: #191e2b;
 $titleFont: #f73859;
 $fondClair: rgb(235, 241, 236);
-$main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
-// $main-color: gradient(rgb(248, 248, 248), rgb(201, 201, 201));
+// $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
+$main-color: gradient(rgb(255, 255, 255), rgb(238, 238, 238));
 $nav-dd-color: rgb(207, 219, 215);
 
 $left-color: #242e4d;
@@ -130,7 +130,8 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 body {
     // background: linear-gradient (135deg, rgb(164, 164, 202), rgb(68, 63, 88));
-    background: linear-gradient(135deg, rgba(243, 243, 247, 0.8), rgba(148, 160, 212, 0.8));
+    // background: linear-gradient(135deg, rgba(243, 243, 247, 0.8), rgba(148, 160, 212, 0.8));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(199, 208, 247, 0.8));
     // linear-gradient(135deg,
     //         rgba($left-color, .9),
     //         rgba($right-color, .9));
@@ -251,6 +252,26 @@ a {
             z-index: 2;
         }
 
+        li.drop-down.last {
+            margin-left: 50px;
+
+            a {
+                &:hover {
+                    background: $titleFont;
+                }
+            }
+        }
+
+        li.drop-down.user {
+            margin-left: 10%;
+
+            a {
+                border-right: 0px;
+
+
+            }
+        }
+
         li.drop-down>ul {
             left: 0px;
             min-width: 230px;
@@ -296,14 +317,16 @@ a {
         // @include flex-center();
 
         .exo-menu {
-
             @include flex-center();
 
-
             .icon {
-                margin-left: 10px;
+                // margin-left: 10px;
+                width: 50px;
+                @include flex-center();
+
 
                 .iconUser {
+
                     width: 30px;
                 }
             }
@@ -1556,12 +1579,23 @@ a {
         margin: auto;
         min-height: 350px;
 
+        .addPoster {
+            @include flex-center();
+            width: 400px;
+            height: 400px;
+            border: 1px solid rgb(231, 231, 231);
+
+            a {
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 1.7rem;
+                color: $titleCard;
+                cursor: pointer;
+            }
+        }
+
         .imgCam {
-            // position: absolute;
-            // margin-bottom: 60px;
 
             img {
-
                 width: 400px;
             }
         }
@@ -1577,9 +1611,6 @@ a {
         }
 
         .imgMovShadow {
-
-            // position: relative;
-            // transform: translateY(-5px);
             margin-top: 10px;
             z-index: -1;
 
@@ -1592,7 +1623,7 @@ a {
 
     .imageMarque {
         grid-area: img;
-        @include flex-center(); // margin: auto;
+        @include flex-center();
         min-height: 350px;
 
 
@@ -2339,9 +2370,6 @@ a {
     color: white;
     font-size: 2rem;
     text-transform: uppercase;
-
-
-
 }
 
 .alert-success {

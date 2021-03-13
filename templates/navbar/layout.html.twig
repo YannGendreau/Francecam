@@ -167,8 +167,8 @@
 			<div class="connexion">
 				<ul class="exo-menu">
 					{% if is_granted('ROLE_ADMIN') %}
-						<li class="drop-down">
-							<a href="#">{{app.user.name}}</a>
+						<li class="drop-down user">
+							<a href="{{path('user')}}">{{app.user.name}}</a>
 							<!--Drop Down-->
 							<ul class="drop-down-ul animated fadeIn">
 								<li class="flyout-right">
@@ -181,26 +181,22 @@
 							<!--//End drop down-->
 						</li>
 						<div class="icon">
-							<a href="#">
+							<a href="{{path('user')}}">
 								<img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt="">
 							</a>
 
 						</div>
-						<li class="drop-down">
+						<li class="drop-down last">
 							<a href="{{path('admin')}}">Back-Office</a>
 							<!--Drop Down-->
-							<ul class="drop-down-ul animated fadeIn">
-								<li class="flyout-right">
-									<a href="#">Genres</a>
-								</li>
-							</ul>
+
 						</li>
 
 
 					{% elseif app.user %}
 
 						<li class="drop-down">
-							<a href="#">{{app.user.name}}</a>
+							<a href="{{path('user')}}">{{app.user.name}}</a>
 							<!--Drop Down-->
 							<ul class="drop-down-ul animated fadeIn">
 								<li class="flyout-right">
@@ -213,7 +209,7 @@
 							<!--//End drop down-->
 						</li>
 						<div class="icon">
-							<a href="#">
+							<a href="{{path('user')}}">
 								<img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt="">
 							</a>
 
@@ -234,34 +230,34 @@
 				</ul>
 			</div>
 			{# <div class="connexion">
-																																																																																																							<div class="profile">
-																																																																																																								<ul class="exo-menu">
-																																																																																																									{% if app.user %}
-																																																																																																				
-																																																																																																										<li class="drop-down">
-																																																																																																											<a href="#">{{app.user.name}}</a>
-																																																																																																										</li>
-																																																																																																										<li><img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt=""></li>
-																																																																																																				
-																																																																																																										<li class="drop-down">
-																																																																																																											<a href="{{path('app_logout')}}">Déconnexion</a>
-																																																																																																										</li>
-																																																																																																				
-																																																																																																									{% else %}
-																																																																																																				
-																																																																																																										<li class="drop-down">
-																																																																																																											<a href="{{path('app_login')}}">Connexion</a>
-																																																																																																										</li>
-																																																																																																				
-																																																																																																										<li class="drop-down">
-																																																																																																											<a href="{{path('app_register')}}">S'inscrire</a>
-																																																																																																										</li>
-																																																																																																				
-																																																																																																									{% endif %}
-																																																																																																				
-																																																																																																								</ul>
-																																																																																																							</div>
-																																																																																																						</div> #}
+																																																																																																																															<div class="profile">
+																																																																																																																																<ul class="exo-menu">
+																																																																																																																																	{% if app.user %}
+																																																																																																																												
+																																																																																																																																		<li class="drop-down">
+																																																																																																																																			<a href="#">{{app.user.name}}</a>
+																																																																																																																																		</li>
+																																																																																																																																		<li><img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt=""></li>
+																																																																																																																												
+																																																																																																																																		<li class="drop-down">
+																																																																																																																																			<a href="{{path('app_logout')}}">Déconnexion</a>
+																																																																																																																																		</li>
+																																																																																																																												
+																																																																																																																																	{% else %}
+																																																																																																																												
+																																																																																																																																		<li class="drop-down">
+																																																																																																																																			<a href="{{path('app_login')}}">Connexion</a>
+																																																																																																																																		</li>
+																																																																																																																												
+																																																																																																																																		<li class="drop-down">
+																																																																																																																																			<a href="{{path('app_register')}}">S'inscrire</a>
+																																																																																																																																		</li>
+																																																																																																																												
+																																																																																																																																	{% endif %}
+																																																																																																																												
+																																																																																																																																</ul>
+																																																																																																																															</div>
+																																																																																																																														</div> #}
 
 		</div>
 

@@ -5,15 +5,16 @@
 {% endblock %}
 
 {% block content %}
-
 	<div id="container">
 		<div class="tableauCamera">
 			<div class="imageCam">
 				{% if film.poster %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt=" "></div>
-
+				{% else %}
+					<div class="addPoster">
+						<a href="{{path('film_edit', {slug:film.slug})}}">Ajouter une affiche</a>
+					</div>
 				{% endif %}
-
 				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
 			</div>
 			<div class="descriptionFilm">
@@ -24,7 +25,6 @@
 						<div>
 							<h5>{{film.getRuntime(film.duree)}}</h5>
 							<span>/</span>
-
 							{% for g in film.genres %}
 								{% if film.genres| length >= 2 %}
 									<h5>{{g.name}}</h5>
@@ -32,16 +32,12 @@
 								{% elseif film.genres| length <= 1 %}
 									<h5>{{g.name}}</h5>
 								{% endif %}
-
 							{% endfor %}
 							<span>/</span>
 							<h5>{{film.sortie}}</h5>
-
 						</div>
-
 					</div>
 					<div class="trait"></div>
-
 				</div>
 				<div class="summary">
 					<h4>Résumé</h4>
@@ -57,12 +53,9 @@
 						<div class="realNameD">
 							{% if film.directors | length > 0 %}
 								{% for director in film.directors %}
-
-									<a href="{{path('film_new')}}">
+									<a href="">
 										<p>{{director.name}}</p>
 									</a>
-
-
 								{% endfor %}
 							{% elseif film.directors | length > 1 %}
 								<a href="#">
@@ -71,10 +64,9 @@
 								<br>
 							{% else %}
 								{% if app.user %}
-									<a href="{{path('film_new')}}">
+									<a href="{{path('film_edit', {slug:film.slug})}}">
 										<p class="addArtist">Ajouter</p>
 									</a>
-
 								{% else %}
 									<a href="{{path('app_login')}}">
 										<p class="addArtist">Se connecter pour ajouter</p>
@@ -87,28 +79,29 @@
 						<div class="dpTitreD">
 							<h4>Direction de la photographie</h4>
 						</div>
-
-						<div
-							class="dpNameD">{# {% if film.dops | length > 0 %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																{% for dop in film.dops %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	<a href="#">
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		<p>{{dop.nom}}</p>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	</a>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																{% endfor %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															{% else %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																<a href="#">
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	<p class="addArtist">Ajouter un directeur</p>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																</a>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															</p>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														{% endif %} #}
+						<div class="dpNameD">
+							{% if film.dirphoto | length > 0 %}
+								{% for director in film.dirphoto %}
+									<a href="">
+										<p>{{director.name}}</p>
+									</a>
+								{% endfor %}
+							{% elseif film.directors | length > 1 %}
+								<a href="#">
+									<p>{{director.name}}</p>
+								</a>
+								<br>
+							{% else %}
+								{% if app.user %}
+									<a href="{{path('film_edit', {slug:film.slug})}}">
+										<p class="addArtist">Ajouter</p>
+									</a>
+								{% else %}
+									<a href="{{path('app_login')}}">
+										<p class="addArtist">Se connecter pour ajouter</p>
+									</a>
+								{% endif %}
+							{% endif %}
 						</div>
 
 
@@ -188,10 +181,7 @@
 							{% for cam in film.camera %}{# {{cam.marqueModele}} #}
 								{# {{cam.cameraName()}} #}
 							{% endfor %}
-
-
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -199,40 +189,40 @@
 	</div>
 
 	{# 
-																																																																										<h1>Film</h1>
-																																																																									
-																																																																										<table class="table">
-																																																																											<tbody>
-																																																																												<tr>
-																																																																													<th>Id</th>
-																																																																													<td>{{ film.id }}</td>
-																																																																												</tr>
-																																																																												<tr>
-																																																																													<th>Title</th>
-																																																																													<td>{{ film.title }}</td>
-																																																																												</tr>
-																																																																												<tr>
-																																																																													<th>Duree</th>
-																																																																													<td>{{ film.duree }}</td>
-																																																																												</tr>
-																																																																												<tr>
-																																																																													<th>Synopsis</th>
-																																																																													<td>{{ film.synopsis }}</td>
-																																																																												</tr>
-																																																																												<tr>
-																																																																													<th>Decade</th>
-																																																																													<td>{{ film.decade }}</td>
-																																																																												</tr>
-																																																																												<tr>
-																																																																													<th>Sortie</th>
-																																																																													<td>{{ film.sortie }}</td>
-																																																																												</tr>
-																																																																											</tbody>
-																																																																										</table>
-																																																																									
-																																																																										<a href="{{ path('film_index') }}">back to list</a>
-																																																																									
-																																																																										<a href="{{ path('film_edit', {'slug': film.slug}) }}">edit</a>
-																																																																									
-																																																																										{{ include('film/_delete_form.html.twig') }} #}
+																																																																																														<h1>Film</h1>
+																																																																																													
+																																																																																														<table class="table">
+																																																																																															<tbody>
+																																																																																																<tr>
+																																																																																																	<th>Id</th>
+																																																																																																	<td>{{ film.id }}</td>
+																																																																																																</tr>
+																																																																																																<tr>
+																																																																																																	<th>Title</th>
+																																																																																																	<td>{{ film.title }}</td>
+																																																																																																</tr>
+																																																																																																<tr>
+																																																																																																	<th>Duree</th>
+																																																																																																	<td>{{ film.duree }}</td>
+																																																																																																</tr>
+																																																																																																<tr>
+																																																																																																	<th>Synopsis</th>
+																																																																																																	<td>{{ film.synopsis }}</td>
+																																																																																																</tr>
+																																																																																																<tr>
+																																																																																																	<th>Decade</th>
+																																																																																																	<td>{{ film.decade }}</td>
+																																																																																																</tr>
+																																																																																																<tr>
+																																																																																																	<th>Sortie</th>
+																																																																																																	<td>{{ film.sortie }}</td>
+																																																																																																</tr>
+																																																																																															</tbody>
+																																																																																														</table>
+																																																																																													
+																																																																																														<a href="{{ path('film_index') }}">back to list</a>
+																																																																																													
+																																																																																														<a href="{{ path('film_edit', {'slug': film.slug}) }}">edit</a>
+																																																																																													
+																																																																																														{{ include('film/_delete_form.html.twig') }} #}
 {% endblock %}
