@@ -162,82 +162,115 @@
 					</ul>
 					<!--//End drop down-->
 				</li>
-			</ul>
+
+			</div>
+			<div class="connexion">
+				<ul class="exo-menu">
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="drop-down">
+							<a href="#">{{app.user.name}}</a>
+							<!--Drop Down-->
+							<ul class="drop-down-ul animated fadeIn">
+								<li class="flyout-right">
+									<a href="{{path('app_logout')}}">Déconnexion</a>
+									<!--Flyout Right-->
+
+								</li>
+
+							</ul>
+							<!--//End drop down-->
+						</li>
+						<div class="icon">
+							<a href="#">
+								<img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt="">
+							</a>
+
+						</div>
+						<li class="drop-down">
+							<a href="{{path('admin')}}">Back-Office</a>
+							<!--Drop Down-->
+							<ul class="drop-down-ul animated fadeIn">
+								<li class="flyout-right">
+									<a href="#">Genres</a>
+								</li>
+							</ul>
+						</li>
+
+
+					{% elseif app.user %}
+
+						<li class="drop-down">
+							<a href="#">{{app.user.name}}</a>
+							<!--Drop Down-->
+							<ul class="drop-down-ul animated fadeIn">
+								<li class="flyout-right">
+									<a href="{{path('app_logout')}}">Déconnexion</a>
+									<!--Flyout Right-->
+
+								</li>
+
+							</ul>
+							<!--//End drop down-->
+						</li>
+						<div class="icon">
+							<a href="#">
+								<img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt="">
+							</a>
+
+						</div>
+
+					{% else %}
+
+						<li class="drop-down">
+							<a href="{{path('app_login')}}">Connexion</a>
+						</li>
+						<li class="drop-down">
+							<a href="{{path('app_register')}}">Inscription</a>
+							<!--Drop Down-->
+
+							<!--//End drop down-->
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+			{# <div class="connexion">
+																																																																																																							<div class="profile">
+																																																																																																								<ul class="exo-menu">
+																																																																																																									{% if app.user %}
+																																																																																																				
+																																																																																																										<li class="drop-down">
+																																																																																																											<a href="#">{{app.user.name}}</a>
+																																																																																																										</li>
+																																																																																																										<li><img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt=""></li>
+																																																																																																				
+																																																																																																										<li class="drop-down">
+																																																																																																											<a href="{{path('app_logout')}}">Déconnexion</a>
+																																																																																																										</li>
+																																																																																																				
+																																																																																																									{% else %}
+																																																																																																				
+																																																																																																										<li class="drop-down">
+																																																																																																											<a href="{{path('app_login')}}">Connexion</a>
+																																																																																																										</li>
+																																																																																																				
+																																																																																																										<li class="drop-down">
+																																																																																																											<a href="{{path('app_register')}}">S'inscrire</a>
+																																																																																																										</li>
+																																																																																																				
+																																																																																																									{% endif %}
+																																																																																																				
+																																																																																																								</ul>
+																																																																																																							</div>
+																																																																																																						</div> #}
+
 		</div>
-		<div class="connexion">
-			<ul class="exo-menu">
-				{% if app.user %}
-					<li class="drop-down">
-						<a href="#">{{app.user.name}}</a>
-						<!--Drop Down-->
-						<ul class="drop-down-ul animated fadeIn">
-							<li class="flyout-right">
-								<a href="{{path('app_logout')}}">Déconnexion</a>
-								<!--Flyout Right-->
 
-							</li>
+		{% block content %}{% endblock %}
+		{# </main> #}
+		{% block footer %}
+			<div class="footer">
+				<p>le bloc footer</p>
+			</div>
 
-						</ul>
-						<!--//End drop down-->
-					</li>
-					<div class="icon">
-						<a href="#">
-							<img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt="">
-						</a>
-
-					</div>
-				{% else %}
-
-					<li class="drop-down">
-						<a href="{{path('app_login')}}">Connexion</a>
-					</li>
-					<li class="drop-down">
-						<a href="{{path('app_register')}}">Inscription</a>
-						<!--Drop Down-->
-
-						<!--//End drop down-->
-					</li>
-				{% endif %}
-			</ul>
-		</div>
-		{# <div class="connexion">
-																																																													<div class="profile">
-																																																														<ul class="exo-menu">
-																																																															{% if app.user %}
-																																																										
-																																																																<li class="drop-down">
-																																																																	<a href="#">{{app.user.name}}</a>
-																																																																</li>
-																																																																<li><img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt=""></li>
-																																																										
-																																																																<li class="drop-down">
-																																																																	<a href="{{path('app_logout')}}">Déconnexion</a>
-																																																																</li>
-																																																										
-																																																															{% else %}
-																																																										
-																																																																<li class="drop-down">
-																																																																	<a href="{{path('app_login')}}">Connexion</a>
-																																																																</li>
-																																																										
-																																																																<li class="drop-down">
-																																																																	<a href="{{path('app_register')}}">S'inscrire</a>
-																																																																</li>
-																																																										
-																																																															{% endif %}
-																																																										
-																																																														</ul>
-																																																													</div>
-																																																												</div> #}
-
-	</div>
-
-	{% block content %}{% endblock %}
-	{# </main> #}
-	{% block footer %}
-		<div class="footer">
-			<p>le bloc footer</p>
-		</div>
-
+		{% endblock %}
 	{% endblock %}
-{% endblock %}
