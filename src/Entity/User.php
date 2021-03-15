@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -49,6 +51,16 @@ class User implements UserInterface
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
+    /**
+     * @ORM\OneToMany(targetEntity=Film::class, mappedBy="user")
+     */
+    private $film;
+
+    public function __construct()
+    {
+        $this->film = new ArrayCollection();
+    }
 
  
 
@@ -161,5 +173,35 @@ class User implements UserInterface
   public function __toString()
   {
       return $this->name;
+  }
+
+  /**
+   * @return Collection|Film[]
+   */
+  public function getFilm(): Collection
+  {
+      return $this->film;
+  }
+
+  public function addFilm(Film $film): self
+  {
+      if (!$this->film->contains($film)) {
+          $this->film[] = $film;
+          $film->setUser($this);
+      }
+
+      return $this;
+  }
+
+  public function removeFilm(Film $film): self
+  {
+      if ($this->film->removeElement($film)) {
+          // set the owning side to null (unless already changed)
+          if ($film->getUser() === $this) {
+              $film->setUser(null);
+          }
+      }
+
+      return $this;
   }
 }

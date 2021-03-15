@@ -6,5 +6,19 @@
 {% block content %}
 	<div id="container">
 		<h1>Mon profil</h1>
+
+		<div>Nom:
+		</div><br>
+		<div>{{app.user.name}}</div><br>
+		<div>Email:
+		</div><br>
+		<div>{{app.user.email}}</div><br>
+		<div>Films ajoutés par
+			{{app.user.name}}</div>
+		<div>
+			{% for film in app.user.film %}
+				{{film.title}}
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}
