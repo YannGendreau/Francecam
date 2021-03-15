@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert; 
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -56,6 +57,23 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Film::class, mappedBy="user")
      */
     private $film;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isVerified;
 
     public function __construct()
     {
@@ -172,8 +190,10 @@ class User implements UserInterface
 
   public function __toString()
   {
-      return $this->name;
+      return $this->name; $this->createdAt;
+     
   }
+ 
 
   /**
    * @return Collection|Film[]
@@ -201,6 +221,42 @@ class User implements UserInterface
               $film->setUser(null);
           }
       }
+
+      return $this;
+  }
+
+  public function getCreatedAt(): ?\DateTimeInterface
+  {
+      return $this->createdAt;
+  }
+
+//   public function setCreatedAt(\DateTimeInterface $createdAt): self
+//   {
+//       $this->createdAt = $createdAt;
+
+//       return $this;
+//   }
+
+  public function getUpdatedAt(): ?\DateTimeInterface
+  {
+      return $this->updatedAt;
+  }
+
+//   public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+//   {
+//       $this->updatedAt = $updatedAt;
+
+//       return $this;
+//   }
+
+  public function getIsVerified(): ?bool
+  {
+      return $this->isVerified;
+  }
+
+  public function setIsVerified(bool $isVerified): self
+  {
+      $this->isVerified = $isVerified;
 
       return $this;
   }

@@ -1,22 +1,27 @@
 {% extends 'navbar/layout.html.twig' %}
 
-{% block title %}Mon profil
+{% block title %}
+	Mon compte
+	{{app.user.name}}
+	Francecam
 {% endblock %}
 
 {% block content %}
 	<div id="container">
-		<h1>Mon profil</h1>
+		<h1>Mon compte</h1>
 
 		<div>Nom:
 		</div><br>
 		<div>{{app.user.name}}</div><br>
+		<div>Inscrit depuis le :</div>
+		<div>{{app.user.createdAt.format('d/m/Y')}}</div>
 		<div>Email:
 		</div><br>
 		<div>{{app.user.email}}</div><br>
 		<div>Films ajoutés par
 			{{app.user.name}}</div>
 		<div>
-			{% for film in app.user.film %}
+			{% for film in app.user.film|length %}
 				{{film.title}}
 			{% endfor %}
 		</div>
