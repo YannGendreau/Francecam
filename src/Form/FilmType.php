@@ -92,7 +92,7 @@ class FilmType extends AbstractType
                 'label'             => false,
                 'class'             => Marque::class,
                 'placeholder'       => 'Choisir une marque de caméra',
-                // 'required'          => false,
+                'required'          => false,
                 // 'by_reference'      => false,
                 // 'expanded'          => true,
                 'multiple'          => true,
@@ -103,7 +103,7 @@ class FilmType extends AbstractType
                 'label'             => false,
                 'class'             => Cameras::class,
                 'placeholder'       => 'Choisir une caméra',
-                // 'required'          => false,
+                'required'          => false,
                 // // 'by_reference'      => false,
                 'multiple'          => true,
                 // "expanded"          =>true
@@ -116,7 +116,7 @@ class FilmType extends AbstractType
             // ]
             // )
             ->add('posterFile', VichImageType::class, [
-               
+                'required'          => false,
             ])
 
             // ->add('directors', DirectorType::class)
@@ -125,7 +125,7 @@ class FilmType extends AbstractType
                 'class'             => Director::class,
                 'placeholder'       => 'Réalisation',
                 // 'choice_label'      => 'name',
-                // 'required'          => false,
+                'required'          => false,
                 // 'by_reference'      => false,
                 'multiple'          => true,
                 // 'auto_initialize'   => false,

@@ -86,6 +86,7 @@ class FilmController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="film_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Film $film): Response
     {
@@ -99,7 +100,8 @@ class FilmController extends AbstractController
 
             $this->addFlash('success', 'Film modifié avec succès');
 
-            return $this->redirectToRoute('film_index');
+            // return $this->redirectToRoute('films');
+            return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
         }
 
         return $this->render('film/edit.html.twig', [

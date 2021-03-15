@@ -83,10 +83,8 @@ class FilmRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            16
+            20
 
-        );
-        
+        );      
     }
-
 }
