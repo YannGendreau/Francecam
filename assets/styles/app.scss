@@ -68,7 +68,7 @@ html {
 @mixin font-form-film {
     font-family: 'Roboto Condensed', sans-serif;
     color: $titleFont;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
@@ -83,6 +83,7 @@ html {
 /*----couleurs----*/
 // $megamenu-bg:RGBA(219, 237, 243, 0.97);
 $megamenu-bg:rgba(210, 223, 228, 0.97);
+$megamenu-bg-light:rgba(231, 237, 240, 0.97);
 $nav-color: #283149;
 $titleCard: #404b69;
 $titleDisplay: #191e2b;
@@ -106,11 +107,11 @@ $cardFilm: 250px;
 $cardCam: 190px;
 
 /*----Margin----*/
-$mTop:50px;
+$mTop:70px;
 
 
 /*----font size----*/
-$formTitleField: 1.1rem;
+$formTitleField: 1.3rem;
 
 
 // /*----couleurs fonts----*/
@@ -131,7 +132,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
 body {
     // background: linear-gradient (135deg, rgb(164, 164, 202), rgb(68, 63, 88));
     // background: linear-gradient(135deg, rgba(243, 243, 247, 0.8), rgba(148, 160, 212, 0.8));
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(199, 208, 247, 0.8));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(212, 216, 233, 0.8));
     // linear-gradient(135deg,
     //         rgba($left-color, .9),
     //         rgba($right-color, .9));
@@ -153,15 +154,17 @@ a {
   -----------------------------------------------*/
 
 .containerDD {
-    // display: flex;
-    // justify-content: flex-start;
-    // align-items: flex-start;
+
     @include flex-center();
     width: 100%;
-    background: $nav-color;
-    // height: 60px;
-    // margin-left: 50px;
-    // border: 1px solid chartreuse;}
+    // border-bottom: 1px #b8c4ce solid;
+    background: rgba(212, 216, 233, 0.2);
+    transition: 200ms;
+
+    // background: $nav-color;
+    &:hover {
+        background: $megamenu-bg;
+    }
 
     .logoFc {
         width: 10%;
@@ -173,7 +176,6 @@ a {
             }
         }
     }
-
 
     ul {
         list-style: none;
@@ -197,7 +199,6 @@ a {
 
 
         .exo-menu {
-
             width: 100%;
             float: left;
             list-style: none;
@@ -212,6 +213,7 @@ a {
 
             .iconUser {
                 width: 30px;
+                color: black;
             }
         }
 
@@ -222,9 +224,10 @@ a {
 
         .exo-menu>li>a {
             color: #ccc;
+            color: rgb(61, 61, 61);
             text-decoration: none;
             text-transform: uppercase;
-            border-right: 1px #365670 dotted;
+            // border-right: 1px #365670 dotted;
             -webkit-transition: color 0.2s linear, background 0.2s linear;
             -moz-transition: color 0.2s linear, background 0.2s linear;
             -o-transition: color 0.2s linear, background 0.2s linear;
@@ -276,6 +279,9 @@ a {
             left: 0px;
             min-width: 230px;
 
+            &:last-child {
+                width: 57px;
+            }
         }
 
         .drop-down-ul {
@@ -288,11 +294,15 @@ a {
             min-width: 230px;
             display: none;
             border-left: 1px solid #365670;
+
+            &:last-child {
+                background: $gray-light;
+                width: 57px;
+            }
         }
 
         li.drop-down>ul>li>a,
-        .flyout-right ul>li>a,
-        .flyout-left ul>li>a {
+        .flyout-right ul>li>a {
             color: black;
             display: block;
             padding: 20px 22px;
@@ -304,12 +314,18 @@ a {
             -moz-transition: color 0.2s linear, background 0.2s linear;
             -o-transition: color 0.2s linear, background 0.2s linear;
             transition: color 0.2s linear, background 0.2s linear;
+
+            &:last-child {
+                background: $megamenu-bg-light;
+                // width: 57px;
+            }
         }
 
-        .flyout-right ul>li>a,
-        .flyout-left ul>li>a {
+        .flyout-right ul>li>a {
             border-bottom: 1px dotted #B8C7BC;
         }
+
+
     }
 
     .connexion {
@@ -336,8 +352,8 @@ a {
 
         li {
             a {
-                border-left: 1px #365670 dotted;
-                border-right: 0px #365670 dotted;
+                // border-left: 1px #365670 dotted;
+                // border-right: 0px #365670 dotted;
             }
         }
     }
@@ -412,11 +428,12 @@ a {
 
 
     .searchBlock {
+        margin: $mTop 0 $mTop 0;
         width: 100%;
         @include flex-center();
-        min-height: 400px;
-        background: black;
-        background-image: url("/build/images/textured-black-plastic-close-up-02.png");
+        min-height: 300px;
+        // background: black;
+        // background-image: url("/build/images/textured-black-plastic-close-up-02.png");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center top;
@@ -443,6 +460,7 @@ a {
                     font-size: 5rem;
                     text-transform: uppercase;
                     color: white;
+                    color: rgb(39, 41, 46);
                     // border: 1px solid white;
                     margin-right: 40px;
                 }
@@ -451,28 +469,24 @@ a {
 
             .logline {
                 @include flex-center();
-                justify-content: center;
+                // justify-content: center;
 
                 h2 {
                     // font-family: Arial, Helvetica, sans-serif;
                     font-family: 'Roboto Condensed', sans-serif;
                     font-weight: 2rem;
-                    color: white;
+                    // color: white;
+                    color: $titleDisplay;
                     text-align: center;
                 }
             }
 
             .search {
-                width: 500px;
+
+                width: 100%;
                 margin-top: 20px;
-
-                // background: coral;
-                // border: 2px solid rgb(207, 207, 207); 
-                border-radius: 10px;
                 @include flex-center();
-                flex-wrap: wrap;
-
-
+                // border-radius: 10px;
 
                 .searchBarCenter {
                     width: 100%;
@@ -503,7 +517,7 @@ a {
                         background: $megamenu-bg;
                         // background-image: radial-gradient($nav-hover-color, rgb(85, 97, 80));
                         box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
-                            0 0 0 2px rgb(255, 255, 255),
+                            0 0 0 1px rgb(255, 255, 255),
                             0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
                         // box-shadow: inset 0px 0px 25px 1px rgb(0, 0, 0);
                         // width: 400px;
@@ -512,23 +526,40 @@ a {
                         border-bottom-left-radius: 7px;
                         border-bottom-right-radius: 7px;
                         padding-left: 10px;
+                        font-size: 1.3rem;
                     }
                 }
             }
         }
     }
 
-    .homeCameraList {
-        width: 1200px;
-        @include flex-center();
+    .latest {
+        border: 1px dotted grey;
+        width: 100%;
+        background: white;
 
-        .postersHome {
+        h2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 2rem;
+            text-transform: uppercase;
+            color: $titleDisplay;
+        }
+
+        .homeCameraList {
+            margin: 10px 0 80px 0;
             width: 1200px;
             @include flex-center();
-            flex-wrap: wrap;
+
+            .postersHome {
+                width: 1200px;
+                @include flex-center();
+                flex-wrap: wrap;
+            }
         }
     }
 }
+
+
 
 
 //----------------------------------------------------------------------------------------------------------------
@@ -1443,7 +1474,7 @@ a {
             height: 4px;
             background: $titleFont;
             border-radius: 10px;
-            opacity: 0.5;
+            opacity: 0.8;
         }
 
 
@@ -1486,8 +1517,8 @@ a {
                 align-content: center;
                 background: #cbd6e0;
                 height: 15%;
-                border-top-left-radius: 20px;
-                border-top-right-radius: 20px;
+                border-radius: 20px;
+                // border-top-right-radius: 20px;
 
                 button {
                     width: 15%;
@@ -1498,9 +1529,11 @@ a {
                     font-family: 'Roboto Condensed', sans-serif;
                     text-transform: uppercase;
                     font-size: 1.5rem;
+                    border-radius: 20px;
 
                     &:first-child {
-                        border-top-left-radius: 20px;
+                        // border-top-left-radius: 20px;
+                        border-radius: 20px;
                     }
 
                     &:hover {
@@ -1708,7 +1741,7 @@ a {
                 height: 4px;
                 background: $titleFont;
                 border-radius: 10px;
-                opacity: 0.5;
+                opacity: 0.8;
             }
 
             .overview {
@@ -1743,16 +1776,12 @@ a {
                         font-family: 'Roboto Condensed', sans-serif;
                         color: #919ab1;
 
-
-
-
                     }
 
                     span {
                         font-size: 1.5rem;
                         // font-style: italic;
                         font-family: 'Roboto Condensed', sans-serif;
-
                         color: #919ab1;
                     }
 
@@ -1815,7 +1844,7 @@ a {
                 height: 4px;
                 background: $titleFont;
                 border-radius: 2px;
-                opacity: 0.5;
+                opacity: 0.8;
             }
 
             .overview {
@@ -1975,8 +2004,8 @@ a {
                 align-content: center;
                 background: #cbd6e0;
                 height: 15%;
-                border-top-left-radius: 20px;
-                border-top-right-radius: 20px;
+                border-radius: 20px;
+                // border-top-right-radius: 20px;
 
                 button {
                     width: 15%;
@@ -1987,9 +2016,11 @@ a {
                     font-family: 'Roboto Condensed', sans-serif;
                     text-transform: uppercase;
                     font-size: 1.5rem;
+                    border-radius: 20px;
 
                     &:first-child {
-                        border-top-left-radius: 20px;
+                        // border-top-left-radius: 20px;
+                        border-radius: 20px;
                     }
 
                     &:hover {
@@ -2101,16 +2132,17 @@ a {
 
 #film {
     margin-top: 100px;
-    width: 600px;
+    // width: 600px;
 
     form {
         width: 800px;
         display: grid;
-        border: 1px solid lightgray;
+        // border: 1px solid lightgray;
         border-radius: 20px;
         padding: 5px 5px 0px 5px;
         grid-template-columns: 1fr;
-        grid-template-rows: 80px 80px 50px 100px 1fr 1fr 1fr 40px;
+        // grid-template-rows: 100px 100px 50px 100px 1fr 1fr 1fr 40px;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-areas:
             "titre "
             "details"
@@ -2224,6 +2256,7 @@ a {
             @include flex-center();
             // margin: auto;
             grid-area: synopsis;
+            margin-bottom: 30px;
 
             div {
                 width: 100%;
@@ -2364,7 +2397,7 @@ a {
     // color: white;
     padding: 10px;
     z-index: 1;
-    height: 40px;
+    height: 70px;
     width: 100%;
     font-family: "Roboto Condensed", "Open Sans", sans-serif;
     color: white;
@@ -2432,7 +2465,7 @@ a {
         border-radius: 10px;
         box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
             0 0 0,
-            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+            0.3em 0.3em 1em rgba(0, 0, 0, 0.1);
 
         &:before {
             content: '';
@@ -2482,7 +2515,7 @@ a {
         .cadre {
             margin-top: 15px;
             width: 100%;
-            border: 1px solid white;
+            border: 1px dotted rgb(180, 180, 180);
             border-radius: 5px;
             padding: 10px;
         }
@@ -2516,9 +2549,9 @@ a {
             outline: none;
             transition: transform .15s ease;
             transform: scale(1.02);
-            box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+            box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.05),
                 0 0 0,
-                0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+                0.3em 0.3em 1em rgba(0, 0, 0, 0.2);
         }
     }
 
