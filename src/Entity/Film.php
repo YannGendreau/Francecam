@@ -148,13 +148,6 @@ class Film
        
     }
 
-    // public function toDecade(int $sortie): int
-    // {
-    //     return substr($sortie, 1, 3) . 0;
-
-    //     // return $decade;
-    // }
-
     public function getRuntime(int $duree)
     {
         $minutes = $duree;

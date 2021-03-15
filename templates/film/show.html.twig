@@ -6,6 +6,7 @@
 
 {% block content %}
 	<div id="container">
+		{% include "includes/flashes/_flash_message.html.twig" %}
 		<div class="tableauCamera">
 			<div class="imageCam">
 				{% if film.poster %}
@@ -189,40 +190,40 @@
 	</div>
 
 	{# 
-																																																																																															<h1>Film</h1>
-																																																																																														
-																																																																																															<table class="table">
-																																																																																																<tbody>
-																																																																																																	<tr>
-																																																																																																		<th>Id</th>
-																																																																																																		<td>{{ film.id }}</td>
-																																																																																																	</tr>
-																																																																																																	<tr>
-																																																																																																		<th>Title</th>
-																																																																																																		<td>{{ film.title }}</td>
-																																																																																																	</tr>
-																																																																																																	<tr>
-																																																																																																		<th>Duree</th>
-																																																																																																		<td>{{ film.duree }}</td>
-																																																																																																	</tr>
-																																																																																																	<tr>
-																																																																																																		<th>Synopsis</th>
-																																																																																																		<td>{{ film.synopsis }}</td>
-																																																																																																	</tr>
-																																																																																																	<tr>
-																																																																																																		<th>Decade</th>
-																																																																																																		<td>{{ film.decade }}</td>
-																																																																																																	</tr>
-																																																																																																	<tr>
-																																																																																																		<th>Sortie</th>
-																																																																																																		<td>{{ film.sortie }}</td>
-																																																																																																	</tr>
-																																																																																																</tbody>
-																																																																																															</table>
-																																																																																														
-																																																																																															<a href="{{ path('film_index') }}">back to list</a>
-																																																																																														
-																																																																																															<a href="{{ path('film_edit', {'slug': film.slug}) }}">edit</a>
-																																																																																														
-																																																																																															{{ include('film/_delete_form.html.twig') }} #}
+																																																																																																<h1>Film</h1>
+																																																																																															
+																																																																																																<table class="table">
+																																																																																																	<tbody>
+																																																																																																		<tr>
+																																																																																																			<th>Id</th>
+																																																																																																			<td>{{ film.id }}</td>
+																																																																																																		</tr>
+																																																																																																		<tr>
+																																																																																																			<th>Title</th>
+																																																																																																			<td>{{ film.title }}</td>
+																																																																																																		</tr>
+																																																																																																		<tr>
+																																																																																																			<th>Duree</th>
+																																																																																																			<td>{{ film.duree }}</td>
+																																																																																																		</tr>
+																																																																																																		<tr>
+																																																																																																			<th>Synopsis</th>
+																																																																																																			<td>{{ film.synopsis }}</td>
+																																																																																																		</tr>
+																																																																																																		<tr>
+																																																																																																			<th>Decade</th>
+																																																																																																			<td>{{ film.decade }}</td>
+																																																																																																		</tr>
+																																																																																																		<tr>
+																																																																																																			<th>Sortie</th>
+																																																																																																			<td>{{ film.sortie }}</td>
+																																																																																																		</tr>
+																																																																																																	</tbody>
+																																																																																																</table>
+																																																																																															
+																																																																																																<a href="{{ path('film_index') }}">back to list</a>
+																																																																																															
+																																																																																																<a href="{{ path('film_edit', {'slug': film.slug}) }}">edit</a>
+																																																																																															
+																																																																																																{{ include('film/_delete_form.html.twig') }} #}
 {% endblock %}
