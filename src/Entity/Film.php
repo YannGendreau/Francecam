@@ -2,18 +2,15 @@
 
 namespace App\Entity;
 
-use DateTime;
 use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Entity\Director;
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FilmRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -501,4 +498,12 @@ class Film
     }
 
    
+
+    /**
+     * Get the value of updatedAt
+     */ 
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 }

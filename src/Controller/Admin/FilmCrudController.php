@@ -39,7 +39,6 @@ class FilmCrudController extends AbstractCrudController
 
         $fields = [
             IdField::new('id')->HideOnForm(),
-            
             TextField::new('title'),
             AssociationField::new('genres'),
             AssociationField::new('directors'),
@@ -48,11 +47,12 @@ class FilmCrudController extends AbstractCrudController
             IntegerField::new('duree'),
             IntegerField::new('sortie'),
             IntegerField::new('decade'),
-            
             AssociationField::new('marques'),
             AssociationField::new('cameraModele'),
             // AssociationField::new('camera'),
             DateTimeField::new('createdAt')->HideOnForm(),
+            DateTimeField::new('updatedAt')->HideOnForm(),
+            AssociationField::new('user'),
 
         ];
 
@@ -63,22 +63,6 @@ class FilmCrudController extends AbstractCrudController
         }
 
         return $fields;
-    //     $imageFile = ImageField::new('thumbnailFile')->setFormType(VichImageType::class);
-    //     $image = ImageField::new('thumbnail')->setBasePath('/images/thumbnails');
-
-    //     $fields = [
-    //         IdField::new('id')->HideOnForm(),
-    //         TextField::new('title'),
-    //         AssociationField::new('genres'),
-    //         TextEditorField::new('synopsis'),
-    //     ];
-
-    //     if ($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL) {
-    //         $fields[] = $image;
-    //     } else {
-    //         $fields[] = $imageFile;
-    //     }
-    //     return $fields;
         
     }
     
