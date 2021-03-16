@@ -29,13 +29,11 @@
 	<body>
 
 
-		<main role="main">
-			{% block body %}
-				{% include "includes/flashes/_flash_message.html.twig" %}
+		<main role="main"> {% block body %}{% endblock %}
+			</main>
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app')}}
 			{% endblock %}
-		</main>
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app')}}
-		{% endblock %}
-	</body>
-</html></body></html>
+		</body>
+	</html>
+</body></html>

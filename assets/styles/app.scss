@@ -2397,7 +2397,7 @@ a {
     // color: white;
     padding: 10px;
     z-index: 1;
-    height: 70px;
+    max-height: 70px;
     width: 100%;
     font-family: "Roboto Condensed", "Open Sans", sans-serif;
     color: white;
@@ -2420,6 +2420,11 @@ a {
 
     background: blue;
     @include flex-center();
+}
+
+.hidden {
+    max-height: 0px;
+    transition: 250ms ease-in-out;
 }
 
 
