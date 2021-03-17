@@ -16,25 +16,37 @@ class ChangePasswordFormType extends AbstractType
     {
         $builder
             ->add('plainPassword', RepeatedType::class, [
+               
                 'type' => PasswordType::class,
+               
                 'first_options' => [
+                    'attr' => [
+                        'class'=>'lf--input-repeated',
+                        'placeholder' => 'Nouveau mot de passe'
+                        ],
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'Please enter a password',
+                            'message' => 'Entrez un mot de passe',
                         ]),
                         new Length([
                             'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
+                            'minMessage' => 'Votre mot de passe doit comporter au minimum {{ limit }} caractères',
                             // max length allowed by Symfony for security reasons
                             'max' => 4096,
                         ]),
                     ],
-                    'label' => 'New password',
+                    // 'label' => 'Nouveau mot de passe',
+                    'label' => false,
                 ],
                 'second_options' => [
-                    'label' => 'Repeat Password',
+                    'attr' => [
+                        'class'=>'lf--input-repeated',
+                        'placeholder' => 'Confirmer le mot de passe'
+                        ],
+                    // 'label' => 'Confirmer le mot de passe',
+                    'label' => false,
                 ],
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'Les deux mot de passes doivent correspondre.',
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,

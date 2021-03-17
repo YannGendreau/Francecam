@@ -2517,6 +2517,32 @@ a {
             #user_registration_form_plainPassword_second {
                 width: 100%;
             }
+
+            #reset_password_request_form_email {
+                width: 100%;
+            }
+
+            #change_password_form_plainPassword_first {
+                width: 100%;
+            }
+
+            #change_password_form_plainPassword_second {
+                width: 100%;
+            }
+
+        }
+
+        form {
+            width: 100%;
+
+            .form-group {
+                width: 100%;
+
+                #reset_password_request_form_email {
+                    width: 100%;
+                }
+
+            }
         }
 
         .cadre {
@@ -2549,8 +2575,30 @@ a {
         height: 50px;
         // color: $gray;
         background: $megamenu-bg;
-
         font-size: 1.2rem;
+
+        &:focus {
+            outline: none;
+            transition: transform .15s ease;
+            transform: scale(1.02);
+            box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.05),
+                0 0 0,
+                0.1em 0.1em 1em rgba(0, 0, 0, 0.2);
+        }
+
+
+    }
+
+    .lf--input-repeated {
+        flex: 1;
+        padding: 1em;
+        border: 0;
+        height: 50px;
+        // color: $gray;
+        background: $megamenu-bg;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+
 
         &:focus {
             outline: none;
@@ -2560,7 +2608,9 @@ a {
                 0 0 0,
                 0.3em 0.3em 1em rgba(0, 0, 0, 0.2);
         }
+
     }
+
 
     .lf--submit {
         display: block;
@@ -2579,6 +2629,7 @@ a {
         font-size: 1rem;
         font-weight: 600;
         text-shadow: 0 1px 0 rgba(black, .2);
+        border-radius: 5px;
 
         &:hover {
             transform: scale(1.02);

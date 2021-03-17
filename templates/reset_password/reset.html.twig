@@ -5,11 +5,20 @@
 
 {% block content %}
 	<div id="container">
-		<h1>Changer votre mot de passe</h1>
+		<div class="loginContainer">
 
-		{{ form_start(resetForm) }}
-		{{ form_row(resetForm.plainPassword) }}
-		<button class="btn btn-primary">Changer votre mot de passe</button>
-		{{ form_end(resetForm) }}
+
+			{{ form_start(resetForm) }}
+			<div class="login-form">
+				<div class="connexionTitle">
+					<h1>Modifier votre mot de passe</h1>
+				</div>
+				<div class="flex-row">
+					{{ form_row(resetForm.plainPassword) }}
+				</div>
+				<button class="lf--submit">Envoyer</button>
+				{{ form_end(resetForm) }}
+			</div>
+		</div>
 	</div>
 {% endblock %}
