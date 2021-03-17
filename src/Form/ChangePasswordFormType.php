@@ -46,7 +46,7 @@ class ChangePasswordFormType extends AbstractType
                     // 'label' => 'Confirmer le mot de passe',
                     'label' => false,
                 ],
-                'invalid_message' => 'Les deux mot de passes doivent correspondre.',
+                'invalid_message' => 'Les deux mots de passe doivent correspondre.',
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,

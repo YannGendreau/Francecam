@@ -35,22 +35,41 @@ class UserRegistrationFormType extends AbstractType
                 'label' => false,
             ])
             ->add('plainPassword', RepeatedType::class, [
-                'label'             =>false,
-                'mapped'             => false,
-                'type'               => PasswordType::class,
-                'invalid_message'    => 'Les mots de passe doivent correspondre. .',
-                'options' => 
-                    ['attr' => ['class' => 'password-field, lf--input',
-                    'placeholder' => 'mot de passe',
-                    
-                    ]],
-                'required'           => true,
-                // 'first_options'      => ['label' => 'Mot de passe'],
-                // 'second_options'     => ['label' => 'Confirmer le mot de passe'],
-                'constraints'        => [
-                    new NotBlank,
-                    new Length(['min' => 6, 'max' => 4096])
-                ]
+
+                'type' => PasswordType::class,
+               
+                'first_options' => [
+                    'attr' => [
+                        'class'=>'lf--input-repeated',
+                        'placeholder' => 'Nouveau mot de passe'
+                        ],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Entrez un mot de passe',
+                        ]),
+                        new Length([
+                            'min' => 6,
+                            'minMessage' => 'Votre mot de passe doit comporter au minimum {{ limit }} caractères',
+                            // max length allowed by Symfony for security reasons
+                            'max' => 4096,
+                        ]),
+                    ],
+                    // 'label' => 'Nouveau mot de passe',
+                    'label' => false,
+                ],
+                'second_options' => [
+                    'attr' => [
+                        'class'=>'lf--input-repeated',
+                        'placeholder' => 'Confirmer le mot de passe'
+                        ],
+                    // 'label' => 'Confirmer le mot de passe',
+                    'label' => false,
+                ],
+                'invalid_message' => 'Les deux mots de passe doivent correspondre.',
+                // Instead of being set onto the object directly,
+                // this is read and encoded in the controller
+                'mapped' => false,
+
             ])
         ;
     }
