@@ -1,0 +1,20 @@
+<div class="profile">
+	<div class="userProfileIcon">
+		<img src="{{asset('build/images/user_francecam.png')}}" alt="">
+	</div>
+	<div class="userName">
+		<h3>{{app.user.name}}</h3>
+	</div>
+	<div class="userCreated">
+		Inscrit depuis le :
+		{{app.user.createdAt.format('d/m/Y')}}
+	</div>
+
+	<div class="userEmail">
+		{{app.user.email}}
+	</div>
+
+	<div class="userBtn">
+		<a href="{{ path('app_forgot_password_request') }}">Changer votre mot de passe</a>
+	</div>
+</div>

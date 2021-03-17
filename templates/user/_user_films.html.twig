@@ -1,0 +1,26 @@
+<div class="userFilms">
+
+
+	{% for film in app.user.film %}
+
+
+		<a href="{{ path('film_show', {'slug': film.slug}) }}">
+			<div><img src="/build/images/posters/{{film.poster}}" alt="affiche du film {{film.title}}"></div>
+			<div>{{ film.title }}</div>
+
+			<div>
+				<a href="{{ path('film_edit', {'slug': film.slug}) }}">edit</a>
+				{{ include('film/_delete_form.html.twig') }}</div>
+			{# <a href="{{ path('film_show', {'slug': film.slug}) }}">show</a> #}
+
+
+		</a>
+	{% else %}
+		<tr>
+			<td>Vous n'avez pas encore ajouté de film</td>
+		</tr>
+	{% endfor %}
+
+
+	<a href="{{ path('film_new') }}">Create new</a>
+</div>

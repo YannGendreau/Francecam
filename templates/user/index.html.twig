@@ -8,51 +8,20 @@
 
 {% block content %}
 	<div id="container">
-		<h1>Mon compte</h1>
-
-		<div>Nom:
-		</div><br>
-		<div>{{app.user.name}}</div><br>
-		<div>Inscrit depuis le :</div>
-		<div>{{app.user.createdAt.format('d/m/Y')}}</div>
-		<div>Email:
-		</div><br>
-		<div>{{app.user.email}}</div><br>
-		<a href="{{ path('app_forgot_password_request') }}">Changer votre mot de passe</a>
-		<div>Films ajoutés par
-			{{app.user.name}}</div>
 
 
-		<table class="table">
-			<thead>
-				<tr>
-
-					<th>Title</th>
-					<th>Affiche</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for film in app.user.film %}
-					<tr>
-
-						<td>{{ film.title }}</td>
-						<td><img src="{{ film.posterFile }}" alt=""></td>
+		<div id="profilePage">
+			<div class="userTitre">
+				<h1>Mon compte</h1>
+			</div>
+			{% include "user/_profil.html.twig" %}
+			{% include "user/_user_films.html.twig" %}
 
 
-						<td>
-							<a href="{{ path('film_show', {'slug': film.slug}) }}">show</a>
-							<a href="{{ path('film_edit', {'slug': film.slug}) }}">edit</a>
-							{{ include('film/_delete_form.html.twig') }}
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="7">no records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+			{# <div>Films ajoutés par
+																																																																																																																								{{app.user.name}}</div> #}
 
-		<a href="{{ path('film_new') }}">Create new</a>
+
+		</div>
 	</div>
 {% endblock %}

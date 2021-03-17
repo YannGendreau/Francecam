@@ -2142,7 +2142,7 @@ a {
         padding: 5px 5px 0px 5px;
         grid-template-columns: 1fr;
         // grid-template-rows: 100px 100px 50px 100px 1fr 1fr 1fr 40px;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr auto auto auto auto auto auto auto;
         grid-template-areas:
             "titre "
             "details"
@@ -2461,7 +2461,6 @@ a {
             text-transform: uppercase;
             font-size: 2.5rem;
         }
-
     }
 
     .login-form {
@@ -2469,13 +2468,13 @@ a {
         height: 450px;
         padding: 2em;
         position: relative;
-        background: rgba($titleDisplay, .07);
+        background: rgba($titleDisplay, .05);
         @include flex-center();
         flex-wrap: wrap;
         border-radius: 10px;
-        box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.05),
+        box-shadow: inset 0 -1em 0.5em rgba(0, 0, 0, 0.02),
             0 0 0,
-            0.3em 0.3em 1em rgba(0, 0, 0, 0.05);
+            0.5em 0.5em 0.3em rgba(0, 0, 0, 0.05);
 
         &:before {
             content: '';
@@ -2484,7 +2483,6 @@ a {
             left: 0;
             height: 2px;
             width: 100%;
-
         }
 
         @media screen and (min-width: 600px) {
@@ -2659,5 +2657,103 @@ a {
 
     ::placeholder {
         color: $gray;
+    }
+}
+
+#profilePage {
+    @include flex-center-start();
+    // display: grid;
+    // width: 300px;
+    // grid-template-columns: 1fr 1fr;
+    // grid-template-rows: auto 1fr;
+    // grid-template-areas:
+    //     "titre ."
+    //     "profil films"
+    // ;
+    // border: 1px solid red;
+
+    .userTitre {
+        grid-area: titre;
+
+        h1 {
+            font-family: "Roboto Condensed", "Open Sans", sans-serif;
+            text-transform: uppercase;
+            font-size: 2rem;
+        }
+    }
+
+    .profile {
+        grid-area: profil;
+        display: grid;
+        width: 500px;
+        height: 300px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto 1fr 1fr 1fr;
+        grid-template-areas:
+            "."
+            "icon"
+            "name"
+            "created"
+            "email"
+            "btn"
+        ;
+        background: grey;
+
+        .userProfileIcon {
+            grid-area: icon;
+            @include flex-center();
+
+            img {
+                @include flex-center();
+                width: 80px;
+            }
+        }
+
+        .userName {
+            grid-area: name;
+            @include flex-center();
+
+            h3 {
+                font-family: "Roboto Condensed", "Open Sans", sans-serif;
+                text-transform: uppercase;
+                font-size: 1.8rem;
+            }
+        }
+
+        .userCreated {
+            grid-area: created;
+            @include flex-center();
+        }
+
+        .userEmail {
+            grid-area: email;
+            @include flex-center();
+        }
+
+        .userBtn {
+            grid-area: btn;
+            @include flex-center();
+        }
+    }
+
+    .userFilms {
+        grid-area: films;
+        background: lightgrey;
+        width: 700px;
+
+
+        width: 100%;
+        margin-left: 10px;
+
+
+        img {
+            width: 80px;
+
+            a {
+                cursor: pointer;
+            }
+
+
+        }
     }
 }
