@@ -1,4 +1,4 @@
-var Encore = require('@symfony/webpack-encore');
+provar Encore = require('@symfony/webpack-encore');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
