@@ -67,7 +67,9 @@
 			<div>
 				<h3>Artistes</h3>
 				{{ form_widget(form.directors) }}
+				{{ form_widget(form.dirphoto) }}
 			</div>
+
 
 		</div>
 
@@ -77,8 +79,8 @@
 		<h3>Caméras</h3>
 
 		{# {{{form_row(form.camera)}} {% for camera in form.camera %}
-																																																																																																																																																																																									{{form_row(camera)}}
-																																																																																																																																																																																								{% endfor %} #}
+																																																																																																																																																																																																			{{form_row(camera)}}
+																																																																																																																																																																																																		{% endfor %} #}
 		{# {{form_widget(form.camera)}} #}
 		<div class="marqueModele">
 			{{ form_widget(form.marques) }}

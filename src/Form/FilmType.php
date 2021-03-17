@@ -8,6 +8,7 @@ use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Entity\Cameras;
 use App\Entity\Director;
+use App\Entity\Dirphoto;
 use App\Form\CameraType;
 use App\Form\ModeleType;
 use App\Form\CamerasType;
@@ -110,20 +111,25 @@ class FilmType extends AbstractType
                 // 'auto_initialize'   => false,
             ])
 
-            // ->add('cameraModele', CamerasType::class, 
-            // [
-            //     'data_class' => null
-            // ]
-            // )
             ->add('posterFile', VichImageType::class, [
                 'required'          => false,
             ])
 
-            // ->add('directors', DirectorType::class)
+          
             ->add('directors', EntityType::class, [
                 'label'             => false,
                 'class'             => Director::class,
                 'placeholder'       => 'Réalisation',
+                // 'choice_label'      => 'name',
+                'required'          => false,
+                // 'by_reference'      => false,
+                'multiple'          => true,
+                // 'auto_initialize'   => false,
+            ])
+            ->add('dirphoto', EntityType::class, [
+                'label'             => false,
+                'class'             => Dirphoto::class,
+                'placeholder'       => 'Photographie',
                 // 'choice_label'      => 'name',
                 'required'          => false,
                 // 'by_reference'      => false,
