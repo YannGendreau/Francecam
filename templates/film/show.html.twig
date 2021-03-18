@@ -5,9 +5,15 @@
 {% endblock %}
 
 {% block content %}
-	<div id="container">
+	<div
+		id="container">
+
+		<!--FLASH MESSAGE-->
 		{% include "includes/flashes/_flash_message.html.twig" %}
-		<div class="tableauCamera">
+
+		<div
+			class="tableauCamera">
+			<!--AFFICHE-------------------------------->
 			<div class="imageCam">
 				{% if film.poster %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
@@ -18,14 +24,18 @@
 				{% endif %}
 				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt="ombre portée d'affiche"></div>
 			</div>
+
+			<!--DESCRIPTION-------------------------------->
 			<div class="descriptionFilm">
 				<div class="titreCam">
 					<h1>{{film.title}}
 					</h1>
 					<div class="overview">
 						<div>
+							<!--DUREE-->
 							<h5>{{film.getRuntime(film.duree)}}</h5>
 							<span>/</span>
+							<!--GENRES-->
 							{% for g in film.genres %}
 								{% if film.genres| length >= 2 %}
 									<h5>{{g.name}}</h5>
@@ -35,22 +45,25 @@
 								{% endif %}
 							{% endfor %}
 							<span>/</span>
+							<!--SORTIE-->
 							<h5>{{film.sortie}}</h5>
 							<span>/</span>
+							<!--PAYS-->
 							{% for p in film.pays %}
 								<h5>{{p.name}}</h5>
 							{% endfor %}
-							
+
 						</div>
 					</div>
 					<div class="trait"></div>
 				</div>
+				<!--SYNOPSIS-------------------------------->
 				<div class="summary">
 					<h4>Résumé</h4>
 					<p>{{film.synopsis}}</p>
 				</div>
 
-
+				<!--ARTISTES-------------------------------->
 				<div class="artisteDivD">
 					<div class="realDivD">
 						<div class="realTitreD">
@@ -112,14 +125,16 @@
 					</div>
 				</div>
 			</div>
+
+			<!--INFOS-------------------------------->
+
 			<div class="specCam">
 				<div class="tabContainer">
 					<div class="buttonContainer">
 						<button class="active">Caméras</button>
-						<button>Fiches</button>
+						{# A AJOUTER PLUS TARD <button>Fiches</button> #}
 						<button>Vidéos</button>
 					</div>
-					{# <div class="borderBottom"></div> #}
 					<div class="contentCam">
 						<div class="tabPanel" style="display: block;">
 							<div>
@@ -128,8 +143,7 @@
 										{% for camera in film.cameraModele %}
 											<div class="cardGridCam">
 												<div class="cardSmCam">
-													<div
-														class="imgCardCam">
+													<div class="imgCardCam">
 														<a href="{{path('cameras_show', {slug:camera.slug} )}}"><img src="" alt="placeholder"></a>
 													</div>
 													<a href="{{path('cameras_show', {slug:camera.slug} )}}">
@@ -175,15 +189,9 @@
 								</div>
 							</div>
 						</div>
+						{# <div class="tabPanel" style="display: none;"></div> #}
 						<div class="tabPanel" style="display: none;">
-
-							<h2>LISTE DES FILMS</h2>
-
-						</div>
-						<div class="tabPanel" style="display: none;">
-							{% for cam in film.camera %}{# {{cam.marqueModele}} #}
-								{# {{cam.cameraName()}} #}
-							{% endfor %}
+							<h2>BANDE ANNONCE</h2>
 						</div>
 					</div>
 				</div>
@@ -191,41 +199,4 @@
 		</div>
 	</div>
 
-	{# 
-																																																																																																<h1>Film</h1>
-																																																																																															
-																																																																																																<table class="table">
-																																																																																																	<tbody>
-																																																																																																		<tr>
-																																																																																																			<th>Id</th>
-																																																																																																			<td>{{ film.id }}</td>
-																																																																																																		</tr>
-																																																																																																		<tr>
-																																																																																																			<th>Title</th>
-																																																																																																			<td>{{ film.title }}</td>
-																																																																																																		</tr>
-																																																																																																		<tr>
-																																																																																																			<th>Duree</th>
-																																																																																																			<td>{{ film.duree }}</td>
-																																																																																																		</tr>
-																																																																																																		<tr>
-																																																																																																			<th>Synopsis</th>
-																																																																																																			<td>{{ film.synopsis }}</td>
-																																																																																																		</tr>
-																																																																																																		<tr>
-																																																																																																			<th>Decade</th>
-																																																																																																			<td>{{ film.decade }}</td>
-																																																																																																		</tr>
-																																																																																																		<tr>
-																																																																																																			<th>Sortie</th>
-																																																																																																			<td>{{ film.sortie }}</td>
-																																																																																																		</tr>
-																																																																																																	</tbody>
-																																																																																																</table>
-																																																																																															
-																																																																																																<a href="{{ path('film_index') }}">back to list</a>
-																																																																																															
-																																																																																																<a href="{{ path('film_edit', {'slug': film.slug}) }}">edit</a>
-																																																																																															
-																																																																																																{{ include('film/_delete_form.html.twig') }} #}
 {% endblock %}
