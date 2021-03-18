@@ -10,13 +10,13 @@
 		<div class="tableauCamera">
 			<div class="imageCam">
 				{% if film.poster %}
-					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt=" "></div>
+					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
 				{% else %}
 					<div class="addPoster">
 						<a href="{{path('film_edit', {slug:film.slug})}}">Ajouter une affiche</a>
 					</div>
 				{% endif %}
-				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
+				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt="ombre portée d'affiche"></div>
 			</div>
 			<div class="descriptionFilm">
 				<div class="titreCam">
@@ -36,6 +36,11 @@
 							{% endfor %}
 							<span>/</span>
 							<h5>{{film.sortie}}</h5>
+							<span>/</span>
+							{% for p in film.pays %}
+								<h5>{{p.name}}</h5>
+							{% endfor %}
+							
 						</div>
 					</div>
 					<div class="trait"></div>
@@ -104,8 +109,6 @@
 								{% endif %}
 							{% endif %}
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -127,8 +130,7 @@
 												<div class="cardSmCam">
 													<div
 														class="imgCardCam">
-														{# <a href="{{path('modele_show', {slug:camera.slug} )}}"><img src={{camera.image}} alt="placeholder"></a> #}
-														<a href="{{path('cameras_show', {slug:camera.slug} )}}"><img src="alt=" placeholder""></a>
+														<a href="{{path('cameras_show', {slug:camera.slug} )}}"><img src="" alt="placeholder"></a>
 													</div>
 													<a href="{{path('cameras_show', {slug:camera.slug} )}}">
 														<div class="smDescriptionOverlay">
@@ -148,7 +150,7 @@
 											<div class="cardGridCam">
 												<div class="cardSmCam">
 													<div class="imgCardCam">
-														<a href="{{path('marque_show', {slug: m.slug} )}}"><img src="alt=" placeholder""></a>
+														<a href="{{path('marque_show', {slug: m.slug} )}}"><img src="" alt="logo de la marque de caméra {{m.name}}"></a>
 													</div>
 													<a href="{{path('marque_show', {slug: m.slug} )}}">
 														<div class="smDescriptionOverlay">

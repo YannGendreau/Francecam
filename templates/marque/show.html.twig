@@ -13,7 +13,7 @@
 					<div class="centerMarquePic">
 
 						{% if marque.logoName %}
-							<div class="imgMov"><img src="/build/images/marques/{{marque.logoName}}" alt=" "></div>
+							<div class="imgMov"><img src="/build/images/marques/{{marque.logoName}}" alt="logo de la marque de caméra {{marque.name}}"></div>
 
 							<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
 						{% endif %}
@@ -29,7 +29,7 @@
 						<span>-</span>
 						<h5>{{marque.pays}}</h5>
 						<span>-</span>
-						<h5>fondé en
+						<h5>Fondé en
 							{{marque.creation}}</h5>
 					</div>
 				</div>
@@ -73,8 +73,8 @@
 
 													<a href="{{path('cameras_show', {slug:m.slug} )}}">
 														<div class="smDescriptionOverlay">
-															<em>{{m.marque}}
-																{{m.modele}}</em>
+															<em>
+																{{m.name}}</em>
 
 
 														</div>
@@ -115,7 +115,7 @@
 										<div class="cardGrid">
 											<div class="cardSm">
 												<div class="imgCard">
-													<a href=""><img src="" alt="placeholder"></a>
+													<a href=""><img src="" alt="Affiche du film {{film.title}}"></a>
 													{# <a href=""><img src={{film.img}} alt="placeholder"></a> #}
 												</div>
 												<a href="{{path('film_show', {slug: film.slug,})}}">

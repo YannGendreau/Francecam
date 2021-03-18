@@ -87,6 +87,13 @@ class Cameras
      */
     private $mount;
 
+    /**
+     * Undocumented variable
+     *
+     * @var string
+     */
+    private $name;
+
 
     public function __construct()
     {
@@ -94,6 +101,19 @@ class Cameras
         $this->format = new ArrayCollection();
         $this->shutter = new ArrayCollection();
         $this->mount = new ArrayCollection();
+    }
+
+    public function setName($name){
+
+        $name = $this->marque . ' ' . $this->modele;
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
