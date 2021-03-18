@@ -41,6 +41,7 @@ class FilmCrudController extends AbstractCrudController
             IdField::new('id')->HideOnForm(),
             TextField::new('title'),
             AssociationField::new('genres'),
+            AssociationField::new('pays'),
             AssociationField::new('directors'),
             AssociationField::new('dirphoto'),
             TextareaField::new('synopsis'),

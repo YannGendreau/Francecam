@@ -128,9 +128,12 @@ class Film
      */
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Pays::class, inversedBy="films")
+     */
+    private $pays;
 
-
-    
+     
 
     public function __construct()
     {
@@ -142,6 +145,7 @@ class Film
         $this->directors = new ArrayCollection();
         $this->cameraModele = new ArrayCollection();
         $this->dirphoto = new ArrayCollection();
+        $this->pays = new ArrayCollection();
  
        
     }
@@ -507,4 +511,30 @@ class Film
     {
         return $this->updatedAt;
     }
+
+    /**
+     * @return Collection|Pays[]
+     */
+    public function getPays(): Collection
+    {
+        return $this->pays;
+    }
+
+    public function addPay(Pays $pay): self
+    {
+        if (!$this->pays->contains($pay)) {
+            $this->pays[] = $pay;
+        }
+
+        return $this;
+    }
+
+    public function removePay(Pays $pay): self
+    {
+        $this->pays->removeElement($pay);
+
+        return $this;
+    }
+
+    
 }
