@@ -69,6 +69,10 @@ class Film
 
     /**
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="films")
+     * @Assert\Count(
+     *      max = 2,
+     *    
+     * )
      */
     private $genres;
 
