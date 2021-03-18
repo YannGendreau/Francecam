@@ -1,8 +1,6 @@
 <div id="film">
 	{{ form_start(form) }}
 
-
-	{# {{ form_widget(form) }} #}
 	<div class="rowFormTitle">
 		<div>
 			<div>
@@ -12,23 +10,24 @@
 
 		</div>
 	</div>
-
 	<div class="rowFormDetails">
-
 		<div class="sortie">
 			<div>
 				<h3>Date de sortie</h3>
 				{{form_row(form.sortie)}}
 			</div>
-
 		</div>
-
 		<div class="duree">
 			<div>
 				<h3>Durée</h3>
 				{{form_row(form.duree)}}
 			</div>
-
+		</div>
+		<div class="pays">
+			<div>
+				<h3>Pays de production</h3>
+				{{form_row(form.pays)}}
+			</div>
 		</div>
 	</div>
 	<div class="rowFormGenres">
@@ -39,9 +38,7 @@
 
 			</div>
 		</div>
-
 	</div>
-
 	<div class="rowFormSynopsis">
 		<div>
 			<div>
@@ -50,7 +47,6 @@
 			</div>
 
 		</div>
-
 	</div>
 	<div class="rowFormPoster">
 		<div>
@@ -60,7 +56,6 @@
 			</div>
 
 		</div>
-
 	</div>
 	<div class="rowFormArtist">
 		<div>
@@ -69,24 +64,14 @@
 				{{ form_widget(form.directors) }}
 				{{ form_widget(form.dirphoto) }}
 			</div>
-
-
 		</div>
-
 	</div>
-	{# <div class="rowFormCamera" id="cam_list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e('html_attr')}}"> #}
 	<div class="rowFormCamera">
 		<h3>Caméras</h3>
 
-		{# {{{form_row(form.camera)}} {% for camera in form.camera %}
-																																																																																																																																																																																																			{{form_row(camera)}}
-																																																																																																																																																																																																		{% endfor %} #}
-		{# {{form_widget(form.camera)}} #}
 		<div class="marqueModele">
 			{{ form_widget(form.marques) }}
 			{{ form_widget(form.cameraModele) }}
-
-
 		</div>
 	</div>
 

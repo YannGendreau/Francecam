@@ -9,10 +9,7 @@ use App\Entity\Modele;
 use App\Entity\Cameras;
 use App\Entity\Director;
 use App\Entity\Dirphoto;
-use App\Form\CameraType;
-use App\Form\ModeleType;
-use App\Form\CamerasType;
-use App\Form\CameraFormType;
+use App\Entity\Pays;
 use Doctrine\ORM\EntityRepository;
 use App\Repository\MarqueRepository;
 use App\Repository\ModeleRepository;
@@ -32,6 +29,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Validator\Constraints\Count;
 
 class FilmType extends AbstractType
 {
@@ -82,6 +80,12 @@ class FilmType extends AbstractType
             ->add('genres', EntityType::class, [
                 'label'             => false,
                 'class'             => Genre::class,
+                'constraints'   => [
+                    new Count([
+                        'max'           => 2,
+                        'maxMessage'    => 'Maximum {{ limit }} genres'
+                    ])
+                    ],
                 'choice_label'      => 'name',
                 'placeholder'       => 'Choisir le(s) genre(s)',
                 'required'          => false,
@@ -89,26 +93,35 @@ class FilmType extends AbstractType
                 'expanded'          => true
           
             ])
+            ->add('pays', EntityType::class, [
+                'label'             => false,
+                'class'             => Pays::class,
+                'choice_label'      => 'name',
+                'placeholder'       => 'Pays de production',
+                'required'          => false,
+                'multiple'          => true,
+          
+            ])
+    //------CAMERA-------------------------------------------------------
+    
+            //Ajouter une marque
             ->add('marques', EntityType::class, [
                 'label'             => false,
                 'class'             => Marque::class,
                 'placeholder'       => 'Choisir une marque de caméra',
                 'required'          => false,
-                // 'by_reference'      => false,
-                // 'expanded'          => true,
                 'multiple'          => true,
-
-                // 'auto_initialize'   => false,
             ])
+
+            //TEMPORAIRE
+            //En attendant de trouver le moyen de créer un formulaire dynamique de choix de caméras
             ->add('cameraModele', EntityType::class, [
                 'label'             => false,
                 'class'             => Cameras::class,
                 'placeholder'       => 'Choisir une caméra',
                 'required'          => false,
-                // // 'by_reference'      => false,
                 'multiple'          => true,
-                // "expanded"          =>true
-                // 'auto_initialize'   => false,
+
             ])
 
             ->add('posterFile', VichImageType::class, [
@@ -120,23 +133,22 @@ class FilmType extends AbstractType
                 'label'             => false,
                 'class'             => Director::class,
                 'placeholder'       => 'Réalisation',
-                // 'choice_label'      => 'name',
                 'required'          => false,
-                // 'by_reference'      => false,
                 'multiple'          => true,
-                // 'auto_initialize'   => false,
             ])
             ->add('dirphoto', EntityType::class, [
                 'label'             => false,
                 'class'             => Dirphoto::class,
                 'placeholder'       => 'Photographie',
-                // 'choice_label'      => 'name',
                 'required'          => false,
-                // 'by_reference'      => false,
                 'multiple'          => true,
-                // 'auto_initialize'   => false,
             ])
         ;
+        
+// TENTATIVE DE FORMULAIRE IMBRIQUE. NE MARCHE PAS (Arraycollection)
+// Cherche a pouvoir ajouter une ou des caméras pour un film.
+// Si le modèle de la caméra est inconnu, on peut choisir seulement la marque
+
 
         // $builder->get('marques')->addEventListener(
         //     FormEvents::POST_SUBMIT,
