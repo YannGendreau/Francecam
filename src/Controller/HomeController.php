@@ -2,13 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Film;
-use App\Entity\Gamme;
-use App\Entity\Camera;
-use App\Entity\Marque;
-use App\Entity\Modele;
+
 use App\Repository\FilmRepository;
-use App\Repository\CameraRepository;
 use App\Repository\CamerasRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +16,7 @@ class HomeController extends AbstractController
      */
     public function index(CamerasRepository $cameraRepository, FilmRepository $filmRepository): Response
     {
+        //Toutes les cameras et films
         $cameras = $cameraRepository->findAll();
         $films = $filmRepository->findAll();
 

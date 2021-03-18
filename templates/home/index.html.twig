@@ -5,10 +5,17 @@
 
 {% block content %}
 	<div id="container">
-		{% include "includes/flashes/_flash_message.html.twig" %}
-		<div class="searchBlock">
 
-			<div class="searchCenter">
+		{% include "includes/flashes/_flash_message.html.twig" %}
+
+		<!-- TITRE ET BARRE DE RECHERCHE -->
+
+		<div class="searchBlock">
+			<div
+				class="searchCenter">
+
+				<!-- TITRE -->
+
 				<div class="logoSearch">
 					<img src="{{asset('build/images/FRANCECAM-logo.png')}}" alt="logo du site Francecam">
 					<h1>Francecam</h1>
@@ -18,7 +25,10 @@
 					<h2>La base de données des caméras du cinéma francophone</h2>
 				</div>
 
-				<div class="search">
+				<div
+					class="search">
+
+					<!-- BARRE DE RECHERCHE -->
 
 					<div class="searchBarCenter">
 						<div class="formTop">
@@ -29,6 +39,9 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- DERNIERS AJOUTS -->
+
 		<div class="latest">
 			<h2>Dernières caméras</h2>
 			<div class="homeCameraList">
