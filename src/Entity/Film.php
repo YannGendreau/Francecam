@@ -17,8 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=FilmRepository::class)
 * @Vich\Uploadable()
-
-
+* @ORM\Table(name="film", indexes={@ORM\Index(columns={"title"}, flags={"fulltext"})})
  */
 class Film
 {

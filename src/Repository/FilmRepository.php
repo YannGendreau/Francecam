@@ -88,4 +88,23 @@ class FilmRepository extends ServiceEntityRepository
 
         );      
     }
+    
+     /**
+     * Recherche des films en cameras en fonction du formulaire
+     * @return void 
+     */
+    public function search($mots = null){
+        $query = $this->createQueryBuilder('f');
+    
+        if($mots != null){
+            $query->andWhere('MATCH_AGAINST(f.title) AGAINST (:mots boolean)>0')
+                ->setParameter('mots', $mots);
+        }
+        // if($categorie != null){
+        //     $query->leftJoin('a.categories', 'c');
+        //     $query->andWhere('c.id = :id')
+        //         ->setParameter('id', $categorie);
+        // }
+        return $query->getQuery()->getResult();
+    }
 }

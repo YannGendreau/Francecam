@@ -31,26 +31,27 @@
 					<!-- BARRE DE RECHERCHE -->
 
 					<div class="searchBarCenter">
-						<div class="formTop">
-							<label for="">Rechercher</label>
+						{{form(form)}}
+							{# <div class="formTop">
+														<label for="">Rechercher</label>
+													</div>
+													<input type="search" placeholder="Un film, une caméra..."> #}
 						</div>
-						<input type="search" placeholder="Un film, une caméra...">
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<!-- DERNIERS AJOUTS -->
+			<!-- DERNIERS AJOUTS -->
 
-		<div class="latest">
-			<h2>Dernières caméras</h2>
-			<div class="homeCameraList">
-				{% include "includes/film_includes/_homeCameraList.html.twig" %}
-			</div>
-			<h2>Derniers films</h2>
-			<div class="homeCameraList">
-				{% include "includes/film_includes/_homeFilmList.html.twig" %}
+			<div class="latest">
+				<h2>Dernières caméras</h2>
+				<div class="homeCameraList">
+					{% include "includes/film_includes/_homeCameraList.html.twig" %}
+				</div>
+				<h2>Derniers films</h2>
+				<div class="homeCameraList">
+					{% include "includes/film_includes/_homeFilmList.html.twig" %}
+				</div>
 			</div>
 		</div>
-	</div>
-{% endblock %}
+	{% endblock %}

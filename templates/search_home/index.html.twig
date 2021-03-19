@@ -1,0 +1,27 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}Film index
+{% endblock %}
+
+{% block content %}
+	<div id="container">
+		<div class="resultContainer">
+			{% include "search_home/_results_film.html.twig" %}
+			{# <div class="resultContainer">
+												{% for film in films %}
+													<div>
+														<div class="result">
+															<div class="imgResult">
+																<img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}">
+															</div>
+															<div class="titleResult">
+																<h3>{{film.title}}</h3>
+															</div>
+														</div>
+													</div>
+									
+												{% endfor %}
+											</div> #}
+		</div>
+	</div>
+{% endblock %}
