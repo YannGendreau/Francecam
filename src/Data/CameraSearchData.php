@@ -3,7 +3,6 @@
 namespace App\Data;
 
 use App\Entity\Modele;
-use App\Entity\Cameras;
 use App\Entity\Marque;
 use Doctrine\ORM\Mapping\OrderBy;
 
@@ -44,7 +43,7 @@ class CameraSearchData{
     /**
      * Tableau de décennies
      *
-     * @var Camera[]
+     * @var Modele[]
      */
     public $decade = [];
 
