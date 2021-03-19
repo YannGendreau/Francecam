@@ -1,0 +1,26 @@
+<div class="tableau">
+	{% for camera in cameras %}
+		<div class="cardGrid">
+			<div class="cardSm">
+				<div class="imgCard">
+					{% if film.poster %}
+						<a href=""><img src="/build/images/posters/{{film.poster}}" alt=" placeholder"></a>
+					{% endif %}
+				</div>
+				<a href="{{path('film_show', {slug: film.slug,})}}">
+					<div class="description__overlay description__overlay--blur">
+						<h2>
+							{{film.title}}
+						</h2>
+						<div class="genreOverlay">
+							{% for g in film.genres %}
+								<em>{{g.name}}</em>
+							{% endfor %}
+						</div>
+
+					</div>
+				</a>
+			</div>
+		</div>
+	{% endfor %}
+</div>

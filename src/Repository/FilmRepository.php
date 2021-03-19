@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Film;
 use App\Data\FilmSearchData;
+use App\Data\CameraSearchData;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;

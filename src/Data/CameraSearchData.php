@@ -2,21 +2,14 @@
 
 namespace App\Data;
 
-use App\Entity\Film;
-use App\Entity\Genre;
-use App\Entity\Marque;
 use App\Entity\Modele;
+use App\Entity\Cameras;
+use App\Entity\Marque;
 use Doctrine\ORM\Mapping\OrderBy;
 
 
-class FilmSearchData
-{
-    /**
-     * Undocumented variable
-     *
-     * @var integer
-     */
-    public $page;
+class CameraSearchData{
+
 
     /**
      * Champ de recherche
@@ -28,9 +21,9 @@ class FilmSearchData
     /**
      * Tableau de genres
      *
-     * @var Genre
+     * @var Modele
      */
-    public $genres = [];
+    public $modele = [];
 
     /**
      * Tableau de date de sortie
@@ -41,26 +34,17 @@ class FilmSearchData
 
 
     /**
-     * Tableau de date de sortie
-     *
-     * @var array
-     * 
-     */
-    public $sortie ;
-
-    /**
      *Tableau de date de marque de caméras
      *
      * @var Marque
      */
-    public $marques = [];
+    public $marque = [];
 
-    // public $sortie;
 
     /**
      * Tableau de décennies
      *
-     * @var Film[]
+     * @var Camera[]
      */
     public $decade = [];
 

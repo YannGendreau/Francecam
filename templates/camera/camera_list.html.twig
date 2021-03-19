@@ -4,14 +4,14 @@
 	<div id="container">
 
 		<div class="allFilmsTable js-filter">
-			<div class="searchList">
-				{% include "film/_film_list_filter.html.twig" with {form: form} only %}
+			<div
+				class="searchList">{# {% include "camera/_camera_list_filter.html.twig" with {form: form} only %} #}
 			</div>
 			<div
 				class="sorting js-filter-sorting">{# {% include "film/_sorting.html.twig" %} #}
 			</div>
 			<div class="showList js-filter-content">
-				{% include "film/_film_list.html.twig" %}
+				{% include "film/_camera_list.html.twig" %}
 				<div class="paginate js-filter-pagination">
 					{{knp_pagination_render(films)}}
 				</div>
