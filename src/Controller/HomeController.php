@@ -28,12 +28,15 @@ class HomeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             // On recherche les annonces correspondant aux mots clés
-            $filmsearch = $filmRepository->search(
+            $films = $filmRepository->search(
                 $search->get('mots')->getData(),
              
             );
 
-        return $this->redirectToRoute('search_show');
+        return $this->render('search_home/index.html.twig', [
+            
+            'films' => $films
+        ]);
 
         }
 

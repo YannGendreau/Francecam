@@ -17,7 +17,7 @@ class SearchHomeController extends AbstractController
     public function index(ModeleRepository $modeleRepository, FilmRepository $filmRepository, Request $request): Response
     {
 
-        $films = $filmRepository->search();
+        // $films = $filmRepository->search();
 
         return $this->render('search_home/index.html.twig', [
             'films' => $films
