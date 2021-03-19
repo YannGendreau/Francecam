@@ -49,7 +49,7 @@ class FilmCrudController extends AbstractCrudController
             IntegerField::new('sortie'),
             IntegerField::new('decade'),
             AssociationField::new('marques'),
-            AssociationField::new('cameraModele'),
+            AssociationField::new('modeles'),
             // AssociationField::new('camera'),
             DateTimeField::new('createdAt')->HideOnForm(),
             DateTimeField::new('updatedAt')->HideOnForm(),
