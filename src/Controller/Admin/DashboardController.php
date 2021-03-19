@@ -43,7 +43,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Films', 'fas fa-film', Film::class);
         yield MenuItem::linkToCrud('Marques', 'fas fa-video', Marque::class);
         yield MenuItem::linkToCrud('User', 'fas fa-user', User::class);
-        yield MenuItem::linkToCrud('Camera', 'fas fa-camera', Cameras::class);
+        // yield MenuItem::linkToCrud('Camera', 'fas fa-camera', Cameras::class);
         yield MenuItem::linkToCrud('Mount', 'fas fa-circle', Mount::class);
         yield MenuItem::linkToCrud('Réalisation', 'fas fa-circle', Director::class);
         yield MenuItem::linkToCrud('Photo', 'fas fa-circle', Dirphoto::class);

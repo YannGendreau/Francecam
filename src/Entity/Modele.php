@@ -98,10 +98,10 @@ class Modele
      */
     private $films;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Camera::class, mappedBy="modele")
-     */
-    private $camera;
+    // /**
+    //  * @ORM\OneToMany(targetEntity=Camera::class, mappedBy="modele")
+    //  */
+    // private $camera;
 
     /**
      * @ORM\Column(type="string", length=255)

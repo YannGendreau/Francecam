@@ -82,10 +82,10 @@ class Film
      */
     private $modeles;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films")
-     */
-    private $camera;
+    // /**
+    //  * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films")
+    //  */
+    // private $camera;
 
       /**
      * @ORM\Column(type="string", length=100)
@@ -110,10 +110,10 @@ class Film
      */
     private $directors;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Cameras::class, inversedBy="films")
-     */
-    private $cameraModele;
+    // /**
+    //  * @ORM\ManyToMany(targetEntity=Cameras::class, inversedBy="films")
+    //  */
+    // private $cameraModele;
 
     /**
      
@@ -147,7 +147,7 @@ class Film
         // $this->camera = new ArrayCollection();
         $this->updatedAt = new \DateTime();
         $this->directors = new ArrayCollection();
-        $this->cameraModele = new ArrayCollection();
+        // $this->cameraModele = new ArrayCollection();
         $this->dirphoto = new ArrayCollection();
         $this->pays = new ArrayCollection();
  

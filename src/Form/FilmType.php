@@ -115,9 +115,9 @@ class FilmType extends AbstractType
 
             //TEMPORAIRE
             //En attendant de trouver le moyen de créer un formulaire dynamique de choix de caméras
-            ->add('cameraModele', EntityType::class, [
+            ->add('modeles', EntityType::class, [
                 'label'             => false,
-                'class'             => Cameras::class,
+                'class'             => Modele::class,
                 'placeholder'       => 'Choisir une caméra',
                 'required'          => false,
                 'multiple'          => true,

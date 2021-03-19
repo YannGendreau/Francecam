@@ -6,7 +6,7 @@ namespace App\Form;
 use App\Form\YEAR;
 use App\Entity\Film;
 use App\Entity\Genre;
-use App\Entity\Camera;
+
 use App\Entity\Marque;
 // use Symfony\Bridge\Doctrine\Form\Type\ChoiceType;
 use App\Entity\Modele;
@@ -14,6 +14,7 @@ use App\Entity\CameraType;
 use App\Data\FilmSearchData;
 use App\Data\CameraSearchData;
 use App\Repository\FilmRepository;
+use App\Repository\ModeleRepository;
 use PhpParser\Node\Expr\AssignOp\Concat;
 use Symfony\Component\Form\AbstractType;
 use DoctrineExtensions\Query\Mysql\Round;
@@ -28,11 +29,11 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class SearchCameraForm extends AbstractType
 {
-    private $filmRepository;
+    private $modeleRepository;
 
-    public function __construct(FilmRepository $filmRepository)
+    public function __construct(ModeleRepository $modeleRepository)
     {
-        $this->filmRepository = $filmRepository;
+        $this->modeleRepository = $modeleRepository;
     }
 
 
