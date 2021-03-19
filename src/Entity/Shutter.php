@@ -25,13 +25,14 @@ class Shutter
     private $angle;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Cameras::class, mappedBy="shutter")
+     * @ORM\ManyToMany(targetEntity=Modele::class, mappedBy="shutter")
      */
-    private $cameras;
+    private $modeles;
+
 
     public function __construct()
     {
-        $this->cameras = new ArrayCollection();
+        $this->modeles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,35 +52,36 @@ class Shutter
         return $this;
     }
 
-    /**
-     * @return Collection|Cameras[]
-     */
-    public function getCameras(): Collection
-    {
-        return $this->cameras;
-    }
-
-    public function addCamera(Cameras $camera): self
-    {
-        if (!$this->cameras->contains($camera)) {
-            $this->cameras[] = $camera;
-            $camera->addShutter($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCamera(Cameras $camera): self
-    {
-        if ($this->cameras->removeElement($camera)) {
-            $camera->removeShutter($this);
-        }
-
-        return $this;
-    }
 
     public function __toString()
     {
         return $this->angle;
+    }
+
+    /**
+     * @return Collection|Modele[]
+     */
+    public function getModeles(): Collection
+    {
+        return $this->modeles;
+    }
+
+    public function addModele(Modele $modele): self
+    {
+        if (!$this->modeles->contains($modele)) {
+            $this->modeles[] = $modele;
+            $modele->addShutter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeModele(Modele $modele): self
+    {
+        if ($this->modeles->removeElement($modele)) {
+            $modele->removeShutter($this);
+        }
+
+        return $this;
     }
 }

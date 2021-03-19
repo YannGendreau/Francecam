@@ -1503,6 +1503,17 @@ a {
 
 
         .summary {
+            grid-area: summary;
+            margin-top: 10px;
+            padding: 0 0 5% 0;
+            text-align: justify;
+            font-family: 'Roboto Condensed',
+                sans-serif;
+            // font-family: 'Bebas Neue', cursive;
+            color: #404b69;
+            font-size: 1.7rem;
+
+            // border: 1px solid rgb(38, 0, 255);
             h4 {
                 font-family: 'Roboto Condensed', sans-serif;
                 font-size: 1.7rem;
@@ -1511,15 +1522,7 @@ a {
                 margin-bottom: 10px;
             }
 
-            grid-area: summary;
-            padding: 5% 0 5% 0;
-            text-align: justify;
-            font-family: 'Roboto Condensed',
-            sans-serif;
-            // font-family: 'Bebas Neue', cursive;
-            color: #404b69;
-            font-size: 1.7rem;
-            // border: 1px solid rgb(38, 0, 255);
+
         }
     }
 
@@ -1809,6 +1812,8 @@ a {
         .summary {
             grid-area: summary;
             max-height: 300px;
+            margin-top: 10px;
+
             padding: 0 0 5% 0;
             text-align: justify;
             font-family: 'Roboto Condensed', sans-serif;
@@ -1887,6 +1892,8 @@ a {
         .summary {
             grid-area: summary;
             padding: 0 0 5% 0;
+            margin-top: 10px;
+
             text-align: justify;
             font-family: 'Roboto Condensed', sans-serif;
             color: $titleCard;

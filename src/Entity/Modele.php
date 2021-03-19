@@ -41,16 +41,6 @@ class Modele
     private $noise;
 
     /**
-    * @ORM\Column(type="string", length=255, nullable= true)
-     */
-    private $shutter;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable= true)
-     */
-    private $mount;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $framerate;
@@ -85,35 +75,45 @@ class Modele
      */
     private $sync;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="modeles", fetch="EAGER")
-     * @ORM\JoinColumn(nullable=false)
-     * @Assert\Type(type="App\Entity\Marque")
-     * @Assert\Valid
-     */
-    private $marque;
+ 
 
     /**
      * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="modeles", cascade={"persist"})
      */
     private $films;
 
-    // /**
-    //  * @ORM\OneToMany(targetEntity=Camera::class, mappedBy="modele")
-    //  */
-    // private $camera;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Format::class, inversedBy="modeles")
+     */
+    private $format;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Shutter::class, inversedBy="modeles")
+     */
+    private $shutter;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Mount::class, inversedBy="modeles")
+     */
+    private $mount;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="modeles")
+     */
+    private $marque;
+
 
     public function __construct()
     {
         $this->films = new ArrayCollection();
-        $this->marques = new ArrayCollection();
-        // $this->camera = new ArrayCollection();
+        $this->format = new ArrayCollection();
+        $this->shutter = new ArrayCollection();
+        $this->mount = new ArrayCollection();
       
     }
 
@@ -171,29 +171,6 @@ class Modele
         return $this;
     }
 
-    public function getShutter(): ?string
-    {
-        return $this->shutter;
-    }
-
-    public function setShutter(string $shutter): self
-    {
-        $this->shutter = $shutter;
-
-        return $this;
-    }
-
-    public function getMount(): ?string
-    {
-        return $this->mount;
-    }
-
-    public function setMount(string $mount): self
-    {
-        $this->mount = $mount;
-
-        return $this;
-    }
 
     public function getFramerate(): ?string
     {
@@ -285,18 +262,6 @@ class Modele
         return $this->name;
     }
 
-    public function getMarque(): ?Marque
-    {
-        return $this->marque;
-    }
-
-    public function setMarque(?Marque $marque): self
-    {
-        $this->marque = $marque;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Film[]
      */
@@ -324,35 +289,7 @@ class Modele
         return $this;
     }
 
-    /**
-     * @return Collection|Camera[]
-     */
-    public function getCamera(): Collection
-    {
-        return $this->camera;
-    }
 
-    public function addCamera(Camera $camera): self
-    {
-        if (!$this->camera->contains($camera)) {
-            $this->camera[] = $camera;
-            $camera->setModele($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCamera(Camera $camera): self
-    {
-        if ($this->camera->removeElement($camera)) {
-            // set the owning side to null (unless already changed)
-            if ($camera->getModele() === $this) {
-                $camera->setModele(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getSlug(): ?string
     {
@@ -362,6 +299,90 @@ class Modele
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Format[]
+     */
+    public function getFormat(): Collection
+    {
+        return $this->format;
+    }
+
+    public function addFormat(Format $format): self
+    {
+        if (!$this->format->contains($format)) {
+            $this->format[] = $format;
+        }
+
+        return $this;
+    }
+
+    public function removeFormat(Format $format): self
+    {
+        $this->format->removeElement($format);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Shutter[]
+     */
+    public function getShutter(): Collection
+    {
+        return $this->shutter;
+    }
+
+    public function addShutter(Shutter $shutter): self
+    {
+        if (!$this->shutter->contains($shutter)) {
+            $this->shutter[] = $shutter;
+        }
+
+        return $this;
+    }
+
+    public function removeShutter(Shutter $shutter): self
+    {
+        $this->shutter->removeElement($shutter);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Mount[]
+     */
+    public function getMount(): Collection
+    {
+        return $this->mount;
+    }
+
+    public function addMount(Mount $mount): self
+    {
+        if (!$this->mount->contains($mount)) {
+            $this->mount[] = $mount;
+        }
+
+        return $this;
+    }
+
+    public function removeMount(Mount $mount): self
+    {
+        $this->mount->removeElement($mount);
+
+        return $this;
+    }
+
+    public function getMarque(): ?Marque
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?Marque $marque): self
+    {
+        $this->marque = $marque;
 
         return $this;
     }

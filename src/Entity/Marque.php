@@ -64,14 +64,9 @@ class Marque
      */
     private $slug;
 
+
+
     /**
-     * @ORM\OneToMany(targetEntity=Modele::class, mappedBy="marque", cascade={"persist"}, fetch="EAGER")
-     */
-    private $modeles;
-
-
-
-         /**
      * @ORM\Column(type="string", length=100)
      */
     private $logoName;
@@ -88,16 +83,19 @@ class Marque
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Modele::class, mappedBy="marque")
+     */
+    private $modeles;
+
 
 
     public function __construct()
     {
         $this->films = new ArrayCollection();
+        $this->updatedAt = new \DateTime();
         $this->modeles = new ArrayCollection();
        
-        $this->updatedAt = new \DateTime();
-       
-
     }
 
     public function getId(): ?int
@@ -211,38 +209,6 @@ class Marque
     }
 
     /**
-     * @return Collection|Modele[]
-     */
-    public function getModeles(): Collection
-    {
-        return $this->modeles;
-    }
-
-    public function addModele(Modele $modele): self
-    {
-        if (!$this->modeles->contains($modele)) {
-            $this->modeles[] = $modele;
-            $modele->setMarque($this);
-        }
-
-        return $this;
-    }
-
-    public function removeModele(Modele $modele): self
-    {
-        if ($this->modeles->removeElement($modele)) {
-            // set the owning side to null (unless already changed)
-            if ($modele->getMarque() === $this) {
-                $modele->setMarque(null);
-            }
-        }
-
-        return $this;
-    }
-
-
-
-    /**
      * Get the value of marqueName
      */ 
     public function getLogoName()
@@ -291,34 +257,33 @@ class Marque
     }
 
     /**
-     * @return Collection|Cameras[]
+     * @return Collection|Modele[]
      */
-    public function getCameraModele(): Collection
+    public function getModeles(): Collection
     {
-        return $this->cameraModele;
+        return $this->modeles;
     }
 
-    public function addCameraModele(Cameras $cameraModele): self
+    public function addModele(Modele $modele): self
     {
-        if (!$this->cameraModele->contains($cameraModele)) {
-            $this->cameraModele[] = $cameraModele;
-            $cameraModele->setMarqueRel($this);
+        if (!$this->modeles->contains($modele)) {
+            $this->modeles[] = $modele;
+            $modele->setMarque($this);
         }
 
         return $this;
     }
 
-    public function removeCameraModele(Cameras $cameraModele): self
+    public function removeModele(Modele $modele): self
     {
-        if ($this->cameraModele->removeElement($cameraModele)) {
+        if ($this->modeles->removeElement($modele)) {
             // set the owning side to null (unless already changed)
-            if ($cameraModele->getMarqueRel() === $this) {
-                $cameraModele->setMarqueRel(null);
+            if ($modele->getMarque() === $this) {
+                $modele->setMarque(null);
             }
         }
 
         return $this;
     }
-
     
 }

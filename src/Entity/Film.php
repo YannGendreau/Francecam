@@ -82,11 +82,6 @@ class Film
      */
     private $modeles;
 
-    // /**
-    //  * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films")
-    //  */
-    // private $camera;
-
       /**
      * @ORM\Column(type="string", length=100)
      */
@@ -110,10 +105,7 @@ class Film
      */
     private $directors;
 
-    // /**
-    //  * @ORM\ManyToMany(targetEntity=Cameras::class, inversedBy="films")
-    //  */
-    // private $cameraModele;
+
 
     /**
      
@@ -144,10 +136,10 @@ class Film
         $this->marques = new ArrayCollection();
         $this->genres = new ArrayCollection();
         $this->modeles = new ArrayCollection();
-        // $this->camera = new ArrayCollection();
+  
         $this->updatedAt = new \DateTime();
         $this->directors = new ArrayCollection();
-        // $this->cameraModele = new ArrayCollection();
+  
         $this->dirphoto = new ArrayCollection();
         $this->pays = new ArrayCollection();
  
@@ -338,31 +330,6 @@ class Film
 
         return $this;
     }
-
-    /**
-     * @return Collection|Camera[]
-     */
-    public function getCamera(): Collection
-    {
-        return $this->camera;
-    }
-
-    public function addCamera(Camera $camera): self
-    {
-        if (!$this->camera->contains($camera)) {
-            $this->camera[] = $camera;
-        }
-
-        return $this;
-    }
-
-    public function removeCamera(Camera $camera): self
-    {
-        $this->camera->removeElement($camera);
-
-        return $this;
-    }
-
   
     /**
      * Get
@@ -434,29 +401,7 @@ class Film
         return $this;
     }
 
-    /**
-     * @return Collection|Cameras[]
-     */
-    public function getCameraModele(): Collection
-    {
-        return $this->cameraModele;
-    }
-
-    public function addCameraModele(Cameras $cameraModele): self
-    {
-        if (!$this->cameraModele->contains($cameraModele)) {
-            $this->cameraModele[] = $cameraModele;
-        }
-
-        return $this;
-    }
-
-    public function removeCameraModele(Cameras $cameraModele): self
-    {
-        $this->cameraModele->removeElement($cameraModele);
-
-        return $this;
-    }
+ 
 
     public function getCreatedAt(): ?\DateTimeInterface
     {

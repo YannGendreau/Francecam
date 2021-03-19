@@ -25,13 +25,14 @@ class Format
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Cameras::class, mappedBy="format")
+     * @ORM\ManyToMany(targetEntity=Modele::class, mappedBy="format")
      */
-    private $cameras;
+    private $modeles;
+
 
     public function __construct()
     {
-        $this->cameras = new ArrayCollection();
+        $this->modeles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,35 +52,37 @@ class Format
         return $this;
     }
 
-    /**
-     * @return Collection|Cameras[]
-     */
-    public function getCameras(): Collection
-    {
-        return $this->cameras;
-    }
-
-    public function addCamera(Cameras $camera): self
-    {
-        if (!$this->cameras->contains($camera)) {
-            $this->cameras[] = $camera;
-            $camera->addFormat($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCamera(Cameras $camera): self
-    {
-        if ($this->cameras->removeElement($camera)) {
-            $camera->removeFormat($this);
-        }
-
-        return $this;
-    }
 
     public function __toString()
     {
         return $this->name;
     }
+
+    /**
+     * @return Collection|Modele[]
+     */
+    public function getModeles(): Collection
+    {
+        return $this->modeles;
+    }
+
+    public function addModele(Modele $modele): self
+    {
+        if (!$this->modeles->contains($modele)) {
+            $this->modeles[] = $modele;
+            $modele->addFormat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeModele(Modele $modele): self
+    {
+        if ($this->modeles->removeElement($modele)) {
+            $modele->removeFormat($this);
+        }
+
+        return $this;
+    }
+
 }
