@@ -3,8 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Modele;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Data\SearchHomeData;
+use Knp\Component\Pager\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Modele|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +18,34 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ModeleRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+          /**
+     * Undocumented variable
+     *
+     * @var PaginatorInterface
+     */
+    private $paginator;
+
+
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Modele::class);
+        $this->paginator = $paginator;
+    }
+
+      /**
+     * Recherche des films en cameras en fonction du formulaire
+     * @return void 
+     */
+    public function search($mots = null){
+        $query = $this->createQueryBuilder('c');
+    
+        if($mots != null){
+            $query->andWhere('MATCH_AGAINST(c.name) AGAINST (:mots boolean)>0')
+                ->setParameter('mots', $mots);
+        }
+
+        return $query->getQuery()->getResult();
     }
 
     // /**
@@ -47,4 +76,33 @@ class ModeleRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    public function findHomeSearch(SearchHomeData $search): PaginationInterface
+    {
+        $query = $this
+                    ->createQueryBuilder('g')
+                    ->select('g','m', 'f')
+                    ->leftJoin('g.marque', 'm')
+                    ->leftJoin('g.films', 'f')
+                   
+                    ;
+
+        if (!empty($search->r)) {
+            $query = $query
+                    ->andWhere('g.name LIKE :r')
+                    ->orWhere('f.title LIKE :r')
+                    ->orWhere('m.name LIKE :r')
+                    ->setParameter('r', "%{$search->r}%")
+                    ;
+        }       
+       
+            $query= $query->getQuery();
+            
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            20
+
+        );      
+    }
 }

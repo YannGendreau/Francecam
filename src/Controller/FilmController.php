@@ -149,7 +149,6 @@ class FilmController extends AbstractController
             ]);
 }
 
-
         if(!$films){
             throw new NotFoundHttpException('Pas de films');
         }
