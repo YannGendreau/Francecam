@@ -89,7 +89,8 @@ class FilmRepository extends ServiceEntityRepository
     }
     
      /**
-     * Recherche des films en cameras en fonction du formulaire
+     * Recherche des films en cameras en fonction du formulaire (FULLTEXT)
+     * Non retenu (voir function suivante)
      * @return void 
      */
     public function search($mots = null){
@@ -107,10 +108,13 @@ class FilmRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
-       /**
-    * @return PaginationInterface
-    */
-
+  
+    /**
+     * Barre de recherche; Query sur les champs Film
+     *
+     * @param SearchHomeData $search
+     * @return PaginationInterface
+     */
     public function findHomeSearch(SearchHomeData $search): PaginationInterface
     {
         $query = $this
