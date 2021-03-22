@@ -4,19 +4,34 @@ namespace App\Controller;
 
 use App\Entity\Modele;
 use App\Form\ModeleType;
+use App\Data\CameraSearchData;
+use App\Form\SearchCameraForm;
 use App\Repository\ModeleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/modele")
  */
 class ModeleController extends AbstractController
 {
+
+      /**
+     * @var ModeleRepository
+     */
+
+    private $repository;
+
+    public function __construct(ModeleRepository $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
-     * @Route("/", name="modele_index", methods={"GET"})
+     * @Route("/index", name="modele_index", methods={"GET"})
      */
     public function index(ModeleRepository $modeleRepository): Response
     {
@@ -90,5 +105,34 @@ class ModeleController extends AbstractController
         }
 
         return $this->redirectToRoute('modele_index');
+    }
+
+     /**
+     * @Route("/", name="modele", methods={"GET"})
+     */
+    public function filmList(Request $request): Response
+    {
+        // $films = $this->repository->findAll();
+        
+        $data = new CameraSearchData;
+        $data->page =$request->get('page', 1);
+        $form = $this->createForm(SearchCameraForm::class, $data);
+        $form->handleRequest($request);
+        $modeles = $this->repository->findSearch($data);
+        if ($request->isXmlHttpRequest()){
+            return new JsonResponse([
+                'content' => $this->renderView('modele/_film_list.html.twig', ['modeles' =>$modeles]),
+                'sorting' => $this->renderView('modele/_sorting.html.twig', ['modeles' =>$modeles])
+            ]);
+}
+
+        if(!$modeles){
+            throw new NotFoundHttpException('Pas de films');
+        }
+
+        return $this->render('modele/modele_list.html.twig', [
+            "modeles" => $modeles,
+            'form' => $form->createView()
+        ]);
     }
 }
