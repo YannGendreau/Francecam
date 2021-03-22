@@ -20,6 +20,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 class ModeleRepository extends ServiceEntityRepository
 {
 
+   
+
           /**
      * Undocumented variable
      *
@@ -33,6 +35,31 @@ class ModeleRepository extends ServiceEntityRepository
         parent::__construct($registry, Modele::class);
         $this->paginator = $paginator;
     }
+
+
+
+     //Modele classé par date
+
+     public function modeleByDateDesc()
+     {
+        return $this->createQueryBuilder('m')
+        ->orderBy('m.createdAt', 'DESC')
+        ->setMaxResults(3)
+        ->getQuery()
+        ->getResult()
+    ;
+     }
+     //Modele classé par date
+
+     public function modeleByIdAsc()
+     {
+        return $this->createQueryBuilder('m')
+        ->orderBy('m.name', 'ASC')
+        ->setMaxResults(6)
+        ->getQuery()
+        ->getResult()
+    ;
+     }
 
       /**
      * Recherche des films en cameras en fonction du formulaire
