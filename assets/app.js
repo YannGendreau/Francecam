@@ -28,7 +28,55 @@ imagesContext.keys().forEach(imagesContext);
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 import $ from 'jquery';
 
-console.log('Hello Webpack Encore! Edit me in assets/app.js');
+// console.log('Hello Webpack Encore! Edit me in assets/app.js');
+
+//TOGGLE TABS PAGE FILM, CAMERA, MARQUE
+
+var tabs = document.querySelectorAll(".buttonContainer button");
+var tab_wraps = document.querySelectorAll(".tabPanel");
+var border = document.getElementsByClassName(".borderBottom")[0];
+
+tabs.forEach(function(tab, tab_index){
+	tab.addEventListener("click", function(){
+		tabs.forEach(function(tab){
+			tab.classList.remove("active");
+		})
+		tab.classList.add("active");
+
+		tab_wraps.forEach(function(content, content_index){
+			if(content_index == tab_index){
+				content.style.display = "block";
+			}
+			else{
+				content.style.display = "none";
+			}
+		})
+	})
+})
+
+//Close up FlashMessage
+
+setTimeout(function() {
+	$ ('#showflash').slideUp("slow");
+}, 5000)
+setTimeout(function() {
+	$ ('.success').slideUp("slow");
+}, 5000)
+
+
+//Limit character Title
+
+var title = document.getElementById("title");
+
+console.log(title.innerText.length);
+
+	if (title.innerText.length > 20){
+		title.style.fontSize = ('3.5rem')
+	}else if(title.innerText.length > 40){
+		title.style.fontSize = ('3rem')
+	}else{
+		title.style.fontSize = ('4.5rem')
+	}
 
 
 // FINAL : ACCORDEON FILTRE DE RECHERCHE (en dev)
@@ -104,38 +152,5 @@ console.log('Hello Webpack Encore! Edit me in assets/app.js');
 // }
 
 //----------------------------------------------------------------------
-
-//TOGGLE TABS PAGE FILM, CAMERA, MARQUE
-
-var tabs = document.querySelectorAll(".buttonContainer button");
-var tab_wraps = document.querySelectorAll(".tabPanel");
-var border = document.getElementsByClassName(".borderBottom")[0];
-
-tabs.forEach(function(tab, tab_index){
-	tab.addEventListener("click", function(){
-		tabs.forEach(function(tab){
-			tab.classList.remove("active");
-		})
-		tab.classList.add("active");
-
-		tab_wraps.forEach(function(content, content_index){
-			if(content_index == tab_index){
-				content.style.display = "block";
-			}
-			else{
-				content.style.display = "none";
-			}
-		})
-	})
-})
-
-//Close up FlashMessage
-
-setTimeout(function() {
-	$ ('#showflash').slideUp("slow");
-}, 5000)
-setTimeout(function() {
-	$ ('.success').slideUp("slow");
-}, 5000)
 
 
