@@ -129,21 +129,7 @@ tabs.forEach(function(tab, tab_index){
 	})
 })
 
-
-
-
-
-//   // after 10 seconds (10 000 milliseconds), execute the function to hide it
-//   setTimeout(function () {
-//     document.getElementById('showflash').classList.add('hidden');
-//   }, 5000);
-
-//   setTimeout(function() {
-// 	var loader = document.getElementById("showflash");
-// 	loader.style.transition = '.5s';
-// 	loader.style.opacity = '0';
-// 	loader.style.visibility = 'hidden';
-//   }, 5000);
+//Close up FlashMessage
 
 setTimeout(function() {
 	$ ('#showflash').slideUp("slow");
