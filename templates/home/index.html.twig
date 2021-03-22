@@ -46,13 +46,18 @@
 		<!-- DERNIERS AJOUTS -->
 
 		<div class="latest">
-			<h2>Dernières caméras</h2>
-			<div class="homeCameraList">
-				{% include "includes/film_includes/_homeCameraList.html.twig" %}
+			<div class="flexLatest">
+				<div class="homeCameraList">
+					<h2>Dernières caméras</h2>
+					{# {% include "modele/_modele_list.html.twig" %} #}
+					{% include "includes/film_includes/_homeCameraList.html.twig" %}
+				</div>
 			</div>
-			<h2>Derniers films</h2>
-			<div class="homeCameraList">
-				{% include "includes/film_includes/_homeFilmList.html.twig" %}
+			<div class="flexLatest">
+				<div class="homeFilmList">
+					<h2>Derniers films</h2>
+					{% include "includes/film_includes/_homeFilmList.html.twig" %}
+				</div>
 			</div>
 		</div>
 	</div>
