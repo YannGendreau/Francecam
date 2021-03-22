@@ -7,14 +7,16 @@
 	<div id="container">
 		<div class="resultSearch">
 			<h1>Résultats de recherche</h1>
-			{% if film | length >= 1 %}
+			{% if films | length >= 1 %}
 				<div class="resultContainer">
 					{% include "search_home/_results_film.html.twig" %}
 				</div>
 			{% endif %}
 			{% if modeles | length >= 1 %}
-				<div class="resultContainer">
-					{% include "search_home/_results_modele.html.twig" %}
+				<div
+					class="resultContainer">
+					{# {% include "search_home/_results_modele.html.twig" %} #}
+					{% include "modele/_modele_list.html.twig" %}
 				</div>
 			{% endif %}
 		</div>

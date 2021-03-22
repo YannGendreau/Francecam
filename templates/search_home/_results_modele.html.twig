@@ -1,26 +1,5 @@
 <div class="resultTitle">
 	<h2>Cameras</h2>
 </div>
-{% for camera in modeles %}
-	<div class="resultCard">
-		<div class="cardSearch">
-			<div class="cardGridCam search">
-				<div class="cardSmCam">
-					<div class="imgCardCam">
-						<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="" alt="image de la camera {{camera.marque}} {{camera.name}}"></a>
-					</div>
-					<a href="{{path('modele_show', {slug:camera.slug} )}}">
-						<div class="smDescriptionOverlay">
-							<em>{{camera.marque}}
-								{{camera.name}}</em>
-						</div>
-						<div class="description__overlay description__overlay--blur">
-							<h3>{{camera.marque}}</h3>
-							<h2>{{camera.name}}</h2>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-{% endfor %}
+
+{% include "/modele/_modele_list.html.twig" %}

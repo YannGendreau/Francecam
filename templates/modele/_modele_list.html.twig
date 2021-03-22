@@ -1,32 +1,30 @@
 <div class="tableau">
-	{% for c in modeles %}
-		{# {% for c in modele.modeleName %} #}
+	{% for camera in modeles %}
 		<div class="cardGridCam">
 			<div class="cardSmCam">
 				<div class="imgCardCam">
-					<a href="{{path('modele_show', {slug:c.slug} )}}"><img src={{c.image}} alt="placeholder"></a>
+					{% if camera.img %}
+						<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
+					{% endif %}
+					{# <a href="{{path('modele_show', {slug:camera.slug} )}}"><img src={{camera.imgFile}} alt="placeholder"></a> #}
 				</div>
-				<a href="{{path('modele_show', {slug:c.slug} )}}">
+				<a href="{{path('modele_show', {slug:camera.slug} )}}">
 					<div class="smDescriptionOverlay">
-						<em>{{c.marque}}
+						<em>{{camera.marque}}
 
-							{{c.name}}</em>
+							{{camera.name}}</em>
 					</div>
 					<div class="description__overlay description__overlay--blur">
-
-						<h3>{{c.marque}}</h3>
+						<h3>{{camera.marque}}</h3>
 						<h2>
-							{{c.name}}</h2>
+							{{camera.name}}</h2>
 						{# <h5>{{c.cameraFormat.cameraType.name}}</h5> #}
-						{# <h5>{{c.cameraFormat.name}}</h5> #}
-
-
+						{% for f in camera.format %}
+							<h5>{{f.name}}</h5>
+						{% endfor %}
 					</div>
 				</a>
-
-
 			</div>
 		</div>
-		{# {% endfor %} #}
 	{% endfor %}
 </div>

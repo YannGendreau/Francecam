@@ -92,8 +92,9 @@ class ModeleRepository extends ServiceEntityRepository
     {
         $query = $this
         ->createQueryBuilder('c')
-        ->select('c', 'm')
+        ->select('c', 'm', 'f')
         ->leftJoin('c.marque', 'm')    
+        ->leftJoin('c.format', 'f')    
         ;
         
         if (!empty($search->q)) {
@@ -105,24 +106,30 @@ class ModeleRepository extends ServiceEntityRepository
         ;
 }
 
+        if (!empty($search->format)) {
+        $query = $query
+        ->andWhere('f.id IN (:format)')
+        ->setParameter('format', $search->format)
+        ;
+        }
         if (!empty($search->marque)) {
         $query = $query
         ->andWhere('m.id IN (:marques)')
         ->setParameter('marques', $search->marque)
         ;
-}
+        }
 
-            if (!empty($search->decade)) {
-            $query = $query
-            ->andWhere('c.decade IN (:decade)')
-            ->setParameter('decade', $search->decade)
-            ;
-}
-            $query= $query->getQuery();
-             return $this->paginator->paginate(
-            $query,
-            $search->page,
-            20
+        if (!empty($search->decade)) {
+        $query = $query
+        ->andWhere('c.decade IN (:decade)')
+        ->setParameter('decade', $search->decade)
+        ;
+        }
+        $query= $query->getQuery();
+            return $this->paginator->paginate(
+        $query,
+        $search->page,
+        20
 
         );      
     }

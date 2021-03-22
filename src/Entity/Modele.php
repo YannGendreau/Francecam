@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\ModeleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use App\Repository\ModeleRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ModeleRepository::class)
+ * @Vich\Uploadable()
  * @ORM\Table(name="modele", indexes={@ORM\Index(columns={"name"}, flags={"fulltext"})})
  */
 class Modele
@@ -76,8 +80,6 @@ class Modele
      */
     private $sync;
 
- 
-
     /**
      * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="modeles", cascade={"persist"})
      */
@@ -118,6 +120,31 @@ class Modele
      */
     private $sortie;
 
+          /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $img;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="camera_images", fileNameProperty="img")
+     */
+    private $imgFile;
+
+    /**
+        *
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+        /**
+     
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
 
     public function __construct()
     {
@@ -125,6 +152,7 @@ class Modele
         $this->format = new ArrayCollection();
         $this->shutter = new ArrayCollection();
         $this->mount = new ArrayCollection();
+        $this->updatedAt = new \DateTime();
       
     }
 
@@ -420,6 +448,57 @@ class Modele
         $this->sortie = $sortie;
 
         return $this;
+    }
+
+     /**
+     * Get the value of marqueName
+     */ 
+    public function getImg()
+    {
+        return $this->img;
+    }
+
+    /**
+     * Set the value of logoName
+     *
+     * @return  self
+     */ 
+    public function setImg($img)
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
+        /**
+     * Get
+     * @return null|File
+     
+     */ 
+    public function getImgFile(): ?File
+    {
+        return $this->imgFile;
+    }
+
+    /**
+     * Set /*
+     *@param null|File
+     * @return  self
+     */ 
+    public function setImgFile(?File $imgFile)
+    {
+        $this->imgFile = $imgFile;
+
+        if($imgFile) {
+            $this->updatedAt = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
     }
 
 
