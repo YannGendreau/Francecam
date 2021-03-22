@@ -41,7 +41,7 @@ class UserRegistrationFormType extends AbstractType
                 'first_options' => [
                     'attr' => [
                         'class'=>'lf--input-repeated',
-                        'placeholder' => 'Nouveau mot de passe'
+                        'placeholder' => 'Mot de passe'
                         ],
                     'constraints' => [
                         new NotBlank([
@@ -54,7 +54,7 @@ class UserRegistrationFormType extends AbstractType
                             'max' => 4096,
                         ]),
                     ],
-                    // 'label' => 'Nouveau mot de passe',
+                
                     'label' => false,
                 ],
                 'second_options' => [
