@@ -2,8 +2,9 @@
 
 namespace App\Data;
 
-use App\Entity\Modele;
+use App\Entity\Format;
 use App\Entity\Marque;
+use App\Entity\Modele;
 use Doctrine\ORM\Mapping\OrderBy;
 
 
@@ -48,11 +49,18 @@ class CameraSearchData{
     public $decade = [];
 
     /**
-     * Tableau de décennies
+     * Tableau de sortie
      *
      * @var Modele[]
      */
     public $sortie = [];
+
+    /**
+     * Tableau de sortie
+     *
+     * @var Format[]
+     */
+    public $format = [];
 
     
 }

@@ -13,6 +13,7 @@ use App\Entity\Modele;
 use App\Entity\CameraType;
 use App\Data\FilmSearchData;
 use App\Data\CameraSearchData;
+use App\Entity\Format;
 use App\Repository\FilmRepository;
 use App\Repository\ModeleRepository;
 use PhpParser\Node\Expr\AssignOp\Concat;
@@ -51,6 +52,14 @@ class SearchCameraForm extends AbstractType
                 ]
 
             ])
+            ->add('format', EntityType::class,[
+                'label' => false,
+                'required'=> false,
+                'class' => Format::class,
+                'expanded'=> true,
+                'multiple' => true
+            ])
+
             ->add('marque', EntityType::class,[
                 'label' => false,
                 'required'=> false,
