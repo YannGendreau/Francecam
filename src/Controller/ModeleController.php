@@ -68,8 +68,12 @@ class ModeleController extends AbstractController
      */
     public function show(Modele $modele): Response
     {
+
+        $modeles = $this->repository->modeleByIdAsc();
+
         return $this->render('modele/show.html.twig', [
             'modele' => $modele,
+            'modeles' => $modeles
         ]);
     }
 
@@ -124,7 +128,7 @@ class ModeleController extends AbstractController
                 'content' => $this->renderView('modele/_film_list.html.twig', ['modeles' =>$modeles]),
                 'sorting' => $this->renderView('modele/_sorting.html.twig', ['modeles' =>$modeles])
             ]);
-}
+        }
 
         if(!$modeles){
             throw new NotFoundHttpException('Pas de films');

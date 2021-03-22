@@ -25,7 +25,7 @@ class HomeController extends AbstractController
     public function index( ModeleRepository $modeleRepository, FilmRepository $filmRepository, MarqueRepository $marqueRepository ,Request $request, SearchHomeData $search): Response
     {
        //renvoie tous les cameras et films 
-        $cameras = $modeleRepository->findAll();
+        $cameras = $modeleRepository->modeleByDateDesc();
         $films = $filmRepository->findAll();
 
         //Barre de recherche
