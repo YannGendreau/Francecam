@@ -3,12 +3,15 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Modele;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 
 class ModeleCrudController extends AbstractCrudController
 {
@@ -22,6 +25,12 @@ class ModeleCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->HideOnForm(),
+            Field::new('imgFile')
+                ->setFormType(VichImageType::class),
+            ImageField::new('img')
+                ->setBasePath('build/images/imagesCam')
+                ->setUploadDir('/public/build/images/imagesCam/')
+                ->hideOnForm(),
             AssociationField::new('marque'),
             TextField::new('name'),
             AssociationField::new('format'),
