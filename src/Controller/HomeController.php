@@ -33,7 +33,7 @@ class HomeController extends AbstractController
         $data->page =$request->get('page', 1);
         $form = $this->createForm(SearchHomeType::class, $data);
         $form->handleRequest($request);
-        $film = $filmRepository->findHomeSearch($data);
+        $films = $filmRepository->findHomeSearch($data);
         $marque = $marqueRepository->findHomeSearch($data);
         $modeles = $modeleRepository->findHomeSearch($data);
       
@@ -41,7 +41,7 @@ class HomeController extends AbstractController
        
             return $this->render('search_home/index.html.twig', [
                 
-                'film' => $film,
+                'films' => $films,
                 'marque' => $marque,
                 'modeles' => $modeles,
 

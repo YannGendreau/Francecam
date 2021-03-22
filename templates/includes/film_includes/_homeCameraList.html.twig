@@ -1,10 +1,11 @@
+{# <h2>Dernières caméras</h2> #}
 {% for camera in cameras |slice(0, 3)%}
 	<div class="cardGridCam">
 		<div class="cardSmCam">
-			<div
-				class="imgCardCam">
-				{# <a href="{{path('modele_show', {slug:camera.slug} )}}"><img src={{camera.image}} alt="placeholder"></a> #}
-				<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="alt=" placeholder""></a>
+			<div class="imgCardCam">
+				{% if camera.img %}
+					<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
+				{% endif %}
 			</div>
 			<a href="{{path('modele_show', {slug:camera.slug} )}}">
 				<div class="smDescriptionOverlay">
