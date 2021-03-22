@@ -47,5 +47,12 @@ class CameraSearchData{
      */
     public $decade = [];
 
+    /**
+     * Tableau de décennies
+     *
+     * @var Modele[]
+     */
+    public $sortie = [];
+
     
 }

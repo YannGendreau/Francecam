@@ -1,0 +1,32 @@
+<div class="tableau">
+	{% for c in modeles %}
+		{# {% for c in modele.modeleName %} #}
+		<div class="cardGridCam">
+			<div class="cardSmCam">
+				<div class="imgCardCam">
+					<a href="{{path('modele_show', {slug:c.slug} )}}"><img src={{c.image}} alt="placeholder"></a>
+				</div>
+				<a href="{{path('modele_show', {slug:c.slug} )}}">
+					<div class="smDescriptionOverlay">
+						<em>{{c.marque}}
+
+							{{c.name}}</em>
+					</div>
+					<div class="description__overlay description__overlay--blur">
+
+						<h3>{{c.marque}}</h3>
+						<h2>
+							{{c.name}}</h2>
+						{# <h5>{{c.cameraFormat.cameraType.name}}</h5> #}
+						{# <h5>{{c.cameraFormat.name}}</h5> #}
+
+
+					</div>
+				</a>
+
+
+			</div>
+		</div>
+		{# {% endfor %} #}
+	{% endfor %}
+</div>

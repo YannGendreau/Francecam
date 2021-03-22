@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Modele;
 use App\Data\SearchHomeData;
+use App\Data\CameraSearchData;
 use Knp\Component\Pager\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
@@ -82,4 +83,48 @@ class ModeleRepository extends ServiceEntityRepository
 
         );      
     }
+
+      /**
+    * @return PaginationInterface
+    */
+
+    public function findSearch(CameraSearchData $search): PaginationInterface
+    {
+        $query = $this
+        ->createQueryBuilder('c')
+        ->select('c', 'm')
+        ->leftJoin('c.marque', 'm')    
+        ;
+        
+        if (!empty($search->q)) {
+        $query = $query
+            ->andWhere('m.name LIKE :q')
+            ->orWhere('c.name LIKE :q')
+            ->orWhere('c.sortie LIKE :q')
+            ->setParameter('q', "%{$search->q}%")
+        ;
+}
+
+        if (!empty($search->marque)) {
+        $query = $query
+        ->andWhere('m.id IN (:marques)')
+        ->setParameter('marques', $search->marque)
+        ;
+}
+
+            if (!empty($search->decade)) {
+            $query = $query
+            ->andWhere('c.decade IN (:decade)')
+            ->setParameter('decade', $search->decade)
+            ;
+}
+            $query= $query->getQuery();
+             return $this->paginator->paginate(
+            $query,
+            $search->page,
+            20
+
+        );      
+    }
+
 }
