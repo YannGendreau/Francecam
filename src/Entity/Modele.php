@@ -108,6 +108,16 @@ class Modele
      */
     private $marque;
 
+        /**
+     * @ORM\Column(type="integer")
+     */
+    private $decade;
+
+        /**
+     * @ORM\Column(type="integer", length=4)
+     */
+    private $sortie;
+
 
     public function __construct()
     {
@@ -384,6 +394,30 @@ class Modele
     public function setMarque(?Marque $marque): self
     {
         $this->marque = $marque;
+
+        return $this;
+    }
+
+    public function getDecade(): ?int
+    {
+        return $this->decade;
+    }
+
+    public function setDecade(int $decade): self
+    {
+        $this->decade = $decade;
+
+        return $this;
+    }
+
+    public function getSortie(): ?string
+    {
+        return $this->sortie;
+    }
+
+    public function setSortie(string $sortie): self
+    {
+        $this->sortie = $sortie;
 
         return $this;
     }
