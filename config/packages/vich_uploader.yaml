@@ -3,21 +3,21 @@ vich_uploader:
 
     mappings:
         posters:
-            uri_prefix: build/images/posters
-            upload_destination: '%kernel.project_dir%/public/build/images/posters'
+            uri_prefix: assets/images/posters
+            upload_destination: '%kernel.project_dir%/assets/images/posters'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
 
         marque_images:
-            uri_prefix: build/images/marques
-            upload_destination: '%kernel.project_dir%/public/build/images/marques'
+            uri_prefix: assets/images/marques
+            upload_destination: '%kernel.project_dir%/assets/images/marques'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
 
         camera_images:
-            uri_prefix: build/images/imagesCam
-            upload_destination: '%kernel.project_dir%/public/build/images/imagesCam'
+            uri_prefix: assets/images/imagesCam
+            upload_destination: '%kernel.project_dir%/assets/images/imagesCam'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
 
         thumbnails:
-            uri_prefix: build/images/thumbnails
-            upload_destination: '%kernel.project_dir%/public/build/images/thumbnails'
+            uri_prefix: assets/images/thumbnails
+            upload_destination: '%kernel.project_dir%/assets/images/thumbnails'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
