@@ -13,6 +13,8 @@
 			<div class="imageCam">
 				{% if modele.img %}
 					<img src="/build/images/imagesCam/{{modele.img}}" alt="Photographie de la camera {{modele.marque}} {{modele.name}}">
+				{% else %}
+					<img class="camLogo" src="/build/images/illustrations/camera-logo.png" alt="illustration de camera par défaut">
 				{% endif %}
 				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
 			</div>
@@ -76,7 +78,7 @@
 
 
 									{% endfor %}
-									{% if modeles | length > 1 %}
+									{% if modele | length > 1 %}
 										<p>Voir plus</p>
 									{% endif %}
 
