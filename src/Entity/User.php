@@ -70,10 +70,10 @@ class User implements UserInterface
      */
     private $updatedAt;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $isVerified;
+    // /**
+    //  * @ORM\Column(type="boolean", nullable=true)
+    //  */
+    // private $isVerified;
 
     public function __construct()
     {

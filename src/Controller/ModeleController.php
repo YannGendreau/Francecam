@@ -36,7 +36,7 @@ class ModeleController extends AbstractController
     public function index(ModeleRepository $modeleRepository): Response
     {
         return $this->render('modele/index.html.twig', [
-            'modeles' => $modeleRepository->findAll(),
+            'modele' => $modeleRepository->findAll(),
         ]);
     }
 
@@ -69,11 +69,9 @@ class ModeleController extends AbstractController
     public function show(Modele $modele): Response
     {
 
-        $modeles = $this->repository->modeleByIdAsc();
-
         return $this->render('modele/show.html.twig', [
-            'modele' => $modele,
-            'modeles' => $modeles
+            // 'modele' => $modele,
+            'modele' => $modele
         ]);
     }
 
@@ -135,7 +133,7 @@ class ModeleController extends AbstractController
         }
 
         return $this->render('modele/modele_list.html.twig', [
-            "modeles" => $modeles,
+            "modele" => $modeles,
             'form' => $form->createView()
         ]);
     }

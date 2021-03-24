@@ -43,21 +43,22 @@ class ModeleRepository extends ServiceEntityRepository
      public function modeleByDateDesc()
      {
         return $this->createQueryBuilder('m')
-        ->orderBy('m.createdAt', 'DESC')
-        ->setMaxResults(3)
-        ->getQuery()
-        ->getResult()
+            ->orderBy('m.createdAt', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
     ;
      }
+     
      //Modele classé par date
 
      public function modeleByIdAsc()
      {
         return $this->createQueryBuilder('m')
-        ->orderBy('m.name', 'ASC')
-        ->setMaxResults(6)
-        ->getQuery()
-        ->getResult()
+            ->orderBy('m.name', 'ASC')
+            ->setMaxResults(6)
+            ->getQuery()
+            ->getResult()
     ;
      }
 
@@ -85,20 +86,20 @@ class ModeleRepository extends ServiceEntityRepository
     public function findHomeSearch(SearchHomeData $search): PaginationInterface
     {
         $query = $this
-                    ->createQueryBuilder('g')
-                    ->select('g','m', 'f')
-                    ->leftJoin('g.marque', 'm')
-                    ->leftJoin('g.films', 'f')
-                   
-                    ;
+                ->createQueryBuilder('g')
+                ->select('g','m', 'f')
+                ->leftJoin('g.marque', 'm')
+                ->leftJoin('g.films', 'f')
+                
+                ;
 
         if (!empty($search->r)) {
             $query = $query
-                    ->andWhere('g.name LIKE :r')
-                    ->orWhere('f.title LIKE :r')
-                    ->orWhere('m.name LIKE :r')
-                    ->setParameter('r', "%{$search->r}%")
-                    ;
+                ->andWhere('g.name LIKE :r')
+                ->orWhere('f.title LIKE :r')
+                ->orWhere('m.name LIKE :r')
+                ->setParameter('r', "%{$search->r}%")
+                ;
         }       
        
             $query= $query->getQuery();
@@ -106,9 +107,10 @@ class ModeleRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            20
+            3
 
-        );      
+        )
+        ;      
     }
 
       /**
@@ -118,10 +120,10 @@ class ModeleRepository extends ServiceEntityRepository
     public function findSearch(CameraSearchData $search): PaginationInterface
     {
         $query = $this
-        ->createQueryBuilder('c')
-        ->select('c', 'm', 'f')
-        ->leftJoin('c.marque', 'm')    
-        ->leftJoin('c.format', 'f')    
+            ->createQueryBuilder('c')
+            ->select('c', 'm', 'f')
+            ->leftJoin('c.marque', 'm')    
+            ->leftJoin('c.format', 'f')    
         ;
         
         if (!empty($search->q)) {
@@ -131,32 +133,35 @@ class ModeleRepository extends ServiceEntityRepository
             ->orWhere('c.sortie LIKE :q')
             ->setParameter('q', "%{$search->q}%")
         ;
-}
+        }
 
         if (!empty($search->format)) {
         $query = $query
-        ->andWhere('f.id IN (:format)')
-        ->setParameter('format', $search->format)
+            ->andWhere('f.id IN (:format)')
+            ->setParameter('format', $search->format)
         ;
         }
+
         if (!empty($search->marque)) {
         $query = $query
-        ->andWhere('m.id IN (:marques)')
-        ->setParameter('marques', $search->marque)
+            ->andWhere('m.id IN (:marques)')
+            ->setParameter('marques', $search->marque)
         ;
         }
 
         if (!empty($search->decade)) {
         $query = $query
-        ->andWhere('c.decade IN (:decade)')
-        ->setParameter('decade', $search->decade)
+            ->andWhere('c.decade IN (:decade)')
+            ->setParameter('decade', $search->decade)
         ;
         }
+
         $query= $query->getQuery();
-            return $this->paginator->paginate(
+
+        return $this->paginator->paginate(
         $query,
         $search->page,
-        20
+        12
 
         );      
     }

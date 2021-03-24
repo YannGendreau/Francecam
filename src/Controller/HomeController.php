@@ -25,8 +25,8 @@ class HomeController extends AbstractController
     public function index( ModeleRepository $modeleRepository, FilmRepository $filmRepository, MarqueRepository $marqueRepository ,Request $request, SearchHomeData $search): Response
     {
        //renvoie tous les cameras et films 
-        $cameras = $modeleRepository->modeleByDateDesc();
-        $films = $filmRepository->findAll();
+        $modeles = $modeleRepository->modeleByDateDesc();
+        $films = $filmRepository->filmByDateDesc();
 
         //Barre de recherche
         $data = new SearchHomeData;
@@ -35,7 +35,7 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         $films = $filmRepository->findHomeSearch($data);
         $marque = $marqueRepository->findHomeSearch($data);
-        $modeles = $modeleRepository->findHomeSearch($data);
+        $modele = $modeleRepository->findHomeSearch($data);
       
         if ($form->isSubmitted() && $form->isValid()) {
        
@@ -43,14 +43,14 @@ class HomeController extends AbstractController
                 
                 'films' => $films,
                 'marque' => $marque,
-                'modeles' => $modeles,
+                'modele' => $modele,
 
             ]);
         }
         
 
         return $this->render('home/index.html.twig', [
-            'cameras' => $cameras,
+            'modele' => $modeles,
             'films' => $films,
             'form' => $form->createView()
         ]);

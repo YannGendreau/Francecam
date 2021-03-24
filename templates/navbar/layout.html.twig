@@ -103,7 +103,7 @@
 							<ul class="animated fadeIn">
 
 								<li>
-									<a href="#">Action</a>
+									<a href="{{path('films')}}">Action</a>
 								</li>
 								<li>
 									<a href="#">Comédie</a>
@@ -137,7 +137,7 @@
 									<a href="#">1920</a>
 								</li>
 								<li>
-									<a href="#">1930</a>
+									<a href="">1930</a>
 								</li>
 								<li>
 									<a href="#">1940</a>
@@ -164,8 +164,8 @@
 				</li>
 
 				{# {% if app.request.attributes.get('_route') != 'accueil' %}
-																	{% include "includes/_searchtop.html.twig" %}
-																{% endif %} #}
+																																																									{% include "includes/_searchtop.html.twig" %}
+																																																								{% endif %} #}
 
 
 			</div>
@@ -232,44 +232,11 @@
 					{% endif %}
 				</ul>
 			</div>
-			{# <div class="connexion">
-																																																																																																																																																																						<div class="profile">
-																																																																																																																																																																							<ul class="exo-menu">
-																																																																																																																																																																								{% if app.user %}
-																																																																																																																																																																			
-																																																																																																																																																																									<li class="drop-down">
-																																																																																																																																																																										<a href="#">{{app.user.name}}</a>
-																																																																																																																																																																									</li>
-																																																																																																																																																																									<li><img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt=""></li>
-																																																																																																																																																																			
-																																																																																																																																																																									<li class="drop-down">
-																																																																																																																																																																										<a href="{{path('app_logout')}}">Déconnexion</a>
-																																																																																																																																																																									</li>
-																																																																																																																																																																			
-																																																																																																																																																																								{% else %}
-																																																																																																																																																																			
-																																																																																																																																																																									<li class="drop-down">
-																																																																																																																																																																										<a href="{{path('app_login')}}">Connexion</a>
-																																																																																																																																																																									</li>
-																																																																																																																																																																			
-																																																																																																																																																																									<li class="drop-down">
-																																																																																																																																																																										<a href="{{path('app_register')}}">S'inscrire</a>
-																																																																																																																																																																									</li>
-																																																																																																																																																																			
-																																																																																																																																																																								{% endif %}
-																																																																																																																																																																			
-																																																																																																																																																																							</ul>
-																																																																																																																																																																						</div>
-																																																																																																																																																																					</div> #}
-
 		</div>
 
 		{% block content %}{% endblock %}
-		{# </main> #}
-		{% block footer %}
-			<div class="footer">
-				<p>le bloc footer</p>
-			</div>
 
+		{% block footer %}
+			{% include "navbar/_footer.html.twig" %}
 		{% endblock %}
 	{% endblock %}
