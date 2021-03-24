@@ -64,20 +64,56 @@ setTimeout(function() {
 }, 5000)
 
 
-//Limit character Title
+// var i;
+
+// for (i = 0; i < col.length; i++) {
+//   col[i].addEventListener("click", function() {
+//     this.classList.toggle("active");
+
+//     var content = this.nextElementSibling;
+
+//     if (content.style.maxHeight) {
+// 		content.style.maxHeight = "0px";
+//     } else {
+// 		content.style.maxHeight = content.scrollHeight + "px";
+//     }
+//   });
+// }
+
+
+
+
+
+//Limit character Title card
+
+var list = document.getElementsByClassName('tableau');
+var i;
+
+
+for (i = 0; i < list.length; i++) {
+	
+	var over = document.getElementById("over");
+
+	if (over.innerText.length >= 20){
+		over.style.fontSize = ('1.5rem')
+	}else if(over.innerText.length > 40){
+		over.style.fontSize = ('1rem')
+	}else{
+		over.style.fontSize = ('2rem')
+	}
+
+}
+
+// Limit character Title show
 
 var title = document.getElementById("title");
-
-console.log(title.innerText.length);
-
-	if (title.innerText.length > 20){
+	if (title.innerText.length >= 20 && title.innerText.length < 39){
 		title.style.fontSize = ('3.5rem')
-	}else if(title.innerText.length > 40){
+	}else if(title.innerText.length >= 40){
 		title.style.fontSize = ('3rem')
 	}else{
 		title.style.fontSize = ('4.5rem')
 	}
-
 
 // FINAL : ACCORDEON FILTRE DE RECHERCHE (en dev)
 
