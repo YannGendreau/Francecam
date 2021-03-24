@@ -555,27 +555,6 @@ a {
                 width: 1000px;
                 @include flex-start-center();
                 flex-wrap: wrap;
-
-                h2 {
-                    width: 100%;
-                    font-family: 'Roboto Condensed', sans-serif;
-                    font-size: 2rem;
-                    text-transform: uppercase;
-                    color: $titleDisplay;
-                    margin-bottom: 10px;
-                }
-
-                .postersHome {
-                    width: 900px;
-                    @include flex-center();
-                    flex-wrap: wrap;
-                }
-
-                .cardGridCam {
-                    height: 190px;
-                    max-width: 300px;
-                    min-width: 300px;
-                }
             }
         }
     }
@@ -1737,6 +1716,7 @@ a {
         }
 
         .imgCam {
+            width: 400px;
 
             img {
                 width: 400px;
@@ -1769,8 +1749,6 @@ a {
         @include flex-center();
         min-height: 350px;
 
-
-
         .imgCam {
             width: 100%;
 
@@ -1781,7 +1759,10 @@ a {
         }
 
         .centerMarquePic {
-            // border: 1px solid blue;
+
+            .camLogo {
+                width: 400px;
+            }
 
             .imgMov {
 
