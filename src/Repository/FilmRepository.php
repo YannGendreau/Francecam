@@ -80,7 +80,7 @@ class FilmRepository extends ServiceEntityRepository
             ;
         }
             $query= $query->getQuery();
-        return $this->paginator->paginate(
+            return $this->paginator->paginate(
             $query,
             $search->page,
             20
@@ -138,8 +138,20 @@ class FilmRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            20
+            6
 
         );      
     }
+
+       //Film classé par date descendante
+
+       public function filmByDateDesc()
+       {
+          return $this->createQueryBuilder('f')
+              ->orderBy('f.createdAt', 'DESC')
+              ->setMaxResults(6)
+              ->getQuery()
+              ->getResult()
+      ;
+       }
 }

@@ -170,10 +170,23 @@ class FilmController extends AbstractController
      *
      * @Route("/validate", name="film_validate")
      */
-    public function validateFilm(Film $film): Response
+    // public function validateFilm(Film $film): Response
+    // {
+    //     return $this->render('film/film_validation.html.twig', [
+    //        "film" => $film
+    //     ]);
+    // }
+
+    /**
+     * Undocumented function
+     * @Route("/decennie", name="films_decade_30")
+     *
+     * @return void
+     */
+    public function decadeAction(Request $request, Film $films)
     {
-        return $this->render('film/film_validation.html.twig', [
-           "film" => $film
-        ]);
+        
+        dd($request->query->get('decade'));
+        return $this->render('film/film_validation.html.twig');
     }
 }
