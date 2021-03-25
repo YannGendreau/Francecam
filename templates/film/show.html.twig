@@ -18,9 +18,15 @@
 				{% if film.poster %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
 				{% else %}
-					<div class="addPoster">
-						<a href="{{path('film_edit', {slug:film.slug})}}">Ajouter une affiche</a>
-					</div>
+					{% if film.user %}
+						<div class="addPoster">
+							<a href="{{path('film_edit', {slug:film.slug})}}">Ajouter une affiche</a>
+						</div>
+					{% else %}
+						<div class="addPoster">
+							<h4>Ajouter une affiche</h4>
+						</div>
+					{% endif %}
 				{% endif %}
 				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt="ombre portée d'affiche"></div>
 			</div>
@@ -144,16 +150,30 @@
 											<div class="cardGridCam">
 												<div class="cardSmCam">
 													<div class="imgCardCam">
-														<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="" alt="image de la camera {{camera.marque}} {{camera.name}}"></a>
+														{% if camera.img %}
+															<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
+														{% else %}
+															<div class="description">
+																<h3>{{camera.marque}}</h3>
+																<h2>{{camera.name}}</h2>
+																{# <h5>{{c.cameraFormat.cameraType.name}}</h5> #}
+																{% for f in camera.format %}
+																	<h5>{{f.name}}</h5>
+																{% endfor %}
+															</div>
+														{% endif %}
 													</div>
 													<a href="{{path('modele_show', {slug:camera.slug} )}}">
-														<div class="smDescriptionOverlay">
-															<em>{{camera.marque}}
-																{{camera.name}}</em>
-														</div>
 														<div class="description__overlay description__overlay--blur">
 															<h3>{{camera.marque}}</h3>
-															<h2>{{camera.name}}</h2>
+															<h2>
+																{{camera.name}}</h2>
+															{% for f in camera.type %}
+																<h5>{{f.name}}</h5>
+															{% endfor %}
+															{% for f in camera.format %}
+																<h5>{{f.name}}</h5>
+															{% endfor %}
 														</div>
 													</a>
 												</div>
