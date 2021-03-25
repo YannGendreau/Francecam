@@ -12,6 +12,7 @@ use App\Entity\Director;
 use App\Entity\Dirphoto;
 use App\Entity\Format;
 use App\Entity\Shutter;
+use App\Entity\Type;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -50,5 +51,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Format', 'fas fa-circle', Format::class);
         yield MenuItem::linkToCrud('Réalisation', 'fas fa-circle', Director::class);
         yield MenuItem::linkToCrud('Photo', 'fas fa-circle', Dirphoto::class);
+        yield MenuItem::linkToCrud('Type', 'fas fa-circle', Type::class);
     }
 }

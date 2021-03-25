@@ -33,6 +33,7 @@ class ModeleCrudController extends AbstractCrudController
                 ->hideOnForm(),
             AssociationField::new('marque'),
             TextField::new('name'),
+            AssociationField::new('type'),
             AssociationField::new('format'),
             AssociationField::new('shutter'),
             AssociationField::new('mount'),

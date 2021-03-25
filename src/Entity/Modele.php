@@ -145,6 +145,16 @@ class Modele
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Type::class, inversedBy="modeles")
+     */
+    private $type;
+
+        /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $website;
+
 
     public function __construct()
     {
@@ -153,6 +163,7 @@ class Modele
         $this->shutter = new ArrayCollection();
         $this->mount = new ArrayCollection();
         $this->updatedAt = new \DateTime();
+        $this->type = new ArrayCollection();
       
     }
 
@@ -501,6 +512,47 @@ class Modele
         return $this->createdAt;
     }
 
+    /**
+     * @return Collection|Type[]
+     */
+    public function getType(): Collection
+    {
+        return $this->type;
+    }
 
+    public function addType(Type $type): self
+    {
+        if (!$this->type->contains($type)) {
+            $this->type[] = $type;
+        }
 
+        return $this;
+    }
+
+    public function removeType(Type $type): self
+    {
+        $this->type->removeElement($type);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of website
+     */ 
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set the value of website
+     *
+     * @return  self
+     */ 
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
 }

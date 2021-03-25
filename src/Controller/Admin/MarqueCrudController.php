@@ -26,6 +26,7 @@ class MarqueCrudController extends AbstractCrudController
             IdField::new('id')
                 ->HideOnForm(),
             TextField::new('name'),
+            
             TextEditorField::new('description'),
             AssociationField::new('modeles'),
             Field::new('logoFile')
@@ -33,7 +34,8 @@ class MarqueCrudController extends AbstractCrudController
             ImageField::new('logoName')
                 ->setBasePath('build/images/marques')
                 ->setUploadDir('/public/build/images/marques/')
-                ->hideOnForm()
+                ->hideOnForm(),
+            TextField::new('website'),
         ];
     }
     
