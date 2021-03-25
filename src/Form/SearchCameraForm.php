@@ -7,14 +7,15 @@ use App\Form\YEAR;
 use App\Entity\Film;
 use App\Entity\Genre;
 
-use App\Entity\Marque;
+use App\Entity\Format;
 // use Symfony\Bridge\Doctrine\Form\Type\ChoiceType;
+use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Entity\CameraType;
 use App\Data\FilmSearchData;
 use App\Data\CameraSearchData;
-use App\Entity\Format;
 use App\Repository\FilmRepository;
+use Doctrine\ORM\EntityRepository;
 use App\Repository\ModeleRepository;
 use PhpParser\Node\Expr\AssignOp\Concat;
 use Symfony\Component\Form\AbstractType;
@@ -57,7 +58,13 @@ class SearchCameraForm extends AbstractType
                 'required'=> false,
                 'class' => Format::class,
                 'expanded'=> true,
-                'multiple' => true
+                'multiple' => true,
+                'query_builder'  => function (EntityRepository $er ){
+                    return $er->createQueryBuilder('m')
+                    // ->select('m.name')
+                    ->orderBy('m.name', 'ASC')
+                    ;
+                }
             ])
 
             ->add('marque', EntityType::class,[
