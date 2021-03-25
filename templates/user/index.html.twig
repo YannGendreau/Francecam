@@ -8,20 +8,14 @@
 
 {% block content %}
 	<div id="container">
-
-
 		<div id="profilePage">
 			<div class="userTitre">
 				<h1>Mon compte</h1>
 			</div>
-			{% include "user/_profil.html.twig" %}
-			{% include "user/_user_films.html.twig" %}
-
-
-			{# <div>Films ajoutés par
-																																																																																																																								{{app.user.name}}</div> #}
-
-
+			<div class="userDesc">
+				{% include "user/_profil.html.twig" %}
+				{% include "user/_user_films.html.twig" %}
+			</div>
 		</div>
 	</div>
 {% endblock %}
