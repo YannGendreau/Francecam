@@ -92,7 +92,7 @@ class FilmType extends AbstractType
                 'required'          => false,
                 'multiple'          => true,
                 'expanded'          => true,
-                'query_builder'     => function(EntityRepository $er){
+                'query_builder'     => function (EntityRepository $er) {
                     return $er->createQueryBuilder('g')
                     ->orderBy('g.name', 'ASC')
                     ;
@@ -110,32 +110,30 @@ class FilmType extends AbstractType
             ])
     //------CAMERA-------------------------------------------------------
     
-->add('modeles', CollectionType::class, [
-    'entry_type' => CameraType::class,
-])
 
-            // //Ajouter une marque
-            // ->add('marques', EntityType::class, [
-            //     'label'             => false,
-            //     'class'             => Marque::class,
-            //     'placeholder'       => 'Choisir une marque de caméra',
-            //     'required'          => false,
-            //     'multiple'          => true,
-            // ])
+            // Ajouter une marque
+            ->add('marques', EntityType::class, [
+                'label'             => false,
+                'class'             => Marque::class,
+                'placeholder'       => 'Choisir une marque de caméra',
+                'required'          => false,
+                'multiple'          => true,
+            ])
 
-            // //TEMPORAIRE
-            // //En attendant de trouver le moyen de créer un formulaire dynamique de choix de caméras
-            // ->add('modeles', EntityType::class, [
-            //     'label'             => false,
-            //     'class'             => Modele::class,
-            //     'placeholder'       => 'Choisir une caméra',
-            //     'required'          => false,
-            //     'multiple'          => true,
+            //TEMPORAIRE
+            //En attendant de trouver le moyen de créer un formulaire dynamique de choix de caméras
+            ->add('modeles', EntityType::class, [
+                'label'             => false,
+                'class'             => Modele::class,
+                'placeholder'       => 'Choisir une caméra',
+                'required'          => false,
+                'multiple'          => true,
 
-            // ])
+            ])
 
             ->add('posterFile', VichImageType::class, [
                 'required'          => false,
+                'label'             => false
             ])
 
           
@@ -152,22 +150,82 @@ class FilmType extends AbstractType
                 'placeholder'       => 'Photographie',
                 'required'          => false,
                 'multiple'          => true,
-            ])
-        ;
+            ]);
+            // ->add('marques', EntityType::class, [
+            //     'class'       => Marque::class,
+            //     // 'placeholder' => 'Sélectionnez votre marque',
+            //     'mapped'      => false,
+            //     'required'    => false
+            // ]);
+
+        // $builder->get('marques')->addEventListener(
+        //     FormEvents::POST_SUBMIT,
+        //     function (FormEvent $event) {
+        //         $form = $event->getForm();
+        //         $this->addModeleField($form->getParent(), $form->getData());
+        //     }
+        // );
+
+        // $builder->addEventListener(
+        //     FormEvents::POST_SET_DATA,
+        //     function (FormEvent $event) {
+        //         $data = $event->getData();
+        //         /* @var $ville Ville */
+        //         // $ville = $data->getVille();
+        //         $form = $event->getForm();
+        //         if ($ville) {
+        //             $departement = $ville->getDepartement();
+        //             $region = $departement->getRegion();
+        //             $this->addModeleField($form, $marques);
+        //             $form->get('region')->setData($marques);
+        //             $form->get('modeles')->setData($modeles);
+        //         } else {
+        //             $this->addModeleField($form, null);
+        //             // $this->addVilleField($form, null);
+        //         }
+        //     }
+        // );
+    }
+
+    // /**
+    //  * Rajoute un champs marque au formulaire
+    //  * @param FormInterface $form
+    //  * @param Marque $marque
+    //  */
+    // private function addModeleField(FormInterface $form, ?Marque $marque)
+    // {
+    //     $builder = $form->getConfig()->getFormFactory()->createNamedBuilder(
+    //         'modeles',
+    //         EntityType::class,
+    //         null,
+    //         [
+    //             'class'           => Modele::class,
+    //             'placeholder'     => $marque ? 'Sélectionnez votre modele' : 'Sélectionnez votre marque',
+    //             'mapped'          => false,
+    //             'required'        => false,
+    //             'auto_initialize' => false,
+    //             'choices'         => $marque ? $marque->getModeles() : []
+    //         ]
+    //     );
         
-// TENTATIVE DE FORMULAIRE IMBRIQUE. NE MARCHE PAS (Arraycollection)
+    //     $form->add($builder->getForm());
+    // }
+
+        
+        
+    // TENTATIVE DE FORMULAIRE IMBRIQUE. NE MARCHE PAS (Arraycollection)
 // Cherche a pouvoir ajouter une ou des caméras pour un film.
 // Si le modèle de la caméra est inconnu, on peut choisir seulement la marque
+
 
 
         // $builder->get('marques')->addEventListener(
         //     FormEvents::POST_SUBMIT,
         //     function (FormEvent $event) {
         //         $form = $event->getForm();
-        //         dd($form->getData());
-        //         $marques = $form->getData();
-               
-                
+        //         dump($form->getData());
+        //         // $marques = $form->getData();
+                      
         //         $form->getParent()->add('modeles', EntityType::class, [
         //             'label'             => false,
         //             'class'             => Modele::class,
@@ -187,8 +245,9 @@ class FilmType extends AbstractType
         //             // }
         //         ]);
         //     }
-        // );
-    }
+        // )
+ 
+
           
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -206,5 +265,5 @@ class FilmType extends AbstractType
 
     
 
-    
-}
+}   
+
