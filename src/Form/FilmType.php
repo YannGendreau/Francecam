@@ -3,13 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Film;
+use App\Entity\Pays;
 use App\Entity\Genre;
 use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Entity\Cameras;
 use App\Entity\Director;
 use App\Entity\Dirphoto;
-use App\Entity\Pays;
+use App\Form\CameraType;
 use Doctrine\ORM\EntityRepository;
 use App\Repository\MarqueRepository;
 use App\Repository\ModeleRepository;
@@ -21,6 +22,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,7 +31,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Validator\Constraints\Count;
 
 class FilmType extends AbstractType
 {
@@ -90,7 +91,12 @@ class FilmType extends AbstractType
                 'placeholder'       => 'Choisir le(s) genre(s)',
                 'required'          => false,
                 'multiple'          => true,
-                'expanded'          => true
+                'expanded'          => true,
+                'query_builder'     => function(EntityRepository $er){
+                    return $er->createQueryBuilder('g')
+                    ->orderBy('g.name', 'ASC')
+                    ;
+                }
           
             ])
             ->add('pays', EntityType::class, [
@@ -104,25 +110,29 @@ class FilmType extends AbstractType
             ])
     //------CAMERA-------------------------------------------------------
     
-            //Ajouter une marque
-            ->add('marques', EntityType::class, [
-                'label'             => false,
-                'class'             => Marque::class,
-                'placeholder'       => 'Choisir une marque de caméra',
-                'required'          => false,
-                'multiple'          => true,
-            ])
+->add('modeles', CollectionType::class, [
+    'entry_type' => CameraType::class,
+])
 
-            //TEMPORAIRE
-            //En attendant de trouver le moyen de créer un formulaire dynamique de choix de caméras
-            ->add('modeles', EntityType::class, [
-                'label'             => false,
-                'class'             => Modele::class,
-                'placeholder'       => 'Choisir une caméra',
-                'required'          => false,
-                'multiple'          => true,
+            // //Ajouter une marque
+            // ->add('marques', EntityType::class, [
+            //     'label'             => false,
+            //     'class'             => Marque::class,
+            //     'placeholder'       => 'Choisir une marque de caméra',
+            //     'required'          => false,
+            //     'multiple'          => true,
+            // ])
 
-            ])
+            // //TEMPORAIRE
+            // //En attendant de trouver le moyen de créer un formulaire dynamique de choix de caméras
+            // ->add('modeles', EntityType::class, [
+            //     'label'             => false,
+            //     'class'             => Modele::class,
+            //     'placeholder'       => 'Choisir une caméra',
+            //     'required'          => false,
+            //     'multiple'          => true,
+
+            // ])
 
             ->add('posterFile', VichImageType::class, [
                 'required'          => false,
