@@ -73,7 +73,7 @@ class FilmController extends AbstractController
         }
  
         return $this->render('film/new.html.twig', [
-            // 'film' => $film,
+            'film' => $film,
             'form' => $form->createView(),
         ]);
     }

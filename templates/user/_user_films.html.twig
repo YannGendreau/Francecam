@@ -10,12 +10,9 @@
 				<h2>{{ film.title }}</h2>
 
 			</div>
-			<a href="{{ path('film_show', {'slug': film.slug} ) }}">
-				<div class="description__overlay description__overlay--blur"></div>
-			</a>
 			<div class="btnUserFilm">
 				<a href="{{ path('film_edit', {'slug': film.slug}) }}">Editer</a>
-				{{ include('film/_delete_form.html.twig') }}
+				<div>{{ include('film/_delete_form.html.twig') }}</div>
 			</div>
 		</div>
 	{% else %}

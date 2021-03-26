@@ -14,6 +14,9 @@
 		<div
 			class="tableauCamera">
 			<!--AFFICHE-------------------------------->
+			<div>
+				<h1>{{film.user}}</h1>
+			</div>
 			<div class="imageCam">
 				{% if film.poster %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
@@ -34,7 +37,7 @@
 			<!--DESCRIPTION-------------------------------->
 			<div class="descriptionFilm">
 				<div class="titreCam">
-					<h1 id="title">{{film.title}}
+					<h1 id="titre">{{film.title}}
 					</h1>
 					<div class="overview">
 						<div>
@@ -157,6 +160,9 @@
 																<h3>{{camera.marque}}</h3>
 																<h2>{{camera.name}}</h2>
 																{# <h5>{{c.cameraFormat.cameraType.name}}</h5> #}
+																{% for g in camera.type %}
+																	<h5>{{g.name}}</h5>
+																{% endfor %}
 																{% for f in camera.format %}
 																	<h5>{{f.name}}</h5>
 																{% endfor %}

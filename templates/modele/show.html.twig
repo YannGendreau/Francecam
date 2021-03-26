@@ -51,12 +51,11 @@
 				</div>
 			</div>
 			<div class="specCam">
-
 				<div class="tabContainer">
 					<div class="buttonContainer">
 						<button class="active">Description</button>
 						<button>Films</button>
-						<button>Vidéos</button>
+						{# <button>Vidéos</button> #}
 					</div>
 					<div class="contentCam">
 
@@ -94,8 +93,6 @@
 												</a>
 											</div>
 										</div>
-
-
 									{% endfor %}
 									{% if modele | length > 1 %}
 										{# <p>Voir plus</p> #}
@@ -106,12 +103,9 @@
 								{% endif %}
 							</div>
 						</div>
-						<div class="tabPanel" style="display: none;">
-
-							<div class="videoFrame"></div>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}
