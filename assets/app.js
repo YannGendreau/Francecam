@@ -27,6 +27,11 @@ imagesContext.keys().forEach(imagesContext);
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 import $ from 'jquery';
+import 'select2';                      
+import 'select2/dist/css/select2.css';
+
+
+
 
 // console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
@@ -62,6 +67,7 @@ setTimeout(function() {
 setTimeout(function() {
 	$ ('.success').slideUp("slow");
 }, 5000)
+
 
 
 // var i;
@@ -104,16 +110,20 @@ for (i = 0; i < list.length; i++) {
 
 }
 
+
+
 // Limit character Title show
 
-var title = document.getElementById("title");
-	if (title.innerText.length >= 20 && title.innerText.length < 39){
-		title.style.fontSize = ('3.5rem')
-	}else if(title.innerText.length >= 40){
-		title.style.fontSize = ('3rem')
-	}else{
-		title.style.fontSize = ('4.5rem')
-	}
+// var titleFilm = document.getElementById("titre");
+// 	if (titleFilm.innerText.length >= 20 && titleFilm.innerText.length < 39){
+// 		titleFilm.style.fontSize = ('3.5rem')
+// 	}else if(titleFilm.innerText.length >= 40){
+// 		titleFilm.style.fontSize = ('3rem')
+// 	}else{
+// 		titleFilm.style.fontSize = ('4.5rem')
+// 	}
+
+
 
 // FINAL : ACCORDEON FILTRE DE RECHERCHE (en dev)
 
@@ -190,3 +200,6 @@ var title = document.getElementById("title");
 //----------------------------------------------------------------------
 
 
+
+
+$('select').select2();

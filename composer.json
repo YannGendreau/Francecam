@@ -16,6 +16,7 @@
         "doctrine/orm": "^2.8",
         "easycorp/easyadmin-bundle": "^3.2",
         "knplabs/knp-paginator-bundle": "^5.4",
+        "select2/select2": "^4.0",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "*",
         "symfony/console": "*",
