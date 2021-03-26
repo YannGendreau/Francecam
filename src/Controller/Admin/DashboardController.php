@@ -11,6 +11,7 @@ use App\Entity\Cameras;
 use App\Entity\Director;
 use App\Entity\Dirphoto;
 use App\Entity\Format;
+use App\Entity\Genre;
 use App\Entity\Shutter;
 use App\Entity\Type;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,5 +53,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Réalisation', 'fas fa-circle', Director::class);
         yield MenuItem::linkToCrud('Photo', 'fas fa-circle', Dirphoto::class);
         yield MenuItem::linkToCrud('Type', 'fas fa-circle', Type::class);
+        yield MenuItem::linkToCrud('Genres', 'fas fa-circle', Genre::class);
     }
 }
