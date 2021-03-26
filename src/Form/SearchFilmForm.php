@@ -10,6 +10,8 @@ use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Data\FilmSearchData;
 use App\Repository\FilmRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -49,7 +51,13 @@ class SearchFilmForm extends AbstractType
                 'required'=> false,
                 'class' => Genre::class,
                 'expanded'=> true,
-                'multiple' => true
+                'multiple' => true,
+                'query_builder'=> function(EntityRepository $er)
+                {
+                    return $er->createQueryBuilder('g')
+                    ->orderBy('g.name', 'ASC')
+                    ;
+                }
             ])
             ->add('decade', ChoiceType::class, [
                 'label' => false,
