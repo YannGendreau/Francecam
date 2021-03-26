@@ -52,6 +52,7 @@
 		<div>
 			<div>
 				<h3>Poster</h3>
+				<div class="imgMovNew"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.poster}}"></div>
 				{{form_row(form.posterFile)}}
 			</div>
 
@@ -70,13 +71,13 @@
 		<h3>Caméras</h3>
 
 		<div class="marqueModele">
-			{{ form_widget(form.marques) }}
-			{# {{ form_widget(form.cameraModele) }} #}
-		</div>
+			{# {{ form_widget(form.marques) }} #}
+			{# {{ form_widget(form.modeles) }} #}
+		{{ form_widget(form.modeles) }}
+	</div>
 	</div>
 
-	<div class="printBtn">
-		<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+		<div class="printBtn"> <button class="btn">{{ button_label|default('Enregistrer') }}</button>
 	</div>
 	{{ form_end(form) }}
 </div>
