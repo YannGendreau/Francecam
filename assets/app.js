@@ -37,10 +37,11 @@ $('select').select2();
 
 //TOGGLE TABS PAGE FILM, CAMERA, MARQUE
 
+//Boutons de description
 var tabs = document.querySelectorAll(".buttonContainer button");
 var tab_wraps = document.querySelectorAll(".tabPanel");
-var border = document.getElementsByClassName(".borderBottom")[0];
 
+//Change les boutons au clic
 tabs.forEach(function(tab, tab_index){
 	tab.addEventListener("click", function(){
 		tabs.forEach(function(tab){
@@ -48,6 +49,7 @@ tabs.forEach(function(tab, tab_index){
 		})
 		tab.classList.add("active");
 
+//Change les tableaux quand le bouton est activé
 		tab_wraps.forEach(function(content, content_index){
 			if(content_index == tab_index){
 				content.style.display = "block";
@@ -67,28 +69,6 @@ setTimeout(function() {
 setTimeout(function() {
 	$ ('.success').slideUp("slow");
 }, 5000)
-
-
-
-// var i;
-
-// for (i = 0; i < col.length; i++) {
-//   col[i].addEventListener("click", function() {
-//     this.classList.toggle("active");
-
-//     var content = this.nextElementSibling;
-
-//     if (content.style.maxHeight) {
-// 		content.style.maxHeight = "0px";
-//     } else {
-// 		content.style.maxHeight = content.scrollHeight + "px";
-//     }
-//   });
-// }
-
-
-
-
 
 //Limit character Title card
 
@@ -110,8 +90,6 @@ for (i = 0; i < list.length; i++) {
 
 }
 
-
-
 // Limit character Title show
 
 var titleFilm = document.getElementById("titre");
@@ -123,79 +101,6 @@ var titleFilm = document.getElementById("titre");
 		titleFilm.style.fontSize = ('4.5rem')
 	}
 
-
-
-// FINAL : ACCORDEON FILTRE DE RECHERCHE (en dev)
-
-// var col = document.getElementsByClassName("coll");
-// var i;
-
-// for (i = 0; i < col.length; i++) {
-//   col[i].addEventListener("click", function() {
-//     this.classList.toggle("active");
-
-//     var content = this.nextElementSibling;
-
-//     if (content.style.maxHeight) {
-// 		content.style.maxHeight = "0px";
-//     } else {
-// 		content.style.maxHeight = content.scrollHeight + "px";
-//     }
-//   });
-// }
-
-
-
-/**
- * -------------------------------------------------------------
- */
-
-// ACCORDEON FILTRE DE RECHERCHE (test 1)
-
-// $(function() {
-// 	var b = $("#collapsible");
-// 	var w = $("#content");
-// 	var l = $("#list");
-	
-// 	w.height(l.outerHeight(true));
-  
-// 	b.on( function() {
-		
-// 		  if(w.hasClass('open')) {
-// 		w.removeClass('open');
-// 		w.height(0);
-// 	  } else {
-// 		w.addClass('open');
-// 		w.height(l.outerHeight(true));
-// 	  }
-
-// 	  if(b.hasClass('active')) {
-// 		b.removeClass('active');
-// 	  }else{
-// 		b.addClass('active');
-// 	  }
-// 	});
-//   });
-
-/**
- * -------------------------------------------------------------
- */
-// ACCORDEON FILTRE DE RECHERCHE (test 2)
-
-// var coll = document.getElementsByClassName("collapsible");
-// var i;
-
-// for (i = 0; i < coll.length; i++) {
-//   coll[i].addEventListener("click", function() {
-//     this.classList.toggle("active");
-//     var content = this.nextElementSibling;
-//     if (content.style.display === "block") {
-//       content.style.display = "none";
-//     } else {
-//       content.style.display = "block";
-//     }
-//   });
-// }
 
 //----------------------------------------------------------------------
 

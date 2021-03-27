@@ -79,8 +79,9 @@
 		<h3>Caméras</h3>
 
 		<div class="marqueModele">
-			<div class="marqueForm">
-				<h5>Marque(s)</h5>
+			<div
+				class="marqueForm">
+				{# <h5>Marque(s)</h5> #}
 				<div class="camera" id="cam_list" data-prototype="{{form_widget(form.camera.vars.prototype)|e('html_attr')}}">
 					{% for cam in form.camera %}
 						{{ form_row(cam.marque) }}
@@ -90,10 +91,10 @@
 
 
 			</div>
-			<div class="modeleForm">
-				<h5>Modele(s)</h5>
-				{# {{ form_widget(form.modeles) }}#}
-			</div>
+			{# <div class="modeleForm">
+										<h5>Modele(s)</h5>
+										{{ form_widget(form.modeles) }}
+									</div> #}
 
 			{# {{ form_widget(form.modeles) }} #}
 		</div>
