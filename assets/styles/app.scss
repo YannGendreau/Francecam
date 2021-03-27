@@ -177,11 +177,16 @@ a {
         @include flex-center();
 
         a {
-
-
             img {
                 padding-left: 5px;
                 width: 40px;
+                filter: saturate(.7);
+                transition: 250ms;
+
+                &:hover {
+                    filter: saturate(100%);
+                    transform: scale(1.1);
+                }
             }
         }
     }
@@ -456,8 +461,7 @@ a {
 
     .searchBlock {
         margin: $mTop 0 $mTop 0;
-        width: 100%;
-        @include flex-center();
+
         min-height: 300px;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -469,25 +473,31 @@ a {
             margin-top: 20px;
             margin: auto;
             justify-content: center;
+            // @include flex-center();
 
             .logoSearch {
                 @include flex-center();
                 margin-bottom: 20px;
 
-                img {
+                .logoHome {
                     width: 100px;
-                    margin-left: 40px;
+                    // margin-left: 40px;
                 }
 
-                h1 {
-                    font-family: TheBoldFont, Arial, Helvetica, sans-serif;
-                    font-size: 5rem;
-                    text-transform: uppercase;
-                    color: white;
-                    color: rgb(39, 41, 46);
-                    margin-right: 40px;
-                }
+                .titreHome {
 
+                    margin-right: 0px;
+
+                    h1 {
+
+                        font-family: TheBoldFont, Arial, Helvetica, sans-serif;
+                        font-size: 3.5rem;
+                        text-transform: uppercase;
+                        color: white;
+                        color: rgb(39, 41, 46);
+                        // margin-right: 40px;
+                    }
+                }
             }
 
             .logline {
@@ -1662,7 +1672,7 @@ a {
 
                 .tabPanel {
                     margin-top: 20px;
-                    height: 450px;
+                    // height: 450px;
 
                     .videoFrame {
                         display: flex;
@@ -1831,11 +1841,12 @@ a {
 .tableauCamera {
     display: grid;
     width: 1200px;
+
     margin: 15px 0 15px 0;
     padding: 0 15px 0 15px;
     margin-top: $mTop;
     grid-template-columns: 45% 55%;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr auto;
     grid-template-areas:
         "img desc"
         "spec spec"
@@ -2236,7 +2247,7 @@ a {
 
                 .tabPanel {
                     margin-top: 20px;
-                    height: 450px;
+                    // height: 450px;
 
                     .videoFrame {
                         display: flex;
@@ -3409,6 +3420,159 @@ PAGE USER PROFILE
 
 @media (max-width:767px) {
 
+    // .searchBlock {
+    //     width: 100%;
+    //     padding: 0 15px 0 15px;
+
+    //     .searchCenter {
+    //         width: 100%;
+
+    //         .logoSearch {
+    //             width: 100%;
+
+    //             .logoHome {
+    //                 // background: red;
+    //                 width: 50px;
+    //                 margin-left: 40px;
+    //             }
+
+    //             h1 {
+    //                 font-size: 2rem;
+    //                 color: rgb(39, 41, 46);
+    //                 margin: 0;
+    //             }
+
+    //         }
+
+    //     }
+    // }
+
+    .searchBlock {
+        width: 90%;
+
+        .searchCenter {
+            margin-top: 20px;
+            margin: auto;
+            justify-content: center;
+            // @include flex-center();
+
+            .logoSearch {
+                @include flex-center();
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+
+                .logoHome {
+                    width: 100%;
+                    margin: 0px;
+                    margin-bottom: 10px;
+                }
+
+                .titreHome {
+                    width: 100%;
+                    margin-right: 0px;
+
+
+                    h1 {
+                        text-align: center;
+                        font-family: TheBoldFont, Arial, Helvetica, sans-serif;
+                        font-size: 2rem;
+                        text-transform: uppercase;
+                        color: rgb(39, 41, 46);
+                    }
+                }
+            }
+
+            .logline {
+                @include flex-center();
+                // justify-content: center;
+
+                h2 {
+                    // font-family: Arial, Helvetica, sans-serif;
+                    font-family: 'Roboto Condensed', sans-serif;
+                    font-weight: 2rem;
+                    // color: white;
+                    color: $titleDisplay;
+                    text-align: center;
+                }
+            }
+
+            .search {
+
+                width: 100%;
+                margin-top: 20px;
+                @include flex-center();
+                // border-radius: 10px;
+
+                .searchBarCenter {
+                    width: 100%;
+
+                    .formTop {
+                        width: 100%;
+                        background-color: rgb(22, 22, 22);
+                        height: 25px;
+                        display: flex;
+                        align-items: center;
+                        border-top-left-radius: 7px;
+                        border-top-right-radius: 7px;
+
+                        label {
+                            width: 100%;
+                            padding-left: 10px;
+                            color: $nav-dd-color;
+                            // font-family: Arial, Helvetica, sans-serif;
+                            font-family: 'Roboto Condensed', sans-serif;
+                            text-transform: uppercase;
+                            font-size: 0.8rem;
+                        }
+                    }
+
+                    input {
+                        width: 100%;
+                        // background: $nav-dd-color;
+                        background: $megamenu-bg;
+                        // background-image: radial-gradient($nav-hover-color, rgb(85, 97, 80));
+                        box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+                            0 0 0 1px rgb(255, 255, 255),
+                            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+                        // box-shadow: inset 0px 0px 25px 1px rgb(0, 0, 0);
+                        // width: 400px;
+                        height: 50px;
+                        border: none;
+                        border-bottom-left-radius: 7px;
+                        border-bottom-right-radius: 7px;
+                        padding-left: 10px;
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+    .latest {
+        padding: 0 15px 0 15px;
+        width: 100%;
+
+        .flexLatest {
+            @include flex-center();
+
+            .homeCameraList,
+            .homeFilmList {
+                // width: 100%;
+                margin: 10px 0 80px 0;
+                width: 100%;
+                @include flex-center();
+                flex-wrap: wrap;
+
+                .tableau {
+                    @include flex-center();
+                }
+            }
+        }
+    }
+
     #film {
         width: 400px;
     }
@@ -3419,68 +3583,83 @@ PAGE USER PROFILE
 
 
     .tableauMarque {
+        margin: 15px 0 15px 0;
+        padding: 0 15px 0 15px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "desc"
+            "spec"
+        ;
 
-        .descriptionMarque {
+        .descriptionMarque {}
 
-            .specMarque {
-                grid-area: spec;
-                display: flex;
-                justify-content: center;
-                align-items: flex-start;
-                margin-top: 20px;
+        .specMarque {
+            grid-area: spec;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 20px;
 
-                .tabContainer {
-                    height: 250px;
+            .tabContainer {
+                // height: 250px;
+                background: red;
+                width: 100%;
+
+
+                .buttonContainer {
                     width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-content: center;
+                    background: #cbd6e0;
+                    height: 15%;
+                    border-radius: 20px;
 
-                    .buttonContainer {
-                        width: 100%;
-                        display: flex;
-                        justify-content: flex-start;
-                        align-content: center;
+                    button {
+                        width: 50%;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
                         background: #cbd6e0;
-                        height: 15%;
+                        font-family: 'Roboto Condensed', sans-serif;
+                        text-transform: uppercase;
+                        font-size: 1.5rem;
                         border-radius: 20px;
 
-                        button {
-                            width: 50%;
-                            border: none;
-                            outline: none;
-                            cursor: pointer;
-                            background: #cbd6e0;
-                            font-family: 'Roboto Condensed', sans-serif;
-                            text-transform: uppercase;
-                            font-size: 1.5rem;
+                        &:first-child {
                             border-radius: 20px;
-
-                            &:first-child {
-                                border-radius: 20px;
-                            }
-
-                            &:hover {
-                                content: '';
-                            }
                         }
 
-                        .active {
-                            color: #cbd6e0;
-                            background: $titleDisplay;
+                        &:hover {
+                            content: '';
                         }
                     }
-                }
-            }
 
+                    .active {
+                        color: #cbd6e0;
+                        background: $titleDisplay;
+                    }
+                }
+
+                .contentCam {}
+            }
         }
+
+
     }
 
     .tableauCamera {
 
         margin: 15px 0 15px 0;
         padding: 0 15px 0 15px;
+        min-height: 1600px;
         width: 100%;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: auto 1fr 1fr;
+        grid-template-rows: 300px auto 1fr;
         grid-template-areas:
             "img"
             "desc"
@@ -3494,6 +3673,7 @@ PAGE USER PROFILE
             @include flex-center();
             width: 100%;
             flex-wrap: wrap;
+            min-height: 150px;
 
             .addPoster {
                 @include flex-center();
@@ -3521,19 +3701,23 @@ PAGE USER PROFILE
                 border-radius: 5px;
 
 
+
                 img {
                     width: 300px;
                     border-radius: 5px;
+
                 }
             }
 
             .imgMov {
                 @include flex-center();
+                height: 100px;
 
                 img {
                     border: 3px solid rgb(247, 247, 247);
                     border-radius: 10px;
                     width: 250px;
+
                 }
             }
 
@@ -3838,9 +4022,7 @@ PAGE USER PROFILE
 
         .specCam {
             grid-area: spec;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            @include flex-center-start();
             margin-top: 20px;
 
             .tabContainer {
@@ -3893,7 +4075,7 @@ PAGE USER PROFILE
 
                     .tabPanel {
                         margin-top: 20px;
-                        height: 450px;
+                        // height: 450px;
 
                         .videoFrame {
                             display: flex;

@@ -29,7 +29,7 @@ imagesContext.keys().forEach(imagesContext);
 import $ from 'jquery';
 import 'select2';                      
 import 'select2/dist/css/select2.css';
-
+$('select').select2();
 
 
 
@@ -114,14 +114,14 @@ for (i = 0; i < list.length; i++) {
 
 // Limit character Title show
 
-// var titleFilm = document.getElementById("titre");
-// 	if (titleFilm.innerText.length >= 20 && titleFilm.innerText.length < 39){
-// 		titleFilm.style.fontSize = ('3.5rem')
-// 	}else if(titleFilm.innerText.length >= 40){
-// 		titleFilm.style.fontSize = ('3rem')
-// 	}else{
-// 		titleFilm.style.fontSize = ('4.5rem')
-// 	}
+var titleFilm = document.getElementById("titre");
+	if (titleFilm.innerText.length >= 20 && titleFilm.innerText.length < 39){
+		titleFilm.style.fontSize = ('3.5rem')
+	}else if(titleFilm.innerText.length >= 40){
+		titleFilm.style.fontSize = ('3rem')
+	}else{
+		titleFilm.style.fontSize = ('4.5rem')
+	}
 
 
 
@@ -202,4 +202,4 @@ for (i = 0; i < list.length; i++) {
 
 
 
-$('select').select2();
+
