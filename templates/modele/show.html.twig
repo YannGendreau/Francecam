@@ -1,29 +1,41 @@
 {% extends 'navbar/layout.html.twig' %}
 
 {% block title %}
-	{{ modele.marque }}
-	{{ modele.name }}
+	{{modele.marque.name}}{{modele.name}}
 {% endblock %}
 
 {% block content %}
-	<div id="container">
+	<div
+		id="container">
 
+		<!--FLASH MESSAGE-->
+		{% include "includes/flashes/_flash_message.html.twig" %}
 
-		<div class="tableauCamera">
+		<div
+			class="tableauCamera">
+			<!--AFFICHE-------------------------------->
+
 			<div class="imageCam">
-				{% if modele.img %}
-					<img class="imgCam" src="/build/images/imagesCam/{{modele.img}}" alt="Photographie de la camera {{modele.marque}} {{modele.name}}">
-				{% else %}
-					<img class="camLogo" src="/build/images/illustrations/camera-logo.png" alt="illustration de camera par défaut">
-				{% endif %}
-				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
+
+				<div class="imageCam">
+					{% if modele.img %}
+						<img class="imgCam" src="/build/images/imagesCam/{{modele.img}}" alt="Photographie de la camera {{modele.marque}} {{modele.name}}">
+					{% else %}
+						<img class="camLogo" src="/build/images/illustrations/camera-logo.png" alt="illustration de camera par défaut">
+					{% endif %}
+					<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
+				</div>
+
 			</div>
-			<div class="descriptionCam">
+
+			<!--DESCRIPTION-------------------------------->
+			<div class="descriptionFilm">
 				<div class="titreCam">
 					<h1 id="title">{{modele.marque}}
 						{{modele.name}}</h1>
 					<div class="overview">
 						<div>
+							<!--DUREE-->
 							<a href="{{path('marque_show', {slug :modele.marque.slug})}}">
 								<h5>{{modele.marque}}</h5>
 							</a>
@@ -44,22 +56,123 @@
 					</div>
 					<div class="trait"></div>
 				</div>
-
+				<!--SYNOPSIS-------------------------------->
 				<div class="summary">
+					<h4>Résumé</h4>
 					<p>{{modele.description}}</p>
-
 				</div>
 			</div>
+
+			<!--INFOS-------------------------------->
+
 			<div class="specCam">
 				<div class="tabContainer">
 					<div class="buttonContainer">
 						<button class="active">Description</button>
-						<button>Films</button>
-						{# <button>Vidéos</button> #}
+						{# A AJOUTER PLUS TARD <button>Fiches</button> #}
+						<button>Vidéos</button>
 					</div>
 					<div class="contentCam">
+						<div class="tabPanel" style="display: block;">
+							<div>
 
-						<div class="tabPanel" style="display: block;"></div>
+								<div class="cell">
+									<div>
+										<strong>
+											<h3>Magasin</h3>
+										</strong>
+									</div>
+									<div>
+										{% if modele.magazine %}
+											<h3>{{modele.magazine}}</h3>
+										{% else %}
+											<span>
+												-
+											</span>
+										{% endif %}
+									</div>
+								</div>
+								<div>
+									<div>
+										<strong>
+											<h3>Obturateur</h3>
+										</strong>
+									</div>
+									<div>
+										<h3>
+											{% if modele.shutter %}
+												{% for s in modele.shutter %}
+													{{s.angle}}
+												{% endfor %}
+											{% endif %}
+
+										</h3>
+									</div>
+								</div>
+
+
+								{# <table>
+																																																																																																									<thead>
+																																																																																																										<tr class="tableauTitre">
+																																																																																																											<th>Magasin</th>
+																																																																																																											<th>Obturateur</th>
+																																																																																																											<th>Fréquence</th>
+																																																																																																											<th>Entraînement</th>
+																																																																																																											<th>Monture</th>
+																																																																																																											<th>Moteur</th>
+																																																																																																											<th>Voltage</th>
+																																																																																																										</tr>
+																																																																																																									</thead>
+																																																																																																									<tbody>
+																																																																																																										<tr class="tableauCell">
+																																																																																																											<th>{{modele.magazine}}</th>
+																																																																																																											<th>
+																																																																																																												{% for s in modele.shutter %}
+																																																																																																													{{s.angle}}
+																																																																																																												{% endfor %}
+																																																																																																											</th>
+																																																																																																											<th>{{modele.framerate}}</th>
+																																																																																																											<th>{{modele.perfs}}</th>
+																																																																																																											<th>
+																																																																																																												{% for m in modele.mount %}
+																																																																																																													{{m.name}}
+																																																																																																												{% endfor %}
+																																																																																																											</th>
+																																																																																																											<th>{{modele.sync}}</th>
+																																																																																																											<th>{{modele.voltage}}</th>
+																																																																																																										</tr>
+																																																																																																									</tbody>
+																																																																																																									<thead>
+																																																																																																										<tr class="tableauTitre">
+																																																																																																											<th>Poids</th>
+																																																																																																											<th>Format</th>
+																																																																																																											<th>Température</th>
+																																																																																																											<th>Video assist</th>
+																																																																																																											<th>LCD</th>
+																																																																																																											<th>TCL</th>
+																																																																																																											<th>Bruit</th>
+																																																																																																
+																																																																																																										</tr>
+																																																																																																									</thead>
+																																																																																																									<tbody>
+																																																																																																										<tr class="tableauCell">
+																																																																																																											<th>{{modele.weight}}</th>
+																																																																																																											<th>
+																																																																																																												{% for f in modele.format %}
+																																																																																																													{{f.name}}
+																																																																																																												{% endfor %}
+																																																																																																											</th>
+																																																																																																											<th>Oui</th>
+																																																																																																											<th>{{modele.view}}</th>
+																																																																																																											<th>Oui</th>
+																																																																																																											<th>Oui</th>
+																																																																																																											<th>{{modele.noise}}</th>
+																																																																																																										</tr>
+																																																																																																									</tbody>
+																																																																																																								</table> #}
+							</div>
+						</div>
+						{# <div class="tabPanel" style="display: none;"></div> #}
 						<div class="tabPanel" style="display: none;">
 							<div class="posters">
 								{% if modele.films %}
@@ -108,4 +221,5 @@
 			</div>
 		</div>
 	</div>
+
 {% endblock %}

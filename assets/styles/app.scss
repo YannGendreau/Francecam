@@ -1482,7 +1482,9 @@ a {
 
 .tableauMarque {
     display: grid;
-    width: 1200px;
+    min-width: 1200px;
+    max-width: 1200px;
+    height: auto;
     // margin: 0 15px 0 15px;
     padding: 0 15px 0 15px;
     margin-top: $mTop;
@@ -1840,8 +1842,9 @@ a {
 
 .tableauCamera {
     display: grid;
-    width: 1200px;
-
+    min-width: 1200px;
+    max-width: 1200px;
+    height: auto;
     margin: 15px 0 15px 0;
     padding: 0 15px 0 15px;
     margin-top: $mTop;
@@ -1879,7 +1882,7 @@ a {
         }
 
         .imgCam {
-            width: 400px;
+            width: 300px;
 
             img {
                 width: 400px;
@@ -2678,6 +2681,11 @@ a {
                 .marqueForm {
                     width: 50%;
 
+                    .camera {
+
+                        @include flex-space-center();
+                    }
+
                     #film_marques {
                         width: 100%;
 
@@ -3420,32 +3428,6 @@ PAGE USER PROFILE
 
 @media (max-width:767px) {
 
-    // .searchBlock {
-    //     width: 100%;
-    //     padding: 0 15px 0 15px;
-
-    //     .searchCenter {
-    //         width: 100%;
-
-    //         .logoSearch {
-    //             width: 100%;
-
-    //             .logoHome {
-    //                 // background: red;
-    //                 width: 50px;
-    //                 margin-left: 40px;
-    //             }
-
-    //             h1 {
-    //                 font-size: 2rem;
-    //                 color: rgb(39, 41, 46);
-    //                 margin: 0;
-    //             }
-
-    //         }
-
-    //     }
-    // }
 
     .searchBlock {
         width: 90%;
@@ -3585,7 +3567,8 @@ PAGE USER PROFILE
     .tableauMarque {
         margin: 15px 0 15px 0;
         padding: 0 15px 0 15px;
-        width: 100%;
+        height: auto;
+        min-width: 100%;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
@@ -3655,12 +3638,15 @@ PAGE USER PROFILE
 
         margin: 15px 0 15px 0;
         padding: 0 15px 0 15px;
-        min-height: 1600px;
-        width: 100%;
+        // max-width: 1200px;
+        // min-height: 1600px;
+        min-width: 100%;
+        height: auto;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 300px auto 1fr;
+        grid-template-rows: 100px 300px auto auto;
         grid-template-areas:
+            "."
             "img"
             "desc"
             "spec"
