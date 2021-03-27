@@ -155,6 +155,11 @@ class Modele
      */
     private $website;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Camera::class, mappedBy="modele")
+     */
+    private $cameras;
+
 
     public function __construct()
     {
@@ -164,6 +169,7 @@ class Modele
         $this->mount = new ArrayCollection();
         $this->updatedAt = new \DateTime();
         $this->type = new ArrayCollection();
+        $this->cameras = new ArrayCollection();
       
     }
 
@@ -552,6 +558,36 @@ class Modele
     public function setWebsite($website)
     {
         $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Camera[]
+     */
+    public function getCameras(): Collection
+    {
+        return $this->cameras;
+    }
+
+    public function addCamera(Camera $camera): self
+    {
+        if (!$this->cameras->contains($camera)) {
+            $this->cameras[] = $camera;
+            $camera->setModele($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCamera(Camera $camera): self
+    {
+        if ($this->cameras->removeElement($camera)) {
+            // set the owning side to null (unless already changed)
+            if ($camera->getModele() === $this) {
+                $camera->setModele(null);
+            }
+        }
 
         return $this;
     }

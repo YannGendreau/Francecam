@@ -128,6 +128,11 @@ class Film
      */
     private $pays;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films", cascade={"all"})
+     */
+    private $camera;
+
      
 
     public function __construct()
@@ -141,6 +146,7 @@ class Film
   
         $this->dirphoto = new ArrayCollection();
         $this->pays = new ArrayCollection();
+        $this->camera = new ArrayCollection();
  
        
     }
@@ -480,6 +486,32 @@ class Film
     public function removePay(Pays $pay): self
     {
         $this->pays->removeElement($pay);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Camera[]
+     */
+    public function getCamera(): Collection
+    {
+        return $this->camera;
+    }
+
+ 
+
+    public function addCamera(Camera $camera): self
+    {
+        if (!$this->camera->contains($camera)) {
+            $this->camera[] = $camera;
+        }
+
+        return $this;
+    }
+
+    public function removeCamera(Camera $camera): self
+    {
+        $this->camera->removeElement($camera);
 
         return $this;
     }
