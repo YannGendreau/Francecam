@@ -67,10 +67,10 @@
 
 					<div class="realForm">
 						<h5>Réalisation</h5>
-						{{ form_widget(form.directors) }}</div>
+						{{ form_row(form.directors) }}</div>
 					<div class="dirphotForm">
 						<h5>Photo</h5>
-						{{ form_widget(form.dirphoto) }}</div>
+						{{ form_row(form.dirphoto) }}</div>
 				</div>
 			</div>
 		</div>
@@ -81,10 +81,19 @@
 		<div class="marqueModele">
 			<div class="marqueForm">
 				<h5>Marque(s)</h5>
-				{{ form_widget(form.marques) }}</div>
+				<div class="camera" id="cam_list" data-prototype="{{form_widget(form.camera.vars.prototype)|e('html_attr')}}">
+					{% for cam in form.camera %}
+						{{ form_row(cam.marque) }}
+						{{ form_row(cam.modele) }}
+					{% endfor %}
+				</div>
+
+
+			</div>
 			<div class="modeleForm">
 				<h5>Modele(s)</h5>
-				{{ form_widget(form.modeles) }}</div>
+				{# {{ form_widget(form.modeles) }}#}
+			</div>
 
 			{# {{ form_widget(form.modeles) }} #}
 		</div>

@@ -1,13 +1,13 @@
 {% extends 'navbar/layout.html.twig' %}
 
-{% block title %}Edit Film
+{% block title %}Modifier
 {% endblock %}
 
 {% block content %}
-	<h1>Edit Film</h1>
+
 
 	<div id="container">
-
+		<h1>Modifier</h1>
 		{{ include('film/_form.html.twig', {'button_label': 'Update'}) }}
 
 		<a href="{{ path('film_index') }}">back to list</a>

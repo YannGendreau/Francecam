@@ -6,6 +6,7 @@ use App\Entity\Film;
 use App\Entity\Marque;
 use App\Form\FilmType;
 use App\Data\FilmSearchData;
+use App\Entity\Camera;
 use App\Entity\User;
 use App\Form\SearchFilmForm;
 use App\Repository\FilmRepository;
@@ -52,13 +53,14 @@ class FilmController extends AbstractController
     {
         $film = new Film;
         $user= new User;
+        $camera = new Camera;
+       
+        $sortie = $film->getSortie();
+        $film->addCamera($camera);
+        $film->setDecade($sortie);
+        
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
-
-        $sortie = $film->getSortie();
-        // $film->setUser($user);
-        $film->setDecade($sortie);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $film->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();

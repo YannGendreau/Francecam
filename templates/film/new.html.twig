@@ -5,11 +5,11 @@
 
 {% block content %}
 	<div id="container">
-
+		<h1>Nouveau film</h1>
 
 		{{ include('film/_form.html.twig') }}
 
-		<a href="{{ path('film_index') }}">Retour à la liste de films</a>
+		<a href="{{ path('films') }}">Retour à la liste de films</a>
 	</div>
 {% endblock %}
 
