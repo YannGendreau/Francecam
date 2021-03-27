@@ -89,6 +89,11 @@ class Marque
      */
     private $modeles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Camera::class, mappedBy="marque")
+     */
+    private $cameras;
+
 
 
     public function __construct()
@@ -96,6 +101,7 @@ class Marque
         $this->films = new ArrayCollection();
         $this->updatedAt = new \DateTime();
         $this->modeles = new ArrayCollection();
+        $this->cameras = new ArrayCollection();
        
     }
 
@@ -281,6 +287,36 @@ class Marque
             // set the owning side to null (unless already changed)
             if ($modele->getMarque() === $this) {
                 $modele->setMarque(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Camera[]
+     */
+    public function getCameras(): Collection
+    {
+        return $this->cameras;
+    }
+
+    public function addCamera(Camera $camera): self
+    {
+        if (!$this->cameras->contains($camera)) {
+            $this->cameras[] = $camera;
+            $camera->setMarque($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCamera(Camera $camera): self
+    {
+        if ($this->cameras->removeElement($camera)) {
+            // set the owning side to null (unless already changed)
+            if ($camera->getMarque() === $this) {
+                $camera->setMarque(null);
             }
         }
 
