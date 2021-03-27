@@ -171,34 +171,26 @@ class FilmType extends AbstractType
             //     'required'    => false
             // ]);
 
-        // $builder->get('marques')->addEventListener(
-        //     FormEvents::POST_SUBMIT,
-        //     function (FormEvent $event) {
-        //         $form = $event->getForm();
-        //         $this->addModeleField($form->getParent(), $form->getData());
-        //     }
-        // );
+            // $builder->get('marques')->addEventListener(
+            //         FormEvents::POST_SUBMIT,
+            //         function (FormEvent $event) {
+            //             $form = $event->getForm();
+            //             dump($form->getData());
+            //             // $marques = $form->getData();
+                              
+            //             $form->getParent()->add('modeles', EntityType::class, [
+            //                 'label'             => false,
+            //                 'class'             => Modele::class,
+            //                 'placeholder'       => 'Choisir un modele',
+            //                 'required'          => false,
+            //                 'mapped'            => false,
+            //                 'choices'           => $form->getData()->getModeles(),
+                            
+            //             ]);
+            //         }
+            // );
 
-        // $builder->addEventListener(
-        //     FormEvents::POST_SET_DATA,
-        //     function (FormEvent $event) {
-        //         $data = $event->getData();
-        //         /* @var $ville Ville */
-        //         // $ville = $data->getVille();
-        //         $form = $event->getForm();
-        //         if ($ville) {
-        //             $departement = $ville->getDepartement();
-        //             $region = $departement->getRegion();
-        //             $this->addModeleField($form, $marques);
-        //             $form->get('region')->setData($marques);
-        //             $form->get('modeles')->setData($modeles);
-        //         } else {
-        //             $this->addModeleField($form, null);
-        //             // $this->addVilleField($form, null);
-        //         }
-        //     }
-        // );
-    }
+        
 
     // /**
     //  * Rajoute un champs marque au formulaire
@@ -261,7 +253,7 @@ class FilmType extends AbstractType
         // )
  
 
-          
+}
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
