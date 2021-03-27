@@ -11,6 +11,7 @@ use App\Entity\Cameras;
 use App\Entity\Director;
 use App\Entity\Dirphoto;
 use App\Form\CameraType;
+use App\Form\Camera1Type;
 use Doctrine\ORM\EntityRepository;
 use App\Repository\MarqueRepository;
 use App\Repository\ModeleRepository;
@@ -110,26 +111,38 @@ class FilmType extends AbstractType
             ])
     //------CAMERA-------------------------------------------------------
     
+                ->add('camera', CollectionType::class, [
+                    'entry_type' => Camera1Type::class,
+                    'entry_options' =>[
+                        'label' => 'Camerasssss'
+                    ],
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'required' => false,
+                    'by_reference' => false,
+                    'prototype' => true,
+                ])
 
-            // Ajouter une marque
-            ->add('marques', EntityType::class, [
-                'label'             => false,
-                'class'             => Marque::class,
-                'placeholder'       => 'Choisir une marque de caméra',
-                'required'          => false,
-                'multiple'          => true,
-            ])
+
+            // // Ajouter une marque
+            // ->add('marques', EntityType::class, [
+            //     'label'             => false,
+            //     'class'             => Marque::class,
+            //     'placeholder'       => 'Choisir une marque de caméra',
+            //     'required'          => false,
+            //     'multiple'          => true,
+            // ])
 
             //TEMPORAIRE
             //En attendant de trouver le moyen de créer un formulaire dynamique de choix de caméras
-            ->add('modeles', EntityType::class, [
-                'label'             => false,
-                'class'             => Modele::class,
-                'placeholder'       => 'Choisir une caméra',
-                'required'          => false,
-                'multiple'          => true,
+            // ->add('modeles', EntityType::class, [
+            //     'label'             => false,
+            //     'class'             => Modele::class,
+            //     'placeholder'       => 'Choisir une caméra',
+            //     'required'          => false,
+            //     'multiple'          => true,
 
-            ])
+            // ])
 
             ->add('posterFile', VichImageType::class, [
                 'required'          => false,
