@@ -12,6 +12,7 @@ import './styles/app.scss';
 
 //FILTRE JS AJAX (en developpement)
 // import Filter from './modules/Filter';
+import Filter from './modules/TitleFontSize';
 
 //JQUERY
 // new Filter(document.querySelector('.js-filter'));
@@ -30,10 +31,6 @@ import $ from 'jquery';
 import 'select2';                      
 import 'select2/dist/css/select2.css';
 $('select').select2();
-
-
-
-// console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
 //TOGGLE TABS PAGE FILM, CAMERA, MARQUE
 
@@ -70,29 +67,13 @@ setTimeout(function() {
 	$ ('.success').slideUp("slow");
 }, 5000)
 
-//Limit character Title card
 
-var list = document.getElementsByClassName('tableau');
-var i;
-
-
-for (i = 0; i < list.length; i++) {
-	
-	var over = document.getElementById("over");
-
-	if (over.innerText.length >= 20){
-		over.style.fontSize = ('1.5rem')
-	}else if(over.innerText.length > 40){
-		over.style.fontSize = ('1rem')
-	}else{
-		over.style.fontSize = ('2rem')
-	}
-
-}
 
 // Limit character Title show
 
-var titleFilm = document.getElementById("titre");
+var titleFilm = document.getElementById("titleFilm");
+
+
 	if (titleFilm.innerText.length >= 20 && titleFilm.innerText.length < 39){
 		titleFilm.style.fontSize = ('3.5rem')
 	}else if(titleFilm.innerText.length >= 40){
