@@ -3,18 +3,13 @@
 {% block title %}S'inscrire
 {% endblock %}
 
-
 {% block content %}
-
 
 	{% include "/includes/flashes/_flash_message.html.twig" %}
 
 	<div id="container">
 		<div class="loginContainer">
-
-
 			{{form_start(registrationForm)}}
-
 			<div class="login-form">
 				<div class="connexionTitle">
 					<h1>S'inscrire</h1>
@@ -27,10 +22,7 @@
 				</div>
 				<div class="flex-row">
 					<div class="cadre">{{form_row(registrationForm.plainPassword)}}</div>
-
 				</div>
-
-
 				{# {{form_widget(registrationForm)}} #}
 				<input type="submit" value="Envoyer" class="lf--submit" novalidate>
 				{{form_end(registrationForm)}}
