@@ -9,12 +9,17 @@
 			<h1>Résultats de recherche</h1>
 			{% if films | length >= 1 %}
 				<div class="resultContainer">
-					{% include "search_home/_results_film.html.twig" %}
+					<div class="resultTitle">
+						<h2>Films</h2>
+					</div>
+					{% include "film/_film_list.html.twig" %}
 				</div>
 			{% endif %}
 			{% if modele | length >= 1 %}
-				<div
-					class="resultContainer">
+				<div class="resultContainer">
+					<div class="resultTitle">
+						<h2>Cameras</h2>
+					</div>
 					{# {% include "search_home/_results_modele.html.twig" %} #}
 					{% include "modele/_modele_list.html.twig" %}
 				</div>

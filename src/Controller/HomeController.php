@@ -26,7 +26,7 @@ class HomeController extends AbstractController
     {
        //renvoie tous les cameras et films 
         $modeles = $modeleRepository->modeleByDateDesc();
-        $films = $filmRepository->filmByDateDesc();
+        $filmResults = $filmRepository->filmByDateDesc();
 
         //Barre de recherche
         $data = new SearchHomeData;
@@ -37,6 +37,7 @@ class HomeController extends AbstractController
         $marque = $marqueRepository->findHomeSearch($data);
         $modele = $modeleRepository->findHomeSearch($data);
       
+
         if ($form->isSubmitted() && $form->isValid()) {
        
             return $this->render('search_home/index.html.twig', [
@@ -47,11 +48,10 @@ class HomeController extends AbstractController
 
             ]);
         }
-        
 
-        return $this->render('home/index.html.twig', [
+            return $this->render('home/index.html.twig', [
             'modele' => $modeles,
-            'films' => $films,
+            'resultFilm' => $filmResults,
             'form' => $form->createView()
         ]);
     }
