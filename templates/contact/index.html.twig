@@ -1,0 +1,35 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}Contactez-nous
+{% endblock %}
+
+{% block content %}
+
+	{% include "/includes/flashes/_flash_message.html.twig" %}
+	<div id="container">
+		<div class="loginContainer">
+			{{ form_start(contact_form) }}
+			<div class="login-form contact">
+				<div class="connexionTitle">
+					<h1>Contactez-nous</h1>
+				</div>
+				<div class="flex-row">
+					<div class="form-group">
+						{{ form_row(contact_form.nom, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+				<div class="flex-row">
+					{{ form_row(contact_form.email, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="flex-row">
+					{{ form_row(contact_form.message, {'attr': {'class': 'form-control'}}) }}
+				</div>
+
+				<input type="submit" value="Send" class="lf--submit">
+
+				{{ form_end(contact_form) }}
+			</div>
+		</div>
+	</div>
+
+</div>{% endblock %}
