@@ -41,32 +41,32 @@ class Modele
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable= true)
+     * @ORM\Column(type="integer", length=2, nullable= true)
      */
     private $noise;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable= true)
+     * @ORM\Column(type="integer", length=3, nullable= true)
      */
     private $framerate;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable= true)
+     * @ORM\Column(type="integer", length=1, nullable= true)
      */
     private $perfs;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable= true)
+     * @ORM\Column(type="integer", length=3, nullable= true)
      */
     private $magazine;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable= true)
+     * @ORM\Column(type="integer", length=2, nullable= true)
      */
     private $voltage;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable= true)
+     * @ORM\Column(type="integer", length=3, nullable= true)
      */
     private $weight;
 
@@ -116,7 +116,7 @@ class Modele
     private $decade;
 
         /**
-     * @ORM\Column(type="integer", length=4)
+     * @ORM\Column(type="integer", length=4, nullable=true)
      */
     private $sortie;
 
@@ -215,12 +215,12 @@ class Modele
         return $this;
     }
 
-    public function getNoise(): ?string
+    public function getNoise(): ?int
     {
         return $this->noise;
     }
 
-    public function setNoise(string $noise): self
+    public function setNoise(int $noise): self
     {
         $this->noise = $noise;
 
@@ -228,60 +228,60 @@ class Modele
     }
 
 
-    public function getFramerate(): ?string
+    public function getFramerate(): ?int
     {
         return $this->framerate;
     }
 
-    public function setFramerate(string $framerate): self
+    public function setFramerate(int $framerate): self
     {
         $this->framerate = $framerate;
 
         return $this;
     }
 
-    public function getPerfs(): ?string
+    public function getPerfs(): ?int
     {
         return $this->perfs;
     }
 
-    public function setPerfs(string $perfs): self
+    public function setPerfs(int $perfs): self
     {
         $this->perfs = $perfs;
 
         return $this;
     }
 
-    public function getMagazine(): ?string
+    public function getMagazine(): ?int
     {
         return $this->magazine;
     }
 
-    public function setMagazine(string $magazine): self
+    public function setMagazine(int $magazine): self
     {
         $this->magazine = $magazine;
 
         return $this;
     }
 
-    public function getVoltage(): ?string
+    public function getVoltage(): ?int
     {
         return $this->voltage;
     }
 
-    public function setVoltage(string $voltage): self
+    public function setVoltage(int $voltage): self
     {
         $this->voltage = $voltage;
 
         return $this;
     }
 
-    public function getWeight(): ?string
+    public function getWeight(): ?int
     {
         return $this->weight;
     }
 
-    public function setWeight(string $weight): self
+    public function setWeight(int $weight): self
     {
         $this->weight = $weight;
 
