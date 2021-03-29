@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210209102103 extends AbstractMigration
+final class VersionRefactoDBForCamera extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,14 +20,19 @@ final class Version20210209102103 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE camera CHANGE marque_modele marque_modele VARCHAR(255) NOT NULL');
-        $this->addSql('ALTER TABLE modele CHANGE noise noise VARCHAR(255) DEFAULT NULL');
+        $this->addSql('CREATE TABLE IF NOT EXISTS `camera` (
+            `id` int NOT NULL AUTO_INCREMENT,
+            `marque_id` int DEFAULT NULL,
+            `modele_id` int DEFAULT NULL,
+            PRIMARY KEY (`id`),
+            KEY `IDX_3B1CEE054827B9B2` (`marque_id`),
+            KEY `IDX_3B1CEE05AC14B70A` (`modele_id`)
+          ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE camera CHANGE marque_modele marque_modele VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
-        $this->addSql('ALTER TABLE modele CHANGE noise noise VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('DROP TABLE camera');
     }
 }
