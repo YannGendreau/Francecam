@@ -20,7 +20,7 @@ final class Version04RefactoDBForFilm extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE IF NOT EXISTS `film` (
+        $this->addSql('CREATE TABLE `film` (
             `id` int NOT NULL AUTO_INCREMENT,
             `user_id` int DEFAULT NULL,
             `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
