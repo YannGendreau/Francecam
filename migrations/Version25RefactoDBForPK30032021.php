@@ -44,9 +44,6 @@ final class Version25RefactoDBForPK30032021 extends AbstractMigration
         $this->addSql('ALTER TABLE `film_pays`
             ADD CONSTRAINT `FK_5130D6AD567F5183` FOREIGN KEY (`film_id`) REFERENCES `film` (`id`) ON DELETE CASCADE,
             ADD CONSTRAINT `FK_5130D6ADA6E44244` FOREIGN KEY (`pays_id`) REFERENCES `pays` (`id`) ON DELETE CASCADE;');
-        $this->addSql('ALTER TABLE `film_pays`
-            ADD CONSTRAINT `FK_5130D6AD567F5183` FOREIGN KEY (`film_id`) REFERENCES `film` (`id`) ON DELETE CASCADE,
-            ADD CONSTRAINT `FK_5130D6ADA6E44244` FOREIGN KEY (`pays_id`) REFERENCES `pays` (`id`) ON DELETE CASCADE;');
         $this->addSql('ALTER TABLE `modele`
             ADD CONSTRAINT `FK_100285584827B9B2` FOREIGN KEY (`marque_id`) REFERENCES `marque` (`id`);');
         $this->addSql('ALTER TABLE `modele_format`
