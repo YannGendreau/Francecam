@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version07RefactoDBForFilm_dirphoto extends AbstractMigration
+final class Version23RefactoDBForType extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,18 +20,16 @@ final class Version07RefactoDBForFilm_dirphoto extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE `film_dirphoto` (
-            `film_id` int NOT NULL,
-            `dirphoto_id` int NOT NULL,
-            PRIMARY KEY (`film_id`,`dirphoto_id`),
-            KEY `IDX_195568B8567F5183` (`film_id`),
-            KEY `IDX_195568B86391035A` (`dirphoto_id`)
-          ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
+        $this->addSql('CREATE TABLE `type` (
+            `id` int NOT NULL AUTO_INCREMENT,
+            `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+            PRIMARY KEY (`id`)
+          ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE film_dirphoto');
+        $this->addSql('DROP TABLE type');
     }
 }

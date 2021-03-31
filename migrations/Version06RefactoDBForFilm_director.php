@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version01RefactoDBForFilm_director extends AbstractMigration
+final class Version06RefactoDBForFilm_director extends AbstractMigration
 {
     public function getDescription() : string
     {
