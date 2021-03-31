@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version12RefactoDBForFormat extends AbstractMigration
+final class Version13RefactoDBForGenre extends AbstractMigration
 {
     public function getDescription() : string
     {

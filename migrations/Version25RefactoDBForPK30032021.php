@@ -27,7 +27,7 @@ final class Version25RefactoDBForPK30032021 extends AbstractMigration
             ADD CONSTRAINT `FK_3B1CEE054827B9B2` FOREIGN KEY (`marque_id`) REFERENCES `marque` (`id`),
             ADD CONSTRAINT `FK_3B1CEE05AC14B70A` FOREIGN KEY (`modele_id`) REFERENCES `modele` (`id`);');
         $this->addSql('ALTER TABLE `film`
-        ADD CONSTRAINT `FK_8244BE22A76ED395` FOREI  GN KEY (`user_id`) REFERENCES `users` (`id`);');
+            ADD CONSTRAINT `FK_8244BE22A76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);');
         $this->addSql('ALTER TABLE `film_camera`
             ADD CONSTRAINT `FK_50EED30F567F5183` FOREIGN KEY (`film_id`) REFERENCES `film` (`id`) ON DELETE CASCADE,
             ADD CONSTRAINT `FK_50EED30FB47685CD` FOREIGN KEY (`camera_id`) REFERENCES `camera` (`id`) ON DELETE CASCADE;');
@@ -75,7 +75,7 @@ final class Version25RefactoDBForPK30032021 extends AbstractMigration
             DROP CONSTRAINT `FK_3B1CEE054827B9B2` FOREIGN KEY (`marque_id`) REFERENCES `marque` (`id`),
             DROP CONSTRAINT `FK_3B1CEE05AC14B70A` FOREIGN KEY (`modele_id`) REFERENCES `modele` (`id`);');
         $this->addSql('ALTER TABLE `film`
-        DROP CONSTRAINT `FK_8244BE22A76ED395` FOREI  GN KEY (`user_id`) REFERENCES `users` (`id`);');
+        DROP CONSTRAINT `FK_8244BE22A76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);');
         $this->addSql('ALTER TABLE `film_camera`
             DROP CONSTRAINT `FK_50EED30F567F5183` FOREIGN KEY (`film_id`) REFERENCES `film` (`id`) ON DELETE CASCADE,
             DROP CONSTRAINT `FK_50EED30FB47685CD` FOREIGN KEY (`camera_id`) REFERENCES `camera` (`id`) ON DELETE CASCADE;');
