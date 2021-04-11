@@ -161,7 +161,7 @@ class ModeleRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
         $query,
         $search->page,
-        12
+       20
 
         );      
     }

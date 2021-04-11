@@ -18,8 +18,6 @@ use App\Repository\ModeleRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -114,7 +112,7 @@ class FilmType extends AbstractType
                 ->add('camera', CollectionType::class, [
                     'entry_type' => Camera1Type::class,
                     'entry_options' =>[
-                        'label' => 'Camerasssss'
+                        'label' => false,
                     ],
                     'allow_add' => true,
                     'allow_delete' => true,
