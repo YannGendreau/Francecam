@@ -1,33 +1,34 @@
-<div class="tableau">
-	{% for film in films %}
-		<div class="cardGrid">
-			<div class="cardSm">
-				<div class="imgCard">
-					{% if film.poster %}
-						<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
-					{% else %}
-						<div class="description">
-							<h1 id="over">{{film.title}}</h1>
-							<div class="genreOverlay">
-								{% for g in film.genres %}
-									<em>{{g.name}}</em>
-								{% endfor %}
-
-							</div>
-						</div>
-					{% endif %}
-				</div>
-				<a href="{{path('film_show', {slug: film.slug,})}}">
-					<div class="description__overlay description__overlay--blur">
+<!-- <div class="tableau"> -->
+{% for film in films %}
+	<div class="cardGrid">
+		<div class="cardSm" id="grid">
+			<div class="imgCard">
+				{% if film.poster %}
+					<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
+				{% else %}
+					<div class="description">
 						<h1 id="over">{{film.title}}</h1>
 						<div class="genreOverlay">
 							{% for g in film.genres %}
 								<em>{{g.name}}</em>
 							{% endfor %}
+
 						</div>
 					</div>
-				</a>
+				{% endif %}
 			</div>
+			<a href="{{path('film_show', {slug: film.slug,})}}">
+				<div class="description__overlay description__overlay--blur">
+					<h1 id="over">{{film.title}}</h1>
+					<div class="genreOverlay">
+						{% for g in film.genres %}
+							<em>{{g.name}}</em>
+						{% endfor %}
+					</div>
+					<em>{{film.sortie}}</em>
+				</div>
+			</a>
 		</div>
-	{% endfor %}
-</div>
+	</div>
+{% endfor %}
+<!-- </div> -->
