@@ -70,6 +70,7 @@ tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */
 		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+		<script src="https://use.fontawesome.com/43fd22934f.js"></script>
 
 
 		{% block stylesheets %}
@@ -82,13 +83,16 @@ tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */
 
 	<body>
 
+		{% include "/includes/flashes/_flash_message.html.twig" %}
+		{% block body %}{% endblock %}
 
-		<main role="main"> {% block body %}{% endblock %}
-			</main>
 
-			{% block javascripts %}
-				{{ encore_entry_script_tags('app')}}
-			{% endblock %}
-		</body>
-	</html>
-</body></html>
+		{% block footer %}
+			{% include "navbar/_footer.html.twig" %}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') | replace({'src=': 'defer src='}) | raw}}
+		{% endblock %}
+	</body>
+</html>

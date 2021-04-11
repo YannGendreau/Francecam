@@ -11,7 +11,12 @@
 
 			</div>
 			<div class="btnUserFilm">
-				<a href="{{ path('film_edit', {'slug': film.slug}) }}">Editer</a>
+
+				<a href="{{ path('film_edit', {'slug': film.slug}) }}">
+					<button>Editer</button>
+				</a>
+
+				{# <a href="{{ path('film_edit', {'slug': film.slug}) }}">Editer</a> #}
 				<div>{{ include('film/_delete_form.html.twig') }}</div>
 			</div>
 		</div>

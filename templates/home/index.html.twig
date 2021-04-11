@@ -4,14 +4,13 @@
 {% endblock %}
 
 {% block content %}
-	<div id="container">
+	<div class="container">
 
-		{% include "includes/flashes/_flash_message.html.twig" %}
+		{# {% include "includes/flashes/_flash_message.html.twig" %} #}
 
 		<!-- TITRE ET BARRE DE RECHERCHE -->
 
-		<div class="searchBlock">
-			<div
+			<div class="searchBlock"> <div
 				class="searchCenter">
 				<!-- TITRE -->
 				<div class="logoSearch">
@@ -48,7 +47,9 @@
 			<div class="flexLatest">
 				<div class="homeCameraList">
 					<h2>Dernières caméras</h2>
-					{% include "modele/_modele_list.html.twig" %}
+					<div class="tableau">
+						{% include "modele/_modele_list.html.twig" %}
+					</div>
 					{# {% include "includes/film_includes/_homeCameraList.html.twig" %} #}
 				</div>
 			</div>

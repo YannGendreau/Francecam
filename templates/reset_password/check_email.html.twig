@@ -1,13 +1,13 @@
 {% extends 'navbar/layout.html.twig' %}
 
-{% block title %}Reset your password email send
+{% block title %}Francecam | Lien de réinitialisation
 {% endblock %}
 
 {% block content %}
-	<div id="container">
+	<div class="container">
 		<p>
 			Cliquez le lien qui vous a été envoyé.
-												        Ce lien expirera dans
+																		        Ce lien expirera dans
 			{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
 		</p>
 		<p>Si vous ne recevez pas cet Email, vérifiez dans votre dossier spam ou

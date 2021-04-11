@@ -1,49 +1,52 @@
 {% extends 'navbar/layout.html.twig' %}
 
 {% block title %}
+	Francecam |
 	{{marque.name}}
 {% endblock %}
 
 {% block content %}
-	<div id="container">
+	<div class="container">
 
 
-		<div class="tableauCamera">
-			<div class="imageCam">
-				{% if marque.logoName %}
-					<div class="imgMov"><img src="/build/images/marques/{{marque.logoName}}" alt="logo de la marque de caméra {{marque.name}}"></div>
-				{% else %}
-					<h1>{{marque.name}}
-					</h1>
-				{% endif %}
-				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
-			</div>
-			<div class="descriptionCam">
-				<div class="titreCam">
-					<h1 id="title">{{marque.name}}
-					</h1>
-					<div class="overview">
-						<div>
-							<a href="http://{{marque.website}}">
-								<h5>{{marque.website}}</h5>
-							</a>
-							<span>/</span>
-							<h5>{{marque.pays}}</h5>
-							<span>/</span>
-							<h5>Fondé en
-								{{marque.creation}}</h5>
-
-						</div>
+		<div class="tableauMarque">
+			<div class="descriptionMarque">
+				<div class="flexImgMarque">
+					<div class="centerMarquePic">
+						{% if marque.logoName %}
+							<div class="imgMov"><img src="/build/images/marques/{{marque.logoName}}" alt="logo de la marque de caméra {{marque.name}}"></div>
+						{% else %}
+							<h1>{{marque.name}}
+							</h1>
+						{% endif %}
+						<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
 					</div>
-					<div class="trait"></div>
 				</div>
+
+
+				<div class="overview">
+					<div>
+						<a href="http://{{marque.website}}" alt="Visiter le site web de {{marque.name}}">
+							<h5>{{marque.website}}</h5>
+						</a>
+						<span>/</span>
+						<h5>{{marque.pays}}</h5>
+						<span>/</span>
+						<h5>Fondé en
+							{{marque.creation}}</h5>
+					</div>
+				</div>
+
+				<div class="trait"></div>
+
 
 				<div class="summary">
+					<h4>Résumé</h4>
 					<p>{{marque.description}}</p>
-
 				</div>
 			</div>
-			<div class="specCam">
+
+			<div class="specMarque">
 				<div class="tabContainer">
 					<div class="buttonContainer">
 						<button class="active">Caméras</button>
@@ -51,9 +54,8 @@
 						{# <button>Vidéos</button> #}
 					</div>
 					<div class="contentCam">
-
 						<div class="tabPanel" style="display: block;">
-							<div class="tableauCamFilm">
+							<div class="specifications">
 								{% if marque.modeles | length >= 1 %}
 									{% for camera in marque.modeles %}
 										<div class="cardGridCam">
@@ -90,8 +92,6 @@
 									<p>pas de camera</p>
 								{% endif %}
 							</div>
-
-
 						</div>
 						<div class="tabPanel" style="display: none;">
 							<div class="posters">
@@ -127,7 +127,7 @@
 											</div>
 										</div>
 									{% endfor %}
-									{% if marque.films | length > 1 %}
+									{% if marque | length > 1 %}
 										{# <p>Voir plus</p> #}
 									{% endif %}
 
@@ -136,9 +136,11 @@
 								{% endif %}
 							</div>
 						</div>
+
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
-{% endblock %}
+</div>{% endblock %}

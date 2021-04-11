@@ -1,0 +1,132 @@
+<div id='cssmenu'>
+	<ul>
+		<li class='has-sub'>
+			<a href='#'>Caméras</a>
+			<ul>
+
+				<li class='has-sub'>
+					<a href='#'>Marques</a>
+					<ul>
+						<li><a class=""href="{{path('marque_index')}}">Toutes les marques</a></li>
+						<li><a class=""href="{{path('modele')}}">Toutes les caméras</a></li>
+						<li><a class=""href="{{path('marque_show',{slug:'aaton'})}}">Aaton</a></li>
+						<li><a class=""href="{{path('marque_show',{slug:'arri'})}}">ARRI</a></li>
+						<li><a class=""href='{{path('marque_show',{slug:'debrie'})}}'>Debrie</a></li>
+						<li><a class=""href='{{path('marque_show',{slug:'eclair'})}}'>Eclair</a></li>
+						<li><a class=""href='{{path('marque_show',{slug:'moviecam'})}}'>Moviecam</a></li>
+						<li><a class=""href='{{path('marque_show',{slug:'mitchell'})}}'>Mitchell</a></li>
+						<li><a class=""href='{{path('marque_show',{slug:'panavision'})}}'>Panavision</a></li>
+					</ul>
+				</li>
+				<li class='has-sub'>
+					<a href='#'>Formats</a>
+					<ul>
+						<li><a href="#0">16mm / Super16mm</a></li>
+						<li><a href="#0">35mm / Super35mm</a></li>
+					</ul>
+				</li>
+				<li class='has-sub'>
+					<a href='#'>Décennies</a>
+					<ul class="">
+
+						<li class="">
+							<a href="#">1910</a>
+						</li>
+						<li class="">
+							<a href="#">1920</a>
+						</li>
+						<li class="">
+							<a href="#">1930</a>
+						</li>
+						<li class="">
+							<a href="#">1940</a>
+						</li>
+						<li class="">
+							<a href="#">1950</a>
+						</li>
+						<li class="">
+							<a href="#">1960</a>
+						</li>
+						<li class="">
+							<a href="#">1970</a>
+						</li>
+						<li class="">
+							<a href="#">1980</a>
+						</li>
+						<li class="">
+							<a href="#">1990</a>
+						</li>
+
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li class='has-sub'>
+			<a href='#'>Films</a>
+			<ul>
+				<li class='has-sub'>
+					<a href='#'>Genres</a>
+					<ul>
+						<li><a class=""href="{{path('films')}}">Action</a></li>
+						<li><a href="#">Aventure</a></li>
+						<li><a href="#">Comédie</a></li>
+						<li><a href="#">Drame</a></li>
+						<li><a href="#">Polar</a></li>
+						<li><a href="#">Fantastique</a></li>
+						<li><a href="#">Horreur</a></li>
+						<li><a href="#">Science-Fiction</a></li>
+					</ul>
+				</li>
+
+				<li class='has-sub'>
+					<a href='#'>Décennies</a>
+					<ul>
+						<li><a href="#">1910</a></li>
+						<li><a href="#">1920</a></li>
+						<li><a href="#">1930</a></li>
+						<li><a href="#">1940</a></li>
+						<li><a href="#">1950</a></li>
+						<li><a href="#">1960</a></li>
+						<li><a href="#">1970</a></li>
+						<li><a href="#">1980</a></li>
+						<li><a href="#">1990</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li class='has-sub-log'>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href='#'>{{app.user.name}}</a>
+				<ul>
+					<li class='has-sub-reg'>
+						<a href="{{path('user')}}">Mon profil</a>
+					</li>
+					<li class='has-sub-reg'>
+						<a href='{{path('admin')}}'>Back-Office</a>
+					</li>
+					<li class='has-sub-reg'>
+						<a href='{{path('app_logout')}}'>Déconnexion</a>
+					</li>
+				{% elseif app.user %}
+					<a href='#'>{{app.user.name}}</a>
+					<ul>
+						<li class='has-sub'>
+							<a href='{{path('user')}}'>Mon profil</a>
+						</li>
+						<li class='has-sub'>
+							<a href='{{path('app_logout')}}'>Déconnexion</a>
+						</li>
+					</ul>
+				{% else %}
+					<li class='has-sub-reg'>
+						<a href="{{path('app_login')}}">Connexion</a>
+					</li>
+					<li class='has-sub-reg'>
+						<a href="{{path('app_register')}}">Inscription</a>
+					</li>
+
+				</ul>
+			{% endif %}
+		</li>
+	</li>
+</ul></li></ul></div>
