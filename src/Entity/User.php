@@ -70,6 +70,11 @@ class User implements UserInterface
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $activation_token;
+
     // /**
     //  * @ORM\Column(type="boolean", nullable=true)
     //  */
@@ -257,6 +262,18 @@ class User implements UserInterface
   public function setIsVerified(bool $isVerified): self
   {
       $this->isVerified = $isVerified;
+
+      return $this;
+  }
+
+  public function getActivationToken(): ?string
+  {
+      return $this->activation_token;
+  }
+
+  public function setActivationToken(?string $activation_token): self
+  {
+      $this->activation_token = $activation_token;
 
       return $this;
   }
