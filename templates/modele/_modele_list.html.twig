@@ -1,42 +1,39 @@
-<div class="tableau">
-	{% for camera in modele %}
-		<div class="cardGridCam">
-			<div class="cardSmCam">
-				<div class="imgCardCam">
-					{% if camera.img %}
-						<div class="smDescriptionOverlay">
-							<em>{{camera.marque}}
-								{{camera.name}}
-							</em>
-						</div>
-						<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
-					{% else %}
-						<div class="description">
-							<h3>{{camera.marque}}</h3>
-							<h2>{{camera.name}}</h2>
-							{% for c in camera.type %}
-								<h5>{{c.name}}</h5>
-							{% endfor %}
-							{% for f in camera.format %}
-								<h5>{{f.name}}</h5>
-							{% endfor %}
-						</div>
-					{% endif %}
-				</div>
-				<a href="{{path('modele_show', {slug:camera.slug} )}}">
-					<div class="description__overlay description__overlay--blur">
+{% for camera in modele %}
+	<div class="cardGridCam">
+		<div class="cardSmCam">
+			<div class="imgCardCam">
+				{% if camera.img %}
+					<div class="smDescriptionOverlay">
+						<em>{{camera.marque}}
+							{{camera.name}}
+						</em>
+					</div>
+					<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
+				{% else %}
+					<div class="description">
 						<h3>{{camera.marque}}</h3>
 						<h2>{{camera.name}}</h2>
-						{% for f in camera.type %}
-							<h5>{{f.name}}</h5>
+						{% for c in camera.type %}
+							<h5>{{c.name}}</h5>
 						{% endfor %}
 						{% for f in camera.format %}
 							<h5>{{f.name}}</h5>
 						{% endfor %}
 					</div>
-				</a>
+				{% endif %}
 			</div>
+			<a href="{{path('modele_show', {slug:camera.slug} )}}">
+				<div class="description__overlay description__overlay--blur">
+					<h3>{{camera.marque}}</h3>
+					<h2>{{camera.name}}</h2>
+					{% for f in camera.type %}
+						<em>{{f.name}}</em>
+					{% endfor %}
+					{% for f in camera.format %}
+						<em>{{f.name}}</em>
+					{% endfor %}
+				</div>
+			</a>
 		</div>
-	{% endfor %}
-
-</div>
+	</div>
+{% endfor %}
