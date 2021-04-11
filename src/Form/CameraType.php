@@ -29,26 +29,26 @@ class CameraType extends AbstractType
                     // 'mapped'        => false,
                     'required'      => false,
                     'by_reference'  => false,
-                    // 'multiple'       => true,
+                    'multiple'       => true,
                     'auto_initialize'   => false,
                     // 'expanded' => true
             ]);
 
 
-            // $builder->get('marque')->addEventListener(
-            // FormEvents::POST_SUBMIT,
-            // function (FormEvent $event) {
-            //     $form = $event->getForm();
-            //     dd($form->getData());
-            //     $marques = $form->getData();
+            $builder->get('marque')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                $form = $event->getForm();
+                $marques = $form->getData();
                                
-            //     $form->getParent()->add('modeles', EntityType::class, [
-            //         'label'             => false,
-            //         'class'             => Modele::class,
-            //         'placeholder'       => 'Choisir un modele',
-            //         'required'          => false,
-            //         'mapped'            => false,
-            //         'choices'           => $form->getData()->getModeles(),
+                $form->getParent()->add('modeles', EntityType::class, [
+                    'label'             => false,
+                    'class'             => Modele::class,
+                    'placeholder'       => 'Choisir un modele',
+                    'required'          => false,
+                    'mapped'            => false,
+                    'multiple'       => true,
+                    'choices'           => $marques->getModeles()
                     // 'choice_value' => function (Marque $marque = null) {
 
                     //     return $marque ? $marque->getModeles() : '';
@@ -59,9 +59,9 @@ class CameraType extends AbstractType
                     //     ->select('m.modeles')
                     //     ;
                     // }
-                // ]);
-            // }
-        // );
+                ]);
+            }
+        );
         
     }
 

@@ -52,20 +52,24 @@ class FilmController extends AbstractController
     public function new(Request $request): Response
     {
         $film = new Film;
-        $user= new User;
         $camera = new Camera;
        
         $sortie = $film->getSortie();
-        $film->addCamera($camera);
         $film->setDecade($sortie);
+        // $film->getCamera()->add($camera);
+        $film->addCamera($camera);
         
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
             $film->setUser($this->getUser());
-            $entityManager = $this->getDoctrine()->getManager();
-            $film = $form->getData();
-            
+            foreach($camera as $cam){
+                $film->addCamera($cam);
+
+            }
+            $entityManager = $this->getDoctrine()->getManager();        
+            $film = $form->getData(); 
             $entityManager->persist($film);
             $entityManager->flush();
 
@@ -101,6 +105,7 @@ class FilmController extends AbstractController
         $form->handleRequest($request);
         $sortie = $film->getSortie();
         $film->setDecade($sortie);
+      
        
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -144,10 +149,12 @@ class FilmController extends AbstractController
         $form = $this->createForm(SearchFilmForm::class, $data);
         $form->handleRequest($request);
         $films = $this->repository->findSearch($data);
-        if ($request->isXmlHttpRequest()){
+        if ($request->get('ajax')){
             return new JsonResponse([
                 'content' => $this->renderView('film/_film_list.html.twig', ['films' =>$films]),
-                'sorting' => $this->renderView('film/_sorting.html.twig', ['films' =>$films])
+                'sorting' => $this->renderView('film/_sorting.html.twig', ['films' =>$films]),
+                'pagination' => $this->renderView('film/_pagination.html.twig', ['films' =>$films]),
+                'pages' => ceil($films->getTotalItemCount() / $films->getItemNumberPerPage())
             ]);
 }
 
@@ -166,18 +173,6 @@ class FilmController extends AbstractController
         return round($sortie/10, 0, PHP_ROUND_HALF_DOWN)* 10; 
 
     }
-
-    /**
-     * Validation 
-     *
-     * @Route("/validate", name="film_validate")
-     */
-    // public function validateFilm(Film $film): Response
-    // {
-    //     return $this->render('film/film_validation.html.twig', [
-    //        "film" => $film
-    //     ]);
-    // }
 
     /**
      * Undocumented function

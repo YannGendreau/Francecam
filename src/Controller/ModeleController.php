@@ -121,10 +121,12 @@ class ModeleController extends AbstractController
         $form = $this->createForm(SearchCameraForm::class, $data);
         $form->handleRequest($request);
         $modeles = $this->repository->findSearch($data);
-        if ($request->isXmlHttpRequest()){
+        if ($request->get('ajax')){
             return new JsonResponse([
-                'content' => $this->renderView('modele/_film_list.html.twig', ['modeles' =>$modeles]),
-                'sorting' => $this->renderView('modele/_sorting.html.twig', ['modeles' =>$modeles])
+                'content' => $this->renderView('modele/_modele_list.html.twig', ['modele' => $modeles]),
+                'sorting' => $this->renderView('modele/_sorting.html.twig', ['modele' => $modeles]),
+                'pagination' => $this->renderView('modele/_pagination.html.twig', ['modele' => $modeles]),
+                'pages' => ceil($modeles->getTotalItemCount() / $modeles->getItemNumberPerPage())
             ]);
         }
 
