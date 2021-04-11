@@ -1,37 +1,31 @@
 {% extends 'navbar/layout.html.twig' %}
 
 {% block title %}
-	{{modele.marque.name}}{{modele.name}}
+	Francecam |
+	{{modele.marque.name}}
+	{{modele.name}}
 {% endblock %}
 
 {% block content %}
-	<div
-		id="container">
+	<div class="container">
 
 		<!--FLASH MESSAGE-->
-		{% include "includes/flashes/_flash_message.html.twig" %}
+		{# {% include "includes/flashes/_flash_message.html.twig" %} #}
 
-		<div
-			class="tableauCamera">
-			<!--AFFICHE-------------------------------->
-
+			<div
+			class="tableauCamera"> <!--AFFICHE-------------------------------->
 			<div class="imageCam">
-
-				<div class="imageCam">
-					{% if modele.img %}
-						<img class="imgCam" src="/build/images/imagesCam/{{modele.img}}" alt="Photographie de la camera {{modele.marque}} {{modele.name}}">
-					{% else %}
-						<img class="camLogo" src="/build/images/illustrations/camera-logo.png" alt="illustration de camera par défaut">
-					{% endif %}
-					<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
-				</div>
-
+				{% if modele.img %}
+					<img class="imgCam" src="/build/images/imagesCam/{{modele.img}}" alt="Photographie de la camera {{modele.marque}} {{modele.name}}">
+				{% else %}
+					<img class="camLogo" src="/build/images/illustrations/camera-logo.png" alt="illustration de camera par défaut">
+				{% endif %}
+				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
 			</div>
-
 			<!--DESCRIPTION-------------------------------->
-			<div class="descriptionFilm">
-				<div class="titreCam">
-					<h1 id="title">{{modele.marque}}
+			<div class="descriptionCam">
+				<div class="titre">
+					<h1 id="cameraTitre">{{modele.marque}}
 						{{modele.name}}</h1>
 					<div class="overview">
 						<div>
@@ -83,7 +77,7 @@
 									</div>
 									<div class="spec">
 										{% if modele.type %}
-											<h3>
+											<h4>
 												{% for s in modele.type %}
 													{{s.name}}
 												{% endfor %}
@@ -91,7 +85,7 @@
 												<span>
 													-
 												</span>
-											</h3>
+											</h4>
 										{% endif %}
 									</div>
 								</div>
@@ -103,8 +97,8 @@
 									</div>
 									<div class="spec">
 										{% if modele.magazine %}
-											<h3>{{modele.magazine}}
-												mètres</h3>
+											<h4>{{modele.magazine}}
+												mètres</h4>
 										{% else %}
 											<span>
 												-
@@ -119,7 +113,7 @@
 										</strong>
 									</div>
 									<div class="spec">
-										<h3>
+										<h4>
 											{% if modele.shutter %}
 												{% for s in modele.shutter %}
 													{{s.angle}}°
@@ -131,7 +125,7 @@
 
 											{% endif %}
 
-										</h3>
+										</h4>
 									</div>
 								</div>
 								<div class="cell">
@@ -141,7 +135,7 @@
 										</strong>
 									</div>
 									<div class="spec">
-										<h3>
+										<h4>
 											{% if modele.framerate %}
 												{% for s in modele.framerate %}
 													{{s.name}}fp/s
@@ -152,7 +146,7 @@
 												</span>
 
 											{% endif %}
-										</h3>
+										</h4>
 									</div>
 								</div>
 								<div class="cell">
@@ -162,7 +156,7 @@
 										</strong>
 									</div>
 									<div class="spec">
-										<h3>
+										<h4>
 											{% if modele.mount %}
 												{% for s in modele.mount %}
 													{{s.name}}
@@ -172,7 +166,7 @@
 													-
 												</span>
 											{% endif %}
-										</h3>
+										</h4>
 									</div>
 								</div>
 								<div class="cell">
@@ -182,16 +176,16 @@
 										</strong>
 									</div>
 									<div class="spec">
-										<h3>
+										<h4>
 											{% if modele.perfs %}
-												<h3>{{modele.perfs}}
-													perfs</h3>
+												<h4>{{modele.perfs}}
+													perfs</h4>
 											{% else %}
 												<span>
 													-
 												</span>
 											{% endif %}
-										</h3>
+										</h4>
 									</div>
 								</div>
 								<div class="cell">
@@ -201,7 +195,7 @@
 										</strong>
 									</div>
 									<div class="spec">
-										<h3>
+										<h4>
 											{% if modele.mount %}
 												{{modele.noise}}db
 											{% else %}
@@ -209,7 +203,7 @@
 													-
 												</span>
 											{% endif %}
-										</h3>
+										</h4>
 									</div>
 								</div>
 								<div class="cell">
@@ -219,7 +213,7 @@
 										</strong>
 									</div>
 									<div class="spec">
-										<h3>
+										<h4>
 											{% if modele.weight %}
 												{{modele.weight}}Kg
 											{% else %}
@@ -227,7 +221,7 @@
 													-
 												</span>
 											{% endif %}
-										</h3>
+										</h4>
 									</div>
 								</div>
 								<div class="cell">
@@ -237,7 +231,7 @@
 										</strong>
 									</div>
 									<div class="spec">
-										<h3>
+										<h4>
 											{% if modele.sync %}
 												{{modele.sync}}
 											{% else %}
@@ -245,7 +239,7 @@
 													-
 												</span>
 											{% endif %}
-										</h3>
+										</h4>
 									</div>
 								</div>
 								<div class="cell">
@@ -255,7 +249,7 @@
 										</strong>
 									</div>
 									<div class="spec">
-										<h3>
+										<h4>
 											{% if modele.view %}
 												{{modele.view}}
 											{% else %}
@@ -263,70 +257,70 @@
 													-
 												</span>
 											{% endif %}
-										</h3>
+										</h4>
 									</div>
 								</div>
 
 
 								{# <table>
-																																																																																																																																																																																																																																																																																																																																																																																																																																															<thead>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																<tr class="tableauTitre">
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Magasin</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Obturateur</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Fréquence</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Entraînement</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Monture</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Moteur</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Voltage</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																</tr>
-																																																																																																																																																																																																																																																																																																																																																																																																																																															</thead>
-																																																																																																																																																																																																																																																																																																																																																																																																																																															<tbody>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																<tr class="tableauCell">
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>{{modele.magazine}}</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																		{% for s in modele.shutter %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																			{{s.angle}}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																		{% endfor %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>{{modele.framerate}}</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>{{modele.perfs}}</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																		{% for m in modele.mount %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																			{{m.name}}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																		{% endfor %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>{{modele.sync}}</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>{{modele.voltage}}</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																</tr>
-																																																																																																																																																																																																																																																																																																																																																																																																																																															</tbody>
-																																																																																																																																																																																																																																																																																																																																																																																																																																															<thead>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																<tr class="tableauTitre">
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Poids</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Format</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Température</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Video assist</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>LCD</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>TCL</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Bruit</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																						
-																																																																																																																																																																																																																																																																																																																																																																																																																																																</tr>
-																																																																																																																																																																																																																																																																																																																																																																																																																																															</thead>
-																																																																																																																																																																																																																																																																																																																																																																																																																																															<tbody>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																<tr class="tableauCell">
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>{{modele.weight}}</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																		{% for f in modele.format %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																			{{f.name}}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																		{% endfor %}
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Oui</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>{{modele.view}}</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Oui</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>Oui</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																	<th>{{modele.noise}}</th>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																</tr>
-																																																																																																																																																																																																																																																																																																																																																																																																																																															</tbody>
-																																																																																																																																																																																																																																																																																																																																																																																																																																														</table> #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													<thead>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														<tr class="tableauTitre">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Magasin</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Obturateur</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Fréquence</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Entraînement</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Monture</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Moteur</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Voltage</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														</tr>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													</thead>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													<tbody>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														<tr class="tableauCell">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>{{modele.magazine}}</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																{% for s in modele.shutter %}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	{{s.angle}}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																{% endfor %}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>{{modele.framerate}}</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>{{modele.perfs}}</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																{% for m in modele.mount %}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	{{m.name}}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																{% endfor %}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>{{modele.sync}}</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>{{modele.voltage}}</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														</tr>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													</tbody>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													<thead>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														<tr class="tableauTitre">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Poids</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Format</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Température</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Video assist</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>LCD</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>TCL</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Bruit</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														</tr>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													</thead>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													<tbody>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														<tr class="tableauCell">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>{{modele.weight}}</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																{% for f in modele.format %}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	{{f.name}}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																{% endfor %}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Oui</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>{{modele.view}}</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Oui</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>Oui</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															<th>{{modele.noise}}</th>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														</tr>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													</tbody>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												</table> #}
 							</div>
 						</div>
 						{# <div class="tabPanel" style="display: none;"></div> #}

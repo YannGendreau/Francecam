@@ -10,12 +10,17 @@
 //FICHIER CSS principal
 import './styles/app.scss';
 
-//FILTRE JS AJAX (en developpement)
-// import Filter from './modules/Filter';
-import Filter from './modules/TitleFontSize';
 
-//JQUERY
-// new Filter(document.querySelector('.js-filter'));
+
+import  './modules/OverFontSize';
+import  './modules/TitleFontSize';
+import  './modules/slideMenu';
+// import  './modules/Filter';
+
+
+
+
+
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -27,10 +32,78 @@ const imagesContext = require.context('../assets/images', true, /\.(png|jpg|jpeg
 imagesContext.keys().forEach(imagesContext);
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
+//JQUERY
 import $ from 'jquery';
 import 'select2';                      
 import 'select2/dist/css/select2.css';
+
 $('select').select2();
+
+$("#clickMenu").on("click", function(){
+    $(this).toggleClass("sidepanel__open sidepanel__close");
+  });
+
+
+  
+	$(function(){
+	
+	$('#cssmenu li.active').addClass('open').children('ul').show();
+		$('#cssmenu li.has-sub>a').on('click', function(){
+			$(this).removeAttr('href');
+			var element = $(this).parent('li');
+			if (element.hasClass('open')) {
+				element.removeClass('open');
+				element.find('li').removeClass('open');
+				element.find('ul').slideUp(200);
+			}
+			else {
+				element.addClass('open');
+				element.children('ul').slideDown(200);
+				element.siblings('li').children('ul').slideUp(200);
+				element.siblings('li').removeClass('open');
+				element.siblings('li').find('li').removeClass('open');
+				element.siblings('li').find('ul').slideUp(200);
+			}
+		});
+		$('#cssmenu li.has-sub-log>a').on('click', function(){
+			$(this).removeAttr('href');
+			var element = $(this).parent('li');
+			if (element.hasClass('open')) {
+				element.removeClass('open');
+				element.find('li').removeClass('open');
+				element.find('ul').slideUp(200);
+			}
+			else {
+				element.addClass('open');
+				element.children('ul').slideDown(200);
+				element.siblings('li').children('ul').slideUp(200);
+				element.siblings('li').removeClass('open');
+				element.siblings('li').find('li').removeClass('open');
+				element.siblings('li').find('ul').slideUp(200);
+			}
+		});
+		$('#cssmenu li.has-sub-reg>a').on('click', function(){
+			// $(this).removeAttr('href');
+			var element = $(this).parent('li');
+			if (element.hasClass('open')) {
+				element.removeClass('open');
+				element.find('li').removeClass('open');
+				element.find('ul').slideUp(200);
+			}
+			else {
+				element.addClass('open');
+				element.children('ul').slideDown(200);
+				element.siblings('li').children('ul').slideUp(200);
+				element.siblings('li').removeClass('open');
+				element.siblings('li').find('li').removeClass('open');
+				element.siblings('li').find('ul').slideUp(200);
+			}
+		});
+	
+	});
+	
+
+
 
 //TOGGLE TABS PAGE FILM, CAMERA, MARQUE
 
@@ -68,19 +141,19 @@ setTimeout(function() {
 }, 5000)
 
 
+//FILTRE JS AJAX (en developpement)
+import Filter from './modules/Filter';
+new Filter(document.querySelector('.js-filter'));
 
-// Limit character Title show
-
-var titleFilm = document.getElementById("titleFilm");
+//Change hauteur de la carte camera en fonction de la largeur
 
 
-	if (titleFilm.innerText.length >= 20 && titleFilm.innerText.length < 39){
-		titleFilm.style.fontSize = ('3.5rem')
-	}else if(titleFilm.innerText.length >= 40){
-		titleFilm.style.fontSize = ('3rem')
-	}else{
-		titleFilm.style.fontSize = ('4.5rem')
-	}
+  const camCard = document.getElementById("card");
+  camCard.style.height = (camCard.style.width / 1.5) + "px";
+  console.log('Test cam')
+
+
+
 
 
 //----------------------------------------------------------------------

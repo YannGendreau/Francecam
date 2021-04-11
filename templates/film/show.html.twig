@@ -1,21 +1,18 @@
 {% extends 'navbar/layout.html.twig' %}
 
 {% block title %}
+	Francecam |
 	{{film.title}}
 {% endblock %}
 
 {% block content %}
-	<div
-		id="container">
+	<div class="container">
 		<!--FLASH MESSAGE-->
-		{% include "includes/flashes/_flash_message.html.twig" %}
+		{# {% include "includes/flashes/_flash_message.html.twig" %} #}
 
-		<div
-			class="tableauCamera">
-			<!--AFFICHE-------------------------------->
-			<div>
-				<h1>{{film.user}}</h1>
-			</div>
+			<div
+			class="tableauCamera"> <!--AFFICHE-------------------------------->
+
 			<div class="imageCam">
 				{% if film.poster %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
@@ -34,8 +31,8 @@
 			</div>
 			<!--DESCRIPTION-------------------------------->
 			<div class="descriptionFilm">
-				<div class="titreCam">
-					<h1 id="titleFilm">{{film.title}}
+				<div class="titre">
+					<h1 id="titleFilmShow">{{film.title}}
 					</h1>
 					<div class="overview">
 						<div>
@@ -132,6 +129,7 @@
 					</div>
 				</div>
 			</div>
+
 			<!--INFOS-------------------------------->
 			<div class="specCam">
 				<div class="tabContainer">
@@ -186,33 +184,52 @@
 											<div class="cardGridCam">
 												<div class="cardSmCam">
 													<div class="imgCardCam">
-														<a href="{{path('marque_show', {slug: m.slug} )}}"><img src="" alt="logo de la marque de caméra {{m.name}}"></a>
+
+														{% if m.logoName %}
+															<a href="{{path('marque_show', {slug: m.slug,})}}"><img src="/build/images/marques/{{m.logoName}}" alt="logo de la marque {{m.name}}"></a>
+														{% else %}
+															<a href="{{path('marque_show', {slug: m.slug} )}}">
+																<div class="smDescriptionOverlay">
+																	<em>{{m.name}}</em>
+																</div>
+																<div class="description__overlay description__overlay--blur">
+																	<h2>{{m.name}}
+																	</h2>
+																</div>
+															</a>
+														{% endif %}
+
+
+														{# <a href="{{path('marque_show', {slug: m.slug} )}}"><img src="" alt="logo de la marque de caméra {{m.name}}"></a>
+																																																																																																																																											</div>
+																																																																																																																																											<a href="{{path('marque_show', {slug: m.slug} )}}">
+																																																																																																																																												<div class="smDescriptionOverlay">
+																																																																																																																																													<em>{{m.name}}</em>
+																																																																																																																																												</div>
+																																																																																																																																												<div class="description__overlay description__overlay--blur">
+																																																																																																																																													<h2>{{m.name}}
+																																																																																																																																													</h2>
+																																																																																																																																												</div>
+																																																																																																																																											</a> #}
 													</div>
-													<a href="{{path('marque_show', {slug: m.slug} )}}">
-														<div class="smDescriptionOverlay">
-															<em>{{m.name}}</em>
-														</div>
-														<div class="description__overlay description__overlay--blur">
-															<h2>{{m.name}}
-															</h2>
-														</div>
-													</a>
 												</div>
-											</div>
-										{% endfor %}
-									{% elseif film.modeles | length == 0 and film.marques | length == 0 %}
-										<h1>Pas de camera</h1>
-									{% endif %}
+											{% endfor %}
+										{% elseif film.modeles | length == 0 and film.marques | length == 0 %}
+											<h1>Pas de camera</h1>
+										{% endif %}
+									</div>
 								</div>
 							</div>
-						</div>
-						{# <div class="tabPanel" style="display: none;"></div> #}
-						<div class="tabPanel" style="display: none;">
-							<h2>BANDE ANNONCE</h2>
+							{# <div class="tabPanel" style="display: none;"></div> #}
+							<div class="tabPanel" style="display: none;">
+								<h2>BANDE ANNONCE</h2>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div>
+				<h1>{{film.user}}</h1>
+			</div>
 		</div>
-	</div>
-{% endblock %}
+	{% endblock %}

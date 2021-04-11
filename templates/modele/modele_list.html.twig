@@ -1,21 +1,41 @@
 {% extends 'navbar/layout.html.twig' %}
 
-{% block content %}
-	<div id="container">
+{% block title %}Francecam | Toutes les caméras.
+{% endblock %}
 
-		<div class="allFilmsTable js-filter">
-			<div class="searchList">
-				{% include "modele/_modele_list_filter.html.twig" with {form: form} only %}
+{% block content %}
+	<div class="container js-filter">
+
+		<div class="title">
+			<h1>Toutes les Caméras</h1>
+		</div>
+
+		{# <div class="leftside">
+																						</div> #}
+		<aside class="sidepanel" id="mySidepanel">
+			{% include "modele/_modele_list_filter.html.twig" with {form: form} only %}
+		</aside>
+
+
+		<div class="triangle">
+			<button title="Filtres de recherche" id="clickMenu" class="openbtn">
+				<img src="{{asset('build/images/triangle-filter.svg')}}" alt="">
+			</button>
+		</div>
+		<div class="rightside">
+			<div class="sorting js-filter-sorting" id="">
+				{% include "modele/_sorting.html.twig" %}
 			</div>
-			<div
-				class="sorting js-filter-sorting">{# {% include "film/_sorting.html.twig" %} #}
-			</div>
+
 			<div class="showList js-filter-content">
 				{% include "modele/_modele_list.html.twig" %}
-				<div class="paginate js-filter-pagination">
-					{{knp_pagination_render(modele)}}
-				</div>
+			</div>
+
+			<div class="paginate js-filter-pagination">
+				{% include "modele/_pagination.html.twig" %}
 			</div>
 		</div>
+
 	</div>
+
 {% endblock %}
