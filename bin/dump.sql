@@ -4287,34 +4287,34 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 --
 
 INSERT INTO francecam.doctrine_migration_versions (version,executed_at,execution_time) VALUES
-	 ("DoctrineMigrations\Version01RefactoDBForCamera","2021-03-31 21:26:53",52),
-	 ("DoctrineMigrations\Version02RefactoDBForDirector","2021-03-31 21:26:53",31),
-	 ("DoctrineMigrations\Version03RefactoDBForCamera","2021-03-31 21:26:53",24),
-	 ("DoctrineMigrations\Version04RefactoDBForFilm","2021-03-31 21:26:53",51),
-	 ("DoctrineMigrations\Version05RefactoDBForFilm_camera","2021-03-31 21:26:54",35),
-	 ("DoctrineMigrations\Version06RefactoDBForFilm_director","2021-03-31 21:26:54",42),
-	 ("DoctrineMigrations\Version07RefactoDBForFilm_dirphoto","2021-03-31 21:26:54",41),
-	 ("DoctrineMigrations\Version08RefactoDBForFilm_genre","2021-03-31 21:26:54",34),
-	 ("DoctrineMigrations\Version09RefactoDBForFilm_marque","2021-03-31 21:26:54",36),
-	 ("DoctrineMigrations\Version10RefactoDBForFilm_modele","2021-03-31 21:26:54",35);
+	 ("DoctrineMigrations\\Version01RefactoDBForCamera","2021-03-31 21:26:53",52),
+	 ("DoctrineMigrations\\Version02RefactoDBForDirector","2021-03-31 21:26:53",31),
+	 ("DoctrineMigrations\\Version03RefactoDBForCamera","2021-03-31 21:26:53",24),
+	 ("DoctrineMigrations\\Version04RefactoDBForFilm","2021-03-31 21:26:53",51),
+	 ("DoctrineMigrations\\Version05RefactoDBForFilm_camera","2021-03-31 21:26:54",35),
+	 ("DoctrineMigrations\\Version06RefactoDBForFilm_director","2021-03-31 21:26:54",42),
+	 ("DoctrineMigrations\\Version07RefactoDBForFilm_dirphoto","2021-03-31 21:26:54",41),
+	 ("DoctrineMigrations\\Version08RefactoDBForFilm_genre","2021-03-31 21:26:54",34),
+	 ("DoctrineMigrations\\Version09RefactoDBForFilm_marque","2021-03-31 21:26:54",36),
+	 ("DoctrineMigrations\\Version10RefactoDBForFilm_modele","2021-03-31 21:26:54",35);
 INSERT INTO francecam.doctrine_migration_versions (version,executed_at,execution_time) VALUES
-	 ("DoctrineMigrations\Version11RefactoDBForFilm_pays","2021-03-31 21:26:54",33),
-	 ("DoctrineMigrations\Version12RefactoDBForFormat","2021-03-31 21:26:54",25),
-	 ("DoctrineMigrations\Version13RefactoDBForGenre","2021-03-31 21:26:54",26),
-	 ("DoctrineMigrations\Version14RefactoDBForMarque","2021-03-31 21:26:54",29),
-	 ("DoctrineMigrations\Version15RefactoDBForModele","2021-03-31 21:26:54",34),
-	 ("DoctrineMigrations\Version16RefactoDBForModele_format","2021-03-31 21:26:54",40),
-	 ("DoctrineMigrations\Version17RefactoDBForModele_mount","2021-03-31 21:26:54",36),
-	 ("DoctrineMigrations\Version18RefactoDBForModele_shutter","2021-03-31 21:26:54",44),
-	 ("DoctrineMigrations\Version18RefactoDBForModele_type","2021-03-31 21:26:54",35),
-	 ("DoctrineMigrations\Version20RefactoDBForMount","2021-03-31 21:26:54",27);
+	 ("DoctrineMigrations\\Version11RefactoDBForFilm_pays","2021-03-31 21:26:54",33),
+	 ("DoctrineMigrations\\Version12RefactoDBForFormat","2021-03-31 21:26:54",25),
+	 ("DoctrineMigrations\\Version13RefactoDBForGenre","2021-03-31 21:26:54",26),
+	 ("DoctrineMigrations\\Version14RefactoDBForMarque","2021-03-31 21:26:54",29),
+	 ("DoctrineMigrations\\Version15RefactoDBForModele","2021-03-31 21:26:54",34),
+	 ("DoctrineMigrations\\Version16RefactoDBForModele_format","2021-03-31 21:26:54",40),
+	 ("DoctrineMigrations\\Version17RefactoDBForModele_mount","2021-03-31 21:26:54",36),
+	 ("DoctrineMigrations\\Version18RefactoDBForModele_shutter","2021-03-31 21:26:54",44),
+	 ("DoctrineMigrations\\Version18RefactoDBForModele_type","2021-03-31 21:26:54",35),
+	 ("DoctrineMigrations\\Version20RefactoDBForMount","2021-03-31 21:26:54",27);
 INSERT INTO francecam.doctrine_migration_versions (version,executed_at,execution_time) VALUES
-	 ("DoctrineMigrations\Version21RefactoDBForPays","2021-03-31 21:26:54",22),
-	 ("DoctrineMigrations\Version21RefactoDBForReset_password_request","2021-03-31 21:26:54",33),
-	 ("DoctrineMigrations\Version22RefactoDBForShutter","2021-03-31 21:26:54",41),
-	 ("DoctrineMigrations\Version23RefactoDBForType","2021-03-31 21:26:54",28),
-	 ("DoctrineMigrations\Version24RefactoDBForUser","2021-03-31 21:26:54",50),
-	 ("DoctrineMigrations\Version25RefactoDBForPK30032021","2021-03-31 21:26:54",2084);
+	 ("DoctrineMigrations\\Version21RefactoDBForPays","2021-03-31 21:26:54",22),
+	 ("DoctrineMigrations\\Version21RefactoDBForReset_password_request","2021-03-31 21:26:54",33),
+	 ("DoctrineMigrations\\Version22RefactoDBForShutter","2021-03-31 21:26:54",41),
+	 ("DoctrineMigrations\\Version23RefactoDBForType","2021-03-31 21:26:54",28),
+	 ("DoctrineMigrations\\Version24RefactoDBForUser","2021-03-31 21:26:54",50),
+	 ("DoctrineMigrations\\Version25RefactoDBForPK30032021","2021-03-31 21:26:54",2084);
 
 -- --------------------------------------------------------
 
