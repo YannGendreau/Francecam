@@ -15,6 +15,7 @@ import './styles/app.scss';
 import  './modules/OverFontSize';
 import  './modules/TitleFontSize';
 import  './modules/slideMenu';
+import  './modules/charcount';
 // import  './modules/Filter';
 
 
@@ -44,68 +45,102 @@ $("#clickMenu").on("click", function(){
   });
 
 
+
+
+
+checkFontSize();
+
+
+function checkFontSize() {
+  var elems = document.querySelectorAll(".description__overlay");
   
-	$(function(){
-	
-	$('#cssmenu li.active').addClass('open').children('ul').show();
-		$('#cssmenu li.has-sub>a').on('click', function(){
-			$(this).removeAttr('href');
-			var element = $(this).parent('li');
-			if (element.hasClass('open')) {
-				element.removeClass('open');
-				element.find('li').removeClass('open');
-				element.find('ul').slideUp(200);
-			}
-			else {
-				element.addClass('open');
-				element.children('ul').slideDown(200);
-				element.siblings('li').children('ul').slideUp(200);
-				element.siblings('li').removeClass('open');
-				element.siblings('li').find('li').removeClass('open');
-				element.siblings('li').find('ul').slideUp(200);
-			}
-		});
-		$('#cssmenu li.has-sub-log>a').on('click', function(){
-			$(this).removeAttr('href');
-			var element = $(this).parent('li');
-			if (element.hasClass('open')) {
-				element.removeClass('open');
-				element.find('li').removeClass('open');
-				element.find('ul').slideUp(200);
-			}
-			else {
-				element.addClass('open');
-				element.children('ul').slideDown(200);
-				element.siblings('li').children('ul').slideUp(200);
-				element.siblings('li').removeClass('open');
-				element.siblings('li').find('li').removeClass('open');
-				element.siblings('li').find('ul').slideUp(200);
-			}
-		});
-		$('#cssmenu li.has-sub-reg>a').on('click', function(){
-			// $(this).removeAttr('href');
-			var element = $(this).parent('li');
-			if (element.hasClass('open')) {
-				element.removeClass('open');
-				element.find('li').removeClass('open');
-				element.find('ul').slideUp(200);
-			}
-			else {
-				element.addClass('open');
-				element.children('ul').slideDown(200);
-				element.siblings('li').children('ul').slideUp(200);
-				element.siblings('li').removeClass('open');
-				element.siblings('li').find('li').removeClass('open');
-				element.siblings('li').find('ul').slideUp(200);
-			}
-		});
-	
+  [].forEach.call(elems, function(el) {
+    scaleFontSize(el);
+  });  
+
+}
+
+function scaleFontSize(element) {
+ 
+    element.style.fontSize = "100%";
+
+    if (element.scrollWidth > element.clientWidth) {
+        element.style.letterSpacing = "-0.05em";
+    }
+
+    if (element.scrollWidth > element.clientWidth) {
+        element.style.letterSpacing = "0";
+        element.style.fontSize = "80%";
+    }
+}
+
+
+  
+$(function(){
+
+$('#cssmenu li.active').addClass('open').children('ul').show();
+	$('#cssmenu li.has-sub>a').on('click', function(){
+		$(this).removeAttr('href');
+		var element = $(this).parent('li');
+		if (element.hasClass('open')) {
+			element.removeClass('open');
+			element.find('li').removeClass('open');
+			element.find('ul').slideUp(200);
+			element.siblings('li').slideDown(200);
+		
+		}
+		else {
+			element.addClass('open');
+			element.children('ul').slideDown(200);
+			element.siblings('li').children('ul').slideUp(200);
+			element.siblings('li').slideUp(200);
+			element.siblings('li').removeClass('open');
+			element.siblings('li').find('li').removeClass('open');
+			element.siblings('li').find('li').display= "none";
+			element.siblings('li').find('ul').slideUp(200);
+		}
 	});
+	$('#cssmenu li.has-sub-log>a').on('click', function(){
+		$(this).removeAttr('href');
+		var element = $(this).parent('li');
+		if (element.hasClass('open')) {
+			element.removeClass('open');
+			element.find('li').removeClass('open');
+			element.find('ul').slideUp(200);
+		}
+		else {
+			element.addClass('open');
+			element.children('ul').slideDown(200);
+			element.siblings('li').children('ul').slideUp(200);
+			element.siblings('li').removeClass('open');
+			element.siblings('li').find('li').removeClass('open');
+			element.siblings('li').find('ul').slideUp(200);
+		}
+	});
+	$('#cssmenu li.has-sub-reg>a').on('click', function(){
+		// $(this).removeAttr('href');
+		var element = $(this).parent('li');
+		if (element.hasClass('open')) {
+			element.removeClass('open');
+			element.find('li').removeClass('open');
+			element.find('ul').slideUp(200);
+		}
+		else {
+			element.addClass('open');
+			element.children('ul').slideDown(200);
+			element.siblings('li').children('ul').slideUp(200);
+			element.siblings('li').removeClass('open');
+			element.siblings('li').find('li').removeClass('open');
+			element.siblings('li').find('ul').slideUp(200);
+		}
+	});
+
+});
 	
 
 
 
-//TOGGLE TABS PAGE FILM, CAMERA, MARQUE
+//TOGGLE TABS PAGE FILM, CAMERA, MARQUE-----------------------------------
 
 //Boutons de description
 var tabs = document.querySelectorAll(".buttonContainer button");
@@ -119,7 +154,7 @@ tabs.forEach(function(tab, tab_index){
 		})
 		tab.classList.add("active");
 
-//Change les tableaux quand le bouton est activé
+//Change les tableaux quand le bouton est activé------------------------
 		tab_wraps.forEach(function(content, content_index){
 			if(content_index == tab_index){
 				content.style.display = "block";
@@ -131,7 +166,7 @@ tabs.forEach(function(tab, tab_index){
 	})
 })
 
-//Close up FlashMessage
+//Close up FlashMessage----------------------------------------------------
 
 setTimeout(function() {
 	$ ('#showflash').slideUp("slow");
@@ -141,16 +176,20 @@ setTimeout(function() {
 }, 5000)
 
 
-//FILTRE JS AJAX (en developpement)
+//FILTRE JS AJAX (en developpement)-----------------------------------------
 import Filter from './modules/Filter';
 new Filter(document.querySelector('.js-filter'));
 
-//Change hauteur de la carte camera en fonction de la largeur
+
+//Change hauteur de la carte camera en fonction de la largeur---------------
 
 
   const camCard = document.getElementById("card");
-  camCard.style.height = (camCard.style.width / 1.5) + "px";
-  console.log('Test cam')
+  if(camCard){
+	  camCard.style.height = (camCard.style.width / 1.5) + "px";
+  
+  }
+  
 
 
 
