@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version26AddUserToken extends AbstractMigration
+final class Version27AddFilmToken extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -19,11 +19,15 @@ final class Version26AddUserToken extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        $this->addSql('ALTER TABLE users ADD activation_token VARCHAR(50) DEFAULT NULL, DROP is_verified');
+        // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE film ADD activation_token VARCHAR(50) DEFAULT NULL');
+       
     }
 
     public function down(Schema $schema) : void
     {
-        $this->addSql('ALTER TABLE users ADD is_verified TINYINT(1) NOT NULL, DROP activation_token');
+        // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE film DROP activation_token');
+       
     }
 }
