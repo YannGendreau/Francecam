@@ -45,7 +45,12 @@
 		<div>
 			<div>
 				<h3>Synopsis</h3>
+
+				{# {{form_errors(form.synopsis, {'attr': {'class': 'error'}})}} #}
 				{{form_row(form.synopsis)}}
+
+				<span id="count"></span>
+
 			</div>
 
 		</div>
@@ -77,12 +82,13 @@
 		<h3>Caméras</h3>
 
 		<div class="marqueModele">
-			<div class="marqueForm">
-				<div class="camera" id="cam_list" data-prototype="{{form_widget(form.camera.vars.prototype)|e('html_attr')}}">
-					{% for cam in form.camera %}
-						{{ form_row(cam) }}
-					{% endfor %}
-				</div>
+			<div
+				class="marqueForm">{# <div
+																																																												class="camera" id="cam_list" data-prototype="{{form_widget(form.camera.vars.prototype)|e('html_attr')}}">
+																																																																	for cam in form.camera %}
+																																																																			{{ form_row(cam) }}
+																																																																		{% endfor %}
+																																																											</div>#}
 
 
 			</div>

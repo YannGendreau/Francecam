@@ -18,8 +18,10 @@
 				{% endif %}
 			</div>
 			<a href="{{path('film_show', {slug: film.slug,})}}">
-				<div class="description__overlay description__overlay--blur">
+				<div class="description__overlay description__overlay--blur" id="descOverlay">
+
 					<h1 id="over">{{film.title}}</h1>
+
 					<div class="genreOverlay">
 						{% for g in film.genres %}
 							<em>{{g.name}}</em>

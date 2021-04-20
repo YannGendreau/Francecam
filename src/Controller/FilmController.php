@@ -3,19 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Film;
+use App\Entity\User;
+use App\Entity\Camera;
 use App\Entity\Marque;
 use App\Form\FilmType;
 use App\Data\FilmSearchData;
-use App\Entity\Camera;
-use App\Entity\User;
 use App\Form\SearchFilmForm;
 use App\Repository\FilmRepository;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -36,20 +39,10 @@ class FilmController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="film_index", methods={"GET"})
-     */
-    public function index(FilmRepository $filmRepository): Response
-    {
-        return $this->render('film/index.html.twig', [
-            'films' => $filmRepository->findAll(),
-        ]);
-    }
-
-    /**
      * @Route("/new", name="film_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, MailerInterface $mailer ): Response
     {
         $film = new Film;
         $camera = new Camera;
@@ -57,31 +50,90 @@ class FilmController extends AbstractController
         $sortie = $film->getSortie();
         $film->setDecade($sortie);
         // $film->getCamera()->add($camera);
-        $film->addCamera($camera);
+        // $film->addCamera($camera);
         
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $film->setUser($this->getUser());
-            foreach($camera as $cam){
-                $film->addCamera($cam);
 
-            }
+            // foreach($camera as $cam){
+            //     $film->addCamera($cam);
+
+            // }
             $entityManager = $this->getDoctrine()->getManager();        
-            $film = $form->getData(); 
+            $film = $form->getData();
+
+            //token d'activation chiffré
+            $film->setActivationToken(md5(uniqid()));
+
             $entityManager->persist($film);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Nouveau film enregistré');
+            // email avec token
+            $email = (new TemplatedEmail())
+            ->from(new Address('test@test.com', 'Francecam Admin'))
+            ->to(new Address('test@test.com', 'Francecam Admin'))
+            ->subject('Francecam | Nouveau film')
+            ->htmlTemplate('film/activation.html.twig')
+            ->context([
+                'slug' => $film->getSlug(),
+                'title' => $film->getTitle(),
+                'user' => $film->getUser()
+            ])
+            ;
+
+            $mailer->send($email);
+
+            // $this->addFlash('success', 'Nouveau film enregistré');
        
-            return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
+            // return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
+            return $this->redirectToRoute('film_activation_sent');
         }
  
         return $this->render('film/new.html.twig', [
             'film' => $film,
             'form' => $form->createView(),
         ]);
+    }
+
+
+    
+
+      /**
+     * Message d'envoi de lien de connexion
+     *
+     * @Route("/activation/sent", name="film_activation_sent")
+     */
+    public function activationSent()
+    {
+        return $this->render('film/validation.html.twig');
+    }
+
+    /**
+     * Met le token a NULL si le lien est cliqué
+     * 
+     * @Route("/activation/{token}", name="activation_film")
+     *
+     */
+    public function activation($token, FilmRepository $repository)
+    {
+        $film = $repository->findOneBy(['activation_token' => $token]);
+
+        if(!$film){
+            throw $this->createNotFoundException('Le film n\'existe pas.');
+
+        }
+
+        $film->setActivationToken(null);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($film);
+        $em->flush();
+
+        $this->addFlash('success', 'Merci de votre contribution a Francecam !');
+
+        return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
     }
 
  

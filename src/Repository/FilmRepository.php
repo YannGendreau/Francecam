@@ -45,12 +45,15 @@ class FilmRepository extends ServiceEntityRepository
      }
 
 
-      /**
+    /**
+    * recherche par filtre 
+    * 
     * @return PaginationInterface
     */
 
     public function findSearch(FilmSearchData $search): PaginationInterface
     {
+        //Sélection des champs sur entité Film
         $query = $this
                     ->createQueryBuilder('f')
                     ->select('f','m')
@@ -58,13 +61,15 @@ class FilmRepository extends ServiceEntityRepository
                     ->leftJoin('f.marques', 'm')
                    
                     ;
-                    
+        //Si la recherche est similaire à une partie du titre.            
         if (!empty($search->q)) {
             $query = $query
                     ->andWhere('f.title LIKE :q')
                     ->setParameter('q', "%{$search->q}%")
                     ;
         }
+
+        //Sélection des checkboxes
 
         if (!empty($search->genres)) {
             $query = $query
@@ -90,6 +95,7 @@ class FilmRepository extends ServiceEntityRepository
             ->setParameter('marques', $search->marques)
             ;
         }
+        //envoie les resultats vers paginator pour pagination
             $query= $query->getQuery();
             return $this->paginator->paginate(
             $query,
@@ -150,7 +156,7 @@ class FilmRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            20
+            6
 
         );      
     }

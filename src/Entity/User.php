@@ -80,6 +80,8 @@ class User implements UserInterface
     //  */
     // private $isVerified;
 
+
+    
     public function __construct()
     {
         $this->film = new ArrayCollection();
@@ -128,6 +130,13 @@ class User implements UserInterface
         return $this;
     }
 
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
      /**
      * Returns the roles granted to the user.
      *
@@ -150,9 +159,7 @@ class User implements UserInterface
 
         return array_unique($roles);
     }
-
-   
-
+  
     /**
      * Returns the salt that was originally used to encode the password.
      *
@@ -186,12 +193,7 @@ class User implements UserInterface
 
     }
 
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
+    
 
   public function __toString()
   {

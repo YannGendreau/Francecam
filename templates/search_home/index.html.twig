@@ -12,7 +12,8 @@
 					<div class="resultTitle">
 						<h2>Films</h2>
 					</div>
-					{% include "film/_film_list.html.twig" %}
+					<div class="tableau">
+						{% include "film/_film_list.html.twig" %}</div>
 				</div>
 			{% endif %}
 			{% if modele | length >= 1 %}
@@ -20,8 +21,10 @@
 					<div class="resultTitle">
 						<h2>Cameras</h2>
 					</div>
-					{# {% include "search_home/_results_modele.html.twig" %} #}
-					{% include "modele/_modele_list.html.twig" %}
+					<div
+						class="tableau">
+						{# {% include "search_home/_results_modele.html.twig" %} #}
+						{% include "modele/_modele_list.html.twig" %}</div>
 				</div>
 			{% endif %}
 		</div>

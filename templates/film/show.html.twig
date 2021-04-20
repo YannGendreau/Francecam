@@ -7,11 +7,9 @@
 
 {% block content %}
 	<div class="container">
-		<!--FLASH MESSAGE-->
-		{# {% include "includes/flashes/_flash_message.html.twig" %} #}
-
-			<div
-			class="tableauCamera"> <!--AFFICHE-------------------------------->
+		<div
+			class="tableauCamera">
+			<!--AFFICHE-------------------------------->
 
 			<div class="imageCam">
 				{% if film.poster %}
@@ -153,12 +151,11 @@
 															<div class="description">
 																<h3>{{camera.marque}}</h3>
 																<h2>{{camera.name}}</h2>
-																{# <h5>{{c.cameraFormat.cameraType.name}}</h5> #}
 																{% for g in camera.type %}
-																	<h5>{{g.name}}</h5>
+																	<em>{{g.name}}</em>
 																{% endfor %}
 																{% for f in camera.format %}
-																	<h5>{{f.name}}</h5>
+																	<em>{{f.name}}</em>
 																{% endfor %}
 															</div>
 														{% endif %}
@@ -169,10 +166,10 @@
 															<h2>
 																{{camera.name}}</h2>
 															{% for f in camera.type %}
-																<h5>{{f.name}}</h5>
+																<em>{{f.name}}</em>
 															{% endfor %}
 															{% for f in camera.format %}
-																<h5>{{f.name}}</h5>
+																<em>{{f.name}}</em>
 															{% endfor %}
 														</div>
 													</a>
@@ -198,19 +195,6 @@
 																</div>
 															</a>
 														{% endif %}
-
-
-														{# <a href="{{path('marque_show', {slug: m.slug} )}}"><img src="" alt="logo de la marque de caméra {{m.name}}"></a>
-																																																																																																																																											</div>
-																																																																																																																																											<a href="{{path('marque_show', {slug: m.slug} )}}">
-																																																																																																																																												<div class="smDescriptionOverlay">
-																																																																																																																																													<em>{{m.name}}</em>
-																																																																																																																																												</div>
-																																																																																																																																												<div class="description__overlay description__overlay--blur">
-																																																																																																																																													<h2>{{m.name}}
-																																																																																																																																													</h2>
-																																																																																																																																												</div>
-																																																																																																																																											</a> #}
 													</div>
 												</div>
 											{% endfor %}
@@ -219,17 +203,16 @@
 										{% endif %}
 									</div>
 								</div>
-							</div>
-							{# <div class="tabPanel" style="display: none;"></div> #}
-							<div class="tabPanel" style="display: none;">
-								<h2>BANDE ANNONCE</h2>
+								{# <div class="tabPanel" style="display: none;"></div> #}
+								<div class="tabPanel" style="display: none;">
+									<h2>BANDE ANNONCE</h2>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div>
+					{# <h1>{{film.user}}</h1> #}
+				</div>
 			</div>
-			<div>
-				<h1>{{film.user}}</h1>
-			</div>
-		</div>
-	{% endblock %}
+		{% endblock %}

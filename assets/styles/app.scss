@@ -21,8 +21,9 @@ html {
     list-style: none;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
-
 
 /*-----------------------------------------------------
     Mixins
@@ -97,14 +98,15 @@ html {
 
 @mixin font-form-film {
     font-family: 'Roboto Condensed', sans-serif;
-    color: $titleFont;
-    font-size: 1.8rem;
+    // color: $titleFont;
+    color: $nav-color;
+    font-size: 1.5rem;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
 }
 
 
-@mixin carteCamera {
+@mixin cardCamera {
     .cardGridCam {
         width: 33%;
         height: 190px;
@@ -131,7 +133,7 @@ html {
 
                 em {
                     display: inline-block;
-                    color: rgba(32, 48, 46, 0.7);
+                    color: $green-light;
                 }
             }
 
@@ -155,9 +157,6 @@ html {
 
                     @include flex-center();
                     flex-direction: column;
-                    // opacity: 0.5;
-                    // transition: opacity 0.25s,
-                    //     transform 0.25s;
 
 
                     h3 {
@@ -221,12 +220,14 @@ html {
                     width: 100%;
                     height: 100%;
                     border-radius: 5px;
-                    background: rgba(32, 48, 46, 0.7);
+                    background: rgba(0, 0, 0, 0.8);
+                    // background: rgba(32, 48, 46, 0.7);
                     @include flex-center();
                     flex-direction: column;
                     opacity: 0;
                     transition: opacity 0.25s,
                         transform 0.25s;
+                    padding: 5px;
 
                     &:hover {
                         opacity: 1;
@@ -240,10 +241,309 @@ html {
                     h2 {
                         // color: rgb(0, 0, 0);
                         color: rgb(255, 255, 255);
+
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        text-align: center;
+                        object-fit: contain;
+                    }
+
+                    h5 {
+                        // color: grey;
+                        color: $green-light;
+                        opacity: 0.5;
+                    }
+
+                    .genreOverlay {
+                        align-items: flex-end;
+                        color: $green-light;
+
+                        em {
+                            color: $green-light;
+                        }
+                    }
+
+                    em {
+                        // color: $titleFont;
+                        color: $green-light;
+                        font-size: 16px;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@mixin cardFilm {
+    .cardGrid {
+        width: 180px;
+        height: $cardFilm;
+        margin: 5px;
+
+        .cardSm {
+            position: relative;
+            height: $cardFilm;
+
+
+            .imgCard {
+                display: block;
+                height: $cardFilm;
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+
+                .description {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                    background: rgba(110, 80, 80, 0.1);
+                    background-image: url("/build/images/illustrations/frame-th.png");
+                    background-repeat: no-repeat;
+                    background-position: center top;
+                    background-size: contain;
+                    @include flex-center();
+                    flex-direction: column;
+
+
+                    h1 {
+                        color: $titleFont;
+                        font-weight: bolder;
+                        text-transform: uppercase;
+                        object-fit: contain;
+                    }
+
+                    .genreOverlay {
+                        align-items: flex-end;
+
+                        em {
+                            color: $titleDisplay;
+                        }
+                    }
+
+                    h5 {
+                        color: $megamenu-bg;
+                        opacity: 0.5;
+                        margin-bottom: 5px;
+                    }
+
+                }
+
+                img {
+                    width: 100%;
+                    height: $cardFilm;
+                    object-fit: cover;
+                    border-radius: 5px;
+                }
+            }
+
+            a {
+                .description__overlay--blur {
+                    backdrop-filter: blur(2px);
+                }
+
+                .description__overlay>* {
+                    transition: transform 0.25s;
+                }
+
+                .description__overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    @include flex-center();
+                    flex-direction: column;
+                    border-radius: 5px;
+                    opacity: 0;
+                    transition: opacity 0.25s,
+                        transform 0.25s;
+                    padding: 5px;
+
+
+
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    h3 {
+                        color: rgb(211, 211, 211);
+                        text-transform: uppercase;
+
+                    }
+
+                    #over {
+                        width: 180px;
+                        color: rgb(255, 255, 255);
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        text-align: center;
+                    }
+
+                    h5 {
+                        color: $megamenu-bg;
+                        opacity: 0.5;
+                        margin-bottom: 5px;
+                    }
+
+                    .genreOverlay {
+                        align-items: flex-end;
+
+                        em {
+                            font-size: 16px;
+                            color: $green-light;
+                        }
+                    }
+
+                    em {
+                        margin-top: 5px;
+                        color: $green-light;
+                        font-size: 16px;
+
+                    }
+
+                }
+            }
+        }
+    }
+
+    .cardGridCam {
+        flex: 1 20%;
+        min-width: 200px;
+        max-width: 250px;
+        height: 135px;
+        margin-bottom: 5px;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+
+        .cardSmCam {
+            position: relative;
+            height: 135px;
+
+
+            .smDescriptionOverlay {
+                position: absolute;
+                top: 2px;
+                left: 5px;
+                border-radius: 5px;
+
+                h5 {
+                    color: rgba(32, 48, 46, 0.7);
+                    margin-bottom: 5px;
+                }
+
+                em {
+                    display: inline-block;
+                    color: rgba(32, 48, 46, 0.7);
+                }
+            }
+
+            .imgCardCam {
+                display: block;
+                height: 135px;
+
+                .description {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                    background: rgba(0, 0, 0, 0.4);
+                    background-image: url("/build/images/illustrations/camera-ill.png");
+                    background-repeat: no-repeat;
+                    background-position: center top;
+                    background-size: cover;
+
+                    @include flex-center();
+                    flex-direction: column;
+
+
+                    h3 {
+
+                        color: $titleFont;
+                        font-weight: bolder;
+                        text-transform: uppercase
+                    }
+
+                    h2 {
+                        color: rgb(255, 255, 255);
                         padding: 5px;
                         text-transform: uppercase;
                         font-weight: bold;
                         font-size: 2rem;
+                        text-align: center;
+                    }
+
+                    h5 {
+                        color: $megamenu-bg;
+                        opacity: 0.5;
+                    }
+
+                    .genreOverlay {
+                        align-items: flex-end;
+                        color: grey;
+
+                        em {
+                            color: grey;
+                        }
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    // height: $cardCam;
+                    // height: 190px;
+                    height: 135px;
+
+                    object-fit: cover;
+
+                }
+            }
+
+            a {
+                .description__overlay--blur {
+                    backdrop-filter: blur(2px);
+                }
+
+                .description__overlay>* {
+                    transition: transform 0.25s;
+                }
+
+                .description__overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                    background: rgba(0, 0, 0, 0.8);
+                    // background: rgba(32, 48, 46, 0.7);
+                    @include flex-center();
+                    flex-direction: column;
+                    opacity: 0;
+                    transition: opacity 0.25s,
+                        transform 0.25s;
+                    padding: 5px;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    h3 {
+                        color: lightgrey;
+                        text-transform: uppercase
+                    }
+
+                    h2 {
+                        // color: rgb(0, 0, 0);
+                        color: rgb(255, 255, 255);
+
+                        text-transform: uppercase;
+                        font-weight: bold;
                         text-align: center;
                         object-fit: contain;
                     }
@@ -252,6 +552,326 @@ html {
                         // color: grey;
                         color: $megamenu-bg;
                         opacity: 0.5;
+                    }
+
+                    .genreOverlay {
+                        align-items: flex-end;
+                        // color: grey;
+                        color: $green-light;
+
+                        em {
+                            // color: grey;
+                            color: $green-light;
+                        }
+                    }
+
+                    em {
+                        // color: $titleFont;
+                        color: $green-light;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@mixin cardGridFilmSm {
+    .cardGrid {
+
+        max-width: 100px;
+        max-height: $cardFilmSm - 20px;
+        margin-bottom: 10px;
+
+        .cardSm {
+            width: 100%;
+            max-height: $cardFilmSm - 20px;
+
+            .imgCard {
+                max-height: $cardFilmSm - 20px;
+
+                a {
+
+                    img {
+                        max-height: $cardFilmSm - 20px;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            a {
+
+                .description__overlay {
+
+                    opacity: 0 !important;
+
+                    &:hover {
+                        opacity: 0;
+                    }
+                }
+
+                div {
+                    h1 {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin cardGridCam {
+    .cardGridCam {
+        width: 33%;
+        height: 190px;
+        max-width: 300px;
+        min-width: 300px;
+        margin: 3px;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+
+        .cardSmCam {
+            position: relative;
+            height: $cardCam;
+
+            .smDescriptionOverlay {
+                position: absolute;
+                top: 2px;
+                left: 5px;
+                border-radius: 5px;
+
+                h5 {
+                    color: rgba(32, 48, 46, 0.7);
+                    margin-bottom: 5px;
+                }
+
+                em {
+                    display: inline-block;
+                    color: rgba(32, 48, 46, 0.7);
+                }
+            }
+
+            .imgCardCam {
+                display: block;
+                height: $cardCam;
+
+                .description {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                    background: rgba(0, 0, 0, 0.4);
+                    background-image: url("/build/images/illustrations/camera-ill.png");
+                    background-repeat: no-repeat;
+                    background-position: center top;
+                    background-size: cover;
+
+                    @include flex-center();
+                    flex-direction: column;
+
+                    h3 {
+
+                        color: $titleFont;
+                        font-weight: bolder;
+                        text-transform: uppercase
+                    }
+
+                    h2 {
+                        color: rgb(255, 255, 255);
+                        padding: 5px;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        font-size: 2rem;
+                        text-align: center;
+                    }
+
+                    h5 {
+                        color: $megamenu-bg;
+                        opacity: 0.5;
+                    }
+
+                    .genreOverlay {
+                        align-items: flex-end;
+                        color: grey;
+
+                        em {
+                            color: $green-light;
+                        }
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    height: $cardCam;
+                    object-fit: contain;
+                }
+            }
+
+            a {
+                .description__overlay--blur {
+                    backdrop-filter: blur(2px);
+                }
+
+                .description__overlay>* {
+                    transition: transform 0.25s;
+                }
+
+                .description__overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                    background: rgba(0, 0, 0, 0.8);
+                    // background: rgba(32, 48, 46, 0.7);
+                    @include flex-center();
+                    flex-direction: column;
+                    opacity: 0;
+                    transition: opacity 0.25s,
+                        transform 0.25s;
+                    padding: 5px;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    h3 {
+                        color: lightgrey;
+                        text-transform: uppercase
+                    }
+
+                    h2 {
+                        color: rgb(255, 255, 255);
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        text-align: center;
+                        object-fit: contain;
+                    }
+
+                    h5 {
+                        color: $green-light;
+                        opacity: 0.5;
+                        margin-bottom: 5px;
+                    }
+
+                    .genreOverlay {
+                        align-items: flex-end;
+                        color: $green-light;
+
+                        em {
+                            color: $green-light;
+                            font-size: 16px;
+                        }
+                    }
+
+                    em {
+                        color: $green-light;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin cardMarque {
+    .cardGridMarque {
+
+        width: 30%;
+        border-radius: 5px;
+        min-width: 200px;
+        max-width: 200px;
+        height: 200px;
+        margin: 15px;
+
+        .cardSmMarque {
+
+            position: relative;
+            height: $cardCam;
+
+
+            .smDescriptionOverlay {
+
+                position: absolute;
+                top: 2px;
+                left: 5px;
+
+                h5 {
+                    color: rgba(32, 48, 46, 0.7);
+                    margin-bottom: 5px;
+                }
+
+                em {
+                    display: inline-block;
+                    color: rgba(32, 48, 46, 0.7);
+                }
+            }
+
+            .imgCardMarque {
+                display: block;
+                height: $cardCam;
+                background: white;
+                border-radius: 10px;
+
+                a {
+                    img {
+                        width: 100%;
+                        height: $cardCam;
+                        object-fit: contain;
+                    }
+                }
+            }
+
+
+            a {
+                .description__overlay--blur {
+                    backdrop-filter: blur(2px);
+                }
+
+                .description__overlay>* {
+                    transition: transform 0.25s;
+                }
+
+                .description__overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                    background: rgba(32, 48, 46, 0.7);
+                    @include flex-center();
+                    flex-direction: column;
+                    opacity: 0;
+                    transition: opacity 0.25s,
+                        transform 0.25s;
+                    padding: 5px;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    h3 {
+                        color: lightgrey;
+                        text-transform: uppercase
+                    }
+
+                    h2 {
+                        color: rgb(255, 255, 255);
+
+                        text-transform: uppercase;
+                        font-weight: bold;
+
+                        text-align: center;
+                    }
+
+                    h5 {
+                        color: $megamenu-bg;
+                        opacity: 0.5;
+                        margin-bottom: 5px;
                     }
 
                     .genreOverlay {
@@ -268,9 +888,11 @@ html {
                         color: $green-light;
                     }
 
+
                 }
             }
         }
+
     }
 }
 
@@ -280,8 +902,10 @@ html {
 /*----couleurs----*/
 // $megamenu-bg:RGBA(219, 237, 243, 0.97);
 $generalBackground : linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(233, 234, 241, 0.8));
+$generalBackground2 : linear-gradient(135deg, rgba(93, 96, 104, 0.8), rgba(233, 234, 241, 0.8));
 // $megamenu-bg:rgba(210, 223, 228, 0.97);
 $megamenu-bg:rgba(224, 236, 241, 0.97);
+$megamenu-bg-green:linear-gradient(135deg, rgba(230, 243, 239, 0.8), rgba(200, 233, 231, 0.97));
 $megamenu-bg-light:rgba(231, 237, 240, 0.97);
 $nav-color: #283149;
 $titleCard: #404b69;
@@ -359,7 +983,7 @@ a {
     transition: 200ms;
 
     &:hover {
-        background: rgba(210, 223, 228, 0.97);
+        background: rgba(133, 159, 170, 0.97);
     }
 
     .logoFc {
@@ -793,7 +1417,7 @@ a {
         }
     }
 
-    @media (max-width:767px) {
+    @media (max-width:1024px) {
 
         .exo-menu {
             min-height: 58px;
@@ -856,7 +1480,35 @@ a {
     width: 100%;
     background: $nav-color;
     @include flex-center();
-    height: 100px;
+    height: 150px;
+
+    .copyright {
+        width: 30%;
+
+        p {
+            font-size: 1.3rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+        }
+    }
+
+
+
+    .footerContainer {
+        // background: red;
+        @include flex-between-center();
+        flex-wrap: wrap;
+        width: 30%;
+
+        a {
+            width: 100%;
+            font-size: 1.3rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+        }
+
+
+    }
 
 }
 
@@ -872,6 +1524,13 @@ a {
     flex-wrap: wrap;
     width: 80%;
     min-height: 100vh;
+
+    h1 {
+        text-align: center;
+        color: $titleFont;
+        text-transform: uppercase;
+        font-size: 1.8rem;
+    }
 
     .searchBlock {
         margin: $mTop 0 $mTop 0;
@@ -952,7 +1611,8 @@ a {
 
                     input {
                         width: 100%;
-                        background: $megamenu-bg;
+                        // background: $megamenu-bg;
+                        background: $megamenu-bg-green;
                         box-shadow: inset 0 -3em 3em rgba(75, 75, 75, 0.1),
                             0 0 0 1px rgb(255, 255, 255),
                             0.3em 0.3em 1em rgba(68, 68, 68, 0.3);
@@ -997,7 +1657,7 @@ a {
     .title {
         width: 100%;
         @include flex-center();
-        height: 60px;
+        height: 50px;
         margin-bottom: 20px;
         margin-top: 35px;
         // border-bottom: 1px dotted rgb(218, 218, 218);
@@ -1006,7 +1666,7 @@ a {
             text-align: center;
             color: $titleFont;
             text-transform: uppercase;
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
     }
 
@@ -1015,8 +1675,8 @@ a {
         max-width: 16px;
         @include flex-start-center();
         cursor: pointer;
-        height: 800px;
-        opacity: 1;
+        height: 100vh;
+        margin-right: 10px;
 
         .openbtn {
             border: none;
@@ -1024,16 +1684,16 @@ a {
             font-size: 2rem;
             transition: 500ms;
             cursor: pointer;
-            opacity: 0;
+            // opacity: 0.5;
 
             img {
                 width: 20px;
                 padding-left: 3px;
-                opacity: 0.5;
+                // opacity: 0.5;
                 transition: 250ms;
 
                 &:hover {
-                    opacity: 1;
+                    // opacity: 1;
                     color: $titleFont;
                 }
             }
@@ -1050,26 +1710,30 @@ a {
 
     .sidepanel {
         width: 17%;
-        height: 800px;
-        max-height: 800px;
+        height: 100vh;
         @include flex-center-start();
-        position: relative;
+        top: 60px;
+        left: 0;
+        position: absolute;
         z-index: 1;
         overflow: hidden;
+        background: $buttoncontainerbg;
         transition: 0.5s cubic-bezier(.79, .14, .15, .86);
         padding-top: 0;
         opacity: 1;
 
         .filterFilmLeft {
             width: 100%;
-            @include flex-start-center();
+            height: 100vh;
+            // @include flex-start-center();
+            // @include flex-center-start();
             flex-wrap: wrap;
             overflow: overlay;
             z-index: -1;
             padding: 5px;
             border: 1px solid rgb(231, 231, 231);
             border-radius: 10px;
-            background: $buttoncontainerbg;
+
 
 
             .closeFilter {
@@ -1077,7 +1741,7 @@ a {
                 @include flex-end-center();
                 height: 30px;
                 overflow: hidden;
-                opacity: 0.3;
+                opacity: 0.5;
                 transition: 250ms;
 
                 &:hover {
@@ -1156,8 +1820,10 @@ a {
                     height: 30px;
                     margin: 10px 0 10px 0;
                     padding-left: 5px;
-                    background: $megamenu-bg;
-                    border: none;
+                    // background: $megamenu-bg;
+                    background: $megamenu-bg-green;
+                    border: 1px solid white;
+                    box-shadow: inset 0 -2em 3em rgba(75, 75, 75, 0.1);
                 }
 
                 fieldset {
@@ -1237,13 +1903,16 @@ a {
     .rightside {
         width: 80%;
         min-height: 100vh;
+        transition: 250ms ease-in-out;
 
         .sorting {
             @include flex-end-center();
             background: $buttoncontainerbg;
             border-radius: 10px;
             width: 100%;
-            height: 40px;
+            height: 35px;
+            padding-right: 10px;
+
 
 
             p {
@@ -1344,321 +2013,66 @@ a {
             @include flex-space-center();
             flex-wrap: wrap;
             margin-top: 10px;
+
             // position: fixed;
+            @include cardFilm();
 
-            .cardGrid {
-                // flex: 1 33%;
-                width: 180px;
-                height: $cardFilm;
-                margin: 5px;
-
-                .cardSm {
-                    position: relative;
-                    height: $cardFilm;
-
-
-                    .imgCard {
-                        display: block;
-                        height: $cardFilm;
-                        border: 1px solid lightgrey;
-                        border-radius: 5px;
-
-                        .description {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            border-radius: 5px;
-                            background: rgba(0, 0, 0, 0.2);
-                            background-image: url("/build/images/illustrations/frame-th.png");
-                            background-repeat: no-repeat;
-                            background-position: center top;
-                            background-size: contain;
-                            @include flex-center();
-                            flex-direction: column;
-
-                            h1 {
-                                color: $titleFont;
-                                font-weight: bolder;
-                                text-transform: uppercase;
-                                object-fit: contain;
-                            }
-
-                            .genreOverlay {
-                                align-items: flex-end;
-
-                                em {
-                                    color: $titleDisplay;
-                                }
-                            }
-
-                            h5 {
-                                color: $megamenu-bg;
-                                opacity: 0.5;
-                                margin-bottom: 5px;
-                            }
-
-                        }
-
-                        img {
-                            width: 100%;
-                            height: $cardFilm;
-                            object-fit: cover;
-                            border-radius: 5px;
-
-                            &:hover {
-                                transform: scale(1.2);
-                            }
-                        }
-                    }
-
-                    a {
-                        .description__overlay--blur {
-                            backdrop-filter: blur(2px);
-                        }
-
-                        .description__overlay>* {
-                            transition: transform 0.25s;
-                        }
-
-                        .description__overlay {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            background: rgba(0, 0, 0, 0.7);
-                            @include flex-center();
-                            flex-direction: column;
-                            border-radius: 5px;
-                            opacity: 0;
-                            transition: opacity 0.25s,
-                                transform 0.25s;
-
-                            &:hover {
-                                opacity: 1;
-                            }
-
-                            h3 {
-                                color: rgb(211, 211, 211);
-                                text-transform: uppercase;
-
-                            }
-
-                            #over {
-                                width: 180px;
-                                color: rgb(255, 255, 255);
-                                padding: 5px;
-                                text-transform: uppercase;
-                                font-weight: bold;
-                                font-size: 2rem;
-                                text-align: center;
-                            }
-
-                            h5 {
-                                color: $megamenu-bg;
-                                opacity: 0.5;
-                                margin-bottom: 5px;
-                            }
-
-                            .genreOverlay {
-                                align-items: flex-end;
-
-                                em {
-                                    // color: $titleFont;
-                                    color: $green-light;
-                                }
-                            }
-
-                            em {
-                                margin-top: 5px;
-                                // color: $titleFont;
-                                color: $green-light;
-                            }
-
-                        }
-                    }
-                }
-            }
-
-            .cardGridCam {
-                flex: 1 20%;
-                // width: 25%;
-                // width: 30%;
-                // height: 190px;
-                min-width: 200px;
-                max-width: 250px;
-                height: 135px;
-                margin-bottom: 5px;
-                border: 1px solid lightgrey;
-                border-radius: 5px;
-
-                .cardSmCam {
-                    position: relative;
-                    // height: $cardCam;
-                    height: 135px;
-
-
-                    .smDescriptionOverlay {
-                        position: absolute;
-                        top: 2px;
-                        left: 5px;
-                        border-radius: 5px;
-
-                        h5 {
-                            color: rgba(32, 48, 46, 0.7);
-                            margin-bottom: 5px;
-                        }
-
-                        em {
-                            display: inline-block;
-                            color: rgba(32, 48, 46, 0.7);
-                        }
-                    }
-
-                    .imgCardCam {
-                        display: block;
-                        // height: $cardCam;
-                        // height: 190px;
-                        height: 135px;
-
-                        .description {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            border-radius: 5px;
-                            background: rgba(0, 0, 0, 0.4);
-                            background-image: url("/build/images/illustrations/camera-ill.png");
-                            background-repeat: no-repeat;
-                            background-position: center top;
-                            background-size: cover;
-
-                            @include flex-center();
-                            flex-direction: column;
-
-
-                            h3 {
-
-                                color: $titleFont;
-                                font-weight: bolder;
-                                text-transform: uppercase
-                            }
-
-                            h2 {
-                                color: rgb(255, 255, 255);
-                                padding: 5px;
-                                text-transform: uppercase;
-                                font-weight: bold;
-                                font-size: 2rem;
-                                text-align: center;
-                            }
-
-                            h5 {
-                                color: $megamenu-bg;
-                                opacity: 0.5;
-                            }
-
-                            .genreOverlay {
-                                align-items: flex-end;
-                                color: grey;
-
-                                em {
-                                    color: grey;
-                                }
-                            }
-                        }
-
-                        img {
-                            width: 100%;
-                            // height: $cardCam;
-                            // height: 190px;
-                            height: 135px;
-
-                            object-fit: cover;
-
-                            &:hover {
-                                transform: scale(1.2);
-                            }
-                        }
-                    }
-
-                    a {
-                        .description__overlay--blur {
-                            backdrop-filter: blur(2px);
-                        }
-
-                        .description__overlay>* {
-                            transition: transform 0.25s;
-                        }
-
-                        .description__overlay {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            border-radius: 5px;
-                            background: rgba(32, 48, 46, 0.7);
-                            @include flex-center();
-                            flex-direction: column;
-                            opacity: 0;
-                            transition: opacity 0.25s,
-                                transform 0.25s;
-
-                            &:hover {
-                                opacity: 1;
-                            }
-
-                            h3 {
-                                color: lightgrey;
-                                text-transform: uppercase
-                            }
-
-                            h2 {
-                                // color: rgb(0, 0, 0);
-                                color: rgb(255, 255, 255);
-                                padding: 5px;
-                                text-transform: uppercase;
-                                font-weight: bold;
-                                font-size: 2rem;
-                                text-align: center;
-                                object-fit: contain;
-                            }
-
-                            h5 {
-                                // color: grey;
-                                color: $megamenu-bg;
-                                opacity: 0.5;
-                            }
-
-                            .genreOverlay {
-                                align-items: flex-end;
-                                // color: grey;
-                                color: $green-light;
-
-                                em {
-                                    // color: grey;
-                                    color: $green-light;
-                                }
-                            }
-
-                            em {
-                                // color: $titleFont;
-                                color: $green-light;
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 
     .searchList {
         width: 20%;
         z-index: -1;
+    }
+
+    .logoBlock {
+        margin: 100px 0 $mTop 0;
+        width: 100%;
+        min-height: 300px;
+        flex-wrap: wrap;
+
+        .searchCenter {
+            margin-top: 20px;
+            margin: auto;
+            justify-content: center;
+
+            .logoSearch {
+                @include flex-center();
+                flex-wrap: wrap;
+                margin-bottom: 20px;
+
+                .logoHome {
+                    width: 100px;
+                }
+
+                .titreHome {
+                    width: 100%;
+
+                    margin-right: 0px;
+
+                    h1 {
+                        text-align: center;
+                        font-family: TheBoldFont, Arial, Helvetica, sans-serif;
+                        font-size: 3.5rem;
+                        text-transform: uppercase;
+                        color: white;
+                        color: rgb(39, 41, 46);
+                    }
+                }
+            }
+
+            .logline {
+                @include flex-center();
+
+
+                h1 {
+                    font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+                    font-weight: 2rem;
+                    color: $titleDisplay;
+                    text-align: center;
+                }
+            }
+        }
     }
 }
 
@@ -1672,315 +2086,27 @@ a {
     @include flex-evenly-center();
     flex-wrap: wrap;
 
-    .cardGridCam {
-        width: 33%;
-        height: 190px;
-        max-width: 300px;
-        min-width: 300px;
-        margin: 3px;
-        border: 1px solid lightgrey;
-        border-radius: 5px;
+    @include cardGridCam();
 
-        .cardSmCam {
-            position: relative;
-            height: $cardCam;
-
-            .smDescriptionOverlay {
-                position: absolute;
-                top: 2px;
-                left: 5px;
-                border-radius: 5px;
-
-                h5 {
-                    color: rgba(32, 48, 46, 0.7);
-                    margin-bottom: 5px;
-                }
-
-                em {
-                    display: inline-block;
-                    color: rgba(32, 48, 46, 0.7);
-                }
-            }
-
-            .imgCardCam {
-                display: block;
-                height: $cardCam;
-                // height: 150px;
-
-                .description {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 5px;
-                    background: rgba(0, 0, 0, 0.4);
-                    background-image: url("/build/images/illustrations/camera-ill.png");
-                    background-repeat: no-repeat;
-                    background-position: center top;
-                    background-size: cover;
-
-                    @include flex-center();
-                    flex-direction: column;
-                    // opacity: 0.5;
-                    // transition: opacity 0.25s,
-                    //     transform 0.25s;
-
-
-                    h3 {
-
-                        color: $titleFont;
-                        font-weight: bolder;
-                        text-transform: uppercase
-                    }
-
-                    h2 {
-                        color: rgb(255, 255, 255);
-                        padding: 5px;
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        font-size: 2rem;
-                        text-align: center;
-                    }
-
-                    h5 {
-                        color: $megamenu-bg;
-                        opacity: 0.5;
-                    }
-
-                    .genreOverlay {
-                        align-items: flex-end;
-                        color: grey;
-
-                        em {
-                            color: grey;
-                        }
-                    }
-                }
-
-                img {
-                    width: 100%;
-                    height: $cardCam;
-                    object-fit: contain;
-
-                    &:hover {
-                        transform: scale(1.2);
-                    }
-                }
-            }
-
-            a {
-                .description__overlay--blur {
-                    backdrop-filter: blur(2px);
-                }
-
-                .description__overlay>* {
-                    transition: transform 0.25s;
-                }
-
-                .description__overlay {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 5px;
-                    background: rgba(32, 48, 46, 0.7);
-                    @include flex-center();
-                    flex-direction: column;
-                    opacity: 0;
-                    transition: opacity 0.25s,
-                        transform 0.25s;
-
-                    &:hover {
-                        opacity: 1;
-                    }
-
-                    h3 {
-                        color: lightgrey;
-                        text-transform: uppercase
-                    }
-
-                    h2 {
-                        // color: rgb(0, 0, 0);
-                        color: rgb(255, 255, 255);
-                        padding: 5px;
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        font-size: 2rem;
-                        text-align: center;
-                        object-fit: contain;
-                    }
-
-                    h5 {
-                        // color: grey;
-                        color: $megamenu-bg;
-                        opacity: 0.5;
-                    }
-
-                    .genreOverlay {
-                        align-items: flex-end;
-                        color: grey;
-
-                        em {
-                            color: grey;
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 /* -----------FLEX FINAL----------------------*/
 
 //HOME CAMERA LIST
 .tableau {
-
-
     @include flex-center();
     flex-wrap: wrap;
     margin-top: 10px;
-    width: 100%;
+    max-width: 100%;
 
 
-    .cardGrid {
-        flex: 1 33%;
-        min-width: 200px;
 
-        .cardSm {
-            position: relative;
-            height: $cardFilm;
+    //Cartes film home
+    @include cardFilm();
 
 
-            .imgCard {
-                display: block;
-                height: $cardFilm;
-                border: 1px solid lightgrey;
-                border-radius: 5px;
-
-                .description {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 5px;
-                    background: rgba(0, 0, 0, 0.2);
-                    background-image: url("/build/images/illustrations/frame-th.png");
-                    background-repeat: no-repeat;
-                    background-position: center top;
-                    background-size: contain;
-                    @include flex-center();
-                    flex-direction: column;
-
-                    h1 {
-                        color: $titleFont;
-                        font-weight: bolder;
-                        text-transform: uppercase;
-                        object-fit: contain;
-                    }
-
-                    .genreOverlay {
-                        align-items: flex-end;
-
-                        em {
-                            color: $titleDisplay;
-                        }
-                    }
-
-                    h5 {
-                        color: $megamenu-bg;
-                        opacity: 0.5;
-                        margin-bottom: 5px;
-                    }
-
-                }
-
-                img {
-                    width: 100%;
-                    height: $cardFilm;
-                    object-fit: cover;
-                    border-radius: 5px;
-
-                    &:hover {
-                        transform: scale(1.2);
-                    }
-                }
-            }
-
-            a {
-                .description__overlay--blur {
-                    backdrop-filter: blur(2px);
-                }
-
-                .description__overlay>* {
-                    transition: transform 0.25s;
-                }
-
-                .description__overlay {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.7);
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 5px;
-                    opacity: 0;
-                    transition: opacity 0.25s,
-                        transform 0.25s;
-
-                    &:hover {
-                        opacity: 1;
-                    }
-
-                    h3 {
-                        color: rgb(211, 211, 211);
-                        text-transform: uppercase;
-
-                    }
-
-                    #over {
-                        width: 180px;
-                        color: rgb(255, 255, 255);
-                        padding: 5px;
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        font-size: 2rem;
-                        text-align: center;
-                    }
-
-                    h5 {
-                        color: $megamenu-bg;
-                        opacity: 0.5;
-                        margin-bottom: 5px;
-                    }
-
-                    .genreOverlay {
-                        align-items: flex-end;
-
-                        em {
-                            // color: $titleFont;
-                            color: $green-light;
-                        }
-                    }
-
-                    em {
-                        // color: $titleFont;
-                        color: $green-light;
-                    }
-
-                }
-            }
-        }
-    }
-
-    //Carte camera home
-    @include carteCamera();
+    //Cartes camera home
+    @include cardCamera();
 
 }
 
@@ -1998,121 +2124,10 @@ a {
         flex-wrap: wrap;
         width: 1000px;
 
-        .cardGridMarque {
 
-            width: 30%;
-            border-radius: 5px;
-            min-width: 200px;
-            max-width: 200px;
-            height: 200px;
-            margin: 15px;
-
-            .cardSmMarque {
-
-                position: relative;
-                height: $cardCam;
+        @include cardMarque();
 
 
-                .smDescriptionOverlay {
-
-                    position: absolute;
-                    top: 2px;
-                    left: 5px;
-
-                    h5 {
-                        color: rgba(32, 48, 46, 0.7);
-                        margin-bottom: 5px;
-                    }
-
-                    em {
-                        display: inline-block;
-                        color: rgba(32, 48, 46, 0.7);
-                    }
-                }
-
-                .imgCardMarque {
-                    display: block;
-                    height: $cardCam;
-                    background: white;
-                    border-radius: 10px;
-
-                    a {
-                        img {
-                            width: 100%;
-                            height: $cardCam;
-                            object-fit: contain;
-                        }
-                    }
-                }
-
-
-                a {
-                    .description__overlay--blur {
-                        backdrop-filter: blur(2px);
-                    }
-
-                    .description__overlay>* {
-                        transition: transform 0.25s;
-                    }
-
-                    .description__overlay {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 10px;
-                        background: rgba(32, 48, 46, 0.7);
-                        @include flex-center();
-                        flex-direction: column;
-                        opacity: 0;
-                        transition: opacity 0.25s,
-                            transform 0.25s;
-
-                        &:hover {
-                            opacity: 1;
-                        }
-
-                        h3 {
-                            color: lightgrey;
-                            text-transform: uppercase
-                        }
-
-                        h2 {
-                            color: rgb(255, 255, 255);
-                            padding: 5px;
-                            text-transform: uppercase;
-                            font-weight: bold;
-                            font-size: 2rem;
-                            text-align: center;
-                        }
-
-                        h5 {
-                            color: $megamenu-bg;
-                            opacity: 0.5;
-                            margin-bottom: 5px;
-                        }
-
-                        .genreOverlay {
-                            align-items: flex-end;
-                            color: grey;
-
-                            em {
-                                color: grey;
-                            }
-                        }
-
-                        em {
-                            // color: $titleFont;
-                            color: $green-light;
-                        }
-
-
-                    }
-                }
-            }
-
-        }
     }
 }
 
@@ -2150,18 +2165,12 @@ a {
     .descriptionMarque {
         grid-area: desc;
         width: 100%;
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-rows: auto auto auto 2fr;
-        grid-template-areas:
-            "img"
-            "overview"
-            "trait"
-            "summary"
-        ;
+        @include flex-center-start();
+        flex-wrap: wrap;
 
         .flexImgMarque {
             @include flex-center();
+            width: 100%;
 
             h1 {
                 font-family: 'Oswald', sans-serif;
@@ -2203,6 +2212,7 @@ a {
             grid-area: overview;
             @include flex-center();
             margin-bottom: 10px;
+            min-width: 70%;
             ;
 
             div {
@@ -2239,6 +2249,7 @@ a {
         }
 
         .trait {
+            width: 100%;
             grid-area: trait;
             height: 3px;
             background: $titleFont;
@@ -2248,6 +2259,7 @@ a {
 
 
         .summary {
+            width: 100%;
             grid-area: summary;
             margin-top: 10px;
             padding: 0 0 5% 0;
@@ -2304,12 +2316,14 @@ a {
                 background: #cbd6e0;
                 height: 15%;
                 border-radius: 20px;
+                margin-right: 20px;
 
                 button {
-                    width: 15%;
+                    width: 20%;
                     border: none;
                     outline: none;
                     cursor: pointer;
+                    min-width: 140px;
                     background: #cbd6e0;
                     font-family: 'Roboto Condensed', sans-serif;
                     text-transform: uppercase;
@@ -2337,7 +2351,7 @@ a {
 
                 .tabPanel {
                     margin-top: 20px;
-                    // height: 450px;
+                    min-height: 320px;
 
                     .videoFrame {
                         display: flex;
@@ -2350,316 +2364,37 @@ a {
                         @include flex-center();
                         flex-wrap: wrap;
 
-                        .cardGrid {
+                        @include cardFilm();
 
-                            width: 20%;
-                            max-width: 180px;
-                            min-width: 180px;
-                            margin: 5px;
-
-                            .cardSm {
-                                position: relative;
-                                height: $cardFilm;
-
-
-                                .imgCard {
-                                    display: block;
-                                    height: $cardFilm;
-                                    border: 1px solid lightgrey;
-                                    border-radius: 5px;
-
-                                    .description {
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        width: 100%;
-                                        height: 100%;
-                                        border-radius: 5px;
-                                        background: rgba(0, 0, 0, 0.2);
-                                        background-image: url("/build/images/illustrations/frame-th.png");
-                                        background-repeat: no-repeat;
-                                        background-position: center top;
-                                        background-size: contain;
-                                        @include flex-center();
-                                        flex-direction: column;
-
-                                        h1 {
-                                            color: $titleFont;
-                                            font-weight: bolder;
-                                            text-transform: uppercase
-                                        }
-
-                                        .genreOverlay {
-                                            align-items: flex-end;
-
-                                            em {
-                                                color: $titleDisplay;
-                                            }
-                                        }
-
-                                        h5 {
-                                            color: $megamenu-bg;
-                                            opacity: 0.5;
-                                            margin-bottom: 5px;
-                                        }
-
-                                    }
-
-                                    img {
-                                        width: 100%;
-                                        height: $cardFilm;
-                                        object-fit: cover;
-                                        border-radius: 5px;
-
-                                        &:hover {
-                                            transform: scale(5%);
-                                        }
-                                    }
-                                }
-
-                                a {
-                                    .description__overlay--blur {
-                                        backdrop-filter: blur(2px);
-                                    }
-
-                                    .description__overlay>* {
-                                        transition: transform 0.25s;
-                                    }
-
-                                    .description__overlay {
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        width: 100%;
-                                        height: 100%;
-                                        background: rgba(0, 0, 0, 0.7);
-                                        display: flex;
-                                        flex-direction: column;
-                                        align-items: center;
-                                        justify-content: center;
-                                        border-radius: 5px;
-                                        opacity: 0;
-                                        transition: opacity 0.25s,
-                                            transform 0.25s;
-
-                                        &:hover {
-                                            opacity: 1;
-                                        }
-
-                                        h3 {
-                                            color: rgb(211, 211, 211);
-                                            text-transform: uppercase
-                                        }
-
-                                        #over {
-                                            width: 180px;
-                                            color: rgb(255, 255, 255);
-                                            padding: 5px;
-                                            text-transform: uppercase;
-                                            font-weight: bold;
-                                            font-size: 2rem;
-                                            text-align: center;
-                                        }
-
-                                        h5 {
-                                            color: $megamenu-bg;
-                                            opacity: 0.5;
-                                            margin-bottom: 5px;
-                                        }
-
-                                        .genreOverlay {
-                                            align-items: flex-end;
-
-                                            em {
-                                                color: $titleFont;
-                                            }
-                                        }
-
-                                        em {
-                                            // color: $titleFont;
-                                            color: $green-light;
-                                        }
-
-                                    }
-                                }
-                            }
-                        }
-
-                        a {
-                            width: 30%;
-                            min-width: 180px;
-
-                            img {
-                                width: 30%;
-                                min-width: 180px;
-                            }
-                        }
                     }
 
                     .specifications {
 
-                        .cardGridCam {
+                        @include cardCamera();
 
-                            width: 32%;
-                            height: 190px;
-                            max-width: 300px;
-                            min-width: 300px;
-                            margin: 3px;
-                            border: 1px solid lightgrey;
-                            border-radius: 5px;
+                        .cell {
+                            @include flex-center();
+                            width: 50%;
 
-                            .cardSmCam {
-                                position: relative;
-                                height: $cardCam;
+                            .option {
+                                @include flex-center();
+                                width: 200px;
+                                height: 50px;
+                                background: $gray;
+                                margin: 3px 0 3px 0;
 
-                                .smDescriptionOverlay {
-                                    position: absolute;
-                                    top: 2px;
-                                    left: 5px;
-                                    border-radius: 5px;
-
-                                    h5 {
-                                        color: rgba(32, 48, 46, 0.7);
-                                        margin-bottom: 5px;
-                                    }
-
-                                    em {
-                                        display: inline-block;
-                                        color: rgba(32, 48, 46, 0.7);
-                                    }
+                                h3 {
+                                    font-family: 'Roboto Condensed', sans-serif;
+                                    font-weight: 2rem;
+                                    color: white
                                 }
+                            }
 
-                                .imgCardCam {
-                                    display: block;
-                                    height: $cardCam;
-
-                                    .description {
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        width: 100%;
-                                        height: 100%;
-                                        border-radius: 5px;
-                                        background: rgba(0, 0, 0, 0.4);
-                                        background-image: url("/build/images/illustrations/camera-ill.png");
-                                        background-repeat: no-repeat;
-                                        background-position: center top;
-                                        background-size: cover;
-
-                                        @include flex-center();
-                                        flex-direction: column;
-                                        // opacity: 0.5;
-                                        // transition: opacity 0.25s,
-                                        //     transform 0.25s;
-
-
-                                        h3 {
-
-                                            color: $titleFont;
-                                            font-weight: bolder;
-                                            text-transform: uppercase
-                                        }
-
-                                        h2 {
-                                            // color: rgb(0, 0, 0);
-                                            color: rgb(255, 255, 255);
-                                            padding: 5px;
-                                            text-transform: uppercase;
-                                            font-weight: bold;
-                                            font-size: 2rem;
-                                            text-align: center;
-                                        }
-
-                                        h5 {
-                                            // color: grey;
-                                            color: $megamenu-bg;
-                                            opacity: 0.5;
-                                        }
-
-                                        .genreOverlay {
-                                            align-items: flex-end;
-                                            color: grey;
-
-                                            em {
-                                                color: grey;
-                                            }
-                                        }
-                                    }
-
-                                    img {
-                                        width: 100%;
-                                        height: $cardCam;
-                                        object-fit: contain;
-
-                                        &:hover {
-                                            transform: rotate(1.2);
-                                        }
-                                    }
-                                }
-
-                                a {
-                                    .description__overlay--blur {
-                                        backdrop-filter: blur(2px);
-                                    }
-
-                                    .description__overlay>* {
-                                        transition: transform 0.25s;
-                                    }
-
-                                    .description__overlay {
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        width: 100%;
-                                        height: 100%;
-                                        border-radius: 5px;
-                                        background: rgba(32, 48, 46, 0.7);
-                                        @include flex-center();
-                                        flex-direction: column;
-                                        opacity: 0;
-                                        transition: opacity 0.25s,
-                                            transform 0.25s;
-
-                                        &:hover {
-                                            opacity: 1;
-                                        }
-
-                                        h3 {
-                                            color: lightgrey;
-                                            text-transform: uppercase
-                                        }
-
-                                        h2 {
-                                            // color: rgb(0, 0, 0);
-                                            color: rgb(255, 255, 255);
-                                            padding: 5px;
-                                            text-transform: uppercase;
-                                            font-weight: bold;
-                                            font-size: 2rem;
-                                            text-align: center;
-                                        }
-
-                                        h5 {
-                                            // color: grey;
-                                            color: $megamenu-bg;
-                                            opacity: 0.5;
-                                        }
-
-                                        .genreOverlay {
-                                            align-items: flex-end;
-                                            color: grey;
-
-                                            em {
-                                                color: grey;
-                                            }
-                                        }
-
-                                        em {
-                                            // color: $titleFont;
-                                            color: $green-light;
-                                        }
-                                    }
-                                }
+                            .spec {
+                                @include flex-center();
+                                width: 200px;
+                                height: 50px;
+                                background: #e1e7ec;
                             }
                         }
 
@@ -2689,10 +2424,11 @@ a {
         @include flex-center();
         flex-wrap: wrap;
         min-height: 350px;
+        padding-right: 15px;
 
         .addPoster {
             @include flex-center();
-            width: 400px;
+            width: 100%;
             height: 400px;
             background-image: url("/build/images/illustrations/frame-show.png");
             background-repeat: no-repeat;
@@ -2712,7 +2448,8 @@ a {
         }
 
         .imgCam {
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
 
             img {
                 width: 400px;
@@ -2721,11 +2458,13 @@ a {
 
         .imgMov {
             @include flex-center();
+            width: 100%;
 
             img {
                 border: 3px solid rgb(247, 247, 247);
                 border-radius: 10px;
-                width: 300px;
+                width: 100%;
+                max-width: 300px;
             }
         }
 
@@ -2784,16 +2523,12 @@ a {
     .descriptionCam {
         grid-area: desc;
         width: 55%;
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas:
-            "titre"
-            // "overview"
-            "summary"
-        ;
+        @include flex-center-start();
+        flex-wrap: wrap;
+
 
         .titre {
+            width: 100%;
             grid-area: titre;
             text-align: center;
             top: 0;
@@ -2804,7 +2539,6 @@ a {
                 font-size: 4.5rem;
                 color: $nav-color;
                 text-transform: uppercase;
-                // margin: 0px;
                 padding: 0px;
                 margin-bottom: 5px;
 
@@ -2856,6 +2590,8 @@ a {
         }
 
         .summary {
+            width: 100%;
+
             grid-area: summary;
             max-height: 300px;
             margin-top: 10px;
@@ -2871,20 +2607,15 @@ a {
     .descriptionFilm {
         width: 55%;
         grid-area: desc;
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-rows: 1fr 2fr 1fr;
-        grid-template-areas:
-            "titre"
-            "summary"
-            "artiste"
-        ;
+        @include flex-center-start();
+        flex-wrap: wrap;
+
 
         .titre {
             grid-area: titre;
+            width: 100%;
             text-align: center;
             top: 0;
-            max-height: 200px;
             align-items: flex-start;
 
             h1 {
@@ -2932,6 +2663,8 @@ a {
         }
 
         .summary {
+            width: 100%;
+
             grid-area: summary;
             padding: 0 0 5% 0;
             margin-top: 10px;
@@ -2958,14 +2691,16 @@ a {
 
 
         .artisteDivD {
+            width: 100%;
 
             grid-area: artiste;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr;
-            grid-template-areas:
-                "real dp"
-            ;
+            @include flex-between-start();
+            // display: grid;
+            // grid-template-columns: 1fr 1fr;
+            // grid-template-rows: 1fr;
+            // grid-template-areas:
+            //     "real dp"
+            // ;
 
             // padding: 10px 10px;
             h4 {
@@ -2993,6 +2728,8 @@ a {
 
             .realDivD {
                 grid-area: real;
+                width: 50%;
+
 
                 .realTitreD {}
 
@@ -3007,6 +2744,8 @@ a {
 
             .dpDivD {
                 grid-area: dp;
+                width: 50%;
+
 
                 .dpTitreD {
                     a {
@@ -3049,16 +2788,19 @@ a {
             height: 15%;
             border-radius: 20px;
 
+
             button {
-                width: 15%;
+                width: 20%;
                 border: none;
                 outline: none;
                 cursor: pointer;
+                min-width: 140px;
                 background: #cbd6e0;
                 font-family: 'Roboto Condensed', sans-serif;
                 text-transform: uppercase;
                 font-size: 1.5rem;
                 border-radius: 20px;
+                // margin-right: 10px;
 
                 &:first-child {
                     border-radius: 20px;
@@ -3086,6 +2828,7 @@ a {
 
             .tabPanel {
                 margin-top: 20px;
+                min-height: 320px;
 
                 .videoFrame {
                     display: flex;
@@ -3130,150 +2873,10 @@ a {
                 @include flex-center();
                 flex-wrap: wrap;
 
-                .cardGrid {
 
-                    width: 20%;
-                    max-width: 180px;
-                    min-width: 180px;
-                    margin: 5px;
-
-                    .cardSm {
-                        position: relative;
-                        height: $cardFilm;
+                @include cardFilm();
 
 
-                        .imgCard {
-                            display: block;
-                            height: $cardFilm;
-                            border: 1px solid lightgrey;
-                            border-radius: 5px;
-
-                            .description {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 100%;
-                                height: 100%;
-                                border-radius: 5px;
-                                background: rgba(0, 0, 0, 0.2);
-                                background-image: url("/build/images/illustrations/frame-th.png");
-                                background-repeat: no-repeat;
-                                background-position: center top;
-                                background-size: contain;
-                                @include flex-center();
-                                flex-direction: column;
-
-                                h1 {
-                                    color: $titleFont;
-                                    font-weight: bolder;
-                                    text-transform: uppercase
-                                }
-
-                                .genreOverlay {
-                                    align-items: flex-end;
-
-                                    em {
-                                        color: $titleDisplay;
-                                    }
-                                }
-
-                                h5 {
-                                    color: $megamenu-bg;
-                                    opacity: 0.5;
-                                    margin-bottom: 5px;
-                                }
-
-                            }
-
-                            img {
-                                width: 100%;
-                                height: $cardFilm;
-                                object-fit: cover;
-                                border-radius: 5px;
-
-                                &:hover {
-                                    transform: scale(1.2);
-                                }
-                            }
-                        }
-
-                        a {
-                            .description__overlay--blur {
-                                backdrop-filter: blur(2px);
-                            }
-
-                            .description__overlay>* {
-                                transition: transform 0.25s;
-                            }
-
-                            .description__overlay {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 100%;
-                                height: 100%;
-                                background: rgba(0, 0, 0, 0.7);
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                justify-content: center;
-                                border-radius: 5px;
-                                opacity: 0;
-                                transition: opacity 0.25s,
-                                    transform 0.25s;
-
-                                &:hover {
-                                    opacity: 1;
-                                }
-
-                                h3 {
-                                    color: rgb(211, 211, 211);
-                                    text-transform: uppercase
-                                }
-
-                                #over {
-                                    width: 180px;
-                                    color: rgb(255, 255, 255);
-                                    padding: 5px;
-                                    text-transform: uppercase;
-                                    font-weight: bold;
-                                    font-size: 2rem;
-                                    text-align: center;
-                                }
-
-                                h5 {
-                                    color: $megamenu-bg;
-                                    opacity: 0.5;
-                                    margin-bottom: 5px;
-                                }
-
-                                .genreOverlay {
-                                    align-items: flex-end;
-
-                                    em {
-                                        color: $titleFont;
-                                    }
-                                }
-
-                            }
-
-                            em {
-                                // color: $titleFont;
-                                color: $green-light;
-                            }
-                        }
-                    }
-                }
-
-                a {
-                    width: 30%;
-                    min-width: 180px;
-
-                    img {
-                        width: 30%;
-                        min-width: 180px;
-                    }
-                }
             }
         }
     }
@@ -3286,6 +2889,7 @@ a {
 
 #film {
     margin-top: 100px;
+    margin-bottom: 50px;
     width: 50%;
 
     form {
@@ -3308,8 +2912,6 @@ a {
                 h3 {
                     @include font-form-film();
                     font-size: $formTitleField;
-                    // background: $titleCard;
-                    border-bottom: 1px solid $titleCard;
 
                 }
 
@@ -3317,7 +2919,7 @@ a {
                     height: 40px;
                     border: none;
                     background: white;
-                    background: $megamenu-bg;
+                    // background: $megamenu-bg;
                     border-radius: 5px;
                     width: 100%;
                     padding-left: 8px;
@@ -3342,15 +2944,15 @@ a {
 
                 .form-group {
                     width: 100%;
-                    background: $megamenu-bg;
+                    // background: $megamenu-bg;
 
                     #film_sortie {
-                        background: $megamenu-bg;
+                        // background: $megamenu-bg;
                     }
 
                     .select2-selection.select2-selection--multiple {
                         width: 100%;
-                        background: $megamenu-bg;
+                        // background: $megamenu-bg;
                     }
                 }
 
@@ -3358,21 +2960,22 @@ a {
                     @include font-form-film();
                     font-size: $formTitleField;
                     // background: $titleCard;
-                    border-bottom: 1px solid $titleCard;
+                    border-bottom: 1px solid $titleFont;
 
                 }
             }
 
             .duree {
                 grid-area: duree;
-                width: 15%;
+                width: 30%;
+                max-width: 120px;
 
                 div {
                     h3 {
                         @include font-form-film();
                         width: 100%;
                         font-size: $formTitleField;
-                        border-bottom: 1px solid $titleCard;
+                        border-bottom: 1px solid $titleFont;
                     }
 
                     div {
@@ -3386,7 +2989,7 @@ a {
                                 border: none;
                                 border-radius: 5px;
                                 border: 1.5px solid rgb(204, 204, 204);
-                                background: $megamenu-bg;
+                                // background: $megamenu-bg;
                                 text-align: center;
                             }
                         }
@@ -3404,7 +3007,7 @@ a {
                     @include font-form-film();
                     font-size: $formTitleField;
                     // background: $titleCard;
-                    border-bottom: 1px solid $titleCard;
+                    border-bottom: 1px solid $titleFont;
 
                 }
             }
@@ -3426,7 +3029,7 @@ a {
                     @include font-form-film();
                     font-size: $formTitleField;
                     // background: $titleCard;
-                    border-bottom: 1px solid $titleCard;
+                    border-bottom: 1px solid $titleFont;
 
                 }
 
@@ -3456,7 +3059,7 @@ a {
                                 width: 15px;
                                 height: 15px;
                                 color: $titleCard;
-                                background: $megamenu-bg;
+                                // background: $megamenu-bg;
 
                             }
 
@@ -3470,6 +3073,8 @@ a {
             }
         }
 
+
+
         .rowFormSynopsis {
             @include flex-center();
             // background: rgb(189, 158, 240);
@@ -3477,12 +3082,15 @@ a {
             margin-bottom: 30px;
             width: 100%;
 
+            .error {
+                color: $titleFont;
+            }
+
             div {
                 width: 100%;
-                @include flex-center();
+                @include flex-start-center();
 
                 div {
-                    // background: $nav-color;
                     flex-wrap: wrap;
 
 
@@ -3491,7 +3099,7 @@ a {
                         @include font-form-film();
                         font-size: $formTitleField;
                         // background: $titleCard;
-                        border-bottom: 1px solid $titleCard;
+                        // border-bottom: 1px solid $titleFont;
 
                     }
 
@@ -3500,11 +3108,16 @@ a {
                         border-radius: 5px;
                         width: 100%;
                         resize: none;
-                        // background: #f3f8f4;
-                        // background: white;
-                        background: $megamenu-bg;
-
+                        // background: $megamenu-bg;
                         border: none;
+                    }
+
+                    em {
+                        margin-top: 5px;
+
+                        span {
+                            font-weight: bold;
+                        }
                     }
                 }
             }
@@ -3522,7 +3135,7 @@ a {
                 @include font-form-film();
                 font-size: $formTitleField;
                 // background: $titleCard;
-                border-bottom: 1px solid $titleCard;
+                border-bottom: 1px solid $titleFont;
                 width: 100%;
 
             }
@@ -3649,7 +3262,7 @@ a {
                 flex-wrap: wrap;
 
                 .realForm {
-                    width: 100%;
+                    width: 50%;
                     @include flex-start-center();
                     flex-wrap: wrap;
 
@@ -3658,21 +3271,30 @@ a {
 
 
                         #film_directors {
-                            width: 80%;
+                            width: 100%;
 
                             .select2.select2-container.select2-container--default.select2-container--focus {
                                 width: 50%;
+                                border: 1px solid $green-light;
                             }
                         }
 
                         .select2.select2-container.select2-container--default {
-                            width: 50%;
+                            width: 100%;
+                        }
+
+                        .select2.select2-container.select2-container--multiple {
+                            width: 100%;
+                        }
+
+                        .select2.select2-container.select2-container--default.select2-container--below {
+                            width: 100%;
                         }
                     }
                 }
 
                 .dirphotForm {
-                    width: 100%;
+                    width: 50%;
                     @include flex-start-center();
                     flex-wrap: wrap;
 
@@ -3680,9 +3302,9 @@ a {
                         width: 100%;
 
                         #film_dirphoto {
-                            width: 80%;
+                            width: 100%;
 
-                            .select2.select2-container.select2-container--default.select2-container--focus {
+                            .select2.select2-container.select2-container--default.select2-container {
                                 width: 100%;
                             }
                         }
@@ -3715,7 +3337,7 @@ a {
                 text-transform: uppercase;
 
                 &:hover {
-                    background: $titleCard;
+                    background: $green-light;
                     color: white;
                     height: 30px;
 
@@ -3725,6 +3347,8 @@ a {
     }
 }
 
+
+//Flash Message --------------------------------------------
 .alert {
     padding: 10px;
     text-align: center;
@@ -3770,13 +3394,6 @@ a {
     FORMULAIRE DE CONNECTION /INSCRIPTION
   ------------------------------------------------------*/
 
-
-* {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
-
-
 .loginContainer {
     margin-top: 125px;
     width: 100%;
@@ -3819,7 +3436,7 @@ a {
             width: 100%;
         }
 
-        @media screen and (min-width: 600px) {
+        @media screen and (min-width: 1024px) {
             width: 50vw;
             max-width: 400px;
         }
@@ -4263,32 +3880,32 @@ PAGE USER PROFILE
 
             .btnUserFilm {
                 width: 25%;
-                height: 40px;
                 @include flex-space-center();
+                flex-wrap: wrap;
                 padding-right: 10px;
 
                 div {
+                    width: 100%;
                     @include flex-center();
                 }
 
 
                 a {
+                    width: 100%;
+                    height: 40px;
+                    margin-bottom: 10px;
 
                     button {
                         cursor: pointer;
                         height: 40px;
-                        width: 60px;
+                        width: 100%;
                         font-family: "Roboto Condensed", "Open Sans", sans-serif;
-                        // color: white;
                         border: none;
                         color: $green-dark;
                         border-radius: 5px;
-                        // color: white;
                         display: inline-block;
                         position: relative;
                         z-index: 1;
-                        // padding: 0.9em;
-                        // margin: -1em;
                         transition: 100ms;
                         border: 1px solid $green-light;
 
@@ -4305,11 +3922,13 @@ PAGE USER PROFILE
 
 
                 div {
-
-                    width: 30%;
+                    height: 40px;
+                    width: 100%;
+                    margin-top: 10px;
 
                     form {
                         width: 100%;
+                        height: 40px;
 
                         #deleteBtn {
                             height: 30px;
@@ -4414,6 +4033,8 @@ PAGE USER PROFILE
         }
 
         .tableau {
+            @include flex-start-center();
+            max-width: 100%;
             box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
                 0 0 0 1px rgb(255, 255, 255),
                 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
@@ -4451,6 +4072,7 @@ PAGE USER PROFILE
             background: #e1e7ec;
         }
     }
+
 }
 
 
@@ -4462,7 +4084,7 @@ PAGE USER PROFILE
 
 
 
-@media (min-width:767px) {
+@media (min-width:1024px) {
     // .tableauCamera {
     //     width: 100%;
     //     padding: 0 15px 0 15px;
@@ -4470,11 +4092,239 @@ PAGE USER PROFILE
 
 }
 
-@media (max-width:767px) {
+@media (max-width:1024px) {
     // @media (max-width:1023px) {
 
     .container {
         width: 95%;
+
+        .triangle {
+
+            width: 3%;
+            max-width: 16px;
+            @include flex-start-center();
+            cursor: pointer;
+            height: 100vh;
+            margin-right: 0;
+            // opacity: 1;
+
+            .openbtn {
+                display: block;
+                border: none;
+                background: none;
+                font-size: 2rem;
+                transition: 500ms;
+                cursor: pointer;
+                // opacity: 0.5;
+
+                img {
+                    width: 20px;
+                    padding-left: 3px;
+                    // opacity: 0.5;
+                    transition: 250ms;
+
+                    &:hover {
+                        // opacity: 1;
+                        color: $titleFont;
+                    }
+                }
+            }
+        }
+
+        .sidepanel {
+
+            width: 0%;
+            height: 0;
+            box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgb(255, 255, 255),
+                0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+
+            .filterFilmLeft {
+                width: 100%;
+                @include flex-center-start();
+                flex-wrap: wrap;
+                overflow: hidden;
+                z-index: -1;
+                padding: 5px;
+                border: 1px solid rgb(231, 231, 231);
+                border-radius: 10px;
+                background: $buttoncontainerbg;
+
+
+
+                .closeFilter {
+                    width: 100%;
+                    @include flex-end-center();
+                    height: 30px;
+                    overflow: hidden;
+                    opacity: 0.3;
+                    transition: 250ms;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    .closebtn {
+                        font-size: 3rem;
+                        color: $titleDisplay;
+                        transition: 250ms;
+
+                        &:hover {
+                            color: $titleFont;
+                        }
+                    }
+
+                }
+
+                form {
+                    width: 70%;
+
+
+                    .coll {
+                        margin: 10px 0 10px 0;
+                        padding-left: 10%;
+                        transition: 0.4s;
+
+                        h4 {
+                            font-family: 'Roboto Condensed', sans-serif;
+                            font-size: 1.2rem;
+                            color: $titleCard;
+
+                            &:after {
+                                // content: '\002B';
+                                color: #777;
+                                font-weight: bold;
+                                float: right;
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+
+                    .active {
+                        transition: 250ms;
+                        background: $titleDisplay;
+                        color: $megamenu-bg;
+                        border-radius: 5px;
+                    }
+
+                    .content {
+                        transition: max-height 0.1s ease-out;
+                    }
+
+
+                    #genres {
+                        padding-left: 10%;
+
+                        .form-check {
+                            margin-bottom: 0.2rem;
+
+                            // width: 100%;
+                            &:last-child {
+                                margin-bottom: 10px;
+                            }
+
+                            label {
+
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+
+                    #q {
+                        width: 100%;
+                        height: 30px;
+                        margin: 10px 0 10px 0;
+                        padding-left: 5px;
+                        background: $megamenu-bg;
+                        // background: $green-dark;
+                        border: none;
+                    }
+
+                    fieldset {
+                        border: none;
+
+                    }
+
+                    #decade {
+                        padding-left: 10%;
+
+                        .form-check {
+                            margin-bottom: 0.2rem;
+                            // font-size: 1.2rem;
+
+                            &:last-child {
+                                margin-bottom: 10px;
+                            }
+
+                            label {
+
+                                font-size: 1rem;
+                            }
+
+                        }
+                    }
+
+                    #marques,
+                    #marque,
+                    #format {
+                        padding-left: 10%;
+
+                        .form-check {
+                            margin-bottom: 0.2rem;
+                            font-size: 1rem;
+
+                            &:last-child {
+                                margin-bottom: 10px;
+                                font-size: 1rem;
+                            }
+
+                            .form-check-label {
+
+                                font-size: 1rem;
+                            }
+
+                        }
+                    }
+
+                    .form-check-label {
+                        font-size: 1.2rem;
+                        margin-left: 10px;
+                    }
+
+                    button {
+                        margin: auto;
+                        width: 100%;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        background: #cbd6e0;
+                        font-family: 'Roboto Condensed', sans-serif;
+                        font-size: 1.5rem;
+                        border-radius: 20px;
+                        overflow: hidden;
+
+                        &:hover {
+                            background: $titleCard;
+                            color: white;
+                            transition: 250ms;
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .rightside {
+            width: 97%;
+            transition: 250ms ease-in-out;
+
+            .sorting {
+                width: 90%;
+                margin-right: 10px;
+                margin-left: 20px;
+            }
+        }
     }
 
     #asideMenu {
@@ -4488,7 +4338,6 @@ PAGE USER PROFILE
             margin-top: 20px;
             margin: auto;
             justify-content: center;
-            // @include flex-center();
 
             .logoSearch {
                 @include flex-center();
@@ -4610,6 +4459,14 @@ PAGE USER PROFILE
             .rowFormTitle {
                 width: 100%;
             }
+
+            .rowFormDetails {
+                width: 100%;
+
+                .duree {
+                    width: 30%;
+                }
+            }
         }
     }
 
@@ -4620,7 +4477,7 @@ PAGE USER PROFILE
     .tableauMarque {
         @include flex-center-start();
         flex-wrap: wrap;
-        margin: 15px 0 15px 0;
+        margin: 50px 0 15px 0;
         padding: 0 15px 0 15px;
         height: auto;
         min-width: 95%;
@@ -4675,6 +4532,7 @@ PAGE USER PROFILE
                 grid-area: overview;
                 @include flex-center();
                 margin-bottom: 10px;
+                min-width: 100%;
                 ;
 
                 div {
@@ -4709,7 +4567,6 @@ PAGE USER PROFILE
             }
         }
 
-
         .specCam {
             width: 100%;
             grid-area: spec;
@@ -4726,6 +4583,7 @@ PAGE USER PROFILE
                     background: #cbd6e0;
                     height: 15%;
                     border-radius: 20px;
+                    margin-right: 0px;
 
                     button {
                         width: 50%;
@@ -4764,6 +4622,7 @@ PAGE USER PROFILE
 
                     .tabPanel {
                         margin-top: 20px;
+                        min-height: 320px;
 
                         .videoFrame {
                             display: flex;
@@ -4778,6 +4637,12 @@ PAGE USER PROFILE
                         width: 100%;
                         @include flex-center();
                         flex-wrap: wrap;
+
+
+
+
+                        @include cardGridFilmSm();
+
 
                         a {
                             width: 30%;
@@ -4809,6 +4674,7 @@ PAGE USER PROFILE
 
                     button {
                         width: 50%;
+                        margin-right: 0px;
                     }
 
                     .active {}
@@ -4816,9 +4682,16 @@ PAGE USER PROFILE
 
                 .contentCam {
 
+                    width: 100%;
 
                     .tabPanel {
-                        // height: auto;
+                        min-height: 320px;
+
+                        .posters {
+
+                            @include cardGridFilmSm();
+
+                        }
                     }
                 }
             }
@@ -4837,6 +4710,7 @@ PAGE USER PROFILE
             @include flex-center();
             width: 100%;
             flex-wrap: wrap;
+
 
             .addPoster {
                 @include flex-center();
@@ -4949,20 +4823,15 @@ PAGE USER PROFILE
         .descriptionCam {
             width: 100%;
             grid-area: desc;
-            display: grid;
-            grid-template-rows: 1fr;
-            grid-template-rows: 1fr auto 2fr;
-            grid-template-areas:
-                "titre"
-                "overview"
-                "summary"
-            ;
+            @include flex-center-start();
+            flex-wrap: wrap;
 
             .titre {
                 grid-area: titre;
                 text-align: center;
                 top: 0;
                 height: auto;
+                width: 100%;
 
                 #title {
                     font-family: 'Oswald', sans-serif;
@@ -5030,6 +4899,7 @@ PAGE USER PROFILE
                 font-family: 'Roboto Condensed', sans-serif;
                 color: #404b69;
                 font-size: 1.7rem;
+                width: 100%;
 
                 p {
                     width: 100%;
@@ -5040,15 +4910,7 @@ PAGE USER PROFILE
 
         .descriptionFilm {
             width: 100%;
-            grid-area: desc;
-            display: grid;
-            grid-template-rows: 1fr;
-            grid-template-rows: auto 1fr 1fr;
-            grid-template-areas:
-                "titre"
-                "summary"
-                "artiste"
-            ;
+
 
             .titre {
                 grid-area: titre;
@@ -5121,12 +4983,9 @@ PAGE USER PROFILE
             .artisteDivD {
 
                 grid-area: artiste;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 1fr;
-                grid-template-areas:
-                    "real dp"
-                ;
+                flex-wrap: wrap;
+                margin-bottom: 25px;
+
 
                 h4 {
                     font-family: 'Roboto Condensed', sans-serif;
@@ -5151,7 +5010,8 @@ PAGE USER PROFILE
 
                 .realDivD {
                     grid-area: real;
-
+                    width: 100%;
+                    margin-bottom: 20px;
 
                     .realTitreD {}
 
@@ -5166,6 +5026,7 @@ PAGE USER PROFILE
 
                 .dpDivD {
                     grid-area: dp;
+                    width: 100%;
 
 
                     .dpTitreD {
@@ -5205,6 +5066,7 @@ PAGE USER PROFILE
                     background: #cbd6e0;
                     height: 15%;
                     border-radius: 20px;
+                    margin-right: 0px;
 
                     button {
                         width: 50%;
@@ -5243,7 +5105,7 @@ PAGE USER PROFILE
 
                     .tabPanel {
                         margin-top: 20px;
-                        // height: 450px;
+                        min-height: 320px;
 
                         .videoFrame {
                             display: flex;
@@ -5288,15 +5150,8 @@ PAGE USER PROFILE
                         @include flex-center();
                         flex-wrap: wrap;
 
-                        a {
-                            width: 30%;
-                            min-width: 180px;
+                        @include cardGridFilmSm();
 
-                            img {
-                                width: 30%;
-                                min-width: 180px;
-                            }
-                        }
                     }
                 }
             }
@@ -5371,6 +5226,7 @@ PAGE USER PROFILE
 
                         a {
                             color: $green-dark;
+                            margin-bottom: 0;
 
                             button {
                                 cursor: pointer;
@@ -5399,8 +5255,8 @@ PAGE USER PROFILE
                         }
 
                         div {
-                            margin: 5px;
-                            width: 50%;
+                            width: 45%;
+                            margin-top: 0;
 
                             form {
                                 width: 100%;
@@ -5421,7 +5277,7 @@ PAGE USER PROFILE
                         }
 
                         a {
-                            width: 50%;
+                            width: 45%;
                         }
                     }
 
@@ -5469,43 +5325,19 @@ PAGE USER PROFILE
     }
 
 
-    .sidepanel__open {
-        width: 50%;
-
-    }
-
-    .sidepanel__close {
-        width: 0;
-    }
-
-    .sidepanel {
-        width: 0% !important;
-        display: none !important;
-    }
-
-    .triangle {}
-
-
     .showList {
         width: 93%;
         justify-content: center !important;
-        // .tableau {
-        //     width: 100%;
-        //     @include flex-center();
-        //     background: red;
 
         .cardGrid {
 
-            // flex: 1 100% !important;
-            max-width: 80px;
+            max-width: 100px;
             max-height: $cardFilmSm - 20px;
             margin-bottom: 10px;
 
             .cardSm {
                 width: 100%;
                 max-height: $cardFilmSm - 20px;
-
-
 
                 .imgCard {
                     max-height: $cardFilmSm - 20px;
@@ -5522,6 +5354,9 @@ PAGE USER PROFILE
                 a {
 
                     .description__overlay {
+
+                        opacity: 0 !important;
+
                         &:hover {
                             opacity: 0;
                         }
@@ -5539,15 +5374,13 @@ PAGE USER PROFILE
         .cardGridCam {
             flex: 1 100%;
             width: 100%;
-            min-width: 200px;
-            margin: 3px;
+            // margin: 3px;
             border: 1px solid lightgrey;
             border-radius: 5px;
 
             .cardSmCam {
                 position: relative;
                 height: $cardCamSm;
-                // height: 100px;
 
                 .smDescriptionOverlay {
                     display: none;
@@ -5569,7 +5402,6 @@ PAGE USER PROFILE
 
                 .imgCardCam {
                     display: block;
-                    // height: $cardCam;
                     height: $cardCamSm;
 
                     .description {
@@ -5650,6 +5482,7 @@ PAGE USER PROFILE
                         opacity: 0;
                         transition: opacity 0.25s,
                             transform 0.25s;
+                        padding: 5px;
 
                         &:hover {
                             opacity: 1;
@@ -5663,10 +5496,9 @@ PAGE USER PROFILE
                         h2 {
                             // color: rgb(0, 0, 0);
                             color: rgb(255, 255, 255);
-                            padding: 5px;
+
                             text-transform: uppercase;
                             font-weight: bold;
-                            font-size: 2rem;
                             text-align: center;
                             object-fit: contain;
                         }
@@ -5694,14 +5526,9 @@ PAGE USER PROFILE
                 }
             }
         }
-
-
-
-        // }
     }
 
     #containerMarque {
-        // @include flex-center();
         margin-top: 80px;
 
         .flexMarque {
@@ -5709,7 +5536,6 @@ PAGE USER PROFILE
             width: 90%;
 
             .cardGridMarque {
-
                 width: 50%;
                 border-radius: 5px;
                 min-width: 100px;
@@ -5718,14 +5544,11 @@ PAGE USER PROFILE
                 margin: 5px;
 
                 .cardSmMarque {
-
                     position: relative;
-                    // height: $cardCam;
                     height: 100px;
 
 
                     .smDescriptionOverlay {
-
                         position: absolute;
                         top: 2px;
                         left: 5px;
@@ -5751,7 +5574,6 @@ PAGE USER PROFILE
                         a {
                             img {
                                 width: 100%;
-                                // height: $cardCam;
                                 height: 100px;
                                 object-fit: contain;
                             }
@@ -5781,6 +5603,7 @@ PAGE USER PROFILE
                             opacity: 0;
                             transition: opacity 0.25s,
                                 transform 0.25s;
+                            padding: 5px;
 
                             &:hover {
                                 opacity: 1;
@@ -5793,10 +5616,9 @@ PAGE USER PROFILE
 
                             h2 {
                                 color: rgb(255, 255, 255);
-                                padding: 5px;
+
                                 text-transform: uppercase;
                                 font-weight: bold;
-                                font-size: 2rem;
                                 text-align: center;
                             }
 
@@ -5866,6 +5688,7 @@ PAGE USER PROFILE
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+
 }
 
 #cssmenu {
@@ -5875,21 +5698,30 @@ PAGE USER PROFILE
     flex-wrap: wrap;
     width: 100%;
     font-family: 'Roboto Condensed', sans-serif;
-    // color: #ffffff;
     text-align: center;
+    transition: 250ms ease-in-out;
+    opacity: 0;
 }
 
 #cssmenu ul ul {
     display: none;
+
 }
 
 #cssmenu>ul>li.active>ul {
     display: block;
+    background: black;
+    color: $green-light
 }
 
-.align-right {
-    // float: right;
+#grid_year {
+    @include flex-center();
+    flex-wrap: wrap;
 }
+
+
+
+.align-right {}
 
 
 
@@ -5898,18 +5730,21 @@ PAGE USER PROFILE
     padding: 16px 22px;
     cursor: pointer;
     z-index: 2;
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-decoration: none;
     color: #ffffff;
     background: $titleDisplay;
     -webkit-transition: color .2s ease;
     -o-transition: color .2s ease;
     transition: color .2s ease;
+
 }
+
+
 
 #cssmenu>ul>li>a {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
 }
 
@@ -5919,10 +5754,16 @@ PAGE USER PROFILE
 
 #cssmenu>ul>li>ul>li>a {
     color: white;
-    background: rgb(50, 50, 55);
+    background: rgb(34, 37, 41);
     text-transform: uppercase;
     font-size: 1.2rem;
     transition: 250ms;
+    border-bottom: 1px dotted $green-light;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
 
     &:hover {
         color: $green-light;
@@ -5951,22 +5792,42 @@ PAGE USER PROFILE
     color: $green-light;
 }
 
-// #cssmenu ul>li.has-sub>a:after {
-//     position: absolute;
-//     right: 26px;
-//     top: 19px;
-//     z-index: 5;
-//     display: block;
-//     height: 10px;
-//     width: 2px;
-//     background: #ffffff;
-//     content: "";
-//     -webkit-transition: all 0.1s ease-out;
-//     -moz-transition: all 0.1s ease-out;
-//     -ms-transition: all 0.1s ease-out;
-//     -o-transition: all 0.1s ease-out;
-//     transition: all 0.1s ease-out;
+// .arrow {
+//     border: solid rgb(255, 255, 255);
+//     border-width: 0 3px 3px 0;
+//     display: inline-block;
+//     padding: 3px;
+
 // }
+
+#cssmenu ul>li.has-sub>a:after {
+
+    content: '';
+    border: solid rgb(128, 128, 128);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin: 3px 0 3px 5px;
+    transition: 250ms ease-in-out;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+
+
+    //     position: absolute;
+    //     right: 26px;
+    //     top: 19px;
+    //     z-index: 5;
+    //     display: block;
+    //     height: 10px;
+    //     width: 2px;
+    //     background: #ffffff;
+    //     content: "";
+    //     -webkit-transition: all 0.1s ease-out;
+    //     -moz-transition: all 0.1s ease-out;
+    //     -ms-transition: all 0.1s ease-out;
+    //     -o-transition: all 0.1s ease-out;
+    //     transition: all 0.1s ease-out;
+}
 
 // #cssmenu ul>li.has-sub>a:before {
 //     position: absolute;
@@ -5991,6 +5852,26 @@ PAGE USER PROFILE
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
+    border: solid $green-light;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin: 3px 0 6px 5px;
+}
+
+#cssmenu ul>li.has-sub.open {
+    color: $green-light;
+    background: black;
+}
+
+#cssmenu ul>li.has-sub.open>ul>li>a:after,
+#cssmenu ul>li.has-sub.open>a:before {
+
+    border: solid $green-light;
+    border-width: 0 0px 0px 0;
+    display: inline-block;
+    padding: 0px;
+    margin: 0px 0 0px 0px;
 }
 
 #cssmenu ul ul li a {
@@ -6001,7 +5882,6 @@ PAGE USER PROFILE
     text-transform: uppercase;
     text-decoration: none;
     color: #dddddd;
-    // background: #a1aab6;
     background: $megamenu-bg;
     -webkit-transition: color .2s ease;
     -o-transition: color .2s ease;
@@ -6021,32 +5901,10 @@ PAGE USER PROFILE
     top: 16px;
     right: 26px;
     background: #dddddd;
+
 }
 
 #cssmenu ul ul>li.has-sub>a:before {
     top: 20px;
     background: #dddddd;
 }
-
-// .dec {
-//     width: 100%;
-//     @include flex-center();
-//     flex-wrap: wrap;
-
-
-
-//     .list {
-//         width: 33%;
-
-//         a {
-//             width: 33%;
-//             color: black;
-//             font-size: 1.1rem;
-//             text-transform: none;
-
-//             &:hover {
-//                 color: $titleFont;
-//             }
-//         }
-//     }
-// }

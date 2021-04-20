@@ -30,7 +30,8 @@ class Film
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255)^
+     * @Assert\Length(max=255)
      */
     private $title;
 
@@ -132,6 +133,11 @@ class Film
      * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films", cascade={"all"})
      */
     private $camera;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $activation_token;
 
      
 
@@ -512,6 +518,18 @@ class Film
     public function removeCamera(Camera $camera): self
     {
         $this->camera->removeElement($camera);
+
+        return $this;
+    }
+
+    public function getActivationToken(): ?string
+    {
+        return $this->activation_token;
+    }
+
+    public function setActivationToken(?string $activation_token): self
+    {
+        $this->activation_token = $activation_token;
 
         return $this;
     }

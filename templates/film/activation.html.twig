@@ -1,0 +1,14 @@
+<html lang="fr">
+
+	<div class="container">
+
+		<p>
+			{{film.user.name}}
+			vient d'ajouter
+			{{film.title}}</p>
+		<p>
+			<a href="{{ absolute_url(path('film_show', {'slug': slug})) }}">Voir le film
+				{{film.title}}</a>
+		</p>
+	</html>
+</html>

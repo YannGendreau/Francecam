@@ -64,9 +64,10 @@ class FilmType extends AbstractType
             ->add('synopsis', TextareaType::class, [
                 'label'         => false,
                 'constraints'   => [
+                   
                     new NotBlank(['message' => 'Veuillez saisir le synopsis du film.']),
                     new Length([
-                        'max'           => 500,
+                        'max'           => 255,
                         'maxMessage'    => 'Le synopsis doit comporter au maximum {{ limit }} caractères'
                     ])
             ]])
@@ -109,17 +110,17 @@ class FilmType extends AbstractType
             ])
     //------CAMERA-------------------------------------------------------
     
-                ->add('camera', CollectionType::class, [
-                    'entry_type' => Camera1Type::class,
-                    'entry_options' =>[
-                        'label' => false,
-                    ],
-                    'allow_add' => true,
-                    'allow_delete' => true,
-                    'required' => false,
-                    'by_reference' => false,
-                    'prototype' => true,
-                ])
+                // ->add('camera', CollectionType::class, [
+                //     'entry_type' => Camera1Type::class,
+                //     'entry_options' =>[
+                //         'label' => false,
+                //     ],
+                //     'allow_add' => true,
+                //     'allow_delete' => true,
+                //     'required' => false,
+                //     'by_reference' => false,
+                //     'prototype' => true,
+                // ])
 
 
             // // Ajouter une marque

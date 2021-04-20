@@ -166,8 +166,8 @@
 				</li>
 
 				{# {% if app.request.attributes.get('_route') != 'accueil' %}
-																																																																																																																																																																																																																													{% include "includes/_searchtop.html.twig" %}
-																																																																																																																																																																																																																												{% endif %} #}
+																																																																																																																																																																																																																																																																	{% include "includes/_searchtop.html.twig" %}
+																																																																																																																																																																																																																																																																{% endif %} #}
 
 			</ul>
 		</div>
@@ -176,10 +176,11 @@
 				{% if is_granted('ROLE_ADMIN') %}
 
 					<li class="drop-down user">
-						<a href="{{path('user')}}">{{app.user.name}}</a>
+						<a href="">{{app.user.name}}</a>
 
 						<ul class="drop-down-ul animated fadeIn">
 							<li class="flyout-right">
+								<a class="backOffice" href="{{path('user')}}">Profil</a>
 								<a class="backOffice" href="{{path('admin')}}">Back-Office</a>
 								<a href="{{path('app_logout')}}">Déconnexion</a>
 							</li>
@@ -187,20 +188,21 @@
 					</li>
 
 					{# <div class="icon">
-																																																																																																																																																		<a href="{{path('user')}}">
-																																																																																																																																																			<img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt="icone utilisateur par défault">
-																																																																																																																																																		</a>
-																																																																																																																																												
-																																																																																																																																																	</div> #}
+																																																																																																																																																																																															<a href="{{path('user')}}">
+																																																																																																																																																																																																<img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt="icone utilisateur par défault">
+																																																																																																																																																																																															</a>
+																																																																																																																																																																																									
+																																																																																																																																																																																														</div> #}
 
 
 				{% elseif app.user %}
 
 					<li class="drop-down user">
-						<a href="{{path('user')}}">{{app.user.name}}</a>
+						<a href="">{{app.user.name}}</a>
 						<!--Drop Down-->
 						<ul class="drop-down-ul animated fadeIn">
 							<li class="flyout-right">
+								<a class="backOffice" href="{{path('user')}}">Profil</a>
 								<a href="{{path('app_logout')}}">Déconnexion</a>
 								<!--Flyout Right-->
 
@@ -210,11 +212,11 @@
 						<!--//End drop down-->
 					</li>
 					{# <div class="icon">
-																																																																																	<a href="{{path('user')}}">
-																																																																																		<img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt="">
-																																																																																	</a>
-																																																																											
-																																																																																</div> #}
+																																																																																																																														<a href="{{path('user')}}">
+																																																																																																																															<img class="iconUser" src="{{asset('build/images/user_francecam.png')}}" alt="">
+																																																																																																																														</a>
+																																																																																																																								
+																																																																																																																													</div> #}
 
 				{% else %}
 
@@ -234,14 +236,14 @@
 
 		<div class="buttonRespRight">
 			<div class="centerButton">
-				<p id="clickRight" class="openbtn" onclick.call="openNav()">☰</p>
+				<p id="clickRight" class="openbtn">☰</p>
 
 			</div>
 		</div>
 	</div>
 	<div id="asideMenu">
 		<div class="closeFilter">
-			<a href="javascript:void(0)" id="closeRight" class="closebtn" onclick="closeNav()">×</a>
+			<a href="javascript:void(0)" id="closeRight" class="closebtn">×</a>
 		</div>
 		{% include "navbar/_aside_menu.html.twig" %}
 	</div>

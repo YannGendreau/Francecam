@@ -30,15 +30,6 @@ class ModeleController extends AbstractController
     {
         $this->repository = $repository;
     }
-    /**
-     * @Route("/index", name="modele_index", methods={"GET"})
-     */
-    public function index(ModeleRepository $modeleRepository): Response
-    {
-        return $this->render('modele/index.html.twig', [
-            'modele' => $modeleRepository->findAll(),
-        ]);
-    }
 
     /**
      * @Route("/new", name="modele_new", methods={"GET","POST"})

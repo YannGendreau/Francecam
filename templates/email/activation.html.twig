@@ -1,0 +1,11 @@
+{% block title %}Francecam | Lien d'activation
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<p>Cliquez le lien pour activer votre compte Francecam.</p>
+		<p>
+			<a href="{{ absolute_url(path('activation', {'token': token})) }}">Activer</a>
+		</p>
+	</div>
+{% endblock %}
