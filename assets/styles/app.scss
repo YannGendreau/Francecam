@@ -772,10 +772,6 @@ html {
                         font-size: 16px;
                     }
                 }
-            }
-        }
-    }
-}
 
 @mixin cardMarque {
     .cardGridMarque {
@@ -894,7 +890,6 @@ html {
         }
 
     }
-}
 
 /*------------------------------------------------------
     Variables
@@ -4151,6 +4146,11 @@ PAGE USER PROFILE
                 background: $buttoncontainerbg;
 
 
+                                em {
+                                    color: grey;
+                                }
+                            }
+                        }
 
                 .closeFilter {
                     width: 100%;
@@ -4467,6 +4467,7 @@ PAGE USER PROFILE
                     width: 30%;
                 }
             }
+
         }
     }
 
@@ -4631,7 +4632,10 @@ PAGE USER PROFILE
                         }
                     }
 
-
+                    .posters {
+                        width: 100%;
+                        @include flex-center();
+                        flex-wrap: wrap;
 
                     .posters {
                         width: 100%;
@@ -4639,6 +4643,138 @@ PAGE USER PROFILE
                         flex-wrap: wrap;
 
 
+                            width: 20%;
+                            max-width: 180px;
+                            min-width: 180px;
+                            margin: 5px;
+
+                            .cardSm {
+                                position: relative;
+                                height: $cardFilm;
+
+
+                                .imgCard {
+                                    display: block;
+                                    height: $cardFilm;
+                                    border: 1px solid lightgrey;
+                                    border-radius: 5px;
+
+                                    .description {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        width: 100%;
+                                        height: 100%;
+                                        border-radius: 5px;
+                                        background: rgba(0, 0, 0, 0.2);
+                                        background-image: url("/build/images/illustrations/frame-th.png");
+                                        background-repeat: no-repeat;
+                                        background-position: center top;
+                                        background-size: contain;
+                                        @include flex-center();
+                                        flex-direction: column;
+
+                                        h1 {
+                                            color: $titleFont;
+                                            font-weight: bolder;
+                                            text-transform: uppercase
+                                        }
+
+                                        .genreOverlay {
+                                            align-items: flex-end;
+
+                                            em {
+                                                color: $titleDisplay;
+                                            }
+                                        }
+
+                                        h5 {
+                                            color: $megamenu-bg;
+                                            opacity: 0.5;
+                                            margin-bottom: 5px;
+                                        }
+
+                                    }
+
+                                    img {
+                                        width: 100%;
+                                        height: $cardFilm;
+                                        object-fit: cover;
+                                        border-radius: 5px;
+
+                                        &:hover {
+                                            transform: scale(5%);
+                                        }
+                                    }
+                                }
+
+                                a {
+                                    .description__overlay--blur {
+                                        backdrop-filter: blur(2px);
+                                    }
+
+                                    .description__overlay>* {
+                                        transition: transform 0.25s;
+                                    }
+
+                                    .description__overlay {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        width: 100%;
+                                        height: 100%;
+                                        background: rgba(0, 0, 0, 0.7);
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        justify-content: center;
+                                        border-radius: 5px;
+                                        opacity: 0;
+                                        transition: opacity 0.25s,
+                                            transform 0.25s;
+
+                                        &:hover {
+                                            opacity: 1;
+                                        }
+
+                                        h3 {
+                                            color: rgb(211, 211, 211);
+                                            text-transform: uppercase
+                                        }
+
+                                        #over {
+                                            width: 180px;
+                                            color: rgb(255, 255, 255);
+                                            padding: 5px;
+                                            text-transform: uppercase;
+                                            font-weight: bold;
+                                            font-size: 2rem;
+                                            text-align: center;
+                                        }
+
+                                        h5 {
+                                            color: $megamenu-bg;
+                                            opacity: 0.5;
+                                            margin-bottom: 5px;
+                                        }
+
+                                        .genreOverlay {
+                                            align-items: flex-end;
+
+                                            em {
+                                                color: $titleFont;
+                                            }
+                                        }
+
+                                        em {
+                                            // color: $titleFont;
+                                            color: $green-light;
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
 
 
                         @include cardGridFilmSm();
@@ -4905,6 +5041,11 @@ PAGE USER PROFILE
                     width: 100%;
                     text-align: justify;
                 }
+            }
+
+            p {
+                width: 100%;
+                text-align: justify;
             }
         }
 
@@ -5645,7 +5786,6 @@ PAGE USER PROFILE
                         }
                     }
                 }
-
             }
         }
     }
