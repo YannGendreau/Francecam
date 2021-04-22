@@ -1,6 +1,3 @@
-
-
-
 /**
  * @property {HTMLElement} pagination
  * @property {HTMLElement} content
@@ -10,9 +7,7 @@
  * @property {boolean} more
  */
 
-
 export default class Filter {
-
 
     /**
      * 
@@ -35,9 +30,12 @@ export default class Filter {
 
         /* Evenements  */
         bindEvents (){
+            //au clic sur le "a"
         const aClickListener = e => {
             if(e.target.tagName === 'A'){
-                e.preventDefault()  
+            //empèche l'activation du lien
+                e.preventDefault()
+            //Ajax 
                 this.loadUrl(e.target.getAttribute('href'))
             }
             if(e.target.tagName === 'SPAN'){

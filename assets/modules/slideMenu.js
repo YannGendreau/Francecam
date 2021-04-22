@@ -3,7 +3,7 @@ const btnClose = document.getElementById("close");
 const btnRight = document.getElementById("clickRight");
 const btnCloseRight = document.getElementById("closeRight");
 const sidepanel = document.getElementById("mySidepanel");
-const triangle = document.getElementById("triangle");
+const triangle = document.getElementById("clickMenu");
 const showlist = document.getElementById("rightside");
 
 
@@ -12,18 +12,18 @@ const showlist = document.getElementById("rightside");
 function filterLeft(mediaQueryList) {
     if(btnMenu || showlist){
     if (mediaQueryList.matches) {
-       
         btnMenu.addEventListener('click', function(){
-            sidepanel.style.width = "80%";
+            sidepanel.style.width = "70%";
             sidepanel.style.height = "100vh";
             sidepanel.style.opacity = "1";
+            triangle.style.opacity = "0.2"
 
         });
         btnClose.addEventListener('click', function(){
             sidepanel.style.width = "0";
             sidepanel.style.height = "0";
             sidepanel.style.opacity = "0";
-
+            triangle.style.opacity = "1"
         });
     } else {
         
@@ -31,11 +31,13 @@ function filterLeft(mediaQueryList) {
             sidepanel.style.width = "17%";
             sidepanel.style.height = "100vh";
             sidepanel.style.opacity = "1";
+            triangle.style.opacity = "0.2"
         });
         btnClose.addEventListener('click', function(){
             sidepanel.style.width = "0";
             sidepanel.style.height = "0";
             sidepanel.style.opacity = "0";
+            triangle.style.opacity = "1"
         }); 
     }
     if(mediaQueryList.matches){

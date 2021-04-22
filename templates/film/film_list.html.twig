@@ -6,13 +6,12 @@
 {% block content %}
 	<div class="container js-filter">
 
-		<div class="title">
-			<h1>Tous les films</h1>
-		</div>
+		{# <div class="title">
+					<h1>Tous les films</h1>
+				</div> #}
 
 		{# <div class="leftside"></div> #}
-		<aside class="sidepanel" id="mySidepanel">
-			{% include "film/_film_list_filter.html.twig" with {form: form} only %}
+			<aside class="sidepanel" id="mySidepanel"> {% include "film/_film_list_filter.html.twig" with {form: form} only %}
 		</aside>
 
 		<div class="triangle" id="">

@@ -80,6 +80,8 @@ class SearchCameraForm extends AbstractType
                 'label' => false,
            
                 'choices' => [
+                    '1910' => '1910',
+                    '1920' => '1920',
                     '1930' => '1930',
                     '1940' => '1940',
                     '1950' => '1950',
@@ -87,9 +89,7 @@ class SearchCameraForm extends AbstractType
                     '1970' => '1970',
                     '1980' => '1980',
                     '1990' => '1990',
-                    '2000' => '2000',
-                    '2010' => '2010',
-                    '2020' => '2020'
+                    
                 ],
              
                 'expanded' => true,
