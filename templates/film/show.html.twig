@@ -197,22 +197,23 @@
 														{% endif %}
 													</div>
 												</div>
-											{% endfor %}
-										{% elseif film.modeles | length == 0 and film.marques | length == 0 %}
-											<h1>Pas de camera</h1>
-										{% endif %}
-									</div>
+											</div>
+										{% endfor %}
+									{% elseif film.modeles | length == 0 and film.marques | length == 0 %}
+										<h1>Pas de camera</h1>
+									{% endif %}
 								</div>
-								{# <div class="tabPanel" style="display: none;"></div> #}
-								<div class="tabPanel" style="display: none;">
-									<h2>BANDE ANNONCE</h2>
-								</div>
+							</div>
+							{# <div class="tabPanel" style="display: none;"></div> #}
+							<div class="tabPanel" style="display: none;">
+								<h2>BANDE ANNONCE</h2>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div>
-					{# <h1>{{film.user}}</h1> #}
-				</div>
 			</div>
-		{% endblock %}
+			<div>
+				{# <h1>{{film.user}}</h1> #}
+			</div>
+		</div>
+	{% endblock %}

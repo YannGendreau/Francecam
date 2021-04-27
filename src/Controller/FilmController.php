@@ -46,11 +46,17 @@ class FilmController extends AbstractController
     {
         $film = new Film;
         $camera = new Camera;
-       
+        
         $sortie = $film->getSortie();
         $film->setDecade($sortie);
-        // $film->getCamera()->add($camera);
-        // $film->addCamera($camera);
+        $film->addCamera($camera);
+
+        
+        // $modele =$camera->getModele();
+       
+        
+
+        
         
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
@@ -58,13 +64,17 @@ class FilmController extends AbstractController
 
             $film->setUser($this->getUser());
 
-            // foreach($camera as $cam){
-            //     $film->addCamera($cam);
+            $marque = $camera->getMarque();
+            
+            // $film->addModele($camera->getModele());
 
-            // }
             $entityManager = $this->getDoctrine()->getManager();        
             $film = $form->getData();
-
+            
+            foreach($marque as $m){
+                 $film->addMarque($m);
+            };
+           
             //token d'activation chiffré
             $film->setActivationToken(md5(uniqid()));
 
@@ -72,24 +82,24 @@ class FilmController extends AbstractController
             $entityManager->flush();
 
             // email avec token
-            $email = (new TemplatedEmail())
-            ->from(new Address('test@test.com', 'Francecam Admin'))
-            ->to(new Address('test@test.com', 'Francecam Admin'))
-            ->subject('Francecam | Nouveau film')
-            ->htmlTemplate('film/activation.html.twig')
-            ->context([
-                'slug' => $film->getSlug(),
-                'title' => $film->getTitle(),
-                'user' => $film->getUser()
-            ])
-            ;
+            // $email = (new TemplatedEmail())
+            // ->from(new Address('test@test.com', 'Francecam Admin'))
+            // ->to(new Address('test@test.com', 'Francecam Admin'))
+            // ->subject('Francecam | Nouveau film')
+            // ->htmlTemplate('film/activation.html.twig')
+            // ->context([
+            //     'slug' => $film->getSlug(),
+            //     'title' => $film->getTitle(),
+            //     'user' => $film->getUser()
+            // ])
+            // ;
 
-            $mailer->send($email);
+            // $mailer->send($email);
 
             // $this->addFlash('success', 'Nouveau film enregistré');
        
-            // return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
-            return $this->redirectToRoute('film_activation_sent');
+            return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
+            // return $this->redirectToRoute('film_activation_sent');
         }
  
         return $this->render('film/new.html.twig', [
@@ -151,16 +161,17 @@ class FilmController extends AbstractController
      * @Route("/{slug}/edit", name="film_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function edit(Request $request, Film $film): Response
+    public function edit(Request $request, Film $film, Camera $camera): Response
     {
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
         $sortie = $film->getSortie();
         $film->setDecade($sortie);
-      
-       
+        
+ 
 
         if ($form->isSubmitted() && $form->isValid()) {
+           
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'Film modifié avec succès');
@@ -186,7 +197,7 @@ class FilmController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('film_index');
+        return $this->redirectToRoute('user');
     }
 
     /**

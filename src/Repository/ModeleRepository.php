@@ -72,6 +72,7 @@ class ModeleRepository extends ServiceEntityRepository
         if($mots != null){
             $query->andWhere('MATCH_AGAINST(c.name) AGAINST (:mots boolean)>0')
                 ->setParameter('mots', $mots);
+
         }
 
         return $query->getQuery()->getResult();
@@ -166,4 +167,14 @@ class ModeleRepository extends ServiceEntityRepository
         );      
     }
 
+   public function getModeleQueryBuilder($marqueId)
+    {
+        return $this->createQueryBuilder('b')
+                ->leftJoin('b.marque', 'e')
+                    ->addSelect('e')
+                ->where("e.id = :id")
+                    ->setParameter('id', $marqueId)
+                ;
+ 
+    }
 }

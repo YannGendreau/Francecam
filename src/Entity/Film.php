@@ -13,11 +13,14 @@ use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=FilmRepository::class)
 * @Vich\Uploadable()
 * @ORM\Table(name="film", indexes={@ORM\Index(columns={"title"}, flags={"fulltext"})})
+*@UniqueEntity(
+ *    fields={"title"})
  */
 class Film
 {
@@ -57,7 +60,7 @@ class Film
 
     /**
      * @var Collection|Marque[]
-    *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films")
+    *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films", cascade={"persist"})
     */
     private $marques;
 
@@ -78,7 +81,7 @@ class Film
 
     /**
      * @var Collection|Modele[]
-     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films")
+     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films", cascade={"persist"})
      */
     private $modeles;
 
@@ -130,7 +133,7 @@ class Film
     private $pays;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films", cascade={"all"})
+     * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films", cascade={"persist"})
      */
     private $camera;
 
@@ -511,7 +514,7 @@ class Film
         if (!$this->camera->contains($camera)) {
             $this->camera[] = $camera;
         }
-
+        // $this->camera->add($camera);
         return $this;
     }
 

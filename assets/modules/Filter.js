@@ -57,12 +57,12 @@ export default class Filter {
         this.pagination.querySelector('button').addEventListener('click', this.loadMore.bind(this))
         }else{
         this.pagination.addEventListener('click', aClickListener)
-    }
+        }
         this.form.querySelectorAll('input[type=checkbox]').forEach(input => {
             input.addEventListener('change', this.loadForm.bind(this))
             
             })
-    }
+        }
     
 
     async loadMore () {
@@ -106,7 +106,7 @@ export default class Filter {
             }else if (this.page === data.pages){
                 this.pagination.style.display ='none';
             }else{
-                this.pagination.style.display ='null';
+                this.pagination.style.display =null;
             }
             params.delete('ajax')
             history.replaceState({}, '', url.split('?')[0] + '?' + params.toString())

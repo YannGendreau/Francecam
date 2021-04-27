@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Camera;
-use App\Form\Camera1Type;
+use App\Form\CameraType;
 use App\Repository\CameraRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\MarqueRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/camera")
@@ -31,7 +32,7 @@ class CameraController extends AbstractController
     public function new(Request $request): Response
     {
         $camera = new Camera();
-        $form = $this->createForm(Camera1Type::class, $camera);
+        $form = $this->createForm(CameraType::class, $camera);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +64,7 @@ class CameraController extends AbstractController
      */
     public function edit(Request $request, Camera $camera): Response
     {
-        $form = $this->createForm(Camera1Type::class, $camera);
+        $form = $this->createForm(CameraType::class, $camera);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -91,4 +92,31 @@ class CameraController extends AbstractController
 
         return $this->redirectToRoute('camera_index');
     }
+
+
+    // public function editModeleFieldByMarque(Request $request, MarqueRepository $marqueRepository)
+    // {
+    //     $marque = $marqueRepository->find($request->query->get('marqueId'));
+
+    //     if (isset($marque)){
+
+
+    //         $camera = new Camera();
+    //         $camera->setMarque($marque);
+
+    //         $form = $this->createForm(CameraType::class, $camera);
+
+    //         //dump($form);
+    //         //die();
+
+    //         if (!$form->has('camera')) {
+    //             return new Response(null, 204);
+    //         }
+    //         return $this->render('account/_specific_commune.html.twig', [
+    //             'form' => $form->createView(),
+    //         ]);
+    //     }
+    // }
+
+
 }

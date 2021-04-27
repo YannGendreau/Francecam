@@ -1192,6 +1192,7 @@ a {
     .logoFc {
         width: 10%;
         @include flex-center();
+        padding-left: 10px;
 
         a {
             img {
@@ -1714,7 +1715,10 @@ a {
     LANDING PAGE
   -----------------------------------------------*/
 .container {
-    @include flex-center-start();
+    // @include flex-center-start();
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     width: 80%;
     min-height: 100vh;
@@ -1733,6 +1737,7 @@ a {
         background-attachment: fixed;
         background-position: center top;
         background-size: cover;
+        width: 50%;
 
 
         .searchCenter {
@@ -1778,8 +1783,9 @@ a {
 
             .search {
 
-                width: 40%;
-                min-width: 400px;
+                width: 100%;
+                max-width: 500px;
+                // min-width: 400px;
                 margin-top: 20px;
                 @include flex-center();
 
@@ -2468,6 +2474,7 @@ a {
 
         .summary {
             width: 100%;
+            min-height: 250px;
             grid-area: summary;
             margin-top: 10px;
             padding: 0 0 5% 0;
@@ -2805,6 +2812,7 @@ a {
 
         .summary {
             width: 100%;
+            min-height: 250px;
 
             grid-area: summary;
             max-height: 300px;
@@ -2878,6 +2886,7 @@ a {
 
         .summary {
             width: 100%;
+            min-height: 250px;
 
             grid-area: summary;
             padding: 0 0 5% 0;
@@ -3105,6 +3114,8 @@ a {
     margin-top: 100px;
     margin-bottom: 50px;
     width: 50%;
+    min-width: 800px;
+
 
     form {
         width: 100%;
@@ -3174,7 +3185,7 @@ a {
                     @include font-form-film();
                     font-size: $formTitleField;
                     // background: $titleCard;
-                    border-bottom: 1px solid $titleFont;
+                    // border-bottom: 1px solid $titleFont;
 
                 }
             }
@@ -3189,7 +3200,7 @@ a {
                         @include font-form-film();
                         width: 100%;
                         font-size: $formTitleField;
-                        border-bottom: 1px solid $titleFont;
+                        // border-bottom: 1px solid $titleFont;
                     }
 
                     div {
@@ -3221,7 +3232,7 @@ a {
                     @include font-form-film();
                     font-size: $formTitleField;
                     // background: $titleCard;
-                    border-bottom: 1px solid $titleFont;
+                    // border-bottom: 1px solid $titleFont;
 
                 }
             }
@@ -3243,7 +3254,7 @@ a {
                     @include font-form-film();
                     font-size: $formTitleField;
                     // background: $titleCard;
-                    border-bottom: 1px solid $titleFont;
+                    // border-bottom: 1px solid $titleFont;
 
                 }
 
@@ -3349,7 +3360,7 @@ a {
                 @include font-form-film();
                 font-size: $formTitleField;
                 // background: $titleCard;
-                border-bottom: 1px solid $titleFont;
+                // border-bottom: 1px solid $titleFont;
                 width: 100%;
 
             }
@@ -3363,6 +3374,76 @@ a {
                     width: 100%;
                     // @include flex-between-center();
                     // flex-wrap: wrap;
+
+                    #email-fields-list {
+                        width: 100%;
+
+                        .add {
+                            @include flex-end-center();
+                            width: 100%;
+
+                            .add_tag_link {
+                                width: 25%;
+                                @include flex-end-center();
+
+                                .btnCamAdd {
+                                    width: 70px;
+                                    height: 30px;
+                                    background: $green-light;
+                                    color: #f5f6f8;
+                                    border: none;
+                                    cursor: pointer;
+                                    border-radius: 3px;
+                                }
+
+                            }
+                        }
+
+                        li {
+
+                            @include flex-between-center();
+                            margin: 10px 0 10px 0;
+
+                            div {
+                                width: 50%;
+                            }
+
+
+
+                            .remove-tag {
+
+                                .btnCam {
+                                    width: 30px;
+                                    height: 30px;
+                                    background: #f73859;
+                                    color: #f5f6f8;
+                                    border: none;
+                                    cursor: pointer;
+                                }
+
+                            }
+
+                            .form-group {
+                                // width: 100%;
+                                // @include flex-between-center();
+                                // flex-wrap: wrap;
+
+                                #film_camera_0 {
+                                    @include flex-between-center();
+                                    flex-wrap: wrap;
+
+                                    .form-group {
+                                        width: 50%;
+
+                                        select {
+                                            width: 100%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
 
                     #cam_list {
                         width: 100%;
@@ -3518,8 +3599,8 @@ a {
                         #film_dirphoto {
                             width: 100%;
 
-                            .select2.select2-container.select2-container--default.select2-container {
-                                width: 100%;
+                            span {
+                                width: 50%;
                             }
                         }
                     }
@@ -3785,6 +3866,22 @@ a {
             border: 1px dotted rgb(180, 180, 180);
             border-radius: 5px;
             padding: 10px;
+        }
+
+        .cgu {
+            @include flex-center();
+            width: 100%;
+
+            .form-group {
+                @include flex-center();
+                width: 10%;
+
+                input {}
+            }
+
+            em {
+                width: 90%;
+            }
         }
     }
 
@@ -4311,8 +4408,8 @@ PAGE USER PROFILE
     // @media (max-width:1023px) {
 
     .container {
-        width: 95%;
-        justify-content: space-between;
+        width: 100%;
+        // justify-content: space-between;
 
         .triangle {
 
@@ -4668,7 +4765,8 @@ PAGE USER PROFILE
     }
 
     .searchBlock {
-        width: 90%;
+        width: 90% !important;
+        max-width: 400px;
 
         .searchCenter {
             margin-top: 20px;
@@ -4789,7 +4887,7 @@ PAGE USER PROFILE
     }
 
     #film {
-        width: 100%;
+        width: 70%;
 
         form {
             .rowFormTitle {
@@ -4809,6 +4907,17 @@ PAGE USER PROFILE
 
     #containerDD {
         width: 100%;
+
+        .logoFc {
+            padding-left: 10%;
+
+            a {
+
+                img {
+                    padding-left: 10%;
+                }
+            }
+        }
     }
 
     .tableauMarque {
@@ -5364,6 +5473,7 @@ PAGE USER PROFILE
 
             .summary {
                 grid-area: summary;
+
                 max-height: 300px;
                 margin-top: 10px;
                 width: 100%;
@@ -6089,7 +6199,7 @@ PAGE USER PROFILE
     text-transform: uppercase;
     font-size: 1.2rem;
     transition: 250ms;
-    border-bottom: 1px dotted $green-light;
+    border-bottom: 1px dotted $megamenu-bg-light;
 
     &:last-child {
         border-bottom: none;
