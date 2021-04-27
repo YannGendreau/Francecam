@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=CameraRepository::class)
  * @UniqueEntity(
- *    fields={"marque", "modele"}
+ *    fields={"modele"}
  *    
  * )
  */
@@ -26,12 +26,12 @@ class Camera
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="cameras")
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="cameras",cascade={"persist"} )
      */
     private $marque;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="cameras")
+     * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="cameras", cascade={"persist"})
      */
     private $modele;
 
@@ -99,5 +99,10 @@ class Camera
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->marque . ' ' .$this->modele; 
     }
 }

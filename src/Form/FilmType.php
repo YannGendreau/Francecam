@@ -11,13 +11,13 @@ use App\Entity\Cameras;
 use App\Entity\Director;
 use App\Entity\Dirphoto;
 use App\Form\CameraType;
-use App\Form\Camera1Type;
 use Doctrine\ORM\EntityRepository;
 use App\Repository\MarqueRepository;
 use App\Repository\ModeleRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -34,10 +34,12 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 class FilmType extends AbstractType
 {
     private $marque;
+    private $modeleRepository;
 
-    public function __construct(MarqueRepository $marque)
+    public function __construct(MarqueRepository $marque, ModeleRepository $modeleRepository)
     {
         $this->marque = $marque;
+        $this->modeleRepository= $modeleRepository;
     }
     
     /**
@@ -57,6 +59,7 @@ class FilmType extends AbstractType
                 ]])
             ->add('duree', IntegerType::class, [
                 'label'         => false,
+                'empty_data' => 'minutes',
                 'constraints'   => [
                     new NotBlank(['message' => 'Veuillez saisir la durée du film.']),
                     ]
@@ -110,38 +113,19 @@ class FilmType extends AbstractType
             ])
     //------CAMERA-------------------------------------------------------
     
-                // ->add('camera', CollectionType::class, [
-                //     'entry_type' => Camera1Type::class,
-                //     'entry_options' =>[
-                //         'label' => false,
-                //     ],
-                //     'allow_add' => true,
-                //     'allow_delete' => true,
-                //     'required' => false,
-                //     'by_reference' => false,
-                //     'prototype' => true,
-                // ])
-
-
-            // // Ajouter une marque
-            // ->add('marques', EntityType::class, [
-            //     'label'             => false,
-            //     'class'             => Marque::class,
-            //     'placeholder'       => 'Choisir une marque de caméra',
-            //     'required'          => false,
-            //     'multiple'          => true,
-            // ])
-
-            //TEMPORAIRE
-            //En attendant de trouver le moyen de créer un formulaire dynamique de choix de caméras
-            // ->add('modeles', EntityType::class, [
-            //     'label'             => false,
-            //     'class'             => Modele::class,
-            //     'placeholder'       => 'Choisir une caméra',
-            //     'required'          => false,
-            //     'multiple'          => true,
-
-            // ])
+                ->add('camera', CollectionType::class, [
+                    'entry_type' => CameraType::class,
+                    'entry_options' =>[
+                        'label' => false,
+                    ],
+                    'allow_add' => true,
+                    'label' =>false,
+                    'allow_delete' => true,
+                    'required' => false,
+                    // 'by_reference' => false,
+                    'prototype' => true,
+                    // 'prototype_data' => 'New Tag Placeholder',
+                ])
 
             ->add('posterFile', VichImageType::class, [
                 'required'          => false,
@@ -162,101 +146,19 @@ class FilmType extends AbstractType
                 'placeholder'       => 'Photographie',
                 'required'          => false,
                 'multiple'          => true,
-            ]);
-            // ->add('marques', EntityType::class, [
-            //     'class'       => Marque::class,
-            //     // 'placeholder' => 'Sélectionnez votre marque',
-            //     'mapped'      => false,
-            //     'required'    => false
-            // ]);
+            ])
 
-            // $builder->get('marques')->addEventListener(
-            //         FormEvents::POST_SUBMIT,
-            //         function (FormEvent $event) {
-            //             $form = $event->getForm();
-            //             dump($form->getData());
-            //             // $marques = $form->getData();
-                              
-            //             $form->getParent()->add('modeles', EntityType::class, [
-            //                 'label'             => false,
-            //                 'class'             => Modele::class,
-            //                 'placeholder'       => 'Choisir un modele',
-            //                 'required'          => false,
-            //                 'mapped'            => false,
-            //                 'choices'           => $form->getData()->getModeles(),
-                            
-            //             ]);
-            //         }
-            // );
-
-        
-
-    // /**
-    //  * Rajoute un champs marque au formulaire
-    //  * @param FormInterface $form
-    //  * @param Marque $marque
-    //  */
-    // private function addModeleField(FormInterface $form, ?Marque $marque)
-    // {
-    //     $builder = $form->getConfig()->getFormFactory()->createNamedBuilder(
-    //         'modeles',
-    //         EntityType::class,
-    //         null,
-    //         [
-    //             'class'           => Modele::class,
-    //             'placeholder'     => $marque ? 'Sélectionnez votre modele' : 'Sélectionnez votre marque',
-    //             'mapped'          => false,
-    //             'required'        => false,
-    //             'auto_initialize' => false,
-    //             'choices'         => $marque ? $marque->getModeles() : []
-    //         ]
-    //     );
-        
-    //     $form->add($builder->getForm());
-    // }
-
-        
-        
-    // TENTATIVE DE FORMULAIRE IMBRIQUE. NE MARCHE PAS (Arraycollection)
-// Cherche a pouvoir ajouter une ou des caméras pour un film.
-// Si le modèle de la caméra est inconnu, on peut choisir seulement la marque
-
-
-
-        // $builder->get('marques')->addEventListener(
-        //     FormEvents::POST_SUBMIT,
-        //     function (FormEvent $event) {
-        //         $form = $event->getForm();
-        //         dump($form->getData());
-        //         // $marques = $form->getData();
-                      
-        //         $form->getParent()->add('modeles', EntityType::class, [
-        //             'label'             => false,
-        //             'class'             => Modele::class,
-        //             'placeholder'       => 'Choisir un modele',
-        //             'required'          => false,
-        //             'mapped'            => false,
-        //             'choices'           => $form->getData()->getModeles(),
-        //             // 'choice_value' => function (Marque $marque = null) {
-
-        //             //     return $marque ? $marque->getModeles() : '';
-        //             // },
-        //             // 'choices'           => $marques->getModeles(),
-        //             // 'query_builder'     => function (EntityRepository $er ){
-        //             //     return $er->createQueryBuilder('m')
-        //             //     ->select('m.modeles')
-        //             //     ;
-        //             // }
-        //         ]);
-        //     }
-        // )
- 
-
+            
+        ;
+          
 }
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Film::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'csrf_token_id' => 'film_item'
         ]);
     }
 

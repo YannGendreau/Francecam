@@ -19,6 +19,8 @@ class CameraRepository extends ServiceEntityRepository
         parent::__construct($registry, Camera::class);
     }
 
+ 
+
     // /**
     //  * @return Camera[] Returns an array of Camera objects
     //  */

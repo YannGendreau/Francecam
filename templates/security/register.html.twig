@@ -23,6 +23,13 @@
 				<div class="flex-row">
 					<div class="cadre">{{form_row(registrationForm.plainPassword)}}</div>
 				</div>
+				<div class="flex-row">
+					<div class="cgu">
+						{{form_row(registrationForm.termes)}}
+						<em>Accepter les
+							<a href="">conditions générales d'utilisation</a>.</em>
+					</div>
+				</div>
 				{# {{form_widget(registrationForm)}} #}
 				<input type="submit" value="Envoyer" class="lf--submit" novalidate>
 				{{form_end(registrationForm)}}

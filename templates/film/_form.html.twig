@@ -19,7 +19,7 @@
 				<h3>Durée</h3>
 				<div>
 					<span>{{form_row(form.duree)}}</span>
-					<span>minutes</span>
+					{# <span>minutes</span> #}
 				</div>
 
 
@@ -82,14 +82,39 @@
 		<h3>Caméras</h3>
 
 		<div class="marqueModele">
-			<div
-				class="marqueForm">{# <div
-																																																												class="camera" id="cam_list" data-prototype="{{form_widget(form.camera.vars.prototype)|e('html_attr')}}">
-																																																																	for cam in form.camera %}
-																																																																			{{ form_row(cam) }}
-																																																																		{% endfor %}
-																																																											</div>#}
+			<div class="marqueForm">
+				{#<ul id="camera-fields-list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e('html_attr') }}" data-index="{{ genusForm.genusScientists|length }}">
+																																																									{% for cam in form.camera %}
+																																																										<li>
+																																																											{{ form_errors(cam.marque) }}
+																																																											{{ form_widget(cam.marque) }}
+																																																										</li>
+																																																									{% endfor %}
+																																																								</ul>#}
 
+
+				{# <div class="camera" id="cam_list" data-prototype="{{form_widget(form.camera.vars.prototype)|e('html_attr')}}">
+																																																																												{% for cam in form.camera %}
+																																																																													<li>
+																																																																														{{ form_row(cam.marque) }}
+																																																																														{{ form_row(cam.modele) }}
+																																																																													</li>
+																																																																												
+																																																																												{% endfor %}
+																																																																															</div>#}
+					<ul id="email-fields-list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.camera|length }}"> {% for cam in form.camera %}
+						<li>
+							{{ form_errors(cam.marque) }}
+							{{ form_row(cam.marque) }}
+
+							{{ form_errors(cam.modele) }}
+							{{ form_row(cam.modele) }}
+						</li>
+
+					{% endfor %}
+				</ul>
+
+				{# <button type="button" class="add-another-collection-widget" data-list-selector="#email-fields-list">Add another email</button> #}
 
 			</div>
 		</div>
@@ -98,5 +123,4 @@
 	<div class="printBtn">
 		<button class="btn">{{ button_label|default('Enregistrer') }}</button>
 	</div>
-	{{ form_end(form) }}
-</div>
+	{{ form_end(form) }}</div>

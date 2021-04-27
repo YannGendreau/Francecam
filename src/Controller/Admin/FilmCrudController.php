@@ -48,6 +48,7 @@ class FilmCrudController extends AbstractCrudController
             IntegerField::new('duree'),
             IntegerField::new('sortie'),
             IntegerField::new('decade'),
+            AssociationField::new('camera'),
             AssociationField::new('marques'),
             AssociationField::new('modeles'),
             // AssociationField::new('camera'),
