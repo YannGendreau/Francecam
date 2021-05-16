@@ -24,22 +24,27 @@ class HomeController extends AbstractController
 
     public function index( ModeleRepository $modeleRepository, FilmRepository $filmRepository, MarqueRepository $marqueRepository ,Request $request, SearchHomeData $search): Response
     {
-       //renvoie tous les cameras et films 
+        //renvoie toutes les cameras et films par date desc
         $modeles = $modeleRepository->modeleByDateDesc();
         $filmResults = $filmRepository->filmByDateDesc();
 
         //Barre de recherche
+        //init data
         $data = new SearchHomeData;
+        //paginator
         $data->page =$request->get('page', 1);
+        //génère le formulaire 
         $form = $this->createForm(SearchHomeType::class, $data);
+        //appelle la requète
         $form->handleRequest($request);
+        //déclare les variables findhomesearch
         $films = $filmRepository->findHomeSearch($data);
         $marque = $marqueRepository->findHomeSearch($data);
         $modele = $modeleRepository->findHomeSearch($data);
       
-
+        //validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
-       
+            //retourne le rendu des requètes de recherche
             return $this->render('search_home/index.html.twig', [
                 
                 'films' => $films,
@@ -48,7 +53,7 @@ class HomeController extends AbstractController
 
             ]);
         }
-
+            //retourne un rendu des requètes et la barre de recherche
             return $this->render('home/index.html.twig', [
             'modele' => $modeles,
             'resultFilm' => $filmResults,

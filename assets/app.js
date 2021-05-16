@@ -19,14 +19,14 @@ import 'select2/dist/css/select2.css';
 
 $('select').select2();
 
-
+import  './modules/Filter';
 import  './modules/OverFontSize';
 import  './modules/TitleFontSize';
 import  './modules/slideMenu';
 import  './modules/charcount';
-import  './modules/dynamicForm';
-import  './modules/dynamicFields';
-// import  './modules/Filter';
+// import  './modules/dynamicForm';
+// import  './modules/dynamicFields';
+
 
 
 
@@ -361,11 +361,6 @@ function addTagForm($collectionHolder, $newLinkLi) {
         e.preventDefault();
 	
 		$(this).parent().fadeOut("fast").slideUp(100).dequeue();
-   
-	
-
-		
-        
         
         return false;
     });
@@ -373,7 +368,53 @@ function addTagForm($collectionHolder, $newLinkLi) {
 	
 }
 
+function backgroundFade(mediaQueryList){
 
+
+if (mediaQueryList.matches) {
+	
+	$('#about').on("mouseenter", function(){
+		setTimeout (function(){	
+		$('main').toggleClass('dark');}, 2000);
+
+	}).on("mouseleave", function(){
+	setTimeout (function(){	
+	$('main').removeClass('dark');}, 2000);
+	})
+}else{$('#about').on("mouseenter", function(){
+	
+	$('main').removeClass('dark');
+
+})
+
+}
+}
+var mediaQueryList = window.matchMedia("(min-width: 1023px)")
+	backgroundFade(mediaQueryList) 
+	mediaQueryList.addListener(backgroundFade)
+
+	/**------------------------------- */
+
+var btndown = document.getElementById('clickDown');
+var btnup = document.getElementById('clickUp');
+
+$('#clickDown').on('click', function(){
+	
+	$('#about').animate({scrollTop: '+=600px'});
+})
+$('#clickUp').on('click', function(){
+	
+	$('#about').animate({scrollTop: '-=600px'});
+})
+
+// $('#about').on('keydown', function(){
+	
+// 	$('#about').animate({scrollTop: '+=600px'}, 'swing');
+// })
+// $('#about').on('keydown', function(){
+	
+// 	$('#about').animate({scrollTop: '-=600px'}, 'swing');
+// })
 
 
 

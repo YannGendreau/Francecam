@@ -1,8 +1,10 @@
 <!-- <div class="tableau"> -->
-{% for film in films %}
-	<div class="cardGrid">
-		<div class="cardSm" id="grid">
-			<div class="imgCard">
+{# boucle sur films #}
+	{% for film in films %}
+		<div class="cardGrid"> <div class="cardSm" id="grid">
+			<div
+				class="imgCard">
+				{# Vérifie la présence d'affiche ou la remplace par une description #}
 				{% if film.poster %}
 					<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
 				{% else %}
@@ -17,16 +19,19 @@
 					</div>
 				{% endif %}
 			</div>
+			{# Description au survol #}
 			<a href="{{path('film_show', {slug: film.slug,})}}">
-				<div class="description__overlay description__overlay--blur" id="descOverlay">
-
+				<div
+					class="description__overlay description__overlay--blur" id="descOverlay">
+					{# titre #}
 					<h1 id="over">{{film.title}}</h1>
-
+					{# genres #}
 					<div class="genreOverlay">
 						{% for g in film.genres %}
 							<em>{{g.name}}</em>
 						{% endfor %}
 					</div>
+					{# sortie #}
 					<em>{{film.sortie}}</em>
 				</div>
 			</a>

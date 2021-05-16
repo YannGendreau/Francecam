@@ -14,7 +14,7 @@
 					<ul class="drop-down-ul animated fadeIn">
 						<li class="flyout-right">
 							<a href="">Formats</a>
-							<!--Flyout Left-->
+							<!--Flyout -->
 							<ul class="animated fadeIn">
 								<li>
 									<a href="{{ path('modele', {'q':'', 'format':'1'}) }}">16mm /Super 16</a>
@@ -28,7 +28,7 @@
 
 						<li class="flyout-right">
 							<a href="">Marques</a>
-							<!--Flyout Right-->
+							<!--Flyout -->
 							<ul class="animated fadeIn">
 								<li>
 									<a href="{{path('marque_index')}}">Toutes les marques</a>
@@ -60,7 +60,7 @@
 
 						<li class="flyout-right">
 							<a href="">Decennies</a>
-							<!--Flyout Left-->
+							<!--Flyout -->
 							<ul class="animated fadeIn">
 								<li>
 									<a href="{{ path('modele', {'q':'', 'decade':'1910'}) }}">1910</a>
@@ -93,15 +93,15 @@
 						</li>
 
 					</ul>
-					<!--//End drop down-->
+					<!--//fin drop -->
 				</li>
 				<li class="drop-down">
 					<a href="{{path('films')}}">Films</a>
-					<!--Drop Down-->
+					<!--Drop -->
 					<ul class="drop-down-ul animated fadeIn">
 						<li class="flyout-right">
 							<a href="#">Genres</a>
-							<!--Flyout Right-->
+							<!--Flyout -->
 							<ul class="animated fadeIn">
 
 								<li>
@@ -133,7 +133,7 @@
 
 						<li class="flyout-right">
 							<a href="#">Decennies</a>
-							<!--Flyout Left-->
+							<!--Flyout -->
 							<ul class="animated fadeIn">
 								<li>
 									<a href="{{ path('films', {'q':'', 'decade':'1910'}) }}">1910</a>
@@ -165,7 +165,7 @@
 							</ul>
 						</li>
 					</ul>
-					<!--//End drop down-->
+					<!--//fin drop -->
 				</li>
 
 				{# {% if app.request.attributes.get('_route') != 'accueil' %}
@@ -195,17 +195,16 @@
 
 					<li class="drop-down user">
 						<a href="">{{app.user.name}}</a>
-						<!--Drop Down-->
+						<!--Drop -->
 						<ul class="drop-down-ul animated fadeIn">
 							<li class="flyout-right">
 								<a class="backOffice" href="{{path('user')}}">Profil</a>
 								<a href="{{path('app_logout')}}">Déconnexion</a>
-								<!--Flyout Right-->
+								<!--Flyout -->
 
 							</li>
-
 						</ul>
-						<!--//End drop down-->
+						<!--//fin drop -->
 					</li>
 
 
@@ -216,9 +215,9 @@
 					</li>
 					<li class="drop-down">
 						<a href="{{path('app_register')}}">Inscription</a>
-						<!--Drop Down-->
+						<!--Drop -->
 
-						<!--//End drop down-->
+						<!--//End drop -->
 					</li>
 				{% endif %}
 			</ul>
