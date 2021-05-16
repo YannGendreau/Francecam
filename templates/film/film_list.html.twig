@@ -4,31 +4,33 @@
 {% endblock %}
 
 {% block content %}
-	<div class="container js-filter">
-
-		{# <div class="title">
-					<h1>Tous les films</h1>
-				</div> #}
-
-		{# <div class="leftside"></div> #}
-			<aside class="sidepanel" id="mySidepanel"> {% include "film/_film_list_filter.html.twig" with {form: form} only %}
+	<div
+		class="container js-filter">
+		{# Panneau de filtre #}
+		<aside class="sidepanel" id="mySidepanel">
+			{% include "film/_film_list_filter.html.twig" with {form: form} only %}
 		</aside>
-
+		{# Ouverture du panneau #}
 		<div class="triangle" id="">
 			<button title="Filtres de recherche" id="clickMenu" class="openbtn">
-				<img src="{{asset('build/images/triangle-filter.svg')}}" alt="">
+				<img src="{{asset('build/images/triangle-filter.svg')}}" alt="triangle de sélection">
 			</button>
 		</div>
 
 		<div class="rightside" id="rightside">
-
-			<div class="sorting js-filter-sorting" id"">
+			<div
+				class="sorting js-filter-sorting" id"">
+				{# Classement par date #}
 				{% include "film/_sorting.html.twig" %}
 			</div>
-			<div class="showList js-filter-content">
+			<div
+				class="showList js-filter-content">
+				{# Tous les films #}
 				{% include "film/_film_list.html.twig" %}
 			</div>
-			<div class="paginate js-filter-pagination">
+			<div
+				class="paginate js-filter-pagination">
+				{# pagination #}
 				{% include "film/_pagination.html.twig" %}
 			</div>
 		</div>

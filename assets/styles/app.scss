@@ -33,6 +33,7 @@ html {
 // $megamenu-bg:RGBA(219, 237, 243, 0.97);
 $generalBackground : linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(233, 234, 241, 0.8));
 $generalBackground2 : linear-gradient(135deg, rgba(93, 96, 104, 0.8), rgba(233, 234, 241, 0.8));
+$generalBackgroundDark : linear-gradient(135deg, rgba(26, 26, 27, 0.9), rgba(0, 0, 0, 0.9));
 // $megamenu-bg:rgba(210, 223, 228, 0.97);
 $megamenu-bg:rgba(224, 236, 241, 0.97);
 $megamenu-bg-green:linear-gradient(135deg, rgba(230, 243, 239, 0.8), rgba(200, 233, 231, 0.97));
@@ -1124,8 +1125,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
 
 
     .form-check-input:checked {
-        // background-color: #e9ecee;
-        // background-color: $green-light;
+
         background-color: rgb(39, 129, 182);
         border: 1px solid #ffffff;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
@@ -1150,7 +1150,9 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
 @font-face {
     font-family: TheBoldFont;
     src: url(../fonts/theboldfont.ttf);
+   
 }
+@import url('http://fonts.cdnfonts.com/css/lcd-phone');
 
 /* ------------------------------------------------
     Style par défaut
@@ -1164,8 +1166,13 @@ main {
     width: 100%;
     margin: auto;
     @include flex-center();
-    // flex-wrap: wrap;
     min-height: 100vh;
+    transition: 500ms ease-in-out;
+
+}
+
+.dark {
+    background: rgb(15, 15, 15);
 }
 
 a {
@@ -1182,7 +1189,8 @@ a {
     @include flex-between-center();
     width: 100%;
     max-height: 57px;
-    background: rgba(210, 223, 228, 0.2);
+    // background: rgba(210, 223, 228, 0.2);
+    background: rgba(174, 216, 233, 0.2);
     transition: 200ms;
 
     &:hover {
@@ -1714,7 +1722,9 @@ a {
 /*----------------------------------------------
     LANDING PAGE
   -----------------------------------------------*/
-.container {
+
+
+  .container, .containerAbout {
     // @include flex-center-start();
     display: flex;
     justify-content: center;
@@ -1724,10 +1734,12 @@ a {
     min-height: 100vh;
 
     h1 {
+        width: 100%;
         text-align: center;
         color: $titleFont;
         text-transform: uppercase;
         font-size: 1.8rem;
+
     }
 
     .searchBlock {
@@ -1812,14 +1824,17 @@ a {
                         }
                     }
 
-                    form {
+                    .form-group {
                         width: 100%;
 
 
                         input {
                             width: 100%;
+                          
+                            font-family: 'Roboto Condensed', arial, sans-serif;
+                           
                             // background: $megamenu-bg;
-                            background: $megamenu-bg-green;
+                            background: $megamenu-bg;
                             box-shadow: inset 0 -3em 3em rgba(75, 75, 75, 0.1),
                                 0 0 0 1px rgb(255, 255, 255),
                                 0.3em 0.3em 1em rgba(68, 68, 68, 0.3);
@@ -1829,6 +1844,7 @@ a {
                             border-bottom-right-radius: 7px;
                             padding-left: 10px;
                             font-size: 1.3rem;
+                            // font-size: 8px;
                         }
 
                     }
@@ -1858,6 +1874,259 @@ a {
             }
         }
     }
+
+    /*----------------------------------------------------------
+ABOUT US
+-----------------------------------------------------------*/
+
+    h1 {
+        width: 100%;
+        text-align: center;
+        color: $titleFont;
+        text-transform: uppercase;
+        font-size: 1.8rem;
+
+    }
+
+
+
+    .screen {
+
+        margin-top: $mTop + 20px;
+
+        width: 100%;
+        max-width: 1200px;
+        height: 600px;
+
+
+        white-space: nowrap;
+        background: white;
+        border-radius: 5px;
+
+        scrollbar-width: thin;
+        scrollbar-color: $titleFont rgb(0, 0, 0);
+
+        overflow-x: hidden;
+        overflow-y: scroll;
+        scroll-snap-type: y proximity;
+        scroll-snap-type: proximity;
+        scroll-snap-stop: always;
+
+
+        -moz-box-sizing: border-box; 
+        -webkit-box-sizing: border-box; 
+        box-sizing: border-box;
+
+        .boutons{
+            position: absolute;
+            @include flex-center();
+            flex-wrap: wrap;
+            width: 100px;
+            // max-width: 1200px;
+            left: 50%;
+            height: 600px;
+            z-index: 2;
+
+            .down{
+                width: 100%;
+                max-width: 1200px;
+                @include flex-center();
+                margin-top: 200px;
+
+               
+                 button{
+                    border: none;
+                    background: none;            
+                    cursor: pointer;
+    
+                    img{
+                        width: 50%;
+                        opacity:0.2;
+                        
+                        transition: 250ms ease-in-out;
+        
+                        &:hover{
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            
+            .up{
+                width: 100%;
+                max-width: 1200px;
+                @include flex-center();
+                margin-bottom: 200px;
+                button{
+                    border: none;
+                    background: none;             
+                    cursor: pointer;
+        
+                    img{
+                        width: 50%;
+                        opacity:0.2;
+                        transition: 250ms ease-in-out;
+                        transform: rotate(180deg);
+                        &:hover{
+                            opacity: 1;
+                        }
+                    }
+                }
+               
+            }
+            
+        }
+        
+
+        .child {
+            width: 100%;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            height: 600px;
+            @include flex-between-center();
+            position: relative;
+            border-radius: 5px;
+            transition: 250ms ease-in-out;
+            background: black;
+         
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            #myVideo01 {
+                width: 100%;
+                height: 600px;
+                object-fit: cover;
+                display: block;
+                opacity: 0.7;
+
+            }
+
+            #myVideo02 {
+                width: 100%;
+                height: 600px;
+                object-fit: cover;
+                display: block;
+                opacity: 0.7;
+
+
+            }
+
+            .para1 {
+
+                width: 57%;
+                height: 600px;
+                text-align: justify;
+                position: absolute;
+                top: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                h1 {
+                    margin-bottom: 30px;
+                    font-size: 2.5rem;
+
+                }
+
+                .logoFc {
+
+                    width: 15%;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+
+
+                img {
+                    width: 100%;
+                }
+
+
+                p {
+                    font-family: 'Roboto Condensed', sans-serif;
+                    width: inherit;
+                    line-height: 2.5rem;
+                    text-align: justify;
+                    text-justify: inter-word;
+                    white-space: pre-line;
+                    font-size: 1.7rem;
+                    color: rgb(255, 255, 255);
+
+                    em {
+                        // color: $titleCard;
+                        color: rgb(233, 233, 233);
+                    }
+
+                    span {
+                        color: $titleFont;
+                    }
+                }
+            }
+
+            .para2 {
+
+                width: 57%;
+                height: 600px;
+                text-align: justify;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+
+
+                p {
+
+                    font-family: 'Roboto Condensed', sans-serif;
+                    max-width: 50%;
+                    width: inherit;
+                    line-height: 2.5rem;
+                    text-align: justify;
+                    text-justify: inter-word;
+                    white-space: pre-line;
+                    font-size: 1.7rem;
+                    color: rgb(255, 255, 255);
+
+                    em {
+                        color: $titleFont;
+                    }
+
+                    span {
+                        color: $titleFont;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    .screen::-webkit-scrollbar {
+        width: 8px;
+        height: 20%;
+    }
+
+    .screen::-webkit-scrollbar-track {background-color: black;}
+
+    .screen::-webkit-scrollbar-thumb {
+        background-color: $titleFont;
+
+        border-radius: 10px;
+    }
+
+
+
+
 
 
     /*--------------------------------------------------------
@@ -4387,15 +4656,6 @@ PAGE USER PROFILE
 
 }
 
-
-
-
-
-
-
-
-
-
 @media (min-width:1024px) {
     // .tableauCamera {
     //     width: 100%;
@@ -4406,6 +4666,10 @@ PAGE USER PROFILE
 
 @media (max-width:1024px) {
     // @media (max-width:1023px) {
+
+// main{
+//     background: rgb(0, 0, 0);  
+// }
 
     .container {
         width: 100%;
@@ -4746,6 +5010,186 @@ PAGE USER PROFILE
             }
         }
 
+        h1 {
+            width: 100%;
+            text-align: center;
+            color: $titleFont;
+            text-transform: uppercase;
+            font-size: 1.8rem;
+    
+        }
+    
+        .screen {
+            @include flex-center();
+            flex-wrap: wrap;
+            margin-top: 10px;
+    
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+    
+    
+            white-space: nowrap;
+            background: white;
+            border-radius: 5px;
+    
+            scrollbar-width: thin;
+            scrollbar-color: $titleFont white;
+    
+            overflow-x: hidden;
+            overflow-y: scroll;
+            scroll-snap-type: y proximity;
+            scroll-snap-type: proximity;
+            scroll-snap-stop: always;
+    
+    
+            -moz-box-sizing: border-box; 
+            -webkit-box-sizing: border-box; 
+            box-sizing: border-box;
+
+    
+            .child {
+                width: 100%;
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+                height: 600px;
+                // @include flex-between-center();
+                @include flex-center();
+                position: relative;
+                border-radius: 5px;
+                background: black;
+             
+    
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+    
+                #myVideo01 {
+                    width: 100%;
+                    height: 600px;
+                    object-fit: cover;
+                    display: block;
+                    opacity: 0.2;
+
+    
+                }
+    
+                #myVideo02 {
+                    width: 100%;
+                    height: 600px;
+                    object-fit: cover;
+                    display: block;
+                    opacity: 0.8;
+    
+                }
+    
+                .para1 {
+    
+                    width: 80%;
+                    height: 600px;
+                    text-align: justify;
+                    position: absolute;
+                    top: 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+    
+                    h1 {
+                        margin-bottom: 30px;
+                        font-size: 1.6rem;
+    
+                    }
+    
+                    .logoFc {
+    
+                        width: 15%;
+    
+                        img {
+                            width: 100%;
+                        }
+                    }
+    
+    
+    
+                    img {
+                        width: 100%;
+                    }
+    
+    
+                    p {
+                        font-family: 'Roboto Condensed', sans-serif;
+                        width: inherit;
+                        line-height: 2rem;
+                        text-align: justify;
+                        text-justify: inter-word;
+                        white-space: pre-line;
+                        font-size: 1.3rem;
+                        color: rgb(255, 255, 255);
+    
+                        em {
+                            // color: $titleCard;
+                            color: rgb(233, 233, 233);
+                        }
+    
+                        span {
+                            color: $titleFont;
+                        }
+                    }
+                }
+    
+                .para2 {
+    
+                    width: 80%;
+                    height: 600px;
+                    text-align: justify;
+                    position: absolute;
+                    top: 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+    
+    
+                    p {
+                        font-family: 'Roboto Condensed', sans-serif;
+                        width: inherit;
+                        line-height: 2rem;
+                        text-align: justify;
+                        text-justify: inter-word;
+                        white-space: pre-line;
+                        font-size: 1.3rem;
+                        color: rgb(255, 255, 255);
+    
+                        em {
+                            // color: $titleCard;
+                            color: rgb(233, 233, 233);
+                        }
+    
+                        span {
+                            color: $titleFont;
+                        }
+                    }
+                }
+    
+            }
+    
+        }
+    
+        .screen::-webkit-scrollbar {
+            width: 8px;
+            height: 20%;
+        }
+    
+        .screen::-webkit-scrollbar-track {background-color: black;}
+    
+        .screen::-webkit-scrollbar-thumb {
+            background-color: $titleFont;
+    
+            border-radius: 10px;
+        }
     }
 
     .rightside {
@@ -5916,7 +6360,6 @@ PAGE USER PROFILE
         }
     }
 
-
     .showList {
         width: 93%;
         justify-content: center !important;
@@ -6101,6 +6544,9 @@ PAGE USER PROFILE
             width: 100%;
         }
     }
+
+    
+    
 
 }
 

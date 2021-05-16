@@ -93,30 +93,4 @@ class CameraController extends AbstractController
         return $this->redirectToRoute('camera_index');
     }
 
-
-    // public function editModeleFieldByMarque(Request $request, MarqueRepository $marqueRepository)
-    // {
-    //     $marque = $marqueRepository->find($request->query->get('marqueId'));
-
-    //     if (isset($marque)){
-
-
-    //         $camera = new Camera();
-    //         $camera->setMarque($marque);
-
-    //         $form = $this->createForm(CameraType::class, $camera);
-
-    //         //dump($form);
-    //         //die();
-
-    //         if (!$form->has('camera')) {
-    //             return new Response(null, 204);
-    //         }
-    //         return $this->render('account/_specific_commune.html.twig', [
-    //             'form' => $form->createView(),
-    //         ]);
-    //     }
-    // }
-
-
 }
