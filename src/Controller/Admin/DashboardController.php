@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Camera;
 use App\Entity\Film;
 use App\Entity\User;
 use App\Entity\Mount;
@@ -37,15 +38,16 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Francecam');
+            ->setTitle('FRANCECAM');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Cameras', 'fas fa-camera', Modele::class);
         yield MenuItem::linkToCrud('Films', 'fas fa-film', Film::class);
         yield MenuItem::linkToCrud('Marques', 'fas fa-video', Marque::class);
+        yield MenuItem::linkToCrud('Modele', 'fas fa-camera', Modele::class);
+        yield MenuItem::linkToCrud('Camera', 'fas fa-circle', Camera::class);
         yield MenuItem::linkToCrud('User', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Mount', 'fas fa-circle', Mount::class);
         yield MenuItem::linkToCrud('Shutter', 'fas fa-circle', Shutter::class);
@@ -54,5 +56,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Photo', 'fas fa-circle', Dirphoto::class);
         yield MenuItem::linkToCrud('Type', 'fas fa-circle', Type::class);
         yield MenuItem::linkToCrud('Genres', 'fas fa-circle', Genre::class);
+        
     }
 }

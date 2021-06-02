@@ -113,19 +113,19 @@ class FilmType extends AbstractType
             ])
     //------CAMERA-------------------------------------------------------
     
-                ->add('camera', CollectionType::class, [
-                    'entry_type' => CameraType::class,
-                    'entry_options' =>[
-                        'label' => false,
-                    ],
-                    'allow_add' => true,
-                    'label' =>false,
-                    'allow_delete' => true,
-                    'required' => false,
-                    // 'by_reference' => false,
-                    'prototype' => true,
-                    // 'prototype_data' => 'New Tag Placeholder',
-                ])
+            ->add('camera', CollectionType::class, [
+                'entry_type' => CameraType::class,
+                'entry_options' =>[
+                    'label' => false,
+                ],
+                'allow_add' => true,
+                'label' => false,
+                'allow_delete' => true,
+                'required' => false,
+                // 'by_reference' => false,
+                'prototype' => true,
+                // 'prototype_data' => 'New Tag Placeholder',
+            ])
 
             ->add('posterFile', VichImageType::class, [
                 'required'          => false,

@@ -145,11 +145,10 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
 
 @mixin font-form-film {
     font-family: 'Roboto Condensed', sans-serif;
-    // color: $titleFont;
     color: $nav-color;
     font-size: 1.5rem;
     text-transform: uppercase;
-    // margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 
@@ -323,6 +322,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
 }
 
 @mixin cardFilm {
+
     .cardGrid {
         width: 180px;
         height: $cardFilm;
@@ -1189,12 +1189,11 @@ a {
     @include flex-between-center();
     width: 100%;
     max-height: 57px;
-    // background: rgba(210, 223, 228, 0.2);
     background: rgba(174, 216, 233, 0.2);
     transition: 200ms;
 
     &:hover {
-        background: rgba(121, 159, 175, 0.97);
+        background: rgba(177, 202, 212, 0.97);
     }
 
     .logoFc {
@@ -1257,21 +1256,31 @@ a {
         }
 
         .exo-menu>li>a {
-            color: #ccc;
-            color: rgb(61, 61, 61);
+            // color: #ccc;
+            color: rgb(31, 38, 41);
             font-weight: bold;
             text-decoration: none;
             text-transform: uppercase;
-            // border-right: 1px #365670 dotted;
             -webkit-transition: color 0.2s linear, background 0.2s linear;
             -moz-transition: color 0.2s linear, background 0.2s linear;
             -o-transition: color 0.2s linear, background 0.2s linear;
             transition: color 0.2s linear, background 0.2s linear;
         }
 
-        .exo-menu>li>a.active,
+        .exo-menu>li:hover,
+        .exo-menu>li.active,
+        .exo-menu>li>a:active,
         .exo-menu>li>a:hover,
-        li.drop-down ul>li>a:hover {
+        .exo-menu>li>ul>li>a:hover,
+        .exo-menu>li>ul>li>a.active,
+        li.drop-down-ul>li>a:hover,
+        li.drop-down-ul>li>a.active,
+        li.drop-down ul>li>a:hover,
+        li.drop-down ul>li>a.active,
+        li.drop-down:hover,
+        li.drop-down.active,
+        li.flyout-right:hover,
+        li.flyout-right.active {
             background: $titleDisplay;
             color: #fff;
         }
@@ -1284,10 +1293,10 @@ a {
         }
 
         li.drop-down,
-        .flyout-right,
-        .flyout-left {
+        .flyout-right {
             position: relative;
             z-index: 2;
+            
         }
 
         li.drop-down.last {
@@ -1318,6 +1327,11 @@ a {
                         color: white;
                         background: $titleFont;
                     }
+
+                    &:active{
+                        color: white;
+                        background: $titleFont;
+                    }
                 }
             }
         }
@@ -1336,8 +1350,8 @@ a {
             display: none;
         }
 
-        .flyout-right>ul,
-        .flyout-left>ul {
+        .flyout-right>ul
+        {
             top: 0;
             min-width: 230px;
             display: none;
@@ -1370,6 +1384,7 @@ a {
 
                 }
             }
+         
         }
 
         .flyout-right ul>li>a {
@@ -1579,10 +1594,7 @@ a {
     /*hover*/
 
     .drop-down-ul:hover,
-    li.flyout-left>ul:hover,
     li.flyout-right>ul:hover,
-    .flyout-mega-wrap:hover,
-    li.flyout-left a:hover+ul,
     li.flyout-right a:hover+ul,
     li.drop-down>a:hover+.drop-down-ul {
         display: block;
@@ -1598,17 +1610,12 @@ a {
         }
 
         .flyout-right>ul,
-        .flyout-left>ul,
         li.drop-down>ul {
             position: absolute;
         }
 
         .flyout-right>ul {
             left: 100%;
-        }
-
-        .flyout-left>ul {
-            right: 100%;
         }
     }
 
@@ -1725,10 +1732,7 @@ a {
 
 
   .container, .containerAbout {
-    // @include flex-center-start();
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    @include flex-center-start();
     flex-wrap: wrap;
     width: 80%;
     min-height: 100vh;
@@ -1745,10 +1749,6 @@ a {
     .searchBlock {
         margin: $mTop 0 $mTop 0;
         min-height: 300px;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center top;
-        background-size: cover;
         width: 50%;
 
 
@@ -1766,7 +1766,6 @@ a {
                 }
 
                 .titreHome {
-
                     margin-right: 0px;
 
                     h1 {
@@ -1779,7 +1778,7 @@ a {
                 }
             }
 
-            .logline {
+            .tagline {
                 @include flex-center();
                 width: 100%;
 
@@ -1787,7 +1786,6 @@ a {
                     font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
                     font-size: 1.4rem;
                     font-style: italic;
-                    // color: $titleDisplay;
                     color: rgb(68, 74, 76);
                     text-align: center;
                 }
@@ -2195,7 +2193,6 @@ ABOUT US
         position: absolute;
         z-index: 1;
         overflow: hidden;
-        // background: $buttoncontainerbg;
         background: rgb(241, 242, 247);
         transition: 0.5s cubic-bezier(.79, .14, .15, .86);
         padding-top: 0;
@@ -2204,8 +2201,6 @@ ABOUT US
         .filterFilmLeft {
             width: 100%;
             height: 100vh;
-            // @include flex-start-center();
-            // @include flex-center-start();
             flex-wrap: wrap;
             overflow: overlay;
             z-index: -1;
@@ -2234,7 +2229,6 @@ ABOUT US
                         color: $titleFont;
                     }
                 }
-
             }
 
 
@@ -2543,7 +2537,7 @@ ABOUT US
                 }
             }
 
-            .logline {
+            .tagline {
                 @include flex-center();
 
 
@@ -3378,12 +3372,14 @@ ABOUT US
 /*--------------------------------------------------------
     FORM NEW FILM
   ------------------------------------------------------*/
+.formulaire{
+    width: 100%;
+    @include flex-center();
 
 #film {
-    margin-top: 100px;
     margin-bottom: 50px;
     width: 50%;
-    min-width: 800px;
+    // min-width: 700px;
 
 
     form {
@@ -3396,7 +3392,6 @@ ABOUT US
         .rowFormTitle {
             grid-area: titre;
             @include flex-space-center();
-            // background: rgb(240, 158, 158);
             width: 100%;
 
 
@@ -3413,11 +3408,11 @@ ABOUT US
                     height: 40px;
                     border: none;
                     background: white;
-                    // background: $megamenu-bg;
                     border-radius: 5px;
                     width: 100%;
                     padding-left: 8px;
                     font-size: 1.2rem;
+                    border: 1.5px solid rgb(204, 204, 204);
                 }
 
 
@@ -3427,7 +3422,6 @@ ABOUT US
         .rowFormDetails {
             width: 100%;
             padding-top: $mTopForm;
-            // background: rgb(158, 240, 208);
             grid-area: details;
             @include flex-between-start();
             flex-wrap: wrap;
@@ -3446,16 +3440,12 @@ ABOUT US
 
                     .select2-selection.select2-selection--multiple {
                         width: 100%;
-                        // background: $megamenu-bg;
                     }
                 }
 
                 h3 {
                     @include font-form-film();
                     font-size: $formTitleField;
-                    // background: $titleCard;
-                    // border-bottom: 1px solid $titleFont;
-
                 }
             }
 
@@ -3469,7 +3459,6 @@ ABOUT US
                         @include font-form-film();
                         width: 100%;
                         font-size: $formTitleField;
-                        // border-bottom: 1px solid $titleFont;
                     }
 
                     div {
@@ -3483,7 +3472,6 @@ ABOUT US
                                 border: none;
                                 border-radius: 5px;
                                 border: 1.5px solid rgb(204, 204, 204);
-                                // background: $megamenu-bg;
                                 text-align: center;
                             }
                         }
@@ -3500,9 +3488,6 @@ ABOUT US
                 h3 {
                     @include font-form-film();
                     font-size: $formTitleField;
-                    // background: $titleCard;
-                    // border-bottom: 1px solid $titleFont;
-
                 }
             }
 
@@ -3511,20 +3496,15 @@ ABOUT US
 
         .rowFormGenres {
             padding-top: $mTopForm;
-            // background: rgb(158, 184, 240);
             grid-area: genres;
             width: 100%;
 
             .genre {
-                // @include flex-space-center();
 
 
                 h3 {
                     @include font-form-film();
                     font-size: $formTitleField;
-                    // background: $titleCard;
-                    // border-bottom: 1px solid $titleFont;
-
                 }
 
                 .form-group {
@@ -3546,14 +3526,12 @@ ABOUT US
                             align-items: center;
 
                             padding-right: 13px;
-                            // padding-bottom: 7px;
 
                             input {
 
                                 width: 15px;
                                 height: 15px;
                                 color: $titleCard;
-                                // background: $megamenu-bg;
 
                             }
 
@@ -3571,7 +3549,6 @@ ABOUT US
 
         .rowFormSynopsis {
             @include flex-center();
-            // background: rgb(189, 158, 240);
             grid-area: synopsis;
             margin-bottom: 30px;
             width: 100%;
@@ -3592,9 +3569,13 @@ ABOUT US
                         width: 100%;
                         @include font-form-film();
                         font-size: $formTitleField;
-                        // background: $titleCard;
-                        // border-bottom: 1px solid $titleFont;
+                    }
 
+                    .form-group{
+
+                        #film_synopsis{
+                             border: 1.5px solid rgb(204, 204, 204);
+                        }
                     }
 
                     .form-control {
@@ -3602,7 +3583,6 @@ ABOUT US
                         border-radius: 5px;
                         width: 100%;
                         resize: none;
-                        // background: $megamenu-bg;
                         border: none;
                     }
 
@@ -3628,23 +3608,20 @@ ABOUT US
             h3 {
                 @include font-form-film();
                 font-size: $formTitleField;
-                // background: $titleCard;
-                // border-bottom: 1px solid $titleFont;
+            
                 width: 100%;
 
             }
 
             .marqueModele {
-                // @include flex-center();
                 width: 100%;
                 @include flex-between-center();
 
                 .marqueForm {
                     width: 100%;
-                    // @include flex-between-center();
-                    // flex-wrap: wrap;
+                 
 
-                    #email-fields-list {
+                    #camera-fields-list {
                         width: 100%;
 
                         .add {
@@ -3668,14 +3645,14 @@ ABOUT US
                             }
                         }
 
-                        li {
+                        .panel {
 
                             @include flex-between-center();
                             margin: 10px 0 10px 0;
 
                             div {
                                 width: 50%;
-                            }
+                                @include flex-between-center();
 
 
 
@@ -3711,19 +3688,15 @@ ABOUT US
                                 }
                             }
                         }
-
+                    }
                     }
 
                     #cam_list {
                         width: 100%;
-                        // @include flex-space-center();
-                        // @include flex-between-center();
-                        // flex-wrap: wrap;
+                  
 
                         .form-group {
-                            // width: 100%;
-                            // @include flex-between-center();
-                            // flex-wrap: wrap;
+                         
 
                             #film_camera_0 {
                                 @include flex-between-center();
@@ -3771,9 +3744,9 @@ ABOUT US
         .rowFormPoster {
             grid-area: poster;
             width: 100%;
-            // background: rgb(240, 234, 158);
 
             div {
+
                 div {
                     @include flex-space-center();
                     flex-wrap: wrap;
@@ -3782,10 +3755,6 @@ ABOUT US
                         width: 100%;
                         @include font-form-film();
                         font-size: $formTitleField;
-                        // background: $titleCard;
-                        border-bottom: 1px solid $titleCard;
-
-
                     }
 
 
@@ -3810,14 +3779,11 @@ ABOUT US
             grid-area: artists;
             @include flex-center();
             flex-wrap: wrap;
-            // background: rgb(158, 237, 240);
 
             h3 {
                 width: 100%;
                 @include font-form-film();
                 font-size: $formTitleField;
-                // background: $titleCard;
-                border-bottom: 1px solid $titleCard;
             }
 
             .realPhoto {
@@ -3834,26 +3800,26 @@ ABOUT US
                         width: 100%;
 
 
-                        #film_directors {
-                            width: 100%;
+                        // #film_directors {
+                        //     width: 100%;
 
-                            .select2.select2-container.select2-container--default.select2-container--focus {
-                                width: 50%;
-                                border: 1px solid $green-light;
-                            }
-                        }
+                        //     .select2.select2-container.select2-container--default.select2-container--focus {
+                        //         width: 50%;
+                        //         border: 1px solid $green-light;
+                        //     }
+                        // }
 
-                        .select2.select2-container.select2-container--default {
-                            width: 100%;
-                        }
+                        // .select2.select2-container.select2-container--default {
+                        //     width: 100%;
+                        // }
 
-                        .select2.select2-container.select2-container--multiple {
-                            width: 100%;
-                        }
+                        // .select2.select2-container.select2-container--multiple {
+                        //     width: 100%;
+                        // }
 
-                        .select2.select2-container.select2-container--default.select2-container--below {
-                            width: 100%;
-                        }
+                        // .select2.select2-container.select2-container--default.select2-container--below {
+                        //     width: 100%;
+                        // }
                     }
                 }
 
@@ -3866,11 +3832,11 @@ ABOUT US
                         width: 100%;
 
                         #film_dirphoto {
-                            width: 100%;
+                            // width: 100%;
 
-                            span {
-                                width: 50%;
-                            }
+                            // span {
+                            //     width: 50%;
+                            // }
                         }
                     }
                 }
@@ -3909,6 +3875,7 @@ ABOUT US
             }
         }
     }
+}
 }
 
 
@@ -5038,7 +5005,6 @@ PAGE USER PROFILE
     
             overflow-x: hidden;
             overflow-y: scroll;
-            scroll-snap-type: y proximity;
             scroll-snap-type: proximity;
             scroll-snap-stop: always;
     
@@ -5046,6 +5012,7 @@ PAGE USER PROFILE
             -moz-box-sizing: border-box; 
             -webkit-box-sizing: border-box; 
             box-sizing: border-box;
+            // scroll-snap-type: y proximity;
 
     
             .child {
@@ -5072,8 +5039,6 @@ PAGE USER PROFILE
                     object-fit: cover;
                     display: block;
                     opacity: 0.2;
-
-    
                 }
     
                 #myVideo02 {
@@ -5082,7 +5047,7 @@ PAGE USER PROFILE
                     object-fit: cover;
                     display: block;
                     opacity: 0.8;
-    
+
                 }
     
                 .para1 {
@@ -5243,7 +5208,7 @@ PAGE USER PROFILE
                 }
             }
 
-            .logline {
+            .tagline {
                 @include flex-center();
                 // justify-content: center;
 
@@ -5287,6 +5252,10 @@ PAGE USER PROFILE
                         }
                     }
 
+                    form{
+                        width: 100%;
+                    }
+                    
                     input {
                         width: 100%;
                         background: $megamenu-bg;
@@ -5331,7 +5300,7 @@ PAGE USER PROFILE
     }
 
     #film {
-        width: 70%;
+        width: 70% !important;
 
         form {
             .rowFormTitle {

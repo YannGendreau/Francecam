@@ -29,7 +29,6 @@ class LoginFormAuthenticator extends AbstractAuthenticator
     {
         $this->userRepository = $userRepository;
         $this->urlGenerator = $urlGenerator;
-        // dd($userRepository);
     } 
   /**
      * Does the authenticator support the given Request?
@@ -73,9 +72,9 @@ class LoginFormAuthenticator extends AbstractAuthenticator
       }
 
       return new Passport($user, new PasswordCredentials($request->request->get('password')), [
-          // and CSRF protection using a "csrf_token" field
-          new CsrfTokenBadge('login_form', $request->request->get('csrf_token')),
-          new RememberMeBadge()
+            // Protection CSRF avec un champ token
+            new CsrfTokenBadge('login_form', $request->request->get('csrf_token')),
+            new RememberMeBadge()
           
         //   ,
 
@@ -98,8 +97,14 @@ class LoginFormAuthenticator extends AbstractAuthenticator
     {
         $request->getSession()->getFlashBag()->add('success', 'Vous êtes connecté avec succès !');
         $request->getSession()->remove(SecurityController::LAST_EMAIL);
-
-        return new RedirectResponse($this->urlGenerator->generate('accueil'));
+        // Redirige vers la dernière page visitée
+        if($request->get('_target_path')){
+            return new RedirectResponse($request->get('_target_path'));
+        }else{
+            return new RedirectResponse($this->urlGenerator->generate('accueil'));
+        }
+        
+       ;
     }
 
     /**
@@ -114,7 +119,6 @@ class LoginFormAuthenticator extends AbstractAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         $request->getSession()->getFlashBag()->add('error', 'Informations erronées');
-
         return new RedirectResponse($this->urlGenerator->generate('app_login'));
     }
 }

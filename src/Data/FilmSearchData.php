@@ -5,21 +5,20 @@ namespace App\Data;
 use App\Entity\Film;
 use App\Entity\Genre;
 use App\Entity\Marque;
-use App\Entity\Modele;
 use Doctrine\ORM\Mapping\OrderBy;
 
 
 class FilmSearchData
 {
     /**
-     * Undocumented variable
+     * Page pour paginator
      *
      * @var integer
      */
     public $page;
 
     /**
-     * Champ de recherche
+     * Champ de recherche texte
      *
      * @var string
      */
@@ -49,7 +48,7 @@ class FilmSearchData
     public $sortie ;
 
     /**
-     *Tableau de date de marque de caméras
+     *Tableau de marque de caméras
      *
      * @var Marque
      */

@@ -16,12 +16,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass=FilmRepository::class)
+* @ORM\Entity(repositoryClass=FilmRepository::class)
 * @Vich\Uploadable()
 * @ORM\Table(name="film", indexes={@ORM\Index(columns={"title"}, flags={"fulltext"})})
-*@UniqueEntity(
- *    fields={"title"})
- */
+* @UniqueEntity(
+*    fields={"title"})
+*/
 class Film
 {
   
@@ -59,7 +59,7 @@ class Film
     private $sortie;
 
     /**
-     * @var Collection|Marque[]
+    * @var Collection|Marque[]
     *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films", cascade={"persist"})
     */
     private $marques;
@@ -108,8 +108,6 @@ class Film
      */
     private $directors;
 
-
-
     /**
      
      * @ORM\Column(type="datetime")
@@ -141,6 +139,16 @@ class Film
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $activation_token;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $videolink;
 
      
 
@@ -533,6 +541,30 @@ class Film
     public function setActivationToken(?string $activation_token): self
     {
         $this->activation_token = $activation_token;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getVideolink(): ?string
+    {
+        return $this->videolink;
+    }
+
+    public function setVideolink(?string $videolink): self
+    {
+        $this->videolink = $videolink;
 
         return $this;
     }

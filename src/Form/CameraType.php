@@ -26,8 +26,9 @@ class CameraType extends AbstractType
     {
         $builder
             ->add('marque', EntityType::class, [
-                'class' => Marque::class,
-                'label' => false,
+                'class'     => Marque::class,
+                'label'     => false,
+                'attr'      => ['class' => 'js-marque-ajax'],
                 'placeholder' => "Choisir la marque"
              
             ])
@@ -46,6 +47,7 @@ class CameraType extends AbstractType
                 'class' => Modele::class,
                 'placeholder'=> 'Choisir le modèle',
                 'label' => false,
+                'attr'      => ['class' => 'js-modele-ajax'],
                 'choice_label' =>'name',
                 'required' => false,
                 'query_builder' => function (ModeleRepository $repository) use ($marqueId)
@@ -55,7 +57,6 @@ class CameraType extends AbstractType
                 ]);
 
         };
-
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
@@ -77,7 +78,6 @@ class CameraType extends AbstractType
             function (FormEvent $event) use ($formModifier) {
               
                 $marque = $event->getForm()->getData();
-                dump($marque->getModeles());
                 $formModifier($event->getForm()->getParent(), $marque);
 
                 
