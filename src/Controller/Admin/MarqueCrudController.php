@@ -26,7 +26,6 @@ class MarqueCrudController extends AbstractCrudController
             IdField::new('id')
                 ->HideOnForm(),
             TextField::new('name'),
-            
             TextEditorField::new('description'),
             AssociationField::new('modeles'),
             Field::new('logoFile')

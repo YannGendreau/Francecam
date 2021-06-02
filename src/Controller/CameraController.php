@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/camera")
@@ -18,6 +19,7 @@ class CameraController extends AbstractController
 {
     /**
      * @Route("/", name="camera_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(CameraRepository $cameraRepository): Response
     {
@@ -27,7 +29,9 @@ class CameraController extends AbstractController
     }
 
     /**
+     * Nouvelle caméra
      * @Route("/new", name="camera_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -50,7 +54,8 @@ class CameraController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="camera_show", methods={"GET"})
+     * @Route("/{slug}", name="camera_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Camera $camera): Response
     {
@@ -60,7 +65,8 @@ class CameraController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="camera_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="camera_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Camera $camera): Response
     {
@@ -80,7 +86,8 @@ class CameraController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="camera_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="camera_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Camera $camera): Response
     {

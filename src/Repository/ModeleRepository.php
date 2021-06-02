@@ -40,17 +40,17 @@ class ModeleRepository extends ServiceEntityRepository
 
      //Modele classé par date
 
-     public function modeleByDateDesc()
-     {
+    public function modeleByDateDesc()
+    {
         return $this->createQueryBuilder('m')
             ->orderBy('m.createdAt', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult()
-    ;
-     }
+            ;
+    }
      
-     //Modele classé par date
+     //Modele classé par nom
 
      public function modeleByIdAsc()
      {

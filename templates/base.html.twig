@@ -60,8 +60,6 @@ tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */
 
 
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -79,16 +77,14 @@ tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */
 
 
 		{% block stylesheets %}
-
 			{{ encore_entry_link_tags('app')}}
-
 		{% endblock %}
 
 	</head>
 
 	<body>
-		{% include "/includes/flashes/_flash_message.html.twig" %}
 
+		{% include "/includes/flashes/_flash_message.html.twig" %}
 		{% block body %}{% endblock %}
 
 

@@ -6,6 +6,7 @@ use App\Repository\CameraRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert; 
 
@@ -32,6 +33,7 @@ class Camera
 
     /**
      * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="cameras", cascade={"persist"})
+     * @Assert\Unique
      */
     private $modele;
 
@@ -39,6 +41,12 @@ class Camera
      * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="camera")
      */
     private $films;
+
+    /**
+     * 
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -97,6 +105,18 @@ class Camera
         if ($this->films->removeElement($film)) {
             $film->removeCamera($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

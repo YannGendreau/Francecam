@@ -37,44 +37,46 @@ class FilmRepository extends ServiceEntityRepository
      public function filmByDateDesc()
      {
         return $this->createQueryBuilder('m')
-        ->orderBy('m.createdAt', 'DESC')
+        ->orderBy('m.createdAt', 'DESC')        
         ->setMaxResults(5)
         ->getQuery()
         ->getResult()
-      ;
+        ;
      }
 
 
     /**
-    * recherche par filtre 
+    * recherche par filtre retournant une interface de pagination
     * 
     * @return PaginationInterface
     */
 
     public function findSearch(FilmSearchData $search): PaginationInterface
     {
-        //Sélection des champs sur entité Film
+        //Sélection des champs sur FilmSearchData
         $query = $this
-                    ->createQueryBuilder('f')
-                    ->select('f','m')
-                    ->leftJoin('f.genres', 'g')
-                    ->leftJoin('f.marques', 'm')
-                   
+                    ->createQueryBuilder('f') //Créé une instance de QueryBuilder avec alias
+                    ->select('f','m', 'g') // Sélectionne les items à retourner dans les résultat de requêtes
+                    ->leftJoin('f.genres', 'g') //Joint la relation film.genres avec un alias
+                    ->leftJoin('f.marques', 'm') //Joint la relation film.marques avec un alias
+                   //évite le problème typique de n+1 de Symfony en joignant les requêtes
                     ;
-        //Si la recherche est similaire à une partie du titre.            
+
+        // RECHERCHE TEXTE PARTIELLE
+        //Si la propriété q n'est pas vide on effectue la requête          
         if (!empty($search->q)) {
             $query = $query
-                    ->andWhere('f.title LIKE :q')
-                    ->setParameter('q', "%{$search->q}%")
+                    ->andWhere('f.title LIKE :q')//Le texte comporte une partie du titre.  
+                    ->setParameter('q', "%{$search->q}%") // Désigne 'q' comme alias de la propriété q partielle
                     ;
         }
 
-        //Sélection des checkboxes
-
+        //CHECKBOXES
+        //Si la propriété genres n'est pas vide on effectue la requête 
         if (!empty($search->genres)) {
             $query = $query
-                ->andWhere('g.id IN (:genres)')
-                ->setParameter('genres', $search->genres)
+                ->andWhere('g.id IN (:genres)') //recherche par id dans la propriété genres
+                ->setParameter('genres', $search->genres) // Désigne 'genres' comme alias de la propriété genres
                 ;
         }
         if (!empty($search->annee)) {
@@ -96,7 +98,7 @@ class FilmRepository extends ServiceEntityRepository
             ;
         }
         //envoie les resultats vers paginator pour pagination
-            $query= $query->getQuery();
+            $query= $query->getQuery();//Récupère la requête du QueryBuilder
             return $this->paginator->paginate(
             $query,
             $search->page,
@@ -105,11 +107,11 @@ class FilmRepository extends ServiceEntityRepository
         );      
     }
     
-     /**
+     /**-------------------------------------------------------------------
      * Recherche des films en cameras en fonction du formulaire (FULLTEXT)
      * Non retenu (voir function suivante)
      * @return void 
-     */
+     --------------------------------------------------------------------*/
     public function search($mots = null){
         $query = $this->createQueryBuilder('f');
     
@@ -128,6 +130,7 @@ class FilmRepository extends ServiceEntityRepository
   
     /**
      * Barre de recherche; Query sur les champs Film
+     * Même procédé que pour la recherche sur la route /film
      *
      * @param SearchHomeData $search
      * @return PaginationInterface

@@ -7,6 +7,8 @@
 				{# Vérifie la présence d'affiche ou la remplace par une description #}
 				{% if film.poster %}
 					<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
+				{% elseif film.poster == 0 %}
+					<a href="{{path('film_show', {slug: film.slug,})}}"><img class="imgCam" src="{{film.image}}" alt="affiche du film {{film.title}}"></a>
 				{% else %}
 					<div class="description">
 						<h1 id="over">{{film.title}}</h1>

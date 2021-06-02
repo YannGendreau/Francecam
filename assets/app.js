@@ -14,9 +14,9 @@ import './styles/app.scss';
 //JQUERY
 import $ from 'jquery';
 global.$ = global.jQuery = $;
+
 import 'select2';                      
 import 'select2/dist/css/select2.css';
-
 $('select').select2();
 
 import  './modules/Filter';
@@ -24,12 +24,7 @@ import  './modules/OverFontSize';
 import  './modules/TitleFontSize';
 import  './modules/slideMenu';
 import  './modules/charcount';
-// import  './modules/dynamicForm';
-// import  './modules/dynamicFields';
-
-
-
-
+// import  './modules/menuHamburger';
 
 
 
@@ -46,10 +41,7 @@ imagesContext.keys().forEach(imagesContext);
 
 $("#clickMenu").on("click", function(){
     $(this).toggleClass("sidepanel__open sidepanel__close");
-  });
-
-
-
+});
 
 
 checkFontSize();
@@ -79,37 +71,52 @@ function scaleFontSize(element) {
 }
 
 
-  
+// Menu hamburger open/close
 $(function(){
-
+// Applique la classe open sur l'élément li.active
 $('#cssmenu li.active').addClass('open').children('ul').show();
+// au clic sur le <a> du premier niveau
 	$('#cssmenu li.has-sub>a').on('click', function(){
-
+		// Active le lien du <a> s'il a la classe tlf
 		if ($(this).hasClass('tlf')){
 			$(this).attr('href');
+			// récupère le <li> parent du <a>
 			var element = $(this).parent('li');
-		}
-		else{
+		}else{
+			// sinon retire le lien
 			$(this).removeAttr('href');
-		var element = $(this).parent('li');
-		if (element.hasClass('open')) {
-			element.removeClass('open');
-			element.find('li').removeClass('open');
-			element.find('ul').slideUp(200);
-			element.siblings('li').slideDown(200);
+			// récupère le <li> parent du <a>
+			var element = $(this).parent('li');
+			// Si le <li> a la classe open 
+			if (element.hasClass('open')) {
+				// on lui retire la classe
+				element.removeClass('open');
+				// Retire la classe open aux <li> enfants
+				element.find('li').removeClass('open');
+				// Animation de repli vers le haut du <ul> enfant
+				element.find('ul').slideUp(200);
+				// Animation de repli vers le bas du <li> du même niveau
+				element.siblings('li').slideDown(200);
 		
+			}else{
+				// Si le <li> a la classe open 
+				element.addClass('open');
+				// Animation de repli vers le bas du <ul> enfant
+				element.children('ul').slideDown(200);
+				// Animation de repli vers le haut du <li> du même niveau et de son <ul> enfant
+				element.siblings('li').children('ul').slideUp(200);
+				// Animation de repli vers le haut du <li> du même niveau
+				element.siblings('li').slideUp(200);
+				// Retire la classe open aux <li> du même niveau
+				element.siblings('li').removeClass('open');
+				// Retire la classe open aux <li> du <li> du même niveau
+				element.siblings('li').find('li').removeClass('open');
+				// Cache les <li> enfants des <li> du même niveau
+				element.siblings('li').find('li').display= "none";
+				// Animation de repli vers le haut du <ul> enfants du <li> du même niveau
+				element.siblings('li').find('ul').slideUp(200);
+			}
 		}
-		else {
-			element.addClass('open');
-			element.children('ul').slideDown(200);
-			element.siblings('li').children('ul').slideUp(200);
-			element.siblings('li').slideUp(200);
-			element.siblings('li').removeClass('open');
-			element.siblings('li').find('li').removeClass('open');
-			element.siblings('li').find('li').display= "none";
-			element.siblings('li').find('ul').slideUp(200);
-		}
-	}
 	});
 	$('#cssmenu li.has-sub-log>a').on('click', function(){
 	
@@ -189,8 +196,6 @@ if($post_category){
 
 })
 }
-	
-
 
 
 //TOGGLE TABS PAGE FILM, CAMERA, MARQUE-----------------------------------
@@ -278,7 +283,7 @@ $marque.on('change', function() {
 });
 
 
-const $marqueFilm = $('#film_camera_add_marque');
+const $marqueFilm = $('.js-marque-ajax');
 
 // When emprise gets selected ...
 $marqueFilm.on('change', function() {
@@ -294,12 +299,13 @@ url : $form.attr('action'),
 type: $form.attr('method'),
 data : data,
 success: function(html) {
-  console.log(data)
 // Replace current position field ...
-$('#film_camera_modele').replaceWith(
+$('.js-modele-ajax').replaceWith(
 // ... with the returned one from the AJAX response.
-$(html).find('#film_camera_modele')
+$(html).find('.js-modele-ajax')
+
 );
+$('.js-modele-ajax').select2()
 // Position field now displays the appropriate positions.
 }
 });
@@ -307,30 +313,35 @@ $(html).find('#film_camera_modele')
 
 
 
-// setup an "add a tag" link
+// Ajout d'un bouton 'ajouter'
+// le bouton Ajouter <a><button></a>
 var $addTagLink = $('<a href="#" class="add_tag_link"><button class="btnCamAdd">Ajouter</button></a>');
+// attache 'ajouter' à une liste 'add'
 var $newLinkLi = $('<li class="add"></li>').append($addTagLink);
 
 
-    // Get the ul that holds the collection of tags
-   var $collectionHolder = $('ul#email-fields-list');
-    
-    // add the "add a tag" anchor and li to the tags ul
-    $collectionHolder.append($newLinkLi);
-    
-    // count the current form inputs we have (e.g. 2), use that as the new
-    // index when inserting a new item (e.g. 2)
-    $collectionHolder.data('index', $collectionHolder.find(':input').length);
-    	$($newLinkLi).fadeIn().slideDown().dequeue();
-    $addTagLink.on('click', function(e) {
-        // prevent the link from creating a "#" on the URL
-        e.preventDefault();
+// Récupère le 'ul' qui contient la collection de cameras
+var $collectionHolder = $('ul#camera-fields-list');
 
-        // add a new tag form (see code block below)
-        addTagForm($collectionHolder, $newLinkLi);
-		
-    });
-    
+// Attache le bouton "ajouter" au conteneur des cameras
+$collectionHolder.append($newLinkLi);
+
+// Compte les nombre de formulaires et ajoute un nouvel index a chaque nouveau formulaire
+$collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+	$($newLinkLi).fadeIn().slideDown().dequeue();
+
+$addTagLink.on('click', function(e) {
+	// Le lien ne génère pas de # dans l'URL
+	e.preventDefault();
+
+	// add a new tag form (see code block below)
+	addTagForm($collectionHolder, $newLinkLi);
+	// addTagForm($collectionHolder, $newLinkLi).fadeIn().slideDown().dequeue();
+	// $(form).fadeIn().slideDown(100).dequeue();
+	$(this).fadeIn("fast").slideDown(100).dequeue();
+});
+
 
 function addTagForm($collectionHolder, $newLinkLi) {
     // Get the data-prototype explained earlier
@@ -347,7 +358,7 @@ function addTagForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
     
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<li></li>').append(newForm);
+    var $newFormLi = $('<li class ="panel"></li>').append(newForm);
    
     // also add a remove button, just for this example
     $newFormLi.append('<a href="#" class="remove-tag"><button class="btnCam">X</button></a>');
@@ -363,14 +374,14 @@ function addTagForm($collectionHolder, $newLinkLi) {
 		$(this).parent().fadeOut("fast").slideUp(100).dequeue();
         
         return false;
-    });
-
-	
+    });	
 }
 
+
+
+
+
 function backgroundFade(mediaQueryList){
-
-
 if (mediaQueryList.matches) {
 	
 	$('#about').on("mouseenter", function(){
@@ -407,14 +418,6 @@ $('#clickUp').on('click', function(){
 	$('#about').animate({scrollTop: '-=600px'});
 })
 
-// $('#about').on('keydown', function(){
-	
-// 	$('#about').animate({scrollTop: '+=600px'}, 'swing');
-// })
-// $('#about').on('keydown', function(){
-	
-// 	$('#about').animate({scrollTop: '-=600px'}, 'swing');
-// })
 
 
 

@@ -6,6 +6,7 @@ use App\Entity\Film;
 use App\Entity\User;
 use App\Entity\Camera;
 use App\Entity\Marque;
+use App\Entity\Modele;
 use App\Form\FilmType;
 use App\Data\FilmSearchData;
 use App\Form\SearchFilmForm;
@@ -39,6 +40,7 @@ class FilmController extends AbstractController
     }
 
     /**
+     * NOUVEAU FILM
      * @Route("/new", name="film_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
@@ -48,38 +50,39 @@ class FilmController extends AbstractController
         $camera = new Camera;
         
         $sortie = $film->getSortie();
+      
         $film->setDecade($sortie);
-        $film->addCamera($camera);
-
-        
-        // $modele =$camera->getModele();
-       
-        
-
-        
-        
+        $film->addCamera($camera);   
+               
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $film->setUser($this->getUser());
-
-            $marque = $camera->getMarque();
             
+            $marque = $camera->getMarque();
+            $modele = $camera->getModele();
+         
+            $film->addMarque($marque);
+            $film->addModele($modele);
+           
             // $film->addModele($camera->getModele());
 
             $entityManager = $this->getDoctrine()->getManager();        
             $film = $form->getData();
-            
-            foreach($marque as $m){
-                 $film->addMarque($m);
-            };
+         
+            dd($film);
+        //     foreach($marque as $m){
+        //         $film->addMarque($m);
+        //    };   
            
             //token d'activation chiffré
-            $film->setActivationToken(md5(uniqid()));
+            // $film->setActivationToken(md5(uniqid()));
 
             $entityManager->persist($film);
-            $entityManager->flush();
+            // $entityManager->flush();
+
+            // dump($entityManager->flush());
 
             // email avec token
             // $email = (new TemplatedEmail())
@@ -148,6 +151,7 @@ class FilmController extends AbstractController
 
  
     /**
+     * PRESENTATION DE FILM
      * @Route("/{slug}", name="film_show", methods={"GET"})
      */
     public function show(Film $film): Response
@@ -158,28 +162,30 @@ class FilmController extends AbstractController
     }
 
     /**
+     * EDITER UN FILM
      * @Route("/{slug}/edit", name="film_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Film $film, Camera $camera): Response
     {
+        // Déclaration du formulaire FilmType
         $form = $this->createForm(FilmType::class, $film);
+        // Requête
         $form->handleRequest($request);
+        // Déclation de sortie à partir de la méthode getSortie
         $sortie = $film->getSortie();
+        // injectée dans la méthode setDecade
         $film->setDecade($sortie);
-        
- 
-
-        if ($form->isSubmitted() && $form->isValid()) {
-           
+        // Validation du formulaire
+         if ($form->isSubmitted() && $form->isValid()) {
+            //Enregistrement en base de données avec le manager de Doctrine  
             $this->getDoctrine()->getManager()->flush();
-
+            //Message de succès 
             $this->addFlash('success', 'Film modifié avec succès');
-
-            // return $this->redirectToRoute('films');
+            // Redirection
             return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
         }
-
+        // Génération de rendu Twig
         return $this->render('film/edit.html.twig', [
             'film' => $film,
             'form' => $form->createView(),
@@ -187,10 +193,13 @@ class FilmController extends AbstractController
     }
 
     /**
+     * SUPPRIME UN FILM
      * @Route("/{slug}", name="film_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Film $film): Response
     {
+        //Vérifie si le token CSRF est valide, le manager supprime le film
         if ($this->isCsrfTokenValid('delete'.$film->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($film);
@@ -201,30 +210,40 @@ class FilmController extends AbstractController
     }
 
     /**
+     * LISTE DES FILMS + FILTRES
      * @Route("/", name="films", methods={"GET"})
      */
     public function filmList(Request $request): Response
     {
-        // $films = $this->repository->findAll();
-        
+        // instanciation des données de recherches (Film, Marque, Genre)
         $data = new FilmSearchData;
-        $data->page =$request->get('page', 1);
+        $data->page = $request->get('page', 1);
+        // Déclaration du formulaire SearchFilmForm
         $form = $this->createForm(SearchFilmForm::class, $data);
+        // Requête
         $form->handleRequest($request);
+        // Déclaration de la méthode findSearch (filmRepository)
         $films = $this->repository->findSearch($data);
+        // Vérifie si la requête reçoit Ajax
         if ($request->get('ajax')){
+            // retourne une réponse en Json de
             return new JsonResponse([
+                //la liste des films
                 'content' => $this->renderView('film/_film_list.html.twig', ['films' =>$films]),
+                // classement par date
                 'sorting' => $this->renderView('film/_sorting.html.twig', ['films' =>$films]),
+                //La pagination
                 'pagination' => $this->renderView('film/_pagination.html.twig', ['films' =>$films]),
+                //Paginator; nombre d'item total divisé par le nombre d'item par page
                 'pages' => ceil($films->getTotalItemCount() / $films->getItemNumberPerPage())
             ]);
-}
-
+        }
+        // S'il n'y a pas de films correspondants à la recherche
         if(!$films){
+            // renvoie une exception
             throw new NotFoundHttpException('Pas de films');
         }
-
+        // Génération de rendu Twig
         return $this->render('film/film_list.html.twig', [
             "films" => $films,
             'form' => $form->createView()
@@ -235,18 +254,5 @@ class FilmController extends AbstractController
     {
         return round($sortie/10, 0, PHP_ROUND_HALF_DOWN)* 10; 
 
-    }
-
-    /**
-     * Undocumented function
-     * @Route("/decennie", name="films_decade_30")
-     *
-     * @return void
-     */
-    public function decadeAction(Request $request, Film $films)
-    {
-        
-        dd($request->query->get('decade'));
-        return $this->render('film/film_validation.html.twig');
     }
 }

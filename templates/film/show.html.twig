@@ -9,11 +9,12 @@
 	<div class="container">
 		<div
 			class="tableauCamera">
-			<!--AFFICHE-------------------------------->
-
+			<!--AFFICHE-->
 			<div class="imageCam">
 				{% if film.poster %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
+				{% elseif film.poster == 0 %}
+					<div class="imgMov"><img class="imgCam" src="{{film.image}}" alt="affiche du film {{film.title}}"></div>
 				{% else %}
 					{% if film.user %}
 						<div class="addPoster">
@@ -27,7 +28,7 @@
 				{% endif %}
 				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt="ombre portée d'affiche"></div>
 			</div>
-			<!--DESCRIPTION-------------------------------->
+			<!--DESCRIPTION-->
 			<div class="descriptionFilm">
 				<div class="titre">
 					<h1 id="titleFilmShow">{{film.title}}
@@ -128,7 +129,7 @@
 				</div>
 			</div>
 
-			<!--INFOS-------------------------------->
+			<!--INFOS-->
 			<div class="specCam">
 				<div class="tabContainer">
 					<div class="buttonContainer">
@@ -181,7 +182,6 @@
 											<div class="cardGridCam">
 												<div class="cardSmCam">
 													<div class="imgCardCam">
-
 														{% if m.logoName %}
 															<a href="{{path('marque_show', {slug: m.slug,})}}"><img src="/build/images/marques/{{m.logoName}}" alt="logo de la marque {{m.name}}"></a>
 														{% else %}
@@ -207,6 +207,12 @@
 							{# <div class="tabPanel" style="display: none;"></div> #}
 							<div class="tabPanel" style="display: none;">
 								<h2>BANDE ANNONCE</h2>
+								<video width="320" height="240" controls>
+									<source
+									src="https://{{film.videolink}}" type="">
+								{# <source src="/build/videos/arcnet.io(7-sec).mp4" type="video/mp4"> #}
+								</video>
+
 							</div>
 						</div>
 					</div>
