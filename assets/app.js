@@ -174,28 +174,28 @@ $('#cssmenu li.active').addClass('open').children('ul').show();
 });
 
 
-const $post_category = $("#cam_list")
-const $token = $("#film__token")
+// const $post_category = $("#cam_list")
+// const $token = $("#film__token")
 
-if($post_category){
-    $post_category.on(function ()
-{
-    const $form = $(this).closest('form')
-    const data ={}
+// if($post_category){
+//     $post_category.on(function ()
+// {
+//     const $form = $(this).closest('form')
+//     const data ={}
 
-    data[$token.attr('name')] = $token.val()
-    data[$post_category.attr('name')] = $post_category.val()
+//     data[$token.attr('name')] = $token.val()
+//     data[$post_category.attr('name')] = $post_category.val()
 
-    $.post($form.attr('action'), data).then(function (response)
-    {
-        $("#film_modele").replaceWith(
-            $(response).find("#film_modele")
-        )
-    })
+//     $.post($form.attr('action'), data).then(function (response)
+//     {
+//         $("#film_modele").replaceWith(
+//             $(response).find("#film_modele")
+//         )
+//     })
     
 
-})
-}
+// })
+// }
 
 
 //TOGGLE TABS PAGE FILM, CAMERA, MARQUE-----------------------------------
@@ -224,94 +224,111 @@ tabs.forEach(function(tab, tab_index){
 	})
 })
 
-//Close up FlashMessage----------------------------------------------------
+/*-------------------------------------------------------------------------------------
+					FERMETURE FLASH MESSAGE
+-------------------------------------------------------------------------------------*/
+
 
 setTimeout(function() {
 	$ ('#showflash').slideUp("slow");
 }, 5000)
+
 setTimeout(function() {
 	$ ('.success').slideUp("slow");
 }, 5000)
 
-
-//FILTRE JS AJAX (en developpement)-----------------------------------------
+/*-------------------------------------------------------------------------------------
+					IMPORT FILTRE AJAX FILM/CAMERA
+-------------------------------------------------------------------------------------*/
+//FILTRE JS AJAX
 import Filter from './modules/Filter';
 new Filter(document.querySelector('.js-filter'));
 
 
+/*-------------------------------------------------------------------------------------
+					CARTE HAUTEUR
+-------------------------------------------------------------------------------------*/
+
 //Change hauteur de la carte camera en fonction de la largeur---------------
 
+const camCard = document.getElementById("card");
 
-  const camCard = document.getElementById("card");
-  if(camCard){
-	  camCard.style.height = (camCard.style.width / 1.5) + "px";
+if(camCard){
+	camCard.style.height = (camCard.style.width / 1.5) + "px";
+}
   
-  }
-  
 
 
-//----------------------------------------------------------------------
-
-
+/*-------------------------------------------------------------------------------------
+					AJAX CAMERATYPE 
+-------------------------------------------------------------------------------------*/
+// Récupère l'input "marque"
 
 const $marque = $('#camera_marque');
  
-// When emprise gets selected ...
+// Quand l'input est sélectionné et "change"...
 $marque.on('change', function() {
-	// ... retrieve the corresponding form.
+	// ... on appelle le formulaire parent
 	const $form = $(this).closest('form');
-	// Simulate form data, but only include the selected sport value.
+	// data =  tableau vide
 	const data = {};
+	//  désigne l'attribut "name" comme valeur de l'input
 	data[$marque.attr('name')] = $marque.val();
 
-	// Submit data via AJAX to the form's action path.
+	// Soumet les données au chemin d'action du formulaire.
 	$.ajax({
 		url : $form.attr('action'),
 		type: $form.attr('method'),
 		data : data,
 		success: function(html) {
-			// console.log(data)
-			// Replace current position field ...
+			// Remplace le champ actuel...
 			$('#camera_modele').replaceWith(
-			// ... with the returned one from the AJAX response.
+			// ... par celui de la réponse en AJAX
 			$(html).find('#camera_modele')
 			);
-			// Position field now displays the appropriate positions.
+			// liste de Select2
 			$('#camera_modele').select2();
 		}
 	});
 });
 
-
+/*-------------------------------------------------------------------------------------
+					AJAX COLLECTIONTYPE 
+-------------------------------------------------------------------------------------*/
+// Récupère l'input "marque"
 const $marqueFilm = $('.js-marque-ajax');
 
-// When emprise gets selected ...
+// Quand l'input est sélectionné et "change"...
 $marqueFilm.on('change', function() {
-  // ... retrieve the corresponding form.
-  const $form = $(this).closest('form');
-  // Simulate form data, but only include the selected sport value.
-  const data = {};
-data[$marqueFilm.attr('name')] = $marqueFilm.val();
+	// ... on appelle le formulaire
+	const $form = $(this).closest('form');
+	// data =  tableau vide
+	const data = {};
+	//  désigne l'attribut "name" comme valeur de l'input
+	data[$marqueFilm.attr('name')] = $marqueFilm.val();
 
-// Submit data via AJAX to the form's action path.
-$.ajax({
-url : $form.attr('action'),
-type: $form.attr('method'),
-data : data,
-success: function(html) {
-// Replace current position field ...
-$('.js-modele-ajax').replaceWith(
-// ... with the returned one from the AJAX response.
-$(html).find('.js-modele-ajax')
+	// Soumet les données au chemin d'action du formulaire.
+	$.ajax({
+		url : $form.attr('action'),
+		type: $form.attr('method'),
+		data : data,
+		success: function(html) {
+			// Remplace le champ actuel...
+			$('.js-modele-ajax').replaceWith(
+			// ... par celui de la réponse en AJAX
+			$(html).find('.js-modele-ajax')
 
-);
-$('.js-modele-ajax').select2()
-// Position field now displays the appropriate positions.
-}
+			);
+			// liste de Select2
+			$('.js-modele-ajax').select2()
+			
+		}
+	});
 });
-});
 
-
+/*-------------------------------------------------------------------------------------
+					AJOUT DE FORMULAIRE POUR LE COLLECTIONTYPE 
+-------------------------------------------------------------------------------------*/
 
 // Ajout d'un bouton 'ajouter'
 // le bouton Ajouter <a><button></a>
@@ -336,38 +353,38 @@ $addTagLink.on('click', function(e) {
 	e.preventDefault();
 
 	// add a new tag form (see code block below)
+	// Ajouter une nouvelle caméra
 	addTagForm($collectionHolder, $newLinkLi);
-	// addTagForm($collectionHolder, $newLinkLi).fadeIn().slideDown().dequeue();
-	// $(form).fadeIn().slideDown(100).dequeue();
-	$(this).fadeIn("fast").slideDown(100).dequeue();
+
+	// $(this).fadeIn("fast").slideDown(100).dequeue();
 });
 
 
 function addTagForm($collectionHolder, $newLinkLi) {
-    // Get the data-prototype explained earlier
+    // Récupère le prototype du collectionHolder
     var prototype = $collectionHolder.data('prototype');
     
-    // get the new index
+    // Récupère l'index
     var index = $collectionHolder.data('index');
     
-    // Replace '$$name$$' in the prototype's HTML to
-    // instead be a number based on how many items we have
+	// Remplace le $$name$$ dans le prototype par le nombre d'items
     var newForm = prototype.replace(/__name__/g, index);
     
-    // increase the index with one for the next item
+    // incrémente les items
     $collectionHolder.data('index', index + 1);
     
-    // Display the form in the page in an li, before the "Add a tag" link li
+	// affiche le formulaire dans un li avant le bouton "ajouter"
     var $newFormLi = $('<li class ="panel"></li>').append(newForm);
    
     // also add a remove button, just for this example
+    // Ajoute un bouton "supprimer"
     $newFormLi.append('<a href="#" class="remove-tag"><button class="btnCam">X</button></a>');
-    
+    // avant le bouton "ajouter"
     $newLinkLi.before($newFormLi);
-
+	// pillboxes select 2
     $('select').select2({ width: 'resolve' });
 
-    // handle the removal, just for this example
+    // suppression du formulaire
     $('.remove-tag').on('click', function(e) {
         e.preventDefault();
 	
@@ -377,9 +394,9 @@ function addTagForm($collectionHolder, $newLinkLi) {
     });	
 }
 
-
-
-
+/*-------------------------------------------------------------------------------------
+					FONDU DU BACKGROUND SUR "A PROPOS" 
+-------------------------------------------------------------------------------------*/
 
 function backgroundFade(mediaQueryList){
 if (mediaQueryList.matches) {
@@ -406,8 +423,10 @@ var mediaQueryList = window.matchMedia("(min-width: 1023px)")
 
 	/**------------------------------- */
 
-var btndown = document.getElementById('clickDown');
-var btnup = document.getElementById('clickUp');
+/*-------------------------------------------------------------------------------------
+					A PROPOS FLECHES HAUT ET BAS
+-------------------------------------------------------------------------------------*/
+
 
 $('#clickDown').on('click', function(){
 	
