@@ -352,11 +352,14 @@ $addTagLink.on('click', function(e) {
 	// Le lien ne génère pas de # dans l'URL
 	e.preventDefault();
 
-	// add a new tag form (see code block below)
 	// Ajouter une nouvelle caméra
-	addTagForm($collectionHolder, $newLinkLi);
+	// addTagForm($collectionHolder, $newLinkLi);
+	addTagForm($collectionHolder, $newLinkLi)
+		.fadeIn("fast")
+		.slideDown(800)
+		.dequeue();;
 
-	// $(this).fadeIn("fast").slideDown(100).dequeue();
+	
 });
 
 

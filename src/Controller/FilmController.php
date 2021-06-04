@@ -12,11 +12,13 @@ use App\Data\FilmSearchData;
 use App\Form\SearchFilmForm;
 use App\Repository\FilmRepository;
 use Symfony\Component\Mime\Address;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,44 +49,49 @@ class FilmController extends AbstractController
     public function new(Request $request, MailerInterface $mailer ): Response
     {
         $film = new Film;
-        $camera = new Camera;
-        
-        $sortie = $film->getSortie();
-      
-        $film->setDecade($sortie);
-        $film->addCamera($camera);   
+
+        // $em = $this->getDoctrine()->getManager();
+       
+        $camera = new ArrayCollection();
+        foreach ($film->getCamera() as $cam) {
+            $camera->add($cam);
+        }
                
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $film->setUser($this->getUser());
-            
-            $marque = $camera->getMarque();
-            $modele = $camera->getModele();
-         
-            $film->addMarque($marque);
-            $film->addModele($modele);
+/*-----------------------------------------------------------------------
+TEST 
+            // foreach ($camera as $cam) {
+            //     // vérifie si cam est bien dans le $film->getCamera()
+            //     if ($film->getCamera()->contains($cam) === false) {
+            //         $em->remove($cam);
+            //     }
+            // }
+            // $marque = $film->getCamera()->getMarque();
+            // $modele = $film->getCamera()->getModele();
+             // $film->addMarque($marque);
+            // $film->addModele($modele);
+------------------------------------------------------------------------*/  
            
-            // $film->addModele($camera->getModele());
+            $sortie = $film->getSortie();
+            $film->setDecade($sortie);
 
             $entityManager = $this->getDoctrine()->getManager();        
             $film = $form->getData();
          
-            dd($film);
-        //     foreach($marque as $m){
-        //         $film->addMarque($m);
-        //    };   
            
             //token d'activation chiffré
             // $film->setActivationToken(md5(uniqid()));
 
             $entityManager->persist($film);
-            // $entityManager->flush();
+            $entityManager->flush();
+            // dd($film);
 
-            // dump($entityManager->flush());
-
-            // email avec token
+/*------------------------------------------------------------------------------
+           EMAIL AVEC TOKEN (A L'ETUDE))
             // $email = (new TemplatedEmail())
             // ->from(new Address('test@test.com', 'Francecam Admin'))
             // ->to(new Address('test@test.com', 'Francecam Admin'))
@@ -98,8 +105,8 @@ class FilmController extends AbstractController
             // ;
 
             // $mailer->send($email);
-
-            // $this->addFlash('success', 'Nouveau film enregistré');
+----------------------------------------------------------------------------------------*/
+            $this->addFlash('success', 'Nouveau film enregistré');
        
             return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
             // return $this->redirectToRoute('film_activation_sent');
@@ -124,30 +131,30 @@ class FilmController extends AbstractController
         return $this->render('film/validation.html.twig');
     }
 
-    /**
-     * Met le token a NULL si le lien est cliqué
-     * 
-     * @Route("/activation/{token}", name="activation_film")
-     *
-     */
-    public function activation($token, FilmRepository $repository)
-    {
-        $film = $repository->findOneBy(['activation_token' => $token]);
+    // /**
+    //  * Met le token a NULL si le lien est cliqué (A L'ETUDE)
+    //  * 
+    //  * @Route("/activation/{token}", name="activation_film")
+    //  *
+    //  */
+    // public function activation($token, FilmRepository $repository)
+    // {
+    //     $film = $repository->findOneBy(['activation_token' => $token]);
 
-        if(!$film){
-            throw $this->createNotFoundException('Le film n\'existe pas.');
+    //     if(!$film){
+    //         throw $this->createNotFoundException('Le film n\'existe pas.');
 
-        }
+    //     }
 
-        $film->setActivationToken(null);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($film);
-        $em->flush();
+    //     $film->setActivationToken(null);
+    //     $em = $this->getDoctrine()->getManager();
+    //     $em->persist($film);
+    //     $em->flush();
 
-        $this->addFlash('success', 'Merci de votre contribution a Francecam !');
+    //     $this->addFlash('success', 'Merci de votre contribution a Francecam !');
 
-        return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
-    }
+    //     return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
+    // }
 
  
     /**
@@ -166,18 +173,33 @@ class FilmController extends AbstractController
      * @Route("/{slug}/edit", name="film_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function edit(Request $request, Film $film, Camera $camera): Response
+    public function edit(Request $request, Film $film, EntityManagerInterface $entityManager, $slug): Response
     {
+   
+        $camera = new ArrayCollection();
+
+        foreach ($film->getCamera() as $cam) {
+            $camera->add($cam);
+        }
+
         // Déclaration du formulaire FilmType
         $form = $this->createForm(FilmType::class, $film);
         // Requête
         $form->handleRequest($request);
-        // Déclation de sortie à partir de la méthode getSortie
-        $sortie = $film->getSortie();
-        // injectée dans la méthode setDecade
-        $film->setDecade($sortie);
+
         // Validation du formulaire
          if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($camera as $cam) {
+                if (false === $film->getCamera()->contains($cam)) {
+                    $cam->getFilms()->removeElement($film);
+            
+                    $entityManager->persist($cam);
+                    // retire la caméra
+                    $entityManager->remove($cam);
+                }
+            }
+         
             //Enregistrement en base de données avec le manager de Doctrine  
             $this->getDoctrine()->getManager()->flush();
             //Message de succès 
@@ -250,9 +272,4 @@ class FilmController extends AbstractController
         ]);
     }
 
-    private function toDecade(int $sortie)
-    {
-        return round($sortie/10, 0, PHP_ROUND_HALF_DOWN)* 10; 
-
-    }
 }

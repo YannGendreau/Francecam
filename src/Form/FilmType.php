@@ -62,6 +62,10 @@ class FilmType extends AbstractType
                 'empty_data' => 'minutes',
                 'constraints'   => [
                     new NotBlank(['message' => 'Veuillez saisir la durée du film.']),
+                    new Length([
+                        'max'           => 4,
+                        'maxMessage'    => 'Le synopsis doit comporter au maximum {{ limit }} caractères'
+                    ])
                     ]
             ])
             ->add('synopsis', TextareaType::class, [
@@ -78,7 +82,13 @@ class FilmType extends AbstractType
             ->add('sortie', ChoiceType::class, [
                 'label'             => false,
                 'choices'           => $this->getYears(1897),
-                'placeholder'       => 'Choisir une année'
+                'placeholder'       => 'Choisir une année',
+                'constraints'   => [
+                    new Length([
+                        'max' => '{{limit}} chiffres maximum pour l\'année.',
+                        'maxMessage' => 'Veuillez saisir la durée du film.']),
+                    ]
+                
             ])
             
             ->add('genres', EntityType::class, [
@@ -119,12 +129,10 @@ class FilmType extends AbstractType
                     'label' => false,
                 ],
                 'allow_add' => true,
-                'label' => false,
                 'allow_delete' => true,
+                'label' => false,
                 'required' => false,
-                // 'by_reference' => false,
                 'prototype' => true,
-                // 'prototype_data' => 'New Tag Placeholder',
             ])
 
             ->add('posterFile', VichImageType::class, [

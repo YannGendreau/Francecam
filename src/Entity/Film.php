@@ -40,6 +40,7 @@ class Film
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Length(max=4)
      */
     private $duree;
 

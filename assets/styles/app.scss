@@ -3150,8 +3150,6 @@ ABOUT US
         .summary {
             width: 100%;
             min-height: 250px;
-
-            grid-area: summary;
             padding: 0 0 5% 0;
             margin-top: 10px;
             text-align: justify;
@@ -3163,7 +3161,6 @@ ABOUT US
             h4 {
                 font-family: 'Roboto Condensed', sans-serif;
                 font-size: 1.7rem;
-                // color: $nav-color;
                 color: $titleFont;
                 margin-bottom: 10px;
             }
@@ -3178,23 +3175,13 @@ ABOUT US
 
         .artisteDivD {
             width: 100%;
-
-            grid-area: artiste;
             @include flex-between-start();
-            // display: grid;
-            // grid-template-columns: 1fr 1fr;
-            // grid-template-rows: 1fr;
-            // grid-template-areas:
-            //     "real dp"
-            // ;
+            margin-bottom: 20px;
 
-            // padding: 10px 10px;
             h4 {
                 font-family: 'Roboto Condensed', sans-serif;
                 font-size: 1.7rem;
-                // color: $nav-color;
                 color: $titleFont;
-                // margin-bottom: 5px;
             }
 
             p {
@@ -3209,8 +3196,6 @@ ABOUT US
                 font-style: italic;
                 color: grey;
             }
-
-
 
             .realDivD {
                 grid-area: real;

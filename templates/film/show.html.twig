@@ -140,7 +140,9 @@
 					<div class="contentCam">
 						<div class="tabPanel" style="display: block;">
 							<div>
-								<div class="tableauCamFilm">
+								<div
+									class="tableauCamFilm">
+									{# {% include "camera/_camera_show.html.twig" %} #}
 									{% if film.modeles | length >= 1 %}
 										{% for camera in film.modeles %}
 											<div class="cardGridCam">
