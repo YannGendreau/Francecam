@@ -35,12 +35,13 @@ class CameraType extends AbstractType
         ;
 
         $formModifier = function (FormInterface $form, Marque $marque = null) {
-            $modele = null === $marque ? [] : $marque->getModeles();
- 
+            // $modele = null === $marque ? [] : $marque->getModeles();
+
+            // Si Marque est à null
             if (null === $marque) {
                 $marqueId= 0;
-            }
-            else { $marqueId= $marque->getId();
+            }else{ 
+                $marqueId= $marque->getId();
             }
  
             $form->add('modele', EntityType::class, [
@@ -50,12 +51,13 @@ class CameraType extends AbstractType
                 'attr'      => ['class' => 'js-modele-ajax'],
                 'choice_label' =>'name',
                 'required' => false,
+                // Voir ModeleRepository
                 'query_builder' => function (ModeleRepository $repository) use ($marqueId)
                 {
-                return $repository->getModeleQueryBuilder($marqueId);
+                    return $repository->getModeleQueryBuilder($marqueId);
                 }
-                ]);
-
+            ])
+            ;
         };
 
         $builder->addEventListener(
