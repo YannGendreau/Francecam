@@ -257,10 +257,10 @@ class Film
         return $this->sortie;
     }
 
-    public function setSortie(int $sortie): self
+    public function setSortie(?int $sortie): self
     {
         $this->sortie = $sortie;
-
+        
         return $this;
     }
 

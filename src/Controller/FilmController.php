@@ -10,6 +10,7 @@ use App\Entity\Modele;
 use App\Form\FilmType;
 use App\Data\FilmSearchData;
 use App\Form\SearchFilmForm;
+use App\Repository\CameraRepository;
 use App\Repository\FilmRepository;
 use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,7 +31,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class FilmController extends AbstractController
 {
 
-  /**
+    /**
      * @var FilmRepository
      */
 
@@ -49,19 +50,12 @@ class FilmController extends AbstractController
     public function new(Request $request, MailerInterface $mailer ): Response
     {
         $film = new Film;
-
-        // $em = $this->getDoctrine()->getManager();
-       
-        $camera = new ArrayCollection();
-        foreach ($film->getCamera() as $cam) {
-            $camera->add($cam);
-        }
-               
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $film->setUser($this->getUser());
+          
 /*-----------------------------------------------------------------------
 TEST 
             // foreach ($camera as $cam) {
@@ -70,10 +64,10 @@ TEST
             //         $em->remove($cam);
             //     }
             // }
-            // $marque = $film->getCamera()->getMarque();
-            // $modele = $film->getCamera()->getModele();
-             // $film->addMarque($marque);
-            // $film->addModele($modele);
+            $marque = $camera()->getMarque();
+            $modele = $camera()->getModele();
+             $film->addMarque($marque);
+            $film->addModele($modele);
 ------------------------------------------------------------------------*/  
            
             $sortie = $film->getSortie();
@@ -82,13 +76,12 @@ TEST
             $entityManager = $this->getDoctrine()->getManager();        
             $film = $form->getData();
          
-           
             //token d'activation chiffré
             // $film->setActivationToken(md5(uniqid()));
 
             $entityManager->persist($film);
             $entityManager->flush();
-            // dd($film);
+            dump($film);
 
 /*------------------------------------------------------------------------------
            EMAIL AVEC TOKEN (A L'ETUDE))
@@ -176,11 +169,11 @@ TEST
     public function edit(Request $request, Film $film, EntityManagerInterface $entityManager, $slug): Response
     {
    
-        $camera = new ArrayCollection();
+        // $camera = new ArrayCollection();
 
-        foreach ($film->getCamera() as $cam) {
-            $camera->add($cam);
-        }
+        // foreach ($film->getCamera() as $cam) {
+        //     $camera->add($cam);
+        // }
 
         // Déclaration du formulaire FilmType
         $form = $this->createForm(FilmType::class, $film);
@@ -190,15 +183,15 @@ TEST
         // Validation du formulaire
          if ($form->isSubmitted() && $form->isValid()) {
 
-            foreach ($camera as $cam) {
-                if (false === $film->getCamera()->contains($cam)) {
-                    $cam->getFilms()->removeElement($film);
+            // foreach ($camera as $cam) {
+            //     if (false === $film->getCamera()->contains($cam)) {
+            //         $cam->getFilms()->removeElement($film);
             
-                    $entityManager->persist($cam);
-                    // retire la caméra
-                    $entityManager->remove($cam);
-                }
-            }
+            //         $entityManager->persist($cam);
+            //         // retire la caméra
+            //         $entityManager->remove($cam);
+            //     }
+            // }
          
             //Enregistrement en base de données avec le manager de Doctrine  
             $this->getDoctrine()->getManager()->flush();

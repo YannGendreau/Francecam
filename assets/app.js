@@ -258,46 +258,44 @@ if(camCard){
 }
   
 
-
 /*-------------------------------------------------------------------------------------
 					AJAX CAMERATYPE 
 -------------------------------------------------------------------------------------*/
 // Récupère l'input "marque"
 
-const $marque = $('#camera_marque');
+// const $marque = $('#camera_marque');
  
-// Quand l'input est sélectionné et "change"...
-$marque.on('change', function() {
-	// ... on appelle le formulaire parent
-	const $form = $(this).closest('form');
-	// data =  tableau vide
-	const data = {};
-	//  désigne l'attribut "name" comme valeur de l'input
-	data[$marque.attr('name')] = $marque.val();
+// // Quand l'input est sélectionné et "change"...
+// $marque.on('change', function() {
+// 	// ... on appelle le formulaire parent
+// 	const $form = $(this).closest('form');
+// 	// data =  tableau vide
+// 	const data = {};
+// 	//  désigne l'attribut "name" comme valeur de l'input
+// 	data[$marque.attr('name')] = $marque.val();
 
-	// Soumet les données au chemin d'action du formulaire.
-	$.ajax({
-		url : $form.attr('action'),
-		type: $form.attr('method'),
-		data : data,
-		success: function(html) {
-			// Remplace le champ actuel...
-			$('#camera_modele').replaceWith(
-			// ... par celui de la réponse en AJAX
-			$(html).find('#camera_modele')
-			);
-			// liste de Select2
-			$('#camera_modele').select2();
-		}
-	});
-});
+// 	// Soumet les données au chemin d'action du formulaire.
+// 	$.ajax({
+// 		url : $form.attr('action'),
+// 		type: $form.attr('method'),
+// 		data : data,
+// 		success: function(html) {
+// 			// Remplace le champ actuel...
+// 			$('#camera_modele').replaceWith(
+// 			// ... par celui de la réponse en AJAX
+// 			$(html).find('#camera_modele')
+// 			);
+// 			// liste de Select2
+// 			$('#camera_modele').select2();
+// 		}
+// 	});
+// });
 
 /*-------------------------------------------------------------------------------------
 					AJAX COLLECTIONTYPE 
 -------------------------------------------------------------------------------------*/
-// Récupère l'input "marque"
-const $marqueFilm = $('.js-marque-ajax');
-
+// // Récupère l'input "marque"
+const $marqueFilm = $('select[id$=_marque]');
 // Quand l'input est sélectionné et "change"...
 $marqueFilm.on('change', function() {
 	// ... on appelle le formulaire
@@ -306,7 +304,7 @@ $marqueFilm.on('change', function() {
 	const data = {};
 	//  désigne l'attribut "name" comme valeur de l'input
 	data[$marqueFilm.attr('name')] = $marqueFilm.val();
-
+	console.log('OK');
 	// Soumet les données au chemin d'action du formulaire.
 	$.ajax({
 		url : $form.attr('action'),
@@ -314,17 +312,19 @@ $marqueFilm.on('change', function() {
 		data : data,
 		success: function(html) {
 			// Remplace le champ actuel...
-			$('.js-modele-ajax').replaceWith(
+			$('select[id$=_modele]').replaceWith(
 			// ... par celui de la réponse en AJAX
-			$(html).find('.js-modele-ajax')
+			$(html).find('select[id$=_modele]')
 
 			);
 			// liste de Select2
-			$('.js-modele-ajax').select2()
+			$('select[id$=_modele]').select2()
 			
 		}
 	});
 });
+
+
 
 /*-------------------------------------------------------------------------------------
 					AJOUT DE FORMULAIRE POUR LE COLLECTIONTYPE 
@@ -354,10 +354,7 @@ $addTagLink.on('click', function(e) {
 
 	// Ajouter une nouvelle caméra
 	// addTagForm($collectionHolder, $newLinkLi);
-	addTagForm($collectionHolder, $newLinkLi)
-		.fadeIn("fast")
-		.slideDown(800)
-		.dequeue();;
+	addTagForm($collectionHolder, $newLinkLi);
 
 	
 });
@@ -396,6 +393,24 @@ function addTagForm($collectionHolder, $newLinkLi) {
         return false;
     });	
 }
+
+// window.onload = () => {
+// 	let marque = document.querySelector(".js-marque-ajax");
+// 	marque.addEventListener("change", function(){
+// 		let form = this.closest("form");
+// 		let data = this.name + "=" + this.value;
+// fetch(form.action, {
+// 	method: form.getAttribute("method"),
+// 	body: data,
+// 	headers: {
+// 		"Content-Type": "application/x-www-form-urlencoded; charset:utf-8"
+// 	}
+// })
+// 	})
+// }
+
+
+
 
 /*-------------------------------------------------------------------------------------
 					FONDU DU BACKGROUND SUR "A PROPOS" 

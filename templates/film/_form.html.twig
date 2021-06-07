@@ -81,17 +81,21 @@
 		<h3>Caméras</h3>
 
 		<div class="marqueModele">
-			<div class="marqueForm">
+			<div
+				class="marqueForm">
 
-				<ul id="camera-fields-list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.camera|length }}">
+				{# <ul id="camera-fields-list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e('html_attr') }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.camera|length }}"> #}
+				<ul id="camera-fields-list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e('html_attr')}}">
 					{% for cam in form.camera %}
-						<li class="panel">
-							{{ form_errors(cam.marque) }}
+						<li
+							class="panel">
+
+							{# {{ form_errors(cam.marque) }} #}
 							{{ form_row(cam.marque) }}
 
-							{{ form_errors(cam.modele) }}
+							{# {{ form_errors(cam.modele) }} #}
 							{{ form_row(cam.modele) }}
-							{#{{form_row(cam)}}#}
+							{# {{form_widget(cam)}} #}
 						</li>
 					{% endfor %}
 				</ul>
