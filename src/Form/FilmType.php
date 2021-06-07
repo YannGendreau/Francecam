@@ -56,16 +56,14 @@ class FilmType extends AbstractType
                 'label'         => false,
                 'constraints'   => [
                     new NotBlank(['message' => 'Veuillez entrer le titre du film.']),
-                ]])
+                ],
+                'empty_data' => ''
+                ])
             ->add('duree', IntegerType::class, [
                 'label'         => false,
                 'empty_data' => 'minutes',
                 'constraints'   => [
                     new NotBlank(['message' => 'Veuillez saisir la durée du film.']),
-                    new Length([
-                        'max'           => 4,
-                        'maxMessage'    => 'Le synopsis doit comporter au maximum {{ limit }} caractères'
-                    ])
                     ]
             ])
             ->add('synopsis', TextareaType::class, [
@@ -77,7 +75,9 @@ class FilmType extends AbstractType
                         'max'           => 255,
                         'maxMessage'    => 'Le synopsis doit comporter au maximum {{ limit }} caractères'
                     ])
-            ]])
+                    ],
+                'empty_data' => ''
+            ])
            
             ->add('sortie', ChoiceType::class, [
                 'label'             => false,
@@ -85,10 +85,10 @@ class FilmType extends AbstractType
                 'placeholder'       => 'Choisir une année',
                 'constraints'   => [
                     new Length([
-                        'max' => '{{limit}} chiffres maximum pour l\'année.',
-                        'maxMessage' => 'Veuillez saisir la durée du film.']),
-                    ]
-                
+                        'max' => 4,
+                        'maxMessage' => '{{limit}} chiffres maximum pour l\'année.']),
+                    ],
+                'empty_data' => ''
             ])
             
             ->add('genres', EntityType::class, [
@@ -125,14 +125,13 @@ class FilmType extends AbstractType
     
             ->add('camera', CollectionType::class, [
                 'entry_type' => CameraType::class,
-                'entry_options' =>[
-                    'label' => false,
-                ],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'label' => false,
                 'required' => false,
                 'prototype' => true,
+                'block_name' => 'task_lists',
+                // 'by_reference' => false
             ])
 
             ->add('posterFile', VichImageType::class, [

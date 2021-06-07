@@ -171,9 +171,9 @@ class ModeleRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('b')
                 ->leftJoin('b.marque', 'e')
-                    ->addSelect('e')
+                ->addSelect('e')
                 ->where("e.id = :id")
-                    ->setParameter('id', $marqueId)
+                ->setParameter('id', $marqueId)
                 ;
  
     }
