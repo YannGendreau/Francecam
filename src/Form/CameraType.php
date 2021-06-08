@@ -81,26 +81,26 @@ class CameraType extends AbstractType
             }
         );
 
-        $builder->addEventListener(
-            FormEvents::POST_SET_DATA,
-            function (FormEvent $event) use ($formModifier) {
-                // this would be your entity, i.e. SportMeetup
-                // $marque = $event->getData()->getMarque();
-                $data = $event->getData();
-                $form = $event->getForm();
-                $modele = null;
-                if ($data != null){
-                    $modele = $data->getModele();
-                    $marque = $modele->getMarque();
-                    $formModifier($form, $marque);
-                    $form->get('modele')->setData($modele);
-                    // dd($marque);
-                }
+        // $builder->addEventListener(
+        //     FormEvents::POST_SET_DATA,
+        //     function (FormEvent $event) use ($formModifier) {
+        //         // this would be your entity, i.e. SportMeetup
+        //         // $marque = $event->getData()->getMarque();
+        //         $data = $event->getData();
+        //         $form = $event->getForm();
+        //         $modele = null;
+        //         if ($data != null){
+        //             $modele = $data->getModele();
+        //             $marque = $modele->getMarque();
+        //             $formModifier($form, $marque);
+        //             $form->get('modele')->setData($modele);
+        //             dd($marque);
+        //         }
  
  
-                // $formModifier($event->getForm(), $marque->getModele());
-            }
-        );
+        //         // $formModifier($event->getForm(), $marque->getModele());
+        //     }
+        // );
     }
 
 

@@ -33,7 +33,6 @@ class Camera
 
     /**
      * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="cameras", cascade={"persist"})
-     * @Assert\Unique
      */
     private $modele;
 
@@ -43,7 +42,12 @@ class Camera
     private $films;
 
     /**
-     * 
+     * @ORM\Column(type="string", length=255, nullable = true)
+     */
+    private $name;
+
+     /**
+     * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
@@ -121,8 +125,21 @@ class Camera
         return $this;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
     public function __toString()
     {
-        return $this->marque . ' ' .$this->modele; 
+        // return $this->marque . ' ' .$this->modele; 
+        return $this->name; 
     }
 }
