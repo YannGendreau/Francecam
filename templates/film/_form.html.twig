@@ -1,6 +1,6 @@
 <div id="film">
 	{{ form_start(form) }}
-
+	{{form_widget(form._token)}}
 	<div class="rowFormTitle">
 		<div>
 			<h3>Titre</h3>
@@ -112,4 +112,4 @@
 	<div class="printBtn">
 		<button class="btn">{{ button_label|default('Enregistrer') }}</button>
 	</div>
-	{{ form_end(form) }}</div>
+	{{ form_end(form, {render_rest: false}) }}</div>

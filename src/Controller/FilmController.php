@@ -80,8 +80,8 @@ TEST
             // $film->setActivationToken(md5(uniqid()));
 
             $entityManager->persist($film);
-            $entityManager->flush();
-            dump($film);
+            // $entityManager->flush();
+            dd($film);
 
 /*------------------------------------------------------------------------------
            EMAIL AVEC TOKEN (A L'ETUDE))

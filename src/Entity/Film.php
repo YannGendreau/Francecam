@@ -33,7 +33,7 @@ class Film
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)^
+     * @ORM\Column(type="string", length=255)
      * @Assert\Length(max=255)
      */
     private $title;
@@ -269,7 +269,7 @@ class Film
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
 

@@ -294,37 +294,38 @@ if(camCard){
 /*-------------------------------------------------------------------------------------
 					AJAX COLLECTIONTYPE 
 -------------------------------------------------------------------------------------*/
-// // Récupère l'input "marque"
-const $marqueFilm = $('select[id$=_marque]');
-// Quand l'input est sélectionné et "change"...
-$marqueFilm.on('change', function() {
-	// ... on appelle le formulaire
-	const $form = $(this).closest('form');
-	// data =  tableau vide
-	const data = {};
-	//  désigne l'attribut "name" comme valeur de l'input
-	data[$marqueFilm.attr('name')] = $marqueFilm.val();
-	console.log('OK');
-	// Soumet les données au chemin d'action du formulaire.
-	$.ajax({
-		url : $form.attr('action'),
-		type: $form.attr('method'),
-		data : data,
-		success: function(html) {
-			// Remplace le champ actuel...
-			$('select[id$=_modele]').replaceWith(
-			// ... par celui de la réponse en AJAX
-			$(html).find('select[id$=_modele]')
 
-			);
-			// liste de Select2
-			$('select[id$=_modele]').select2()
+	// // Récupère l'input "marque"
+	const $marqueFilm = $('select[id$=_marque]');
+	// Quand l'input est sélectionné et "change"...
+	$marqueFilm.on('change', function() {
+		// ... on appelle le formulaire
+		const $form = $(this).closest('form');
+		// data =  tableau vide
+		const data = {};
+		//  désigne l'attribut "name" comme valeur de l'input
+		data[$marqueFilm.attr('name')] = $marqueFilm.val();
+		// Soumet les données au chemin d'action du formulaire.
+		$.ajax({
+			url : $form.attr('action'),
+			type: $form.attr('method'),
+			data : data,
+			success: function(html) {
 			
-		}
+				// // Remplace le champ actuel...
+			
+				$('select[id$=_modele]').replaceWith(
+					//suppr puis ajout
+				// ... par celui de la réponse en AJAX
+				$(html).find('select[id$=_modele]')
+
+				);
+				// liste de Select2
+				$('select').select2()
+				
+			}
+		});
 	});
-});
-
-
 
 /*-------------------------------------------------------------------------------------
 					AJOUT DE FORMULAIRE POUR LE COLLECTIONTYPE 
@@ -353,8 +354,7 @@ $addTagLink.on('click', function(e) {
 	e.preventDefault();
 
 	// Ajouter une nouvelle caméra
-	// addTagForm($collectionHolder, $newLinkLi);
-	addTagForm($collectionHolder, $newLinkLi);
+	addTagForm($collectionHolder, $newLinkLi).slideDown(100);
 
 	
 });
@@ -393,22 +393,6 @@ function addTagForm($collectionHolder, $newLinkLi) {
         return false;
     });	
 }
-
-// window.onload = () => {
-// 	let marque = document.querySelector(".js-marque-ajax");
-// 	marque.addEventListener("change", function(){
-// 		let form = this.closest("form");
-// 		let data = this.name + "=" + this.value;
-// fetch(form.action, {
-// 	method: form.getAttribute("method"),
-// 	body: data,
-// 	headers: {
-// 		"Content-Type": "application/x-www-form-urlencoded; charset:utf-8"
-// 	}
-// })
-// 	})
-// }
-
 
 
 
