@@ -151,6 +151,11 @@ class Film
      */
     private $videolink;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default":false}, nullable = true)
+     */
+    private $isVerified;
+
      
 
     public function __construct()
@@ -566,6 +571,18 @@ class Film
     public function setVideolink(?string $videolink): self
     {
         $this->videolink = $videolink;
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

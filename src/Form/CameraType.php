@@ -37,6 +37,7 @@ class CameraType extends AbstractType
         ;
 
         $formModifier = function (FormInterface $form, Marque $marque = null) {
+            $modele = null === $marque ? [] : $marque->getModeles();
             // Si Marque est à null
             if (null === $marque) {
                 $marqueId= 0;
@@ -94,7 +95,7 @@ class CameraType extends AbstractType
         //             $marque = $modele->getMarque();
         //             $formModifier($form, $marque);
         //             $form->get('modele')->setData($modele);
-        //             dd($marque);
+        //             // dd($marque);
         //         }
  
  

@@ -44,11 +44,10 @@
 		<div>
 			<div>
 				<h3>Synopsis</h3>
-
-				{# {{form_errors(form.synopsis, {'attr': {'class': 'error'}})}} #}
 				{{form_row(form.synopsis)}}
-
+				Il reste
 				<span id="count"></span>
+				caractères.
 
 			</div>
 
@@ -81,30 +80,8 @@
 		<h3>Caméras</h3>
 
 		<div class="marqueModele">
-			<div
-				class="marqueForm">
-
-				{# <ul id="camera-fields-list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e('html_attr') }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.camera|length }}"> #}
-				<ul id="camera-fields-list" data-prototype="{{ form_widget(form.camera.vars.prototype)|e('html_attr')}}">
-					{% for cam in form.camera %}
-						<li
-							class="panel">
-
-							{# {{ form_errors(cam.marque) }} #}
-							{{ form_row(cam.marque) }}
-
-							{# {{ form_errors(cam.modele) }} #}
-							{{ form_row(cam.modele) }}
-							{# {{form_widget(cam)}} #}
-						</li>
-					{% endfor %}
-				</ul>
-
-
-				<!-- <button type="button" id="add_item_link" data-collection-holder-class="camera-fields-list" data-list-selector="#camera-fields-list">Add a tag</button> -->
-
-				{# <button type="button" class="add-another-collection-widget" data-list-selector="#email-fields-list">Add another email</button> #}
-
+			<div class="marqueForm">
+				{{form_row(form.camera)}}
 			</div>
 		</div>
 	</div>
@@ -112,4 +89,5 @@
 	<div class="printBtn">
 		<button class="btn">{{ button_label|default('Enregistrer') }}</button>
 	</div>
-	{{ form_end(form, {render_rest: false}) }}</div>
+	{{ form_end(form, {render_rest: false}) }}
+</div>

@@ -140,70 +140,10 @@
 					<div class="contentCam">
 						<div class="tabPanel" style="display: block;">
 							<div>
-								<div
-									class="tableauCamFilm">
-									{# {% include "camera/_camera_show.html.twig" %} #}
-									{% if film.modeles | length >= 1 %}
-										{% for camera in film.modeles %}
-											<div class="cardGridCam">
-												<div class="cardSmCam">
-													<div class="imgCardCam">
-														{% if camera.img %}
-															<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
-														{% else %}
-															<div class="description">
-																<h3>{{camera.marque}}</h3>
-																<h2>{{camera.name}}</h2>
-																{% for g in camera.type %}
-																	<em>{{g.name}}</em>
-																{% endfor %}
-																{% for f in camera.format %}
-																	<em>{{f.name}}</em>
-																{% endfor %}
-															</div>
-														{% endif %}
-													</div>
-													<a href="{{path('modele_show', {slug:camera.slug} )}}">
-														<div class="description__overlay description__overlay--blur">
-															<h3>{{camera.marque}}</h3>
-															<h2>
-																{{camera.name}}</h2>
-															{% for f in camera.type %}
-																<em>{{f.name}}</em>
-															{% endfor %}
-															{% for f in camera.format %}
-																<em>{{f.name}}</em>
-															{% endfor %}
-														</div>
-													</a>
-												</div>
-											</div>
-										{% endfor %}
-									{% elseif film.modeles | length == 0 %}
-										{% for m in film.marques %}
-											<div class="cardGridCam">
-												<div class="cardSmCam">
-													<div class="imgCardCam">
-														{% if m.logoName %}
-															<a href="{{path('marque_show', {slug: m.slug,})}}"><img src="/build/images/marques/{{m.logoName}}" alt="logo de la marque {{m.name}}"></a>
-														{% else %}
-															<a href="{{path('marque_show', {slug: m.slug} )}}">
-																<div class="smDescriptionOverlay">
-																	<em>{{m.name}}</em>
-																</div>
-																<div class="description__overlay description__overlay--blur">
-																	<h2>{{m.name}}
-																	</h2>
-																</div>
-															</a>
-														{% endif %}
-													</div>
-												</div>
-											</div>
-										{% endfor %}
-									{% elseif film.modeles | length == 0 and film.marques | length == 0 %}
-										<h1>Pas de camera</h1>
-									{% endif %}
+								<div class="tableauCamFilm">
+									{% include "camera/_camera_show.html.twig" %}
+									{# {% include "film/_modele.html.twig" %} #}
+
 								</div>
 							</div>
 							{# <div class="tabPanel" style="display: none;"></div> #}

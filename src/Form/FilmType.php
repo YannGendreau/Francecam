@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Film;
 use App\Entity\Pays;
 use App\Entity\Genre;
+use App\Entity\Camera;
 use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Entity\Cameras;
@@ -121,19 +122,19 @@ class FilmType extends AbstractType
                 'multiple'          => true,
           
             ])
-    //------CAMERA-------------------------------------------------------
+    /*------CAMERA COLLECTIONTYPE a revoir-------------------------------------------------------
     
-            ->add('camera', CollectionType::class, [
-                'entry_type' => CameraType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'label' => false,
-                'required' => false,
-                'prototype' => true,
-                'block_name' => 'task_lists',
-                // 'by_reference' => false
-            ])
-
+            // ->add('camera', CollectionType::class, [
+            //     'entry_type' => CameraType::class,
+            //     'allow_add' => true,
+            //     'allow_delete' => true,
+            //     'label' => false,
+            //     'required' => false,
+            //     'prototype' => true,
+            //     'block_name' => 'task_lists',
+            //     // 'by_reference' => false
+            // ])
+    --------------------------------------------------------------------------*/
             ->add('posterFile', VichImageType::class, [
                 'required'          => false,
                 'label'             => false
@@ -155,9 +156,20 @@ class FilmType extends AbstractType
                 'multiple'          => true,
             ])
 
-            
+            ->add('camera', EntityType::class, [
+                'class'         => Camera::class,
+                'placeholder'   => 'Choisir la camera',
+                'label'         => false,
+                // 'mapped'        => false,
+                'attr'          => ['class' => 'cameras'],
+                'choice_label'  =>'name',
+                'required'      => false,
+                'multiple'          => true,
+
+                ])
+                
         ;
-          
+
 }
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -139,7 +139,7 @@ class Camera
 
     public function __toString()
     {
-        // return $this->marque . ' ' .$this->modele; 
+        return $this->marque . ' ' .$this->modele; 
         return $this->name; 
     }
 }

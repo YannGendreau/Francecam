@@ -1,14 +1,29 @@
+<!DOCTYPE html>
 <html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
 
-	<div class="container">
+		<div class="container">
 
-		<p>
-			{{film.user.name}}
-			vient d'ajouter
-			{{film.title}}</p>
-		<p>
-			<a href="{{ absolute_url(path('film_show', {'slug': slug})) }}">Voir le film
-				{{film.title}}</a>
-		</p>
-	</html>
+			<div class="logoSearch">
+				<img class="logoHome" src="{{asset('build/images/FRANCECAM-logo.png')}}" alt="logo du site Francecam">
+				<div class="titreHome">
+					<h1>Francecam</h1>
+				</div>
+			</div>
+
+			<p>
+				{{film.user.name}}
+				vient d'ajouter
+				{{film.title}}</p>
+			<p>
+				<a href="{{ absolute_url(path('film_show', {'slug': film.slug})) }}">Voir le film</a>
+			</p>
+		</div>
+	</body>
 </html>

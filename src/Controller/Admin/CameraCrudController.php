@@ -22,6 +22,7 @@ class CameraCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             AssociationField::new('marque'),
             AssociationField::new('modele'),
+            TextField::new('name'),
             TextField::new('slug'),
             // TextEditorField::new('description'),
         ];

@@ -3394,69 +3394,73 @@ ABOUT US
                     .marqueForm {
                         width: 100%;
 
-                        #camera-fields-list {
+                        .cameras {
                             width: 100%;
-
-                            .add {
-                                @include flex-end-center();
-                                width: 100%;
-
-                                .add_tag_link {
-                                    width: 25%;
-                                    @include flex-end-center();
-
-                                    .btnCamAdd {
-                                        width: 70px;
-                                        height: 30px;
-                                        background: $green-light;
-                                        color: #f5f6f8;
-                                        border: none;
-                                        cursor: pointer;
-                                        border-radius: 3px;
-                                    }
-                                }
-                            }
-
-                            .panel {
-                                @include flex-between-center();
-                                margin: 10px 0 10px 0;
-
-                                div {
-                                    width: 50%;
-                                    @include flex-between-center();
-
-                                    .remove-tag {
-                                        .btnCam {
-                                            width: 30px;
-                                            height: 30px;
-                                            background: #f73859;
-                                            color: #f5f6f8;
-                                            border: none;
-                                            cursor: pointer;
-                                        }
-                                    }
-
-                                    .form-group {
-                                        // width: 100%;
-                                        // @include flex-between-center();
-                                        // flex-wrap: wrap;
-
-                                        #film_camera_0 {
-                                            @include flex-between-center();
-                                            flex-wrap: wrap;
-
-                                            .form-group {
-                                                width: 50%;
-
-                                                select {
-                                                    width: 100%;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
                         }
+
+                        // #camera-fields-list {
+                        //     width: 100%;
+
+                        //     .add {
+                        //         @include flex-end-center();
+                        //         width: 100%;
+
+                        //         .add_tag_link {
+                        //             width: 25%;
+                        //             @include flex-end-center();
+
+                        //             .btnCamAdd {
+                        //                 width: 70px;
+                        //                 height: 30px;
+                        //                 background: $green-light;
+                        //                 color: #f5f6f8;
+                        //                 border: none;
+                        //                 cursor: pointer;
+                        //                 border-radius: 3px;
+                        //             }
+                        //         }
+                        //     }
+
+                        //     .panel {
+                        //         @include flex-between-center();
+                        //         margin: 10px 0 10px 0;
+
+                        //         div {
+                        //             width: 50%;
+                        //             @include flex-between-center();
+
+                        //             .remove-tag {
+                        //                 .btnCam {
+                        //                     width: 30px;
+                        //                     height: 30px;
+                        //                     background: #f73859;
+                        //                     color: #f5f6f8;
+                        //                     border: none;
+                        //                     cursor: pointer;
+                        //                 }
+                        //             }
+
+                        //             .form-group {
+                        //                 // width: 100%;
+                        //                 // @include flex-between-center();
+                        //                 // flex-wrap: wrap;
+
+                        //                 #film_camera_0 {
+                        //                     @include flex-between-center();
+                        //                     flex-wrap: wrap;
+
+                        //                     .form-group {
+                        //                         width: 50%;
+
+                        //                         select {
+                        //                             width: 100%;
+                        //                         }
+                        //                     }
+                        //                 }
+                        //             }
+                        //         }
+                        //     }
+                        // }
 
                         #cam_list {
                             width: 100%;
