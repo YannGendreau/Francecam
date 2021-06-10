@@ -121,6 +121,7 @@ class FilmController extends AbstractController
     public function edit(Request $request, Film $film, EntityManagerInterface $entityManager, $slug): Response
     {
    
+    
         // Déclaration du formulaire FilmType
         $form = $this->createForm(FilmType::class, $film);
         // Requête
@@ -129,6 +130,16 @@ class FilmController extends AbstractController
         // Validation du formulaire
          if ($form->isSubmitted() && $form->isValid()) {
 
+            // foreach ($camera as $cam) {
+            //     if (false === $film->getCamera()->contains($cam)) {
+            //         $cam->getFilms()->removeElement($film);
+            
+            //         $entityManager->persist($cam);
+            //         // retire la caméra
+            //         $entityManager->remove($cam);
+            //     }
+            // }
+         
             //Enregistrement en base de données avec le manager de Doctrine  
             $this->getDoctrine()->getManager()->flush();
             //Message de succès 

@@ -46,6 +46,9 @@ class CameraController extends AbstractController
             $cameraName = $marque . ' ' . $modele;
             $camera->setName($cameraName);
           
+            // $name = $camera->getName();
+            // $camera->setSlug($name);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($camera);
             $entityManager->flush();

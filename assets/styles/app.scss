@@ -3266,6 +3266,9 @@ ABOUT US
                             }
                         }
                     }
+
+                    span {
+                    }
                 }
 
                 .pays {
@@ -3472,36 +3475,10 @@ ABOUT US
 
                                     .form-group {
                                         width: 50%;
-
-                                        select {
-                                            width: 100%;
-                                        }
                                     }
                                 }
                             }
                         }
-
-                        #film_marques {
-                            width: 100%;
-
-                            .select2-selection.select2-selection--multiple {
-                                width: 100%;
-                            }
-                        }
-                    }
-
-                    .modeleForm {
-                        #film_modeles {
-                            width: 100%;
-
-                            .select2.select2-container.select2-container--default.select2-container--focus {
-                                width: 100%;
-                            }
-                        }
-                    }
-
-                    .modeleForm {
-                        width: 50%;
                     }
                 }
             }
@@ -3850,122 +3827,126 @@ ABOUT US
                 @include flex-center();
                 width: 10%;
 
-                input {
+                .form-group {
+                    @include flex-center();
+                    width: 10%;
+
+                    input {
+                    }
+                }
+
+                em {
+                    width: 90%;
                 }
             }
+        }
 
-            em {
-                width: 90%;
+        .lf--label {
+            width: 2em;
+            // width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            // background: $gray-light;
+            background: $megamenu-bg;
+            cursor: pointer;
+        }
+
+        .lf--input {
+            flex: 1;
+            padding: 1em;
+            border: 0;
+            height: 50px;
+            // color: $gray;
+            background: $megamenu-bg;
+            font-size: 1.2rem;
+
+            &:focus {
+                outline: none;
+                transition: transform 0.15s ease;
+                transform: scale(1.02);
+                box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.05), 0 0 0, 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.2);
             }
         }
-    }
 
-    .lf--label {
-        width: 2em;
-        // width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        .lf--message {
+            flex: 1;
+            padding: 1em;
+            border: 0;
+            height: 150px;
+            background: $megamenu-bg;
+            font-size: 1.2rem;
+            resize: none;
 
-        // background: $gray-light;
-        background: $megamenu-bg;
-        cursor: pointer;
-    }
-
-    .lf--input {
-        flex: 1;
-        padding: 1em;
-        border: 0;
-        height: 50px;
-        // color: $gray;
-        background: $megamenu-bg;
-        font-size: 1.2rem;
-
-        &:focus {
-            outline: none;
-            transition: transform 0.15s ease;
-            transform: scale(1.02);
-            box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.05), 0 0 0, 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.2);
-        }
-    }
-
-    .lf--message {
-        flex: 1;
-        padding: 1em;
-        border: 0;
-        height: 150px;
-        background: $megamenu-bg;
-        font-size: 1.2rem;
-        resize: none;
-
-        &:focus {
-            outline: none;
-            transition: transform 0.15s ease;
-            transform: scale(1.02);
-            box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.05), 0 0 0, 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.2);
-        }
-    }
-
-    .lf--input-repeated {
-        flex: 1;
-        padding: 1em;
-        border: 0;
-        height: 50px;
-        // color: $gray;
-        background: $megamenu-bg;
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-
-        &:focus {
-            outline: none;
-            transition: transform 0.15s ease;
-            transform: scale(1.02);
-            box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.05), 0 0 0, 0.3em 0.3em 0.2em rgba(0, 0, 0, 0.2);
-        }
-    }
-
-    .lf--submit {
-        display: block;
-        padding: 1em;
-        width: 100%;
-        background: linear-gradient(to right, $nav-color, $titleDisplay);
-
-        border: 0;
-        color: #fff;
-        cursor: pointer;
-        font-size: 1rem;
-        font-weight: 600;
-        text-shadow: 0 1px 0 rgba(black, 0.2);
-        border-radius: 5px;
-
-        &:hover {
-            background: radial-gradient($titleCard, $nav-color);
-            transform: scale(1.02);
-            transition: transform 0.15s ease;
-            box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0, 0.3em 0.3em 0.2em rgba(0, 0, 0, 0.3);
+            &:focus {
+                outline: none;
+                transition: transform 0.15s ease;
+                transform: scale(1.02);
+                box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.05), 0 0 0, 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.2);
+            }
         }
 
-        &:focus {
-            outline: none;
-            transition: transform 0.15s ease;
-            transform: scale(1.03);
-            box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0, 0.3em 0.3em 0.2em rgba(0, 0, 0, 0.3);
+        .lf--input-repeated {
+            flex: 1;
+            padding: 1em;
+            border: 0;
+            height: 50px;
+            // color: $gray;
+            background: $megamenu-bg;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+
+            &:focus {
+                outline: none;
+                transition: transform 0.15s ease;
+                transform: scale(1.02);
+                box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.05), 0 0 0, 0.3em 0.3em 0.2em rgba(0, 0, 0, 0.2);
+            }
         }
-    }
 
-    .lf--forgot {
-        margin-top: 1em;
-        color: $green-dark;
-        font-size: 1rem;
-        text-align: center;
-        position: relative;
-    }
+        .lf--submit {
+            display: block;
+            padding: 1em;
+            width: 100%;
+            background: linear-gradient(to right, $nav-color, $titleDisplay);
 
-    ::placeholder {
-        color: $gray;
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 1px 0 rgba(black, 0.2);
+            border-radius: 5px;
+
+            &:hover {
+                background: radial-gradient($titleCard, $nav-color);
+                transform: scale(1.02);
+                transition: transform 0.15s ease;
+                box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0, 0.3em 0.3em 0.2em rgba(0, 0, 0, 0.3);
+            }
+
+            &:focus {
+                outline: none;
+                transition: transform 0.15s ease;
+                transform: scale(1.03);
+                box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0, 0.3em 0.3em 0.2em rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .lf--forgot {
+            margin-top: 1em;
+            color: $green-dark;
+            font-size: 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        ::placeholder {
+            color: $gray;
+        }
     }
 }
-
 /*---------------------------------------------------------------------------
 
 PAGE USER PROFILE

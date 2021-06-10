@@ -256,7 +256,6 @@ const camCard = document.getElementById("card");
 if(camCard){
 	camCard.style.height = (camCard.style.width / 1.5) + "px";
 }
-
   
 // REQUETES AJAX POUR FORMULAIRE COLLECTIONTYPE CAMERA: A REESSAYER PLUS TARD
 // Je garde pour m'en rappeler 
@@ -397,7 +396,6 @@ if(camCard){
 // }
 
 
-
 /*-------------------------------------------------------------------------------------
 					FONDU DU BACKGROUND SUR "A PROPOS" 
 -------------------------------------------------------------------------------------*/
@@ -421,6 +419,7 @@ if (mediaQueryList.matches) {
 
 }
 }
+
 var mediaQueryList = window.matchMedia("(min-width: 1023px)")
 	backgroundFade(mediaQueryList) 
 	mediaQueryList.addListener(backgroundFade)
