@@ -1,0 +1,92 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}à propos
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+    {# <div class="titreAp"><h1>à propos de Francecam</h1></div> #}
+		
+        <div class="screen horizontal" id="about">
+            <div class="boutons">
+                <div class="up">
+                    
+                    <button title="uparrow" id="clickUp" class="upbtn">
+                        <img src="{{asset('build/images/triangle-down-red-sm.png')}}" alt="triangle de sélection">
+                    </button>
+                </div>
+               <div class="down">
+                   <button title="downarrow" id="clickDown" class="downbtn">
+                        <img src="{{asset('build/images/triangle-down-red-sm.png')}}" alt="triangle de sélection">
+                    </button>
+                </div>
+               
+            </div>
+         
+            <a id="child1"></a>
+            <div id="child1" class="child">             
+                <video autoplay muted loop id="myVideo01">
+                    <source src="{{asset('build/images/fondvid/bobine02_06-1.mp4')}}" type="video/mp4">
+                </video>
+            
+                <div class="para1">
+                <h1>à propos de Francecam</h1>
+                    <p>On dit qu’une image vaut mille mots. Un plan, un travelling, un panoramique peuvent, en quelques instants, raconter une histoire.</p> <br> 
+                    <p>La <span>caméra</span>, essence du cinéma, capture le mouvement, la lumière, l’émotion. Des centaine de caméras et chacune a son identité propre, son piqué, sa sensibilité et sa fonction.</p> 
+                    
+                </div>
+                
+            </div>
+            <a input="hidden" id="child2"></a>
+            <div class="child">
+                
+                <video autoplay muted loop id="myVideo02">
+                    <source src="{{asset('build/images/fondvid/FC05_01.mp4')}}" type="video/mp4">
+                </video>
+                
+                <div class="para2">
+                    <p>La <span>France</span>, terre de cinéma, apporta au septième art, tant la créativité de ses talents (réalisateurs et réalisatrices, scénaristes) que son savoir faire technique et son ingéniosité, grâce à ses <span>constructeurs</span> de légende: Eclair, Débrie et bien d’autres.</p>
+                </div>
+                <!-- <div class="imgAu">
+                    <img src="E.E._Reinert,_vérification_d'une_prise_de_vue.jpg" alt=""></div> -->
+                
+            </div>
+            <a id="child3"></a>
+            <div class="child">
+                
+                <video autoplay muted loop id="myVideo01">
+                    <source src="{{asset('build/images/fondvid/FC04_01.mp4')}}" type="video/mp4">
+                </video>
+                <div class="para1">
+                    <p> <span>Francecam</span>  a été crée pour offrir au public cinéphile, mais aussi aux professionnels, la possibilité de connaître les cameras du <span>film francophone</span>, de découvrir ou redécouvrir des grands moments qui ont fait le cinéma, à travers la visée du cadreur.</p>
+                </div>
+            </div>
+            <div class="child">
+
+                <a id="child4"></a>
+                  <img src="{{asset('build/images/fondvid/yannFC.jpg')}}" alt="photographie de Yann Gendreau">
+                <div class="para1">
+              
+                    <p>À l’origine de <span>Francecam</span>, Yann Gendreau, scénariste, vidéaste passionné et développeur. Vingt ans consacrés à l’image, au cinéma, aujourd’hui représenté par un site au concept simple : <span>un film</span>, <span>une caméra</span>. <br>
+                    <em>« Le cinéma atteint son summum quand, par une seule image, sans un dialogue, un film vous dit tout.»</em> </p>
+                </div>
+                <div class="img"></div>
+            </div>
+            <div class="child">
+                <a id="child5"></a>
+                <video autoplay muted loop id="myVideo01">
+                    <source src="{{asset('build/images/fondvid/FC03_02.mp4')}}" type="video/mp4">
+                </video>
+                <div class="para1">
+                    <div class="logoFc">
+                        <img src="{{asset('build/images/FRANCECAM-logo.png')}}" alt="le logo du site Francecam">
+                    </div>
+                    
+                    <p>C’est cette recherche permanente du beau cinéma, tant sur le plan formel que sur le fond, qui pousse le créateur de ce site à proposer <span>Francecam</span> au public. </p> <p>Un lieu pour tout savoir sur les  <span>caméras</span>; leurs constructions et spécificités, mais aussi pour savoir apprendre et reconnaître la photo d’un <span>film</span>, et le travail de son chef opérateur. </p>
+                </div>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}

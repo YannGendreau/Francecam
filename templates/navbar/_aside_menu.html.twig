@@ -2,23 +2,36 @@
 	<ul>
 		<li class='has-sub'>
 			<a href='#'>Caméras</a>
-
-			{# <i class="arrow right"></i> #}
-
 			<ul>
-
 				<li class='has-sub'>
+					<a class="tlf" href="{{ path('modele') }}">Toutes les caméras</a>
 					<a href='#'>Marques</a>
 					<ul>
-						<li><a class=""href="{{path('marque_index')}}">Toutes les marques</a></li>
-						<li><a class=""href="{{path('modele')}}">Toutes les caméras</a></li>
-						<li><a class=""href="{{path('marque_show',{slug:'aaton'})}}">Aaton</a></li>
-						<li><a class=""href="{{path('marque_show',{slug:'arri'})}}">ARRI</a></li>
-						<li><a class=""href='{{path('marque_show',{slug:'debrie'})}}'>Debrie</a></li>
-						<li><a class=""href='{{path('marque_show',{slug:'eclair'})}}'>Eclair</a></li>
-						<li><a class=""href='{{path('marque_show',{slug:'moviecam'})}}'>Moviecam</a></li>
-						<li><a class=""href='{{path('marque_show',{slug:'mitchell'})}}'>Mitchell</a></li>
-						<li><a class=""href='{{path('marque_show',{slug:'panavision'})}}'>Panavision</a></li>
+						<li>
+							<a class="" href="{{path('marque_index')}}">Toutes les marques</a>
+						</li>
+						<!-- <li><a class=""href="{{path('modele')}}">Toutes les caméras</a></li> -->
+						<li>
+							<a class="" href="{{path('marque_show',{slug:'aaton'})}}">Aaton</a>
+						</li>
+						<li>
+							<a class="" href="{{path('marque_show',{slug:'arri'})}}">ARRI</a>
+						</li>
+						<li>
+							<a class="" href='{{path('marque_show',{slug:'debrie'})}}'>Debrie</a>
+						</li>
+						<li>
+							<a class="" href='{{path('marque_show',{slug:'eclair'})}}'>Eclair</a>
+						</li>
+						<li>
+							<a class="" href='{{path('marque_show',{slug:'moviecam'})}}'>Moviecam</a>
+						</li>
+						<li>
+							<a class="" href='{{path('marque_show',{slug:'mitchell'})}}'>Mitchell</a>
+						</li>
+						<li>
+							<a class="" href='{{path('marque_show',{slug:'panavision'})}}'>Panavision</a>
+						</li>
 					</ul>
 				</li>
 				<li class='has-sub'>
@@ -66,6 +79,8 @@
 			<a href='#'>Films</a>
 			<ul>
 				<li class='has-sub'>
+					<a class="tlf" href="{{ path('films') }}">Tous les films</a>
+
 					<a href='#'>Genres</a>
 					<ul>
 						<li><a class=""href="{{path('films',{'q':'','genres':'1'})}}">Action</a></li>
@@ -100,34 +115,35 @@
 				<a href='#'>{{app.user.name}}</a>
 				<ul>
 					<li class='has-sub-reg'>
-						<a href="{{path('user')}}">Mon profil</a>
+						<a class="tlf" href="{{path('user')}}">Mon profil</a>
 					</li>
 					<li class='has-sub-reg'>
-						<a href='{{path('admin')}}'>Back-Office</a>
+						<a class="tlf" href='{{path('admin')}}'>Back-Office</a>
 					</li>
 					<li class='has-sub-reg'>
-						<a href='{{path('app_logout')}}'>Déconnexion</a>
+						<a class="tlf" href='{{path('app_logout')}}'>Déconnexion</a>
 					</li>
 				{% elseif app.user %}
 					<a href='#'>{{app.user.name}}</a>
 					<ul>
 						<li class='has-sub'>
-							<a href='{{path('user')}}'>Mon profil</a>
+							<a class="tlf" href='{{path('user')}}'>Mon profil</a>
 						</li>
 						<li class='has-sub'>
-							<a href='{{path('app_logout')}}'>Déconnexion</a>
+							<a class="tlf" href='{{path('app_logout')}}'>Déconnexion</a>
 						</li>
 					</ul>
 				{% else %}
 					<li class='has-sub-reg'>
-						<a href="{{path('app_login')}}">Connexion</a>
+						<a class="tlf" href="{{path('app_login')}}">Connexion</a>
 					</li>
 					<li class='has-sub-reg'>
-						<a href="{{path('app_register')}}">Inscription</a>
+						<a class="tlf" href="{{path('app_register')}}">Inscription</a>
 					</li>
 
 				</ul>
 			{% endif %}
 		</li>
-	</li>
-</ul></li></ul></div>
+		</li>
+	</ul>
+</div>

@@ -1,6 +1,6 @@
 <div id="film">
 	{{ form_start(form) }}
-
+	{{form_widget(form._token)}}
 	<div class="rowFormTitle">
 		<div>
 			<h3>Titre</h3>
@@ -19,7 +19,6 @@
 				<h3>Durée</h3>
 				<div>
 					<span>{{form_row(form.duree)}}</span>
-					<span>minutes</span>
 				</div>
 
 
@@ -45,11 +44,10 @@
 		<div>
 			<div>
 				<h3>Synopsis</h3>
-
-				{# {{form_errors(form.synopsis, {'attr': {'class': 'error'}})}} #}
 				{{form_row(form.synopsis)}}
-
+				Il reste
 				<span id="count"></span>
+				caractères.
 
 			</div>
 
@@ -82,15 +80,8 @@
 		<h3>Caméras</h3>
 
 		<div class="marqueModele">
-			<div
-				class="marqueForm">{# <div
-																																																												class="camera" id="cam_list" data-prototype="{{form_widget(form.camera.vars.prototype)|e('html_attr')}}">
-																																																																	for cam in form.camera %}
-																																																																			{{ form_row(cam) }}
-																																																																		{% endfor %}
-																																																											</div>#}
-
-
+			<div class="marqueForm">
+				{{form_row(form.camera)}}
 			</div>
 		</div>
 	</div>
@@ -98,5 +89,5 @@
 	<div class="printBtn">
 		<button class="btn">{{ button_label|default('Enregistrer') }}</button>
 	</div>
-	{{ form_end(form) }}
+	{{ form_end(form, {render_rest: false}) }}
 </div>

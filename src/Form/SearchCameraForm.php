@@ -61,7 +61,6 @@ class SearchCameraForm extends AbstractType
                 'multiple' => true,
                 'query_builder'  => function (EntityRepository $er ){
                     return $er->createQueryBuilder('m')
-                    // ->select('m.name')
                     ->orderBy('m.name', 'ASC')
                     ;
                 }
@@ -74,6 +73,7 @@ class SearchCameraForm extends AbstractType
                 'expanded'=> true,
                 'multiple' => true
             ])
+       
           
             ->add('decade', ChoiceType::class, [
  

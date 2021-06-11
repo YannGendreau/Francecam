@@ -9,11 +9,12 @@
 	<div class="container">
 		<div
 			class="tableauCamera">
-			<!--AFFICHE-------------------------------->
-
+			<!--AFFICHE-->
 			<div class="imageCam">
 				{% if film.poster %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
+				{% elseif film.poster == 0 %}
+					<div class="imgMov"><img class="imgCam" src="{{film.image}}" alt="affiche du film {{film.title}}"></div>
 				{% else %}
 					{% if film.user %}
 						<div class="addPoster">
@@ -27,7 +28,7 @@
 				{% endif %}
 				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt="ombre portée d'affiche"></div>
 			</div>
-			<!--DESCRIPTION-------------------------------->
+			<!--DESCRIPTION-->
 			<div class="descriptionFilm">
 				<div class="titre">
 					<h1 id="titleFilmShow">{{film.title}}
@@ -128,7 +129,7 @@
 				</div>
 			</div>
 
-			<!--INFOS-------------------------------->
+			<!--INFOS-->
 			<div class="specCam">
 				<div class="tabContainer">
 					<div class="buttonContainer">
@@ -140,79 +141,27 @@
 						<div class="tabPanel" style="display: block;">
 							<div>
 								<div class="tableauCamFilm">
-									{% if film.modeles | length >= 1 %}
-										{% for camera in film.modeles %}
-											<div class="cardGridCam">
-												<div class="cardSmCam">
-													<div class="imgCardCam">
-														{% if camera.img %}
-															<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
-														{% else %}
-															<div class="description">
-																<h3>{{camera.marque}}</h3>
-																<h2>{{camera.name}}</h2>
-																{% for g in camera.type %}
-																	<em>{{g.name}}</em>
-																{% endfor %}
-																{% for f in camera.format %}
-																	<em>{{f.name}}</em>
-																{% endfor %}
-															</div>
-														{% endif %}
-													</div>
-													<a href="{{path('modele_show', {slug:camera.slug} )}}">
-														<div class="description__overlay description__overlay--blur">
-															<h3>{{camera.marque}}</h3>
-															<h2>
-																{{camera.name}}</h2>
-															{% for f in camera.type %}
-																<em>{{f.name}}</em>
-															{% endfor %}
-															{% for f in camera.format %}
-																<em>{{f.name}}</em>
-															{% endfor %}
-														</div>
-													</a>
-												</div>
-											</div>
-										{% endfor %}
-									{% elseif film.modeles | length == 0 %}
-										{% for m in film.marques %}
-											<div class="cardGridCam">
-												<div class="cardSmCam">
-													<div class="imgCardCam">
+									{% include "camera/_camera_show.html.twig" %}
+									{# {% include "film/_modele.html.twig" %} #}
 
-														{% if m.logoName %}
-															<a href="{{path('marque_show', {slug: m.slug,})}}"><img src="/build/images/marques/{{m.logoName}}" alt="logo de la marque {{m.name}}"></a>
-														{% else %}
-															<a href="{{path('marque_show', {slug: m.slug} )}}">
-																<div class="smDescriptionOverlay">
-																	<em>{{m.name}}</em>
-																</div>
-																<div class="description__overlay description__overlay--blur">
-																	<h2>{{m.name}}
-																	</h2>
-																</div>
-															</a>
-														{% endif %}
-													</div>
-												</div>
-											{% endfor %}
-										{% elseif film.modeles | length == 0 and film.marques | length == 0 %}
-											<h1>Pas de camera</h1>
-										{% endif %}
-									</div>
 								</div>
-								{# <div class="tabPanel" style="display: none;"></div> #}
-								<div class="tabPanel" style="display: none;">
-									<h2>BANDE ANNONCE</h2>
-								</div>
+							</div>
+							{# <div class="tabPanel" style="display: none;"></div> #}
+							<div class="tabPanel" style="display: none;">
+								<h2>BANDE ANNONCE</h2>
+								<video width="320" height="240" controls>
+									<source
+									src="https://{{film.videolink}}" type="">
+								{# <source src="/build/videos/arcnet.io(7-sec).mp4" type="video/mp4"> #}
+								</video>
+
 							</div>
 						</div>
 					</div>
 				</div>
-				<div>
-					{# <h1>{{film.user}}</h1> #}
-				</div>
 			</div>
-		{% endblock %}
+			<div>
+				{# <h1>{{film.user}}</h1> #}
+			</div>
+		</div>
+	{% endblock %}

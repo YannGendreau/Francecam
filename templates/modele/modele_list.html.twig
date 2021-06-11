@@ -6,13 +6,8 @@
 {% block content %}
 	<div class="container js-filter">
 
-		{# <div class="title">
-					<h1>Toutes les Caméras</h1>
-				</div> #}
-
-		{# <div class="leftside">
-																										</div> #}
-			<aside class="sidepanel" id="mySidepanel"> {% include "modele/_modele_list_filter.html.twig" with {form: form} only %}
+		<aside class="sidepanel" id="mySidepanel">
+			{% include "modele/_modele_list_filter.html.twig" with {form: form} only %}
 		</aside>
 
 

@@ -22,8 +22,8 @@
 					<td>{{ camera.marque }}</td>
 					<td>{{ camera.modele }}</td>
 					<td>
-						<a href="{{ path('camera_show', {'id': camera.id}) }}">show</a>
-						<a href="{{ path('camera_edit', {'id': camera.id}) }}">edit</a>
+						<a href="{{ path('camera_show', {'slug': camera.slug}) }}">show</a>
+						<a href="{{ path('camera_edit', {'slug': camera.slug}) }}">edit</a>
 					</td>
 				</tr>
 			{% else %}

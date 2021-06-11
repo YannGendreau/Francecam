@@ -10,11 +10,11 @@
 			<ul class="exo-menu">
 				<li class="drop-down">
 					<a href="{{path('modele')}}">Cameras</a>
-					<!--Drop Down-->
+					<!--Menu dépliant premier niveau-->
 					<ul class="drop-down-ul animated fadeIn">
 						<li class="flyout-right">
 							<a href="">Formats</a>
-							<!--Flyout Left-->
+							<!--menu dépliant deuxième niveau -->
 							<ul class="animated fadeIn">
 								<li>
 									<a href="{{ path('modele', {'q':'', 'format':'1'}) }}">16mm /Super 16</a>
@@ -28,7 +28,7 @@
 
 						<li class="flyout-right">
 							<a href="">Marques</a>
-							<!--Flyout Right-->
+							<!--menu dépliant deuxième niveau -->
 							<ul class="animated fadeIn">
 								<li>
 									<a href="{{path('marque_index')}}">Toutes les marques</a>
@@ -60,7 +60,7 @@
 
 						<li class="flyout-right">
 							<a href="">Decennies</a>
-							<!--Flyout Left-->
+							<!--Flyout -->
 							<ul class="animated fadeIn">
 								<li>
 									<a href="{{ path('modele', {'q':'', 'decade':'1910'}) }}">1910</a>
@@ -93,15 +93,15 @@
 						</li>
 
 					</ul>
-					<!--//End drop down-->
+					<!--//fin drop -->
 				</li>
 				<li class="drop-down">
 					<a href="{{path('films')}}">Films</a>
-					<!--Drop Down-->
+					<!--Drop -->
 					<ul class="drop-down-ul animated fadeIn">
 						<li class="flyout-right">
 							<a href="#">Genres</a>
-							<!--Flyout Right-->
+							<!--Flyout -->
 							<ul class="animated fadeIn">
 
 								<li>
@@ -126,6 +126,9 @@
 									<a href="{{ path('films', {'q':'', 'genres':'6'}) }}">Horreur</a>
 								</li>
 								<li>
+									<a href="{{ path('films', {'q':'', 'genres':'9'}) }}">Romance</a>
+								</li>
+								<li>
 									<a href="{{ path('films', {'q':'', 'genres':'1'}) }}">Science-Fiction</a>
 								</li>
 							</ul>
@@ -133,7 +136,7 @@
 
 						<li class="flyout-right">
 							<a href="#">Decennies</a>
-							<!--Flyout Left-->
+							<!--Flyout -->
 							<ul class="animated fadeIn">
 								<li>
 									<a href="{{ path('films', {'q':'', 'decade':'1910'}) }}">1910</a>
@@ -165,22 +168,22 @@
 							</ul>
 						</li>
 					</ul>
-					<!--//End drop down-->
+					<!--//fin drop -->
 				</li>
 
 				{# {% if app.request.attributes.get('_route') != 'accueil' %}
-																																																																																																																																																																																																																																																																																																																																																					{% include "includes/_searchtop.html.twig" %}
-																																																																																																																																																																																																																																																																																																																																																				{% endif %} #}
+																{% include "includes/_searchtop.html.twig" %}
+																{% endif %} #}
 
 			</ul>
 		</div>
 		<div class="connexion">
 			<ul class="exo-menu">
 				{% if is_granted('ROLE_ADMIN') %}
-
+					<!-- Si l'utilisateur est connecté en tant qu'ADMIN -->
 					<li class="drop-down user">
-						<a href="">{{app.user.name}}</a>
-
+						<a href="#">{{app.user.name}}</a>
+						<!--menu dépliant -->
 						<ul class="drop-down-ul animated fadeIn">
 							<li class="flyout-right">
 								<a class="backOffice" href="{{path('user')}}">Profil</a>
@@ -189,36 +192,26 @@
 							</li>
 						</ul>
 					</li>
-
-
 				{% elseif app.user %}
-
+					<!-- Si l'utilisateur est connecté en tant qu'USER -->
 					<li class="drop-down user">
-						<a href="">{{app.user.name}}</a>
-						<!--Drop Down-->
+						<a href="#">{{app.user.name}}</a>
+						<!--menu dépliant -->
 						<ul class="drop-down-ul animated fadeIn">
 							<li class="flyout-right">
 								<a class="backOffice" href="{{path('user')}}">Profil</a>
 								<a href="{{path('app_logout')}}">Déconnexion</a>
-								<!--Flyout Right-->
-
 							</li>
-
 						</ul>
-						<!--//End drop down-->
+						<!--//fin drop -->
 					</li>
-
-
 				{% else %}
-
+					<!-- pas d'utilisateur connecté -->
 					<li class="drop-down">
 						<a href="{{path('app_login')}}">Connexion</a>
 					</li>
 					<li class="drop-down">
 						<a href="{{path('app_register')}}">Inscription</a>
-						<!--Drop Down-->
-
-						<!--//End drop down-->
 					</li>
 				{% endif %}
 			</ul>
@@ -240,6 +233,8 @@
 	</div>
 
 	<main role="main">
-		{% block content %}{% endblock %}
+		{% block content %}
+			{# {% include "/includes/flashes/_flash_message.html.twig" %} #}
+		{% endblock %}
 	</main>
 {% endblock %}

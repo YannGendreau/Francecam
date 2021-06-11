@@ -10,6 +10,7 @@ use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Data\FilmSearchData;
 use App\Repository\FilmRepository;
+use App\Repository\ModeleRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
@@ -33,9 +34,7 @@ class SearchFilmForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-      
-        
-        $builder
+            $builder
             //BARRE DE RECHERCHE
             ->add ('q', TextType::class, [
                 'label' => false,
@@ -83,7 +82,9 @@ class SearchFilmForm extends AbstractType
                 'class' => Marque::class,
                 'expanded'=> true,
                 'multiple' => true,
+               
             ])
+
             ;
     }
 

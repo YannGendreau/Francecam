@@ -40,17 +40,17 @@ class ModeleRepository extends ServiceEntityRepository
 
      //Modele classé par date
 
-     public function modeleByDateDesc()
-     {
+    public function modeleByDateDesc()
+    {
         return $this->createQueryBuilder('m')
             ->orderBy('m.createdAt', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult()
-    ;
-     }
+            ;
+    }
      
-     //Modele classé par date
+     //Modele classé par nom
 
      public function modeleByIdAsc()
      {
@@ -72,6 +72,7 @@ class ModeleRepository extends ServiceEntityRepository
         if($mots != null){
             $query->andWhere('MATCH_AGAINST(c.name) AGAINST (:mots boolean)>0')
                 ->setParameter('mots', $mots);
+
         }
 
         return $query->getQuery()->getResult();
@@ -87,8 +88,9 @@ class ModeleRepository extends ServiceEntityRepository
     {
         $query = $this
                 ->createQueryBuilder('g')
-                ->select('g','m', 'f')
+                ->select('g','m', 'f', 'n')
                 ->leftJoin('g.marque', 'm')
+                ->leftJoin('g.modele', 'n')
                 ->leftJoin('g.films', 'f')
                 
                 ;
@@ -148,6 +150,7 @@ class ModeleRepository extends ServiceEntityRepository
             ->setParameter('marques', $search->marque)
         ;
         }
+      
 
         if (!empty($search->decade)) {
         $query = $query
@@ -166,4 +169,16 @@ class ModeleRepository extends ServiceEntityRepository
         );      
     }
 
+   public function getModeleQueryBuilder($marqueId)
+    {
+        return $this->createQueryBuilder('b')
+                ->leftJoin('b.marque', 'e')
+                ->addSelect('e')
+                ->where("e.id = :id")
+                ->setParameter('id', $marqueId)
+                ;
+ 
+    }
+
+   
 }

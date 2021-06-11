@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/marque")
@@ -17,6 +18,7 @@ class MarqueController extends AbstractController
 {
     /**
      * @Route("/", name="marque_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(MarqueRepository $marqueRepository): Response
     {
@@ -27,6 +29,7 @@ class MarqueController extends AbstractController
 
     /**
      * @Route("/new", name="marque_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -51,6 +54,7 @@ class MarqueController extends AbstractController
 
     /**
      * @Route("/{slug}", name="marque_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Marque $marque): Response
     {
@@ -61,6 +65,7 @@ class MarqueController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="marque_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Marque $marque): Response
     {
@@ -81,6 +86,7 @@ class MarqueController extends AbstractController
 
     /**
      * @Route("/{slug}", name="marque_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Marque $marque): Response
     {

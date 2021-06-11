@@ -13,12 +13,15 @@ use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass=FilmRepository::class)
+* @ORM\Entity(repositoryClass=FilmRepository::class)
 * @Vich\Uploadable()
 * @ORM\Table(name="film", indexes={@ORM\Index(columns={"title"}, flags={"fulltext"})})
- */
+* @UniqueEntity(
+*    fields={"title"})
+*/
 class Film
 {
   
@@ -30,13 +33,14 @@ class Film
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)^
+     * @ORM\Column(type="string", length=255)
      * @Assert\Length(max=255)
      */
     private $title;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Length(max=4)
      */
     private $duree;
 
@@ -56,8 +60,8 @@ class Film
     private $sortie;
 
     /**
-     * @var Collection|Marque[]
-    *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films")
+    * @var Collection|Marque[]
+    *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films", cascade={"persist"})
     */
     private $marques;
 
@@ -78,7 +82,7 @@ class Film
 
     /**
      * @var Collection|Modele[]
-     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films")
+     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films", cascade={"persist"})
      */
     private $modeles;
 
@@ -105,8 +109,6 @@ class Film
      */
     private $directors;
 
-
-
     /**
      
      * @ORM\Column(type="datetime")
@@ -130,7 +132,7 @@ class Film
     private $pays;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films", cascade={"all"})
+     * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films", cascade={"persist"})
      */
     private $camera;
 
@@ -138,6 +140,21 @@ class Film
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $activation_token;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $videolink;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default":false}, nullable = true)
+     */
+    private $isVerified;
 
      
 
@@ -245,10 +262,10 @@ class Film
         return $this->sortie;
     }
 
-    public function setSortie(int $sortie): self
+    public function setSortie(?int $sortie): self
     {
         $this->sortie = $sortie;
-
+        
         return $this;
     }
 
@@ -257,7 +274,7 @@ class Film
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
 
@@ -511,7 +528,7 @@ class Film
         if (!$this->camera->contains($camera)) {
             $this->camera[] = $camera;
         }
-
+        // $this->camera->add($camera);
         return $this;
     }
 
@@ -530,6 +547,42 @@ class Film
     public function setActivationToken(?string $activation_token): self
     {
         $this->activation_token = $activation_token;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getVideolink(): ?string
+    {
+        return $this->videolink;
+    }
+
+    public function setVideolink(?string $videolink): self
+    {
+        $this->videolink = $videolink;
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

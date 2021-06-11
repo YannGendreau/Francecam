@@ -5,11 +5,11 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>
-			{% block title %}Bienvenu sur Francecam
+			{% block title %}Bienvenue sur Francecam
 			{% endblock %}
 		</title>
 
-		<!-- TARTEAUCITRON COOKIE CONSENT -->
+		<!-- TARTEAUCITRON COOKIE -->
 		<script type="text/javascript" src="{{ asset('../tarteaucitron/tarteaucitron.js') }}"></script>
 		{#  Initialization of Tarteaucitron before all scripts #}
 		<script type="text/javascript">
@@ -19,7 +19,7 @@
 "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
 "cookieName": "tarteaucitron", /* Cookie name */
 
-"orientation": "middle", /* Banner position (top - bottom) */
+"orientation": "bottom", /* Banner position (top - bottom) */
 
 "showAlertSmall": false, /* Show the small banner on bottom right */
 "cookieslist": false, /* Show the cookie list */
@@ -60,8 +60,6 @@ tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */
 
 
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -73,15 +71,13 @@ tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;400;900&display=swap" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;400;900&display=swap" rel="stylesheet">
+
 
 		<script src="https://use.fontawesome.com/43fd22934f.js"></script>
 
 
 		{% block stylesheets %}
-
 			{{ encore_entry_link_tags('app')}}
-
 		{% endblock %}
 
 	</head>

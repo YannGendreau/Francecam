@@ -25,24 +25,25 @@ class SecurityController extends AbstractController
 
     /**
      * Page d'inscription 
-     * 
      * @Route("/register", name="app_register", methods={"GET", "POST"})
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, MailerInterface $mailer): Response
     {
+        // Déclaration du formulaire
         $form = $this->createForm(UserRegistrationFormType::class);
-
+        // Requête
         $form->handleRequest($request);
-
+        // Validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
+            // user = les informations du formulaire
             $user = $form->getData();
+            // plainPassword = le mot de passe du formulaire
             $plainPassword = $form['plainPassword']->getData();
-        
+            // Hash le mot de passe
             $user->setPassword($passwordEncoder->encodePassword($user, $plainPassword));
-
             //token d'activation chiffré
             $user->setActivationToken(md5(uniqid()));
-
+            // écrire en BDD
             $em->persist($user);
             $em->flush();
 
@@ -56,14 +57,13 @@ class SecurityController extends AbstractController
                 'token' => $user->getActivationToken()
             ])
         ;
-
+        // envoie l'e-mail avec mailer
         $mailer->send($email);
 
-            // $this->addFlash('success', 'Bienvenue sur Francecam ! Votre compte à bien été crée. ');
-
             return $this->redirectToRoute('activation_sent');
+            // $this->addFlash('success', 'Bienvenue sur Francecam ! Votre compte à bien été crée. ');  
         }
-
+        //rendu Twig
         return $this->render('security/register.html.twig', [
             'registrationForm' => $form->createView()
         ]);
@@ -71,7 +71,6 @@ class SecurityController extends AbstractController
 
     /**
      * Message d'envoi de lien de connexion
-     *
      * @Route("/activation/sent", name="activation_sent")
      */
     public function activationSent()
@@ -81,48 +80,43 @@ class SecurityController extends AbstractController
 
     /**
      * Met le token a NULL si le lien est cliqué
-     * 
      * @Route("/activation/{token}", name="activation")
-     *
      */
     public function activation($token, UserRepository $userRepository)
     {
+        // User = l'utilisateur par token
         $user = $userRepository->findOneBy(['activation_token' => $token]);
-      
-
+        // Renvoie une erreur si le token ne correspond pas  
         if(!$user){
             throw $this->createNotFoundException('L\'utilisateur n\'existe pas.');
-
         }
-      
-
+        // Annule le token
         $user->setActivationToken(null);
-        
+        // écrit en BDD
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
-
+        // message Flash
         $this->addFlash('success', 'Bienvenue sur Francecam ! Votre compte a bien été crée.');
-
+        // redirection
         return $this->redirectToRoute('accueil');
     }
 
     /**
      * Formulaire de connexion
-     * 
      * @Route("/login", name="app_login", methods={"GET", "POST"})
      */
-    public function login(): Response
+    public function login(Request $request): Response
     {
         return $this->render('security/login.html.twig', [
             'controller_name' => 'SecurityController',
+            'back_to_your_page' => $request->headers->get('referer')
         ]);
     }
 
     
     /**
      * Déconnexion
-     * 
      * @Route("/logout", name="app_logout")
      */
     public function logout(): Response

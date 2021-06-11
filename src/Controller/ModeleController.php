@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/modele")
@@ -33,6 +34,7 @@ class ModeleController extends AbstractController
 
     /**
      * @Route("/new", name="modele_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -68,6 +70,7 @@ class ModeleController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="modele_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Modele $modele): Response
     {
@@ -88,6 +91,7 @@ class ModeleController extends AbstractController
 
     /**
      * @Route("/{slug}", name="modele_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Modele $modele): Response
     {
@@ -104,9 +108,7 @@ class ModeleController extends AbstractController
      * @Route("/", name="modele", methods={"GET"})
      */
     public function filmList(Request $request): Response
-    {
-        // $films = $this->repository->findAll();
-        
+    {        
         $data = new CameraSearchData;
         $data->page =$request->get('page', 1);
         $form = $this->createForm(SearchCameraForm::class, $data);

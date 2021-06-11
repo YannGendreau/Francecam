@@ -1,39 +1,33 @@
-<div class="filterFilmLeft">
+<div
+	class="filterFilmLeft">
+	{# Bouton de fermeture du panneau de filtre #}
 	<div class="closeFilter">
 		<a href="javascript:void(0)" id="close" class="closebtn">×</a>
 	</div>
-
-
+	{# Formulaire de recherche #}
 	{{form_start(form, {attr: {class: 'js-filter-form'}})}}
-
+	{# Recherche texte #}
 	{{form_row(form.q)}}
-
+	{# filtre genres #}
 	<div class="coll">
 		<h4>Genres</h4>
 	</div>
 	<div class="content">
 		{{form_row(form.genres)}}
 	</div>
-
-
+	{# filtre décennies #}
 	<div class="coll">
 		<h4>Décennies</h4>
 	</div>
 	<div class="content">
 		{{form_row(form.decade)}}
 	</div>
-
-
+	{# filtre marques #}
 	<div class="coll">
 		<h4>Marques</h4>
 	</div>
 	<div class="content">
 		{{form_row(form.marques)}}
 	</div>
-
-
-	{# <button type='submit' class='btn btn-primary w-100'>Filtrer</button> #}
 	{{form_end(form)}}
-
-
 </div>

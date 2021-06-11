@@ -8,9 +8,9 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    // directory where compiled assets will be stored
+    // dossier où seront stockés les assets compilés 
     .setOutputPath('public/build/')
-    // public path used by the web server to access the output path
+    // chemin public utilisé par le serveur pour accéder au chemin de sortie
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
@@ -57,13 +57,13 @@ Encore
         config.corejs = 3;
     })
 
-    // enables Sass/SCSS support
+    //Sass/SCSS
     .enableSassLoader()
 
     .addPlugin(new CopyWebpackPlugin(
         {
             patterns: [
-                { from: './assets/images', to: 'images' }
+                { from: './assets/images', to: 'images' },
             ]
         }))
 
@@ -78,7 +78,7 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

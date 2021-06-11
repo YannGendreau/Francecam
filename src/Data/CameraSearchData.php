@@ -19,7 +19,7 @@ class CameraSearchData{
     public $q = '';
 
     /**
-     * Tableau de genres
+     * Tableau de Modele
      *
      * @var Modele
      */
@@ -44,7 +44,7 @@ class CameraSearchData{
     /**
      * Tableau de décennies
      *
-     * @var Modele[]
+     * @var Marque[]
      */
     public $decade = [];
 
@@ -56,7 +56,7 @@ class CameraSearchData{
     public $sortie = [];
 
     /**
-     * Tableau de sortie
+     * Tableau de formats
      *
      * @var Format[]
      */
