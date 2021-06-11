@@ -24,7 +24,6 @@ import  './modules/OverFontSize';
 import  './modules/TitleFontSize';
 import  './modules/slideMenu';
 import  './modules/charcount';
-// import  './modules/menuHamburger';
 
 
 
@@ -172,31 +171,6 @@ $('#cssmenu li.active').addClass('open').children('ul').show();
 	});
 
 });
-
-
-// const $post_category = $("#cam_list")
-// const $token = $("#film__token")
-
-// if($post_category){
-//     $post_category.on(function ()
-// {
-//     const $form = $(this).closest('form')
-//     const data ={}
-
-//     data[$token.attr('name')] = $token.val()
-//     data[$post_category.attr('name')] = $post_category.val()
-
-//     $.post($form.attr('action'), data).then(function (response)
-//     {
-//         $("#film_modele").replaceWith(
-//             $(response).find("#film_modele")
-//         )
-//     })
-    
-
-// })
-// }
-
 
 //TOGGLE TABS PAGE FILM, CAMERA, MARQUE-----------------------------------
 

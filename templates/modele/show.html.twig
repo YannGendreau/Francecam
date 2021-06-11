@@ -32,18 +32,19 @@
 							<a href="{{path('marque_show', {slug :modele.marque.slug})}}">
 								<h5>{{modele.marque}}</h5>
 							</a>
-							<p>-</p>
+							<span>|</span>
 							<a href="http://{{modele.marque.website}}">
 								<h5>{{modele.marque.website}}</h5>
 							</a>
-							<p>-</p>
+							<span>|</span>
 							{% for f in modele.type %}
 								<h5>{{f.name}}</h5>
 							{% endfor %}
-							<p>-</p>
+							<span>|</span>
 							{% for format in modele.format %}
 								<h5>{{format.name}}</h5>
 							{% endfor %}
+							<span>|</span>
 							<h5>{{modele.sortie}}</h5>
 
 						</div>
