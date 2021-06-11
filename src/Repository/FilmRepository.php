@@ -56,9 +56,10 @@ class FilmRepository extends ServiceEntityRepository
         //Sélection des champs sur FilmSearchData
         $query = $this
                     ->createQueryBuilder('f') //Créé une instance de QueryBuilder avec alias
-                    ->select('f','m', 'g') // Sélectionne les items à retourner dans les résultat de requêtes
+                    ->select('f','m', 'g', 'n') // Sélectionne les items à retourner dans les résultat de requêtes
                     ->leftJoin('f.genres', 'g') //Joint la relation film.genres avec un alias
                     ->leftJoin('f.marques', 'm') //Joint la relation film.marques avec un alias
+                    ->leftJoin('f.modeles', 'n') //Joint la relation film.modeles avec un alias
                    //évite le problème typique de n+1 de Symfony en joignant les requêtes
                     ;
 
@@ -95,6 +96,12 @@ class FilmRepository extends ServiceEntityRepository
             $query = $query
             ->andWhere('m.id IN (:marques)')
             ->setParameter('marques', $search->marques)
+            ;
+        }
+        if (!empty($search->modeles)) {
+            $query = $query
+            ->andWhere('n.id IN (:modeles)')
+            ->setParameter('modeles', $search->modeles)
             ;
         }
         //envoie les resultats vers paginator pour pagination

@@ -53,6 +53,12 @@ class FilmSearchData
      * @var Marque
      */
     public $marques = [];
+    /**
+     *Tableau de modeles de caméras
+     *
+     * @var Modele
+     */
+    public $modeles = [];
 
     // public $sortie;
 

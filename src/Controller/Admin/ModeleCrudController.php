@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class ModeleCrudController extends AbstractCrudController
 {
@@ -48,7 +49,7 @@ class ModeleCrudController extends AbstractCrudController
             TextField::new('sync'),
             TextField::new('view'),
             TextField::new('slug'),
-            TextEditorField::new('description'),
+            TextareaField::new('description'),
            
         ];
     }

@@ -20,6 +20,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -55,16 +56,15 @@ class FilmController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $film->setUser($this->getUser());
-         
             $sortie = $film->getSortie();
             $film->setDecade($sortie);
-            
+          
             $entityManager = $this->getDoctrine()->getManager();
+
             $film = $form->getData();
           
-
-                $entityManager->persist($film);
-                $entityManager->flush();
+            $entityManager->persist($film);
+            $entityManager->flush();
         
             /*------------------------------------------------------------------------------
                       
@@ -85,21 +85,13 @@ class FilmController extends AbstractController
             $this->addFlash('success', 'Nouveau film enregistré');
         
                 return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
-              
-            
-                $entityManager->persist($film);
-                $entityManager->flush();
-                $this->addFlash('success', 'Attente de validation');
-                return $this->redirectToRoute('films');
-            }
 
-            
-        
+        }
+      
             return $this->render('film/new.html.twig', [
                 'film' => $film,
                 'form' => $form->createView(),
             ]);
-        // } 
     }
 
     /**
@@ -129,16 +121,6 @@ class FilmController extends AbstractController
 
         // Validation du formulaire
          if ($form->isSubmitted() && $form->isValid()) {
-
-            // foreach ($camera as $cam) {
-            //     if (false === $film->getCamera()->contains($cam)) {
-            //         $cam->getFilms()->removeElement($film);
-            
-            //         $entityManager->persist($cam);
-            //         // retire la caméra
-            //         $entityManager->remove($cam);
-            //     }
-            // }
          
             //Enregistrement en base de données avec le manager de Doctrine  
             $this->getDoctrine()->getManager()->flush();

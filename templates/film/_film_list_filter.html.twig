@@ -4,7 +4,6 @@
 	<div class="closeFilter">
 		<a href="javascript:void(0)" id="close" class="closebtn">×</a>
 	</div>
-
 	{# Formulaire de recherche #}
 	{{form_start(form, {attr: {class: 'js-filter-form'}})}}
 	{# Recherche texte #}
@@ -30,10 +29,5 @@
 	<div class="content">
 		{{form_row(form.marques)}}
 	</div>
-
-	{# Bouton de validation; désactivé car Ajax #}
-	{# <button type='submit' class='btn btn-primary w-100'>Filtrer</button> #}
 	{{form_end(form)}}
-
-
 </div>

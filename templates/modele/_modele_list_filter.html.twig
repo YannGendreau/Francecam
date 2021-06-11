@@ -2,12 +2,8 @@
 	<div class="closeFilter">
 		<a href="javascript:void(0)" id="close" class="closebtn" onclick="closeNav()">×</a>
 	</div>
-
 	{{form_start(form, {attr: {class: 'js-filter-form'}})}}
-
 	{{form_row(form.q)}}
-
-
 	<div class="coll">
 		<h4>Format</h4>
 	</div>
@@ -28,10 +24,5 @@
 	<div class="content">
 		{{form_row(form.decade)}}
 	</div>
-
-
-	{# <button type='submit' class='btn btn-primary w-100'>Filtrer</button> #}
 	{{form_end(form)}}
-
-
 </div>

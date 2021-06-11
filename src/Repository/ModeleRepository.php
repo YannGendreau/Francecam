@@ -88,8 +88,9 @@ class ModeleRepository extends ServiceEntityRepository
     {
         $query = $this
                 ->createQueryBuilder('g')
-                ->select('g','m', 'f')
+                ->select('g','m', 'f', 'n')
                 ->leftJoin('g.marque', 'm')
+                ->leftJoin('g.modele', 'n')
                 ->leftJoin('g.films', 'f')
                 
                 ;
@@ -149,6 +150,7 @@ class ModeleRepository extends ServiceEntityRepository
             ->setParameter('marques', $search->marque)
         ;
         }
+      
 
         if (!empty($search->decade)) {
         $query = $query
@@ -177,4 +179,6 @@ class ModeleRepository extends ServiceEntityRepository
                 ;
  
     }
+
+   
 }
