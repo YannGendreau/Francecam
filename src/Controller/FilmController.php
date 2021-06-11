@@ -55,16 +55,24 @@ class FilmController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $camera = $film->getCamera();
+            foreach($camera as $cam){
+                $marque = $cam->getMarque();
+                $film->addMarque($marque);
+                $modele = $cam->getModele();
+                $film->addModele($modele);
+            }
+            
+            
             $film->setUser($this->getUser());
             $sortie = $film->getSortie();
             $film->setDecade($sortie);
-          
+            
             $entityManager = $this->getDoctrine()->getManager();
-
             $film = $form->getData();
-          
             $entityManager->persist($film);
             $entityManager->flush();
+            // dd($film);
         
             /*------------------------------------------------------------------------------
                       
@@ -121,7 +129,13 @@ class FilmController extends AbstractController
 
         // Validation du formulaire
          if ($form->isSubmitted() && $form->isValid()) {
-         
+            $camera = $film->getCamera();
+            foreach($camera as $cam){
+                $marque = $cam->getMarque();
+                $film->addMarque($marque);
+                $modele = $cam->getModele();
+                $film->addModele($modele);
+            }
             //Enregistrement en base de données avec le manager de Doctrine  
             $this->getDoctrine()->getManager()->flush();
             //Message de succès 

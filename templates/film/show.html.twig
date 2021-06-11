@@ -11,20 +11,18 @@
 			class="tableauCamera">
 			<!--AFFICHE-->
 			<div class="imageCam">
-				{% if film.poster %}
+				{% if film.poster | length >= 1 and film.image | length == 0 %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
-				{% elseif film.poster == 0 %}
+				{% elseif film.poster| length == 0 and film.image | length >= 1 %}
 					<div class="imgMov"><img class="imgCam" src="{{film.image}}" alt="affiche du film {{film.title}}"></div>
 				{% else %}
-					{% if film.user %}
-						<div class="addPoster">
+					<div class="addPoster">
+						{% if film.user %}
 							<a href="{{path('film_edit', {slug:film.slug})}}">Ajouter une affiche</a>
-						</div>
-					{% else %}
-						<div class="addPoster">
+						{% else %}
 							<h4>Ajouter une affiche</h4>
-						</div>
-					{% endif %}
+						{% endif %}
+					</div>
 				{% endif %}
 				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt="ombre portée d'affiche"></div>
 			</div>

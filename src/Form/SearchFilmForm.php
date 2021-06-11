@@ -9,6 +9,7 @@ use App\Entity\Genre;
 use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Data\FilmSearchData;
+use App\Entity\Camera;
 use App\Repository\FilmRepository;
 use App\Repository\ModeleRepository;
 use Doctrine\ORM\EntityManager;
@@ -75,6 +76,22 @@ class SearchFilmForm extends AbstractType
                 'multiple' => true,
                
             ])
+            // ->add('camera', ChoiceType::class, [
+            //     'label' => false,
+            //     'choices' => [
+            //         'Aaton' => 'Aaton',
+            //         'ARRI' => 'ARRI',
+            //         'Eclair' => 'Eclair',
+            //         'Debrie' => '1',
+            //         'Moviecam' => 'Moviecam',
+            //         'Mitchell' => 'Mitchell',
+            //         'Panavision' => 'Panavision',
+                 
+            //     ],
+            //     'expanded' => true,
+            //     'multiple' => true,
+               
+            // ])
 
             ->add('marques', EntityType::class,[
                 'label' => false,
@@ -84,7 +101,6 @@ class SearchFilmForm extends AbstractType
                 'multiple' => true,
                
             ])
-
             ;
     }
 

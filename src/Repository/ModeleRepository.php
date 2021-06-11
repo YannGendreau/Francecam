@@ -88,17 +88,14 @@ class ModeleRepository extends ServiceEntityRepository
     {
         $query = $this
                 ->createQueryBuilder('g')
-                ->select('g','m', 'f', 'n')
+                ->select('g','m')
                 ->leftJoin('g.marque', 'm')
-                ->leftJoin('g.modele', 'n')
-                ->leftJoin('g.films', 'f')
                 
                 ;
 
         if (!empty($search->r)) {
             $query = $query
                 ->andWhere('g.name LIKE :r')
-                ->orWhere('f.title LIKE :r')
                 ->orWhere('m.name LIKE :r')
                 ->setParameter('r', "%{$search->r}%")
                 ;

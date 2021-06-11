@@ -23,12 +23,9 @@ class ModeleType extends AbstractType
                     'class'         => Marque::class,
                     'placeholder'   => 'Choisir une marque de caméra',
                     'choice_label' => 'name',
-                    // 'mapped'        => false,
                     'required'      => false,
                     'by_reference'  => false,
-                    // 'multiple'       => true,
                     'auto_initialize'   => false,
-                    // 'expanded' => true
             ])
             ->add('name', TextType::class, [
 

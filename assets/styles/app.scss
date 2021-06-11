@@ -3219,11 +3219,6 @@ ABOUT US
 
                     .form-group {
                         width: 100%;
-                        // background: $megamenu-bg;
-
-                        #film_sortie {
-                            // background: $megamenu-bg;
-                        }
 
                         .select2-selection.select2-selection--multiple {
                             width: 100%;
@@ -3261,13 +3256,7 @@ ABOUT US
                                     text-align: center;
                                 }
                             }
-
-                            span {
-                            }
                         }
-                    }
-
-                    span {
                     }
                 }
 
@@ -3401,70 +3390,6 @@ ABOUT US
                             width: 100%;
                         }
 
-                        // #camera-fields-list {
-                        //     width: 100%;
-
-                        //     .add {
-                        //         @include flex-end-center();
-                        //         width: 100%;
-
-                        //         .add_tag_link {
-                        //             width: 25%;
-                        //             @include flex-end-center();
-
-                        //             .btnCamAdd {
-                        //                 width: 70px;
-                        //                 height: 30px;
-                        //                 background: $green-light;
-                        //                 color: #f5f6f8;
-                        //                 border: none;
-                        //                 cursor: pointer;
-                        //                 border-radius: 3px;
-                        //             }
-                        //         }
-                        //     }
-
-                        //     .panel {
-                        //         @include flex-between-center();
-                        //         margin: 10px 0 10px 0;
-
-                        //         div {
-                        //             width: 50%;
-                        //             @include flex-between-center();
-
-                        //             .remove-tag {
-                        //                 .btnCam {
-                        //                     width: 30px;
-                        //                     height: 30px;
-                        //                     background: #f73859;
-                        //                     color: #f5f6f8;
-                        //                     border: none;
-                        //                     cursor: pointer;
-                        //                 }
-                        //             }
-
-                        //             .form-group {
-                        //                 // width: 100%;
-                        //                 // @include flex-between-center();
-                        //                 // flex-wrap: wrap;
-
-                        //                 #film_camera_0 {
-                        //                     @include flex-between-center();
-                        //                     flex-wrap: wrap;
-
-                        //                     .form-group {
-                        //                         width: 50%;
-
-                        //                         select {
-                        //                             width: 100%;
-                        //                         }
-                        //                     }
-                        //                 }
-                        //             }
-                        //         }
-                        //     }
-                        // }
-
                         #cam_list {
                             width: 100%;
 
@@ -3505,9 +3430,6 @@ ABOUT US
                                 width: 100px;
                             }
                         }
-
-                        .posterForm {
-                        }
                     }
                 }
             }
@@ -3527,37 +3449,18 @@ ABOUT US
 
                 .realPhoto {
                     width: 100%;
-                    @include flex-center();
+                    @include flex-space-center();
                     flex-wrap: wrap;
 
                     .realForm {
                         width: 50%;
                         @include flex-start-center();
                         flex-wrap: wrap;
-
-                        .form-group {
+                        h5 {
                             width: 100%;
-
-                            // #film_directors {
-                            //     width: 100%;
-
-                            //     .select2.select2-container.select2-container--default.select2-container--focus {
-                            //         width: 50%;
-                            //         border: 1px solid $green-light;
-                            //     }
-                            // }
-
-                            // .select2.select2-container.select2-container--default {
-                            //     width: 100%;
-                            // }
-
-                            // .select2.select2-container.select2-container--multiple {
-                            //     width: 100%;
-                            // }
-
-                            // .select2.select2-container.select2-container--default.select2-container--below {
-                            //     width: 100%;
-                            // }
+                        }
+                        .select2 {
+                            width: 100% !important;
                         }
                     }
 
@@ -3565,17 +3468,11 @@ ABOUT US
                         width: 50%;
                         @include flex-start-center();
                         flex-wrap: wrap;
-
-                        .form-group {
+                        h5 {
                             width: 100%;
-
-                            #film_dirphoto {
-                                // width: 100%;
-
-                                // span {
-                                //     width: 50%;
-                                // }
-                            }
+                        }
+                        .select2 {
+                            width: 100% !important;
                         }
                     }
                 }
@@ -3955,6 +3852,7 @@ PAGE USER PROFILE
 
 #profilePage {
     margin-top: $mTop;
+    margin-bottom: 40px;
     @include flex-center-start();
     flex-wrap: wrap;
     width: 1200px;
@@ -4207,7 +4105,6 @@ PAGE USER PROFILE
                 .btn {
                     @include flex-center();
                     height: 100%;
-                    margin-top: 10px;
                     border: 1px solid $nav-color;
                     background: $titleCard;
                     border-radius: 4px;
@@ -5886,10 +5783,8 @@ PAGE USER PROFILE
                         .btn {
                             @include flex-center();
                             height: 50%;
-                            // margin: 10px 0 10px 0;
                             border: 1px solid $nav-color;
                             background: $titleCard;
-                            // background: $green-dark;
                             border-radius: 10px;
                             cursor: pointer;
                             width: 100%;
@@ -5897,7 +5792,6 @@ PAGE USER PROFILE
 
                             &:hover {
                                 transform: scale(1);
-                                // background: $nav-color;
                                 background: $green-light;
                                 box-shadow: inset 0 -3em 1em rgba(0, 0, 0, 0.1), 0 0 0 1px rgb(255, 255, 255),
                                     0.3em 0.3em 0.5em rgba(0, 0, 0, 0.3);
@@ -6088,10 +5982,6 @@ PAGE USER PROFILE
             width: 100%;
         }
     }
-}
-
-.select2-container {
-    width: 150px;
 }
 
 //------------------------------------------------------------

@@ -13,9 +13,9 @@
 			class="tableauCamera">
 			<!--AFFICHE-->
 			<div class="imageCam">
-				{% if modele.img %}
+				{% if modele.img | length >= 1 and modele.image | length == 0 %}
 					<img class="imgCam" src="/build/images/imagesCam/{{modele.img}}" alt="Photographie de la camera {{modele.marque}} {{modele.name}}">
-				{% elseif modele.img == 0 %}
+				{% elseif modele.img == 0 and modele.image | length >= 1 %}
 					<img class="imgCam" src="{{modele.image}}" alt="Photographie de la camera {{modele.marque}} {{modele.name}}">
 				{% else %}
 					<img class="camLogo" src="/build/images/illustrations/camera-logo.png" alt="illustration de camera par défaut">

@@ -56,10 +56,11 @@ class FilmRepository extends ServiceEntityRepository
         //Sélection des champs sur FilmSearchData
         $query = $this
                     ->createQueryBuilder('f') //Créé une instance de QueryBuilder avec alias
-                    ->select('f','m', 'g', 'n') // Sélectionne les items à retourner dans les résultat de requêtes
+                    ->select('f','m', 'g', 'n', 'c') // Sélectionne les items à retourner dans les résultat de requêtes
                     ->leftJoin('f.genres', 'g') //Joint la relation film.genres avec un alias
                     ->leftJoin('f.marques', 'm') //Joint la relation film.marques avec un alias
                     ->leftJoin('f.modeles', 'n') //Joint la relation film.modeles avec un alias
+                    ->leftJoin('f.camera', 'c') //Joint la relation film.modeles avec un alias
                    //évite le problème typique de n+1 de Symfony en joignant les requêtes
                     ;
 
@@ -104,6 +105,12 @@ class FilmRepository extends ServiceEntityRepository
             ->setParameter('modeles', $search->modeles)
             ;
         }
+        if (!empty($search->camera)) {
+            $query = $query
+            ->andWhere('c.id IN (:camera)')
+            ->setParameter('camera', $search->camera)
+            ;
+        }
         //envoie les resultats vers paginator pour pagination
             $query= $query->getQuery();//Récupère la requête du QueryBuilder
             return $this->paginator->paginate(
@@ -146,9 +153,9 @@ class FilmRepository extends ServiceEntityRepository
     {
         $query = $this
                     ->createQueryBuilder('f')
-                    ->select('f','m', 'g')
+                    ->select('f','m', 'c')
                     ->leftJoin('f.marques', 'm')
-                    ->leftJoin('f.modeles', 'g')
+                    ->leftJoin('f.camera', 'c')
                    
                     ;
 
@@ -156,7 +163,7 @@ class FilmRepository extends ServiceEntityRepository
             $query = $query
                     ->andWhere('f.title LIKE :r')
                     ->orWhere('m.name LIKE :r')
-                    ->orWhere('g.name LIKE :r')
+                    ->orWhere('c.name LIKE :r')
                     ->setParameter('r', "%{$search->r}%")
                     ;
         }       

@@ -4,6 +4,7 @@ namespace App\Data;
 
 use App\Entity\Film;
 use App\Entity\Genre;
+use App\Entity\Camera;
 use App\Entity\Marque;
 use Doctrine\ORM\Mapping\OrderBy;
 
@@ -68,6 +69,12 @@ class FilmSearchData
      * @var Film[]
      */
     public $decade = [];
+    /**
+     * Tableau de cameras
+     *
+     * @var Camera[]
+     */
+    public $camera = [];
 
     
 }
