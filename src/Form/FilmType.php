@@ -73,7 +73,7 @@ class FilmType extends AbstractType
                    
                     new NotBlank(['message' => 'Veuillez saisir le synopsis du film.']),
                     new Length([
-                        'max'           => 255,
+                        'max'           => 500,
                         'maxMessage'    => 'Le synopsis doit comporter au maximum {{ limit }} caractères'
                     ])
                     ],
@@ -122,19 +122,7 @@ class FilmType extends AbstractType
                 'multiple'          => true,
           
             ])
-    /*------CAMERA COLLECTIONTYPE a revoir-------------------------------------------------------
-    
-            // ->add('camera', CollectionType::class, [
-            //     'entry_type' => CameraType::class,
-            //     'allow_add' => true,
-            //     'allow_delete' => true,
-            //     'label' => false,
-            //     'required' => false,
-            //     'prototype' => true,
-            //     'block_name' => 'task_lists',
-            //     // 'by_reference' => false
-            // ])
-    --------------------------------------------------------------------------*/
+
             ->add('posterFile', VichImageType::class, [
                 'required'          => false,
                 'label'             => false
@@ -160,12 +148,15 @@ class FilmType extends AbstractType
                 'class'         => Camera::class,
                 'placeholder'   => 'Choisir la camera',
                 'label'         => false,
-                // 'mapped'        => false,
                 'attr'          => ['class' => 'cameras'],
                 'choice_label'  =>'name',
                 'required'      => false,
-                'multiple'          => true,
-
+                'multiple'      => true,
+                'query_builder'     => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('g')
+                    ->orderBy('g.name', 'ASC')
+                    ;
+                }
                 ])
                 
         ;

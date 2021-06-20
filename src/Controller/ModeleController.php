@@ -61,9 +61,8 @@ class ModeleController extends AbstractController
      */
     public function show(Modele $modele): Response
     {
-
+        
         return $this->render('modele/show.html.twig', [
-            // 'modele' => $modele,
             'modele' => $modele
         ]);
     }

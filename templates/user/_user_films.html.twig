@@ -2,8 +2,10 @@
 	{% for film in app.user.film %}
 		<div class="filmUserList">
 			<div class="userfilmLine">
-				{% if film.poster %}
+				{% if film.poster | length >= 1 and film.image | length == 0 %}
 					<a href="{{ path('film_show', {'slug': film.slug} ) }}"><img src="/build/images/posters/{{film.poster}}" alt="affiche du film {{film.title}}"></a>
+				{% elseif film.poster| length == 0 and film.image | length >= 1 %}
+					<a href="{{path('film_show', {slug: film.slug,})}}"><img class="imgCam" src="{{film.image}}" alt="affiche du film {{film.title}}"></a>
 				{% else %}
 					<a href="{{ path('film_show', {'slug': film.slug} ) }}"><img src="/build/images/illustrations/frame-th.png" alt="affiche du film par défault"></a>
 				{% endif %}
@@ -15,8 +17,6 @@
 				<a href="{{ path('film_edit', {'slug': film.slug}) }}">
 					<button>Editer</button>
 				</a>
-
-				{# <a href="{{ path('film_edit', {'slug': film.slug}) }}">Editer</a> #}
 				<div>{{ include('film/_delete_form.html.twig') }}</div>
 			</div>
 		</div>
@@ -27,9 +27,7 @@
 
 
 	{% endfor %}
-	<div
-		class="btnNewFilm">
-		{# <div class="btn"> #}
+	<div class="btnNewFilm">
 		<a href="{{ path('film_new') }}">
 			<div class="btn">
 				<h3>Nouveau film</h3>

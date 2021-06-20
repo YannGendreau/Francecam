@@ -1,0 +1,9 @@
+Films tournés avec une
+{% for f in film %}
+	{% for c in f.marques %}
+		{{c.name}}
+	{% endfor %}
+	{% for m in f.modeles %}
+		{{m.name}}
+	{% endfor %}
+{% endfor %}

@@ -18,7 +18,6 @@ class MarqueController extends AbstractController
 {
     /**
      * @Route("/", name="marque_index", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
      */
     public function index(MarqueRepository $marqueRepository): Response
     {
@@ -54,7 +53,6 @@ class MarqueController extends AbstractController
 
     /**
      * @Route("/{slug}", name="marque_show", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Marque $marque): Response
     {

@@ -1,15 +1,25 @@
 {% if film.camera | length >= 1 %}
-
 	{% for camera in film.camera %}
-
 		{% if camera.modele %}
-
-
 			<div class="cardGridCam">
 				<div class="cardSmCam">
 					<div class="imgCardCam">
-						{% if camera.modele.img %}
+						{% if camera.modele.img | length >= 1 and camera.modele.image | length == 0 %}
+							<div class="smDescriptionOverlay">
+								<em>
+									{{camera.marque}}
+									{{camera.name}}
+								</em>
+							</div>
 							<a href="{{path('modele_show', {slug:camera.modele.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
+						{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
+							<div class="smDescriptionOverlay">
+								<em>
+									{{camera.marque}}
+									{{camera.name}}
+								</em>
+							</div>
+							<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.marque}} {{camera.name}}">
 						{% else  %}
 							<div class="description">
 								<h3>{{camera.marque.name}}</h3>
@@ -75,6 +85,9 @@
 			</div>
 		{% endif %}
 	{% endfor %}
-{% elseif film.camera | length == 0%}
-	<h3>Pas de camera</h3>
+{% elseif film.camera | length == 0 %}
+	<div class="noCam">
+		<p>Pas de camera</p>
+	</div>
+
 {% endif %}

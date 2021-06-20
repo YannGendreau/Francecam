@@ -17,15 +17,13 @@ global.$ = global.jQuery = $;
 
 import 'select2';                      
 import 'select2/dist/css/select2.css';
-$('select').select2();
-
 import  './modules/Filter';
-import  './modules/OverFontSize';
 import  './modules/TitleFontSize';
 import  './modules/slideMenu';
 import  './modules/charcount';
 
-
+$('select').select2();
+$('.cameras').select2({width:'resolve'});
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -56,7 +54,7 @@ function checkFontSize() {
 }
 
 function scaleFontSize(element) {
- 
+
     element.style.fontSize = "100%";
 
     if (element.scrollWidth > element.clientWidth) {
@@ -230,145 +228,6 @@ const camCard = document.getElementById("card");
 if(camCard){
 	camCard.style.height = (camCard.style.width / 1.5) + "px";
 }
-  
-// REQUETES AJAX POUR FORMULAIRE COLLECTIONTYPE CAMERA: A REESSAYER PLUS TARD
-// Je garde pour m'en rappeler 
-
-/*-------------------------------------------------------------------------------------
-					AJAX CAMERATYPE 
--------------------------------------------------------------------------------------*/
-// Récupère l'input "marque"
-
-// const $marque = $('#camera_marque');
- 
-// // Quand l'input est sélectionné et "change"...
-// $marque.on('change', function() {
-// 	// ... on appelle le formulaire parent
-// 	const $form = $(this).closest('form');
-// 	// data =  tableau vide
-// 	const data = {};
-// 	//  désigne l'attribut "name" comme valeur de l'input
-// 	data[$marque.attr('name')] = $marque.val();
-
-// 	// Soumet les données au chemin d'action du formulaire.
-// 	$.ajax({
-// 		url : $form.attr('action'),
-// 		type: $form.attr('method'),
-// 		data : data,
-// 		success: function(html) {
-// 			// Remplace le champ actuel...
-// 			$('#camera_modele').replaceWith(
-// 			// ... par celui de la réponse en AJAX
-// 			$(html).find('#camera_modele')
-// 			);
-// 			// liste de Select2
-// 			$('#camera_modele').select2();
-// 		}
-// 	});
-// });
-
-/*-------------------------------------------------------------------------------------
-					AJAX COLLECTIONTYPE 
--------------------------------------------------------------------------------------*/
-
-// 	// // Récupère l'input "marque"
-// 	const $marqueFilm = $('select[id$=_marque]');
-// 	// Quand l'input est sélectionné et "change"...
-// 	$marqueFilm.on('change', function() {
-// 		// ... on appelle le formulaire
-// 		const $form = $(this).closest('form');
-// 		// data =  tableau vide
-// 		const data = {};
-// 		//  désigne l'attribut "name" comme valeur de l'input
-// 		data[$marqueFilm.attr('name')] = $marqueFilm.val();
-// 		// Soumet les données au chemin d'action du formulaire.
-// 		$.ajax({
-// 			url : $form.attr('action'),
-// 			type: $form.attr('method'),
-// 			data : data,
-// 			success: function(html) {
-			
-// 				// // Remplace le champ actuel...
-			
-// 				$('select[id$=_modele]').replaceWith(
-// 					//suppr puis ajout
-// 				// ... par celui de la réponse en AJAX
-// 				$(html).find('select[id$=_modele]')
-
-// 				);
-// 				// liste de Select2
-// 				$('select').select2()
-// 			}
-// 		});
-// 	});
-
-/*-------------------------------------------------------------------------------------
-					AJOUT DE FORMULAIRE POUR LE COLLECTIONTYPE 
--------------------------------------------------------------------------------------*/
-
-// // Ajout d'un bouton 'ajouter'
-// // le bouton Ajouter <a><button></a>
-// var $addTagLink = $('<a href="#" class="add_tag_link"><button class="btnCamAdd">Ajouter</button></a>');
-// // attache 'ajouter' à une liste 'add'
-// var $newLinkLi = $('<li class="add"></li>').append($addTagLink);
-
-
-// // Récupère le 'ul' qui contient la collection de cameras
-// var $collectionHolder = $('ul#camera-fields-list');
-
-// // Attache le bouton "ajouter" au conteneur des cameras
-// $collectionHolder.append($newLinkLi);
-
-// // Compte les nombre de formulaires et ajoute un nouvel index a chaque nouveau formulaire
-// $collectionHolder.data('index', $collectionHolder.find(':input').length);
-
-// 	$($newLinkLi).fadeIn().slideDown().dequeue();
-
-// $addTagLink.on('click', function(e) {
-// 	// Le lien ne génère pas de # dans l'URL
-// 	e.preventDefault();
-
-// 	// Ajouter une nouvelle caméra
-// 	addTagForm($collectionHolder, $newLinkLi).slideDown(100);
-
-	
-// });
-
-
-// function addTagForm($collectionHolder, $newLinkLi) {
-//     // Récupère le prototype du collectionHolder
-//     var prototype = $collectionHolder.data('prototype');
-    
-//     // Récupère l'index
-//     var index = $collectionHolder.data('index');
-    
-// 	// Remplace le $$name$$ dans le prototype par le nombre d'items
-//     var newForm = prototype.replace(/__name__/g, index);
-    
-//     // incrémente les items
-//     $collectionHolder.data('index', index + 1);
-    
-// 	// affiche le formulaire dans un li avant le bouton "ajouter"
-//     var $newFormLi = $('<li class ="panel"></li>').append(newForm);
-   
-//     // also add a remove button, just for this example
-//     // Ajoute un bouton "supprimer"
-//     $newFormLi.append('<a href="#" class="remove-tag"><button class="btnCam">X</button></a>');
-//     // avant le bouton "ajouter"
-//     $newLinkLi.before($newFormLi);
-// 	// pillboxes select 2
-//     $('select').select2({ width: 'resolve' });
-
-//     // suppression du formulaire
-//     $('.remove-tag').on('click', function(e) {
-//         e.preventDefault();
-	
-// 		$(this).parent().fadeOut("fast").slideUp(100).dequeue();
-        
-//         return false;
-//     });	
-// }
-
 
 /*-------------------------------------------------------------------------------------
 					FONDU DU BACKGROUND SUR "A PROPOS" 
@@ -379,11 +238,11 @@ if (mediaQueryList.matches) {
 	
 	$('#about').on("mouseenter", function(){
 		setTimeout (function(){	
-		$('main').toggleClass('dark');}, 2000);
+		$('main').toggleClass('dark');}, 1000);
 
 	}).on("mouseleave", function(){
 	setTimeout (function(){	
-	$('main').removeClass('dark');}, 2000);
+	$('main').removeClass('dark');}, 5000);
 	})
 }else{$('#about').on("mouseenter", function(){
 	

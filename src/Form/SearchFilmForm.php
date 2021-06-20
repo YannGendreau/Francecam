@@ -101,6 +101,14 @@ class SearchFilmForm extends AbstractType
                 'multiple' => true,
                
             ])
+            ->add('modeles', EntityType::class,[
+                'label' => false,
+                'required'=> false,
+                'class' => Modele::class,
+                'expanded'=> true,
+                'multiple' => true,
+               
+            ])
             ;
     }
 

@@ -13,7 +13,7 @@
 					<!--Menu dépliant premier niveau-->
 					<ul class="drop-down-ul animated fadeIn">
 						<li class="flyout-right">
-							<a href="">Formats</a>
+							<a href="#">Formats</a>
 							<!--menu dépliant deuxième niveau -->
 							<ul class="animated fadeIn">
 								<li>
@@ -27,7 +27,7 @@
 						</li>
 
 						<li class="flyout-right">
-							<a href="">Marques</a>
+							<a href="{{path('marque_index')}}">Marques</a>
 							<!--menu dépliant deuxième niveau -->
 							<ul class="animated fadeIn">
 								<li>
@@ -59,7 +59,7 @@
 						</li>
 
 						<li class="flyout-right">
-							<a href="">Decennies</a>
+							<a href="#">Decennies</a>
 							<!--Flyout -->
 							<ul class="animated fadeIn">
 								<li>
@@ -171,11 +171,13 @@
 					<!--//fin drop -->
 				</li>
 
-				{# {% if app.request.attributes.get('_route') != 'accueil' %}
-																{% include "includes/_searchtop.html.twig" %}
-																{% endif %} #}
 
 			</ul>
+		</div>
+		<div class="search">
+			{% if app.request.attributes.get('route') != '/' %}
+				{{ render(controller('App\\Controller\\SearchController::searchBar'))}}
+			{% endif %}
 		</div>
 		<div class="connexion">
 			<ul class="exo-menu">

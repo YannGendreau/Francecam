@@ -32,7 +32,11 @@
 						<div class="formTop">
 							<label for="">Rechercher</label>
 						</div>
-						{% include "includes/_searchtop.html.twig" %}
+						{{ render(controller(
+        			'App\\Controller\\SearchController::searchBar'
+    				))
+				}}
+						{# {% include "includes/_searchtop.html.twig" %} #}
 					</div>
 				</div>
 			</div>
@@ -43,7 +47,9 @@
 		<div class="latest">
 			<div class="flexLatest">
 				<div class="homeCameraList">
-					<h2>Dernières caméras</h2>
+					<div class="titreLatest">
+						<h3>Dernières caméras</h3>
+					</div>
 					<div class="tableau">
 						{% include "modele/_modele_list.html.twig" %}
 					</div>
@@ -51,7 +57,9 @@
 			</div>
 			<div class="flexLatest">
 				<div class="homeFilmList">
-					<h2>Derniers films</h2>
+					<div class="titreLatest">
+						<h3>Derniers films</h3>
+					</div>
 					{% include "/film/_home_film.html.twig" %}
 				</div>
 			</div>

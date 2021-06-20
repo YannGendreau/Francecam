@@ -5,13 +5,13 @@
 			<div
 				class="imgCard">
 				{# Vérifie la présence d'affiche ou la remplace par une description #}
-				{% if film.poster %}
+				{% if film.poster | length >= 1 and film.image | length == 0 %}
 					<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
-				{% elseif film.poster == 0 %}
+				{% elseif film.poster | length == 0 and film.image | length >= 1 %}
 					<a href="{{path('film_show', {slug: film.slug,})}}"><img class="imgCam" src="{{film.image}}" alt="affiche du film {{film.title}}"></a>
 				{% else %}
 					<div class="description">
-						<h1 id="over">{{film.title}}</h1>
+						<h3 id="over">{{film.title}}</h3>
 						<div class="genreOverlay">
 							{% for g in film.genres %}
 								<em>{{g.name}}</em>
@@ -26,7 +26,7 @@
 				<div
 					class="description__overlay description__overlay--blur" id="descOverlay">
 					{# titre #}
-					<h1 id="over">{{film.title}}</h1>
+					<h3 id="over">{{film.title}}</h3>
 					{# genres #}
 					<div class="genreOverlay">
 						{% for g in film.genres %}

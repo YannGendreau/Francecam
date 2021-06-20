@@ -10,6 +10,7 @@
 		<aside class="sidepanel" id="mySidepanel">
 			{% include "film/_film_list_filter.html.twig" with {form: form} only %}
 		</aside>
+
 		{# Ouverture du panneau #}
 		<div class="triangle" id="">
 			<button title="Filtres de recherche" id="clickMenu" class="openbtn">
@@ -23,6 +24,8 @@
 				{# Classement par date #}
 				{% include "film/_sorting.html.twig" %}
 			</div>
+			{# <div class="titre js-filter-title">
+							{% include "film/_film_title.html.twig" %}</div> #}
 			<div
 				class="showList js-filter-content">
 				{# Tous les films #}

@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=DirectorRepository::class)
  * @UniqueEntity(
- *    fields={"name"}
+ *    fields={"Name"}
  *    
  * )
  */

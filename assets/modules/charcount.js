@@ -1,4 +1,4 @@
-const max = 255;
+const max = 500;
 const i = document.getElementById("film_synopsis");
 const c = document.getElementById("count");
 if(i){

@@ -15,7 +15,7 @@
 			<div class="imageCam">
 				{% if modele.img | length >= 1 and modele.image | length == 0 %}
 					<img class="imgCam" src="/build/images/imagesCam/{{modele.img}}" alt="Photographie de la camera {{modele.marque}} {{modele.name}}">
-				{% elseif modele.img == 0 and modele.image | length >= 1 %}
+				{% elseif modele.img | length == 0 and modele.image | length >= 1 %}
 					<img class="imgCam" src="{{modele.image}}" alt="Photographie de la camera {{modele.marque}} {{modele.name}}">
 				{% else %}
 					<img class="camLogo" src="/build/images/illustrations/camera-logo.png" alt="illustration de camera par défaut">
@@ -29,23 +29,30 @@
 						{{modele.name}}</h1>
 					<div class="overview">
 						<div>
-							<a href="{{path('marque_show', {slug :modele.marque.slug})}}">
-								<h5>{{modele.marque}}</h5>
-							</a>
+							<div class="marque">
+								<a href="{{path('marque_show', {slug :modele.marque.slug})}}">
+									<h5>
+										{{modele.marque}}
+									</h5>
+								</a>
+							</div>
 							<span>|</span>
-							<a href="http://{{modele.marque.website}}">
-								<h5>{{modele.marque.website}}</h5>
-							</a>
+							<div class="type">
+								{% for f in modele.type %}
+									<h5>{{f.name}}</h5>
+								{% endfor %}
+							</div>
 							<span>|</span>
-							{% for f in modele.type %}
-								<h5>{{f.name}}</h5>
-							{% endfor %}
+							<div class="format">
+								{% for format in modele.format %}
+									<h5>{{format.name}}</h5>
+								{% endfor %}
+							</div>
 							<span>|</span>
-							{% for format in modele.format %}
-								<h5>{{format.name}}</h5>
-							{% endfor %}
-							<span>|</span>
-							<h5>{{modele.sortie}}</h5>
+							<div class="sortie">
+
+								<h5>{{modele.sortie}}</h5>
+							</div>
 
 						</div>
 					</div>
@@ -74,7 +81,7 @@
 						</div>
 						<div class="tabPanel" style="display: none;">
 							<div class="posters">
-								{% if modele.films %}
+								{% if modele.films | length >= 1 %}
 									{% for film in modele.films | slice(0, 6) %}
 										<div class="cardGrid">
 											<div class="cardSm">
@@ -83,7 +90,7 @@
 														<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
 													{% else %}
 														<div class="description">
-															<h1 id="over">{{film.title}}</h1>
+															<h3 id="over">{{film.title}}</h3>
 															<div class="genreOverlay">
 																{% for g in film.genres %}
 																	<em>{{g.name}}</em>
@@ -95,7 +102,7 @@
 												</div>
 												<a href="{{path('film_show', {slug: film.slug,})}}">
 													<div class="description__overlay description__overlay--blur">
-														<h1 id="over">{{film.title}}</h1>
+														<h3 id="over">{{film.title}}</h3>
 														<div class="genreOverlay">
 															{% for g in film.genres %}
 																<em>{{g.name}}</em>
@@ -107,13 +114,12 @@
 												</a>
 											</div>
 										</div>
-									{% endfor %}
-									{% if modele | length > 1 %}
-										{# <p>Voir plus</p> #}
-									{% endif %}
 
+									{% endfor %}
 								{% else %}
-									<p>Pas de Films</p>
+									<div class="noCam">
+										<p>Pas de Films</p>
+									</div>
 								{% endif %}
 							</div>
 						</div>

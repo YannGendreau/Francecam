@@ -2,6 +2,7 @@
  * @property {HTMLElement} pagination
  * @property {HTMLElement} content
  * @property {HTMLElement} sorting
+ * @property {HTMLElement} title
  * @property {HTMLFormElement} form
  * @property {number} page
  * @property {boolean} more
@@ -23,6 +24,7 @@ export default class Filter {
         this.sorting = element.querySelector('.js-filter-sorting')
         this.form = element.querySelector('.js-filter-form')
         this.content = element.querySelector('.js-filter-content')
+        this.title = element.querySelector('.js-filter-title')
         this.page = parseInt(new URLSearchParams(window.location.search).get('page') || 1)
         this.more = this.page === 1
         this.bindEvents()
@@ -38,14 +40,6 @@ export default class Filter {
                 //Ajax 
                 this.loadUrl(e.target.getAttribute('href'))
             }
-            // if(e.target.tagName === 'SPAN'){
-            //     e.preventDefault() 
-            //     this.loadUrl(e.target.getAttribute(''))
-            // }
-            // if(e.target.tagName === 'I'){
-            //     e.preventDefault() 
-            //     this.loadUrl(e.target.getAttribute(''))
-            // }
         }
         // Change les URLS de filtre quand l'élément sorting est cliqué
         this.sorting.addEventListener('click', e => {
@@ -115,6 +109,7 @@ export default class Filter {
             this.sorting.innerHTML = data.sorting
             this.content.innerHTML = data.content
             this.pagination.innerHTML = data.pagination
+            // this.title.innerHTML = data.title
             // if (!this.more) {
             //     this.pagination.innerHTML = data.pagination
             // }else if (this.page === data.pages){

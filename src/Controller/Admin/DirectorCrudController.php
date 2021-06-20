@@ -18,9 +18,8 @@ class DirectorCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('name'),
-            // TextEditorField::new('description'),
+            IdField::new('id')->hideonform(),
+            TextField::new('Name'),
         ];
     }
     

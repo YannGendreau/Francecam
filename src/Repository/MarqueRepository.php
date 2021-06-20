@@ -55,8 +55,8 @@ class MarqueRepository extends ServiceEntityRepository
     {
         $query = $this
                     ->createQueryBuilder('m')
-                    ->select('m','f', 'g')
-                    ->leftJoin('m.films', 'f')
+                    ->select('m', 'g')
+                    // ->leftJoin('m.films', 'f')
                     ->leftJoin('m.modeles', 'g')
                    
                     ;
@@ -64,7 +64,7 @@ class MarqueRepository extends ServiceEntityRepository
         if (!empty($search->r)) {
             $query = $query
                     ->andWhere('m.name LIKE :r')
-                    ->orWhere('f.title LIKE :r')
+                    // ->orWhere('f.title LIKE :r')
                     ->orWhere('g.name LIKE :r')
                     ->setParameter('r', "%{$search->r}%")
                     ;

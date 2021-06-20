@@ -3,10 +3,22 @@ easy_admin:
     form_theme:
       - "@EasyAdmin/form/bootstrap_4.html.twig"
       - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
+
   entities:
-    Product:
-      # ...
+    Marque:
+      class:
+        App\Entity\Marque
+        # ...
       form:
         fields:
-          # ...
+          - { property: "imageFile", type: "file" }
+          - { property: "description", type: "fos_ckeditor" }
+          - { property: "image", template: "vich_uploader_image.html.twig" }
+      Modele:
+        fields:
+          - { property: "image", template: "vich_uploader_image.html.twig" }
+          - { property: "description", type: "fos_ckeditor" }
+      Film:
+        fields:
+          - { property: "image", template: "vich_uploader_image.html.twig" }
           - { property: "description", type: "fos_ckeditor" }

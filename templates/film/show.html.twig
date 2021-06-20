@@ -7,9 +7,13 @@
 
 {% block content %}
 	<div class="container">
-		<div
-			class="tableauCamera">
-			<!--AFFICHE-->
+
+		<div class="tableauCamera">
+			<div class="userContainer">
+				<em>Ajouté par
+					<strong>{{film.user}}</strong>
+				</em>
+			</div>
 			<div class="imageCam">
 				{% if film.poster | length >= 1 and film.image | length == 0 %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
@@ -29,31 +33,37 @@
 			<!--DESCRIPTION-->
 			<div class="descriptionFilm">
 				<div class="titre">
-					<h1 id="titleFilmShow">{{film.title}}
-					</h1>
+					<h1 id="titleFilmShow">{{film.title}}</h1>
 					<div class="overview">
 						<div>
 							<!--DUREE-->
-							<h5>{{film.getRuntime(film.duree)}}</h5>
-							<span>/</span>
+							<div class="runtime">
+								<h5>{{film.getRuntime(film.duree)}}</h5>
+							</div>
+							<span>|</span>
 							<!--GENRES-->
-							{% for g in film.genres %}
-								{% if film.genres| length >= 2 %}
-									<h5>{{g.name}}</h5>
-									<span>-</span>
-								{% elseif film.genres| length <= 1 %}
-									<h5>{{g.name}}</h5>
-								{% endif %}
-							{% endfor %}
-							<span>/</span>
+							<div class="genres">
+								{% for g in film.genres %}
+									{% if film.genres| length >= 2 %}
+										<h5>{{g.name}}</h5>
+									{% elseif film.genres| length <= 1 %}
+										<h5>{{g.name}}</h5>
+									{% endif %}
+								{% endfor %}
+							</div>
+							<span>|</span>
 							<!--SORTIE-->
-							<h5>{{film.sortie}}</h5>
-							<span>/</span>
-							<!--PAYS-->
-							{% for p in film.pays %}
-								<h5>{{p.name}}</h5>
-							{% endfor %}
+							<div class="sortie">
+								<h5>{{film.sortie}}</h5>
+							</div>
 
+							<span>|</span>
+							<!--PAYS-->
+							<div class="pays">
+								{% for p in film.pays %}
+									<h5>{{p.name}}</h5>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
 					<div class="trait"></div>
@@ -71,28 +81,30 @@
 							<h4>Réalisation</h4>
 						</div>
 						<div class="realNameD">
-							{% if film.directors | length > 0 %}
-								{% for director in film.directors %}
-									<a href="">
+							<div class="real">
+								{% if film.directors | length > 0 %}
+									{% for director in film.directors %}
+										<a href="#">
+											<p>{{director.name}}</p>
+										</a>
+									{% endfor %}
+								{% elseif film.directors | length > 1 %}
+									<a href="#">
 										<p>{{director.name}}</p>
 									</a>
-								{% endfor %}
-							{% elseif film.directors | length > 1 %}
-								<a href="#">
-									<p>{{director.name}}</p>
-								</a>
-								<br>
-							{% else %}
-								{% if app.user %}
-									<a href="{{path('film_edit', {slug:film.slug})}}">
-										<p class="addArtist">Ajouter</p>
-									</a>
+									<br>
 								{% else %}
-									<a href="{{path('app_login')}}">
-										<p class="addArtist">Se connecter pour ajouter</p>
-									</a>
+									{% if app.user %}
+										<a href="{{path('film_edit', {slug:film.slug})}}">
+											<p class="addArtist">Ajouter</p>
+										</a>
+									{% else %}
+										<a href="{{path('app_login')}}">
+											<p class="addArtist">Se connecter pour ajouter</p>
+										</a>
+									{% endif %}
 								{% endif %}
-							{% endif %}
+							</div>
 						</div>
 					</div>
 					<div class="dpDivD">
@@ -102,7 +114,7 @@
 						<div class="dpNameD">
 							{% if film.dirphoto | length > 0 %}
 								{% for director in film.dirphoto %}
-									<a href="">
+									<a href="#">
 										<p>{{director.name}}</p>
 									</a>
 								{% endfor %}
@@ -140,26 +152,25 @@
 							<div>
 								<div class="tableauCamFilm">
 									{% include "camera/_camera_show.html.twig" %}
-									{# {% include "film/_modele.html.twig" %} #}
-
 								</div>
 							</div>
-							{# <div class="tabPanel" style="display: none;"></div> #}
-							<div class="tabPanel" style="display: none;">
-								<h2>BANDE ANNONCE</h2>
-								<video width="320" height="240" controls>
-									<source
-									src="https://{{film.videolink}}" type="">
-								{# <source src="/build/videos/arcnet.io(7-sec).mp4" type="video/mp4"> #}
-								</video>
+						</div>
+						<div class="tabPanel" style="display: none;">
+							<div class="video">
+								{% if film.videolink %}
+									<iframe width="500" height="255" src="{{film.videolink}}" autoplay="false" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								{% else %}
+									<div class="noCam">
+										<p>Pas de vidéo</p>
+									</div>
+								{% endif %}
 
 							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
-			<div>
-				{# <h1>{{film.user}}</h1> #}
-			</div>
 		</div>
-	{% endblock %}
+	</div>
+</div>{% endblock %}

@@ -61,15 +61,14 @@
 	<div class="cell">
 		<div class="option">
 			<strong>
-				<h3>Fréquence</h3>
+				<h3>Fréquence d'images</h3>
 			</strong>
 		</div>
 		<div class="spec">
 			<h4>
 				{% if modele.framerate %}
-					{% for s in modele.framerate %}
-						{{s.name}}fp/s
-					{% endfor %}
+					<h4>{{ modele.framerate }}
+						images/seconde</h4>
 				{% else %}
 					<span>
 						-
@@ -106,16 +105,16 @@
 			</strong>
 		</div>
 		<div class="spec">
-			<h4>
-				{% if modele.perfs %}
-					<h4>{{modele.perfs}}
-						perfs</h4>
-				{% else %}
-					<span>
-						-
-					</span>
-				{% endif %}
-			</h4>
+
+			{% if modele.perfs %}
+				<h4>{{modele.perfs}}
+				</h4>
+			{% else %}
+				<span>
+					-
+				</span>
+			{% endif %}
+
 		</div>
 	</div>
 	<div class="cell">
@@ -161,15 +160,19 @@
 			</strong>
 		</div>
 		<div class="spec">
-			<h4>
-				{% if modele.sync %}
-					{{modele.sync}}
+			<div>
+				{% if modele.sync or modele.voltage %}
+					<h4>{{modele.sync}}</h4>
+					<span>
+						-
+					</span>
+					<h4>{{modele.voltage}}v</h4>
 				{% else %}
 					<span>
 						-
 					</span>
 				{% endif %}
-			</h4>
+			</div>
 		</div>
 	</div>
 	<div class="cell">

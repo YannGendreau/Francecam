@@ -77,9 +77,9 @@ class FilmRepository extends ServiceEntityRepository
         //Si la propriété genres n'est pas vide on effectue la requête 
         if (!empty($search->genres)) {
             $query = $query
-                ->andWhere('g.id IN (:genres)') //recherche par id dans la propriété genres
-                ->setParameter('genres', $search->genres) // Désigne 'genres' comme alias de la propriété genres
-                ;
+            ->andWhere('g.id IN (:genres)') //recherche par id dans la propriété genres
+            ->setParameter('genres', $search->genres) // Désigne 'genres' comme alias de la propriété genres
+            ;
         }
         if (!empty($search->annee)) {
              $query = $query
@@ -120,7 +120,7 @@ class FilmRepository extends ServiceEntityRepository
 
         );      
     }
-    
+
      /**-------------------------------------------------------------------
      * Recherche des films en cameras en fonction du formulaire (FULLTEXT)
      * Non retenu (voir function suivante)
@@ -147,35 +147,34 @@ class FilmRepository extends ServiceEntityRepository
      * Même procédé que pour la recherche sur la route /film
      *
      * @param SearchHomeData $search
-     * @return PaginationInterface
      */
-    public function findHomeSearch(SearchHomeData $search): PaginationInterface
+    public function findHomeSearch(SearchHomeData $search)
     {
         $query = $this
                     ->createQueryBuilder('f')
-                    ->select('f','m', 'c')
+                    ->select('f')
                     ->leftJoin('f.marques', 'm')
-                    ->leftJoin('f.camera', 'c')
+                   
                    
                     ;
 
         if (!empty($search->r)) {
             $query = $query
                     ->andWhere('f.title LIKE :r')
-                    ->orWhere('m.name LIKE :r')
-                    ->orWhere('c.name LIKE :r')
+                   
                     ->setParameter('r', "%{$search->r}%")
                     ;
         }       
        
             $query= $query->getQuery();
 
-        return $this->paginator->paginate(
-            $query,
-            $search->page,
-            6
+        // return $this->paginator->paginate(
+        //     $query,
+        //     $search->page,
+        //     6
 
-        );      
+        // );
+        return $query->getResult(); 
     }
 
       

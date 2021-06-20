@@ -147,6 +147,12 @@ class ModeleRepository extends ServiceEntityRepository
             ->setParameter('marques', $search->marque)
         ;
         }
+        if (!empty($search->modele)) {
+        $query = $query
+            ->andWhere('c.id IN (:modeles)')
+            ->setParameter('modeles', $search->modele)
+        ;
+        }
       
 
         if (!empty($search->decade)) {
@@ -168,6 +174,7 @@ class ModeleRepository extends ServiceEntityRepository
 
    public function getModeleQueryBuilder($marqueId)
     {
+    
         return $this->createQueryBuilder('b')
                 ->leftJoin('b.marque', 'e')
                 ->addSelect('e')
@@ -175,6 +182,18 @@ class ModeleRepository extends ServiceEntityRepository
                 ->setParameter('id', $marqueId)
                 ;
  
+    }
+
+    public function limitFilmModele()
+    {
+        return $this->createQueryBuilder('m')
+        ->leftJoin('m.films', 'f')
+        ->addSelect('f')
+        ->orderBy('f.title', 'ASC')
+        ->setMaxResults(6)
+        ->getQuery()
+        ->getResult()
+        ;
     }
 
    

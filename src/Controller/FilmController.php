@@ -3,14 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Film;
-use App\Entity\User;
-use App\Entity\Camera;
-use App\Entity\Marque;
-use App\Entity\Modele;
 use App\Form\FilmType;
 use App\Data\FilmSearchData;
 use App\Form\SearchFilmForm;
-use App\Repository\CameraRepository;
 use App\Repository\FilmRepository;
 use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,8 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -72,7 +65,6 @@ class FilmController extends AbstractController
             $film = $form->getData();
             $entityManager->persist($film);
             $entityManager->flush();
-            // dd($film);
         
             /*------------------------------------------------------------------------------
                       
@@ -118,7 +110,7 @@ class FilmController extends AbstractController
      * @Route("/{slug}/edit", name="film_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function edit(Request $request, Film $film, EntityManagerInterface $entityManager, $slug): Response
+    public function edit(Request $request, Film $film, MailerInterface $mailer, EntityManagerInterface $entityManager, $slug): Response
     {
    
     
@@ -138,7 +130,19 @@ class FilmController extends AbstractController
             }
             //Enregistrement en base de données avec le manager de Doctrine  
             $this->getDoctrine()->getManager()->flush();
-            //Message de succès 
+            //Message de succès
+             // EMAIL
+             $email = (new TemplatedEmail())
+             ->from(new Address('test@test.com', 'Francecam Admin'))
+             ->to(new Address('test@test.com', 'Francecam Admin'))
+             ->subject('Francecam | Modification d\'un film')
+             ->htmlTemplate('film/modification.html.twig')
+             ->context([
+                 'film' => $film
+             ])
+         ;
+
+         $mailer->send($email);
             $this->addFlash('success', 'Film modifié avec succès');
             // Redirection
             return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
@@ -189,9 +193,10 @@ class FilmController extends AbstractController
                 //la liste des films
                 'content' => $this->renderView('film/_film_list.html.twig', ['films' =>$films]),
                 // classement par date
-                'sorting' => $this->renderView('film/_sorting.html.twig', ['films' =>$films]),
+                'sorting' => $this->renderView('film/_sorting.html.twig', ['films' => $films]),
                 //La pagination
-                'pagination' => $this->renderView('film/_pagination.html.twig', ['films' =>$films]),
+                'pagination' => $this->renderView('film/_pagination.html.twig', ['films' => $films]),
+              
                 //Paginator; nombre d'item total divisé par le nombre d'item par page
                 'pages' => ceil($films->getTotalItemCount() / $films->getItemNumberPerPage())
             ]);
