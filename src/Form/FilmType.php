@@ -63,6 +63,7 @@ class FilmType extends AbstractType
             ->add('duree', IntegerType::class, [
                 'label'         => false,
                 'empty_data' => 'minutes',
+                'help'       => '  minutes',
                 'constraints'   => [
                     new NotBlank(['message' => 'Veuillez saisir la durée du film.']),
                     ]

@@ -3,12 +3,8 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 html {
     box-sizing: border-box;
-
-    // color: #ddd;
-    font-family: "Open Sans", sans-serif;
     font-family: "Roboto Condensed", "Open Sans", sans-serif;
     font-size: 14px;
-    // line-height: 1;
     margin: 0;
     padding: 0;
     text-align: inherit;
@@ -1547,7 +1543,8 @@ a {
     height: 150px;
 
     .copyright {
-        width: 30%;
+        width: 50%;
+        @include flex-center();
 
         p {
             font-size: 1.3rem;
@@ -1556,17 +1553,21 @@ a {
         }
     }
 
-    .footerContainer {
-        @include flex-between-center();
-        flex-wrap: wrap;
-        width: 30%;
+    .infos {
+        @include flex-center();
+        width: 50%;
+        .footerContainer {
+            @include flex-between-center();
+            flex-wrap: wrap;
+            width: 50%;
 
-        a {
-            width: 100%;
-            font-size: 1.3rem;
-            font-family: "Roboto Condensed", sans-serif;
-            color: white;
-            margin: 3px 0 3px 0;
+            a {
+                width: 100%;
+                font-size: 1.3rem;
+                font-family: "Roboto Condensed", sans-serif;
+                color: white;
+                margin: 3px 0 3px 0;
+            }
         }
     }
 }
@@ -1580,6 +1581,42 @@ a {
     flex-wrap: wrap;
     width: 80%;
     min-height: 100vh;
+
+    .cguContainer {
+        width: 60%;
+        margin-top: 70px;
+
+        .cguContent {
+            margin: 20px 0 20px 0;
+            text-align: justify;
+            p {
+                font-size: 1.3rem;
+            }
+            ul {
+                padding-left: 30px;
+                li {
+                    list-style-type: disc;
+                    font-size: 1.3rem;
+                }
+            }
+            h3 {
+                font-size: 1.3rem;
+                font-weight: bold;
+                margin: 5px 0 5px 0;
+                color: $titleCard;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin: 8px 0 8px 0;
+                color: $titleDisplay;
+            }
+            a {
+                text-decoration: underline;
+                color: black;
+                font-weight: bold;
+            }
+        }
+    }
 
     h1 {
         width: 100%;
@@ -3268,6 +3305,11 @@ ABOUT US
                                     border-radius: 5px;
                                     border: 1.5px solid rgb(204, 204, 204);
                                     text-align: center;
+                                    -webkit-appearance: none;
+                                }
+
+                                #film_duree_help {
+                                    padding-left: 8px;
                                 }
                             }
                         }
@@ -3357,7 +3399,11 @@ ABOUT US
                         .form-group {
                             #film_synopsis {
                                 border: 1.5px solid rgb(204, 204, 204);
+                                padding: 5px;
                             }
+                        }
+                        p {
+                            margin-top: 5px;
                         }
 
                         .form-control {
@@ -4244,6 +4290,10 @@ PAGE USER PROFILE
     .container {
         width: 100% !important;
         max-width: 800px;
+
+        .cguContainer {
+            width: 90% !important;
+        }
         .resultSearch {
             margin-top: $mTop;
             width: 90%;

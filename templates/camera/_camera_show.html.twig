@@ -7,7 +7,7 @@
 						{% if camera.modele.img | length >= 1 and camera.modele.image | length == 0 %}
 							<div class="smDescriptionOverlay">
 								<em>
-									{{camera.marque}}
+									{# {{camera.marque}} #}
 									{{camera.name}}
 								</em>
 							</div>
@@ -15,11 +15,11 @@
 						{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
 							<div class="smDescriptionOverlay">
 								<em>
-									{{camera.marque}}
+									{# {{camera.marque}} #}
 									{{camera.name}}
 								</em>
 							</div>
-							<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.marque}} {{camera.name}}">
+							<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.name}}">
 						{% else  %}
 							<div class="description">
 								<h3>{{camera.marque.name}}</h3>
