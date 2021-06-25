@@ -208,7 +208,7 @@ class Modele
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
@@ -245,7 +245,7 @@ class Modele
         return $this->perfs;
     }
 
-    public function setPerfs(string $perfs): self
+    public function setPerfs(?string $perfs): self
     {
         $this->perfs = $perfs;
 
@@ -257,7 +257,7 @@ class Modele
         return $this->magazine;
     }
 
-    public function setMagazine(string $magazine): self
+    public function setMagazine(?string $magazine): self
     {
         $this->magazine = $magazine;
 
@@ -269,7 +269,7 @@ class Modele
         return $this->voltage;
     }
 
-    public function setVoltage(string $voltage): self
+    public function setVoltage(?string $voltage): self
     {
         $this->voltage = $voltage;
 
@@ -281,7 +281,7 @@ class Modele
         return $this->weight;
     }
 
-    public function setWeight(string $weight): self
+    public function setWeight(?string $weight): self
     {
         $this->weight = $weight;
 
@@ -293,7 +293,7 @@ class Modele
         return $this->view;
     }
 
-    public function setView(string $view): self
+    public function setView(?string $view): self
     {
         $this->view = $view;
 
@@ -305,7 +305,7 @@ class Modele
         return $this->sync;
     }
 
-    public function setSync(string $sync): self
+    public function setSync(?string $sync): self
     {
         $this->sync = $sync;
 

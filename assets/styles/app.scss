@@ -356,10 +356,11 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
                     }
 
                     .genreOverlay {
-                        align-items: flex-end;
+                        text-align: center;
 
                         em {
                             color: $titleDisplay;
+                            width: 100%;
                             &:after {
                                 content: " -  ";
                             }
@@ -432,7 +433,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
                     }
 
                     .genreOverlay {
-                        align-items: flex-end;
+                        text-align: center;
 
                         em {
                             font-size: 16px;
@@ -461,7 +462,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
     .cardGrid {
         max-width: 100px;
         max-height: $cardFilmSm - 20px;
-        margin: 0 0 10px 0 !important;
+        margin: 0 1% 10px 1% !important;
 
         .cardSm {
             width: 100%;
@@ -503,7 +504,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
         height: 190px;
         max-width: 300px;
         min-width: 300px;
-        margin: 3px;
+        margin: 3px 0 3px 0;
         border: 1px solid lightgrey;
         border-radius: 5px;
 
@@ -875,13 +876,12 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
                     }
 
                     em {
-                        // color: $megamenu-bg;
                         color: rgb(255, 255, 255);
                         opacity: 0;
                     }
 
                     .genreOverlay {
-                        align-items: flex-end;
+                        align-items: center;
                         color: grey;
                         opacity: 0 !important;
 
@@ -1087,20 +1087,12 @@ a {
             transition: color 0.2s linear, background 0.2s linear;
         }
 
-        .exo-menu > li:hover,
         .exo-menu > li.active,
         .exo-menu > li > a:active,
         .exo-menu > li > a:hover,
         .exo-menu > li > ul > li > a:hover,
-        .exo-menu > li > ul > li > a.active,
         li.drop-down-ul > li > a:hover,
-        li.drop-down-ul > li > a.active,
-        li.drop-down ul > li > a:hover,
-        li.drop-down ul > li > a.active,
-        li.drop-down:hover,
-        li.drop-down.active,
-        li.flyout-right:hover,
-        li.flyout-right.active {
+        li.drop-down ul > li > a:hover {
             background: $titleDisplay;
             color: #fff;
         }
@@ -1808,7 +1800,8 @@ a {
 
     .sidepanel {
         width: 17%;
-        height: 100vh;
+        // height: 100vh;
+        height: 100%;
         @include flex-center-start();
         top: 78px;
         left: 0;
@@ -1823,12 +1816,15 @@ a {
         .filterFilmLeft {
             width: 100%;
             height: 100vh;
+            height: 850px;
+            height: 100%;
             flex-wrap: wrap;
-            overflow: overlay;
+            // overflow: overlay;
             z-index: -1;
             padding: 5px;
             border: 1px solid rgb(231, 231, 231);
             border-radius: 10px;
+            overflow: hidden;
 
             .closeFilter {
                 width: 100%;

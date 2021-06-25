@@ -20,7 +20,7 @@ final class Version32CameraNameNullable extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE camera CHANGE name name VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE camera ADD name VARCHAR(255) DEFAULT NULL');
         
     }
 

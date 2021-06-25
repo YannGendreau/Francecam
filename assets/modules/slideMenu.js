@@ -16,7 +16,7 @@ function filterLeft(mediaQueryList) {
         btnMenu.addEventListener('click', function(){
             // change les taille et opacité de sidepanel 
             sidepanel.style.width = "70%";
-            sidepanel.style.height = "100vh";
+            sidepanel.style.height = "900px";
             sidepanel.style.opacity = "1";
             triangle.style.opacity = "0.2"
 
@@ -32,7 +32,7 @@ function filterLeft(mediaQueryList) {
         // si la taille correspond au desktop
         btnMenu.addEventListener('click', function(){
             sidepanel.style.width = "17%";
-            sidepanel.style.height = "100vh";
+            sidepanel.style.height = "900px";
             sidepanel.style.opacity = "1";
             triangle.style.opacity = "0.2"
         });
