@@ -20,7 +20,6 @@ class DirphotoCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('name'),
-            // TextEditorField::new('description'),
         ];
     }
     

@@ -8,7 +8,6 @@ use App\Entity\User;
 use App\Entity\Mount;
 use App\Entity\Marque;
 use App\Entity\Modele;
-use App\Entity\Cameras;
 use App\Entity\Director;
 use App\Entity\Dirphoto;
 use App\Entity\Format;
@@ -19,7 +18,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 

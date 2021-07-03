@@ -1,5 +1,6 @@
 {% apply inky_to_html|inline_css(source('@styles/email.css')) %}
 <container>
+
 	<row class="titre">
 		<columns>
 			<center>
@@ -9,18 +10,24 @@
 
 		</columns>
 	</row>
+
 	<row class="texte">
 		<columns>
-			<p>Pour changer votre mot de passe, visitez ce lien.</p>
+			<p>
+				<strong>{{contact.nom}}</strong>
+				avec l'email
+				<strong>{{contact.email}}</strong>
+				vient d'envoyer le message suivant :
+			</p>
 
-			<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
 		</columns>
 	</row>
-	<row class="lien">
+
+	<row class="texte">
 		<columns>
-			<p>Ce lien expirera dans
-				{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+			<p>{{contact.message}}</p>
 		</columns>
 	</row>
+
 </container>
 {% endapply %}

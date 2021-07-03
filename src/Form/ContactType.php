@@ -1,11 +1,14 @@
 <?php
 namespace App\Form;
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Captcha\Bundle\CaptchaBundle\Form\Type\CaptchaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
 class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -39,6 +42,10 @@ class ContactType extends AbstractType
                 ],
                 'label' => false,
             ])
+            ->add('captchaCode', CaptchaType::class, array(
+                'captchaConfig' => 'ContactCaptcha',
+                'label' => false
+              ))
         ;
     }
     public function configureOptions(OptionsResolver $resolver)
@@ -46,7 +53,9 @@ class ContactType extends AbstractType
         $resolver->setDefaults([
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
-            'csrf_token_id' => 'contact_item'
+            'csrf_token_id' => 'contact_item',
+            'data_class' => Contact::class,
+
         ]);
     }
 }

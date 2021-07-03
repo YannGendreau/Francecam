@@ -7,7 +7,6 @@
 						{% if camera.modele.img | length >= 1 and camera.modele.image | length == 0 %}
 							<div class="smDescriptionOverlay">
 								<em>
-									{# {{camera.marque}} #}
 									{{camera.name}}
 								</em>
 							</div>
@@ -15,7 +14,6 @@
 						{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
 							<div class="smDescriptionOverlay">
 								<em>
-									{# {{camera.marque}} #}
 									{{camera.name}}
 								</em>
 							</div>
@@ -84,10 +82,19 @@
 				</div>
 			</div>
 		{% endif %}
+
 	{% endfor %}
+
 {% elseif film.camera | length == 0 %}
 	<div class="noCam">
+
 		<p>Pas de camera</p>
+		{% if app.user %}
+			<a class="addCamera" href="{{path('film_edit', {slug:film.slug})}}">Ajouter</a>
+		{% else %}
+			<a class="connect" href="{{path('app_login')}}">Se connecter pour ajouter</a>
+		{% endif %}
 	</div>
+
 
 {% endif %}

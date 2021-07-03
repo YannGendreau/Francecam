@@ -1,29 +1,31 @@
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
-	</head>
-	<body>
+{% apply inky_to_html|inline_css(source('@styles/email.css')) %}
+<container>
 
-		<div class="container">
+	<row class="titre">
+		<columns>
+			<center>
+				<img src="{{ email.image('@images/FRANCECAM-logo-sm.png') }}" alt="logo du site Francecam">
+				<h1>Francecam</h1>
+			</center>
 
-			<div class="logoSearch">
-				<img class="logoHome" src="{{asset('build/images/FRANCECAM-logo.png')}}" alt="logo du site Francecam">
-				<div class="titreHome">
-					<h1>Francecam</h1>
-				</div>
-			</div>
+		</columns>
+	</row>
 
+	<row class="texte">
+		<columns>
 			<p>
-				{{film.user.name}}
-				vient d'ajouter
-				{{film.title}}</p>
-			<p>
-				<a href="{{ absolute_url(path('film_show', {'slug': film.slug})) }}">Voir le film</a>
+				<strong>{{film.user.name}}</strong>
+				vient d'ajouter:
+				<strong>{{film.title}}</strong>
 			</p>
-		</div>
-	</body>
-</html>
+
+		</columns>
+	</row>
+	<row class="lien">
+		<columns>
+			<a href="{{ absolute_url(path('film_show', {'slug': film.slug})) }}">Voir la page du film</a>
+		</columns>
+	</row>
+
+</container>
+{% endapply %}

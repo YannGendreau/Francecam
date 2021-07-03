@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Entity\Marque;
 use App\Entity\Modele;
 use App\Entity\Director;
-use App\Repository\FilmRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
@@ -14,9 +13,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Captcha\Bundle\CaptchaBundle\Validator\Constraints as CaptchaAssert;
 
 /**
-* @ORM\Entity(repositoryClass=FilmRepository::class)
+*@ORM\Entity(repositoryClass="App\Repository\FilmRepository")
+*
 * @Vich\Uploadable()
 * @ORM\Table(name="film", indexes={@ORM\Index(columns={"title"}, flags={"fulltext"})})
 * @UniqueEntity(
@@ -61,7 +62,7 @@ class Film
 
     /**
     * @var Collection|Marque[]
-    *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films", cascade={"persist"})
+    *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films", cascade={"persist", "remove"}, fetch="EAGER")
     */
     private $marques;
 
@@ -82,7 +83,7 @@ class Film
 
     /**
      * @var Collection|Modele[]
-     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films", cascade={"persist", "remove"}, fetch="EAGER")
      */
     private $modeles;
 
@@ -132,7 +133,7 @@ class Film
     private $pays;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Camera::class, inversedBy="films", cascade={"persist", "remove"})
      */
     private $camera;
 
@@ -155,6 +156,10 @@ class Film
      * @ORM\Column(type="boolean", options={"default":false}, nullable = true)
      */
     private $isVerified;
+
+    /**
+   */
+    protected $captchaCode;
 
      
 
@@ -249,7 +254,6 @@ class Film
 
     public function setDecade(?int $decade): self
     {
-        // $sortie = $this->sortie;
         $decade = substr($this->sortie, 0, 3) . 0;
 
         $this->decade = $decade;
@@ -585,6 +589,16 @@ class Film
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    public function getCaptchaCode()
+    {
+      return $this->captchaCode;
+    }
+  
+    public function setCaptchaCode($captchaCode)
+    {
+      $this->captchaCode = $captchaCode;
     }
 
     

@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert; 
 use Gedmo\Mapping\Annotation as Gedmo;
+use Captcha\Bundle\CaptchaBundle\Validator\Constraints as CaptchaAssert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -32,6 +33,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Assert\Length(
+   *      min = 2,
+   *      max = 20,
+   *      minMessage = "Le nom doit comporter au moins {{ limit }} caractères",
+   *      maxMessage = "Le nom doit comporter au maximum {{ limit }} caractères"
+   * )
      */
     private $name;
 
@@ -79,6 +86,13 @@ class User implements UserInterface
     //  * @ORM\Column(type="boolean", nullable=true)
     //  */
     // private $isVerified;
+
+      /**
+   * @CaptchaAssert\ValidCaptcha(
+   *      message = "CAPTCHA a échoué, tentez à nouveau."
+   * )
+   */
+    protected $captchaCode;
 
 
     
@@ -278,5 +292,15 @@ class User implements UserInterface
       $this->activation_token = $activation_token;
 
       return $this;
+  }
+
+  public function getCaptchaCode()
+  {
+    return $this->captchaCode;
+  }
+
+  public function setCaptchaCode($captchaCode)
+  {
+    $this->captchaCode = $captchaCode;
   }
 }

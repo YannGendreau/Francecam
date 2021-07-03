@@ -5,8 +5,6 @@
 
 {% block content %}
 
-	{# {% include "/includes/flashes/_flash_message.html.twig" %} #}
-
 	<div class="container">
 		<div class="loginContainer">
 			{{form_start(registrationForm)}}
@@ -30,7 +28,9 @@
 							<a href="">conditions générales d'utilisation</a>.</em>
 					</div>
 				</div>
-				{# {{form_widget(registrationForm)}} #}
+				<div class="flex-row">
+					{{ form_row(registrationForm.captchaCode, {'attr': {'class': 'form-control'}}) }}
+				</div>
 				<input type="submit" value="Envoyer" class="lf--submit" novalidate>
 				{{form_end(registrationForm)}}
 

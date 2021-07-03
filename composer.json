@@ -10,6 +10,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "antishov/doctrine-extensions-bundle": "^1.4",
+        "carlos-mg89/symfony-captcha-bundle": "^4.2",
         "composer/package-versions-deprecated": "1.11.99.1",
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
@@ -47,7 +48,9 @@
         "symfony/webpack-encore-bundle": "^1.9",
         "symfony/yaml": "*",
         "symfonycasts/reset-password-bundle": "^1.5",
-        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/cssinliner-extra": "^3.3",
+        "twig/extra-bundle": "^3.3",
+        "twig/inky-extra": "^3.3",
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^1.16"
     },

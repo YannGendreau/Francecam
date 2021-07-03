@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Film;
 use App\Data\FilmSearchData;
 use App\Data\SearchHomeData;
-use App\Data\CameraSearchData;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -121,27 +120,7 @@ class FilmRepository extends ServiceEntityRepository
         );      
     }
 
-     /**-------------------------------------------------------------------
-     * Recherche des films en cameras en fonction du formulaire (FULLTEXT)
-     * Non retenu (voir function suivante)
-     * @return void 
-     --------------------------------------------------------------------*/
-    public function search($mots = null){
-        $query = $this->createQueryBuilder('f');
-    
-        if($mots != null){
-            $query->andWhere('MATCH_AGAINST(f.title) AGAINST (:mots boolean)> 0')
-                ->setParameter('mots', $mots);
-        }
-        // if($categorie != null){
-        //     $query->leftJoin('a.categories', 'c');
-        //     $query->andWhere('c.id = :id')
-        //         ->setParameter('id', $categorie);
-        // }
-        return $query->getQuery()->getResult();
-    }
 
-  
     /**
      * Barre de recherche; Query sur les champs Film
      * Même procédé que pour la recherche sur la route /film
@@ -168,13 +147,17 @@ class FilmRepository extends ServiceEntityRepository
        
             $query= $query->getQuery();
 
-        // return $this->paginator->paginate(
-        //     $query,
-        //     $search->page,
-        //     6
-
-        // );
         return $query->getResult(); 
+    }
+
+    public function groupCameraByMarque(){
+
+        return $this->createQueryBuilder('f')
+        ->select('f.camera', 'c')
+        ->orderBy('c.name', 'ASC')
+        ->getQuery()
+        ->execute()
+    ;
     }
 
       

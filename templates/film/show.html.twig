@@ -9,11 +9,7 @@
 	<div class="container">
 
 		<div class="tableauCamera">
-			<div class="userContainer">
-				<em>Ajouté par
-					<strong>{{film.user}}</strong>
-				</em>
-			</div>
+
 			<div class="imageCam">
 				{% if film.poster | length >= 1 and film.image | length == 0 %}
 					<div class="imgMov"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
@@ -24,7 +20,7 @@
 						{% if film.user %}
 							<a href="{{path('film_edit', {slug:film.slug})}}">Ajouter une affiche</a>
 						{% else %}
-							<h4>Ajouter une affiche</h4>
+							<a href="{{path('app_login')}}">Se connecter pour ajouter</a>
 						{% endif %}
 					</div>
 				{% endif %}
@@ -153,6 +149,16 @@
 								<div class="tableauCamFilm">
 									{% include "camera/_camera_show.html.twig" %}
 								</div>
+								<div class="add">
+
+									{% if app.user %}
+										<a class="addCamera" href="{{path('film_edit', {slug:film.slug})}}">Ajouter/modifier</a>
+									{% else %}
+										<a class="connect" href="{{path('app_login')}}">Ajouter/modifier</a>
+									{% endif %}
+
+
+								</div>
 							</div>
 						</div>
 						<div class="tabPanel" style="display: none;">
@@ -170,6 +176,12 @@
 						</div>
 					</div>
 				</div>
+			</div>
+
+			<div class="userContainer">
+				<em>Ajouté par
+					<strong>{{film.user}}</strong>
+				</em>
 			</div>
 		</div>
 	</div>

@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Camera;
 use App\Form\CameraType;
 use App\Repository\CameraRepository;
-use App\Repository\MarqueRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,14 +44,10 @@ class CameraController extends AbstractController
             $modele = $camera->getModele();
             $cameraName = $marque . ' ' . $modele;
             $camera->setName($cameraName);
-          
-            // $name = $camera->getName();
-            // $camera->setSlug($name);
-
+        
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($camera);
             $entityManager->flush();
-            // dd($camera);
 
             return $this->redirectToRoute('camera_index');
         }

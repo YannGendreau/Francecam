@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Captcha\Bundle\CaptchaBundle\Form\Type\CaptchaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -79,6 +80,11 @@ class UserRegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => new IsTrue(),
             ])
+
+            ->add('captchaCode', CaptchaType::class, array(
+                'captchaConfig' => 'userCaptcha',
+                'label' => false
+              ))
         ;
     }
 

@@ -79,4 +79,8 @@ class MarqueRepository extends ServiceEntityRepository
 
         );      
     }
+
+    public function getModeleFromMarque(){
+        
+    }
 }

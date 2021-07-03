@@ -32,7 +32,7 @@ class MarqueController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        // $marque = new Marque();
+        $marque = new Marque();
         $form = $this->createForm(MarqueType::class);
         $form->handleRequest($request);
 
@@ -46,7 +46,7 @@ class MarqueController extends AbstractController
         }
 
         return $this->render('marque/new.html.twig', [
-            // 'marque' => $marque,
+            'marque' => $marque,
             'form' => $form->createView(),
         ]);
     }

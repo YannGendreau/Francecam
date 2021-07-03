@@ -6,7 +6,6 @@ use App\Entity\Film;
 use App\Entity\Genre;
 use App\Entity\Camera;
 use App\Entity\Marque;
-use Doctrine\ORM\Mapping\OrderBy;
 
 
 class FilmSearchData

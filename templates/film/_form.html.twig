@@ -86,7 +86,9 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="rowFormCaptcha">
+		{{ form_row(form.captchaCode)}}
+	</div>
 	<div class="printBtn">
 		<button class="btn">{{ button_label|default('Enregistrer') }}</button>
 	</div>

@@ -8,7 +8,6 @@ use App\Repository\FilmRepository;
 use App\Repository\MarqueRepository;
 use App\Repository\ModeleRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -17,7 +16,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/search", name="search")
      */
-    public function searchBar(ModeleRepository $modeleRepository, FilmRepository $filmRepository, MarqueRepository $marqueRepository, Request $request, SearchHomeData $search)
+    public function searchBar(ModeleRepository $modeleRepository, FilmRepository $filmRepository, MarqueRepository $marqueRepository, Request $request)
     {
         //Barre de recherche
         //init data

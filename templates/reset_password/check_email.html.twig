@@ -5,12 +5,15 @@
 
 {% block content %}
 	<div class="container">
-		<p>
-			Cliquez le lien qui vous a été envoyé.
-																		        Ce lien expirera dans
-			{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-		</p>
-		<p>Si vous ne recevez pas cet Email, vérifiez dans votre dossier spam ou
-			<a href="{{ path('app_forgot_password_request') }}">essayez à nouveau</a>.</p>
+		<div id="checklink">
+			<p>
+				Cliquez le lien qui vous a été envoyé sur le mail
+				<strong>{{app.user.email}}</strong>. Ce lien expirera dans
+				<strong>{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}</strong>.
+			</p>
+			<br>
+			<p>Si vous ne recevez pas cet Email, vérifiez dans votre dossier spam ou
+				<a href="{{ path('app_forgot_password_request') }}">essayez à nouveau</a>.</p>
+		</div>
 	</div>
 {% endblock %}

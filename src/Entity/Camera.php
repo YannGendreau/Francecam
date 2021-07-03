@@ -27,12 +27,12 @@ class Camera
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="cameras",cascade={"persist"} )
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="cameras",cascade={"persist", "remove"} )
      */
     private $marque;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="cameras", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="cameras", cascade={"persist", "remove"})
      */
     private $modele;
 

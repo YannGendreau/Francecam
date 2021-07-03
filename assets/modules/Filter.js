@@ -46,10 +46,6 @@ export default class Filter {
             aClickListener(e)
             this.page = 1
         })
-        // if (this.more) {
-        // this.pagination.innerHTML = '<button class="more">Voir plus</button>'
-        // this.pagination.querySelector('button').addEventListener('click', this.loadMore.bind(this))
-        // }else{
         // Change les URLS de pagination quand l'élément pagination est cliqué
         this.pagination.addEventListener('click', aClickListener)
         // }
@@ -59,17 +55,6 @@ export default class Filter {
             input.addEventListener('change', this.loadForm.bind(this))
 
         })
-    }
-
-    async loadMore() {
-        const button = this.pagination.querySelector('button')
-        button.setAttribute('disabled', 'disabled')
-        this.page++
-        const url = new URL(window.location.href)
-        const params = new URLSearchParams(url.search)
-        params.set('page', this.page)
-        await this.loadUrl(url.pathname + '?' + params.toString(), true)
-        button.removeAttribute('disabled')
     }
 
     async loadForm() {
@@ -88,9 +73,7 @@ export default class Filter {
         return this.loadUrl(url.pathname + '?' + params.toString())
     }
 
-
-
-    async loadUrl(url, append = false) {
+    async loadUrl(url) {
         // params = découpe de l'URL de la page en cours après le ? et la clé 1 sinon une chaine vide
         const params = new URLSearchParams(url.split('?')[1] || '')
         // Ajoute 'ajax' en valeur 1
@@ -109,14 +92,6 @@ export default class Filter {
             this.sorting.innerHTML = data.sorting
             this.content.innerHTML = data.content
             this.pagination.innerHTML = data.pagination
-            // this.title.innerHTML = data.title
-            // if (!this.more) {
-            //     this.pagination.innerHTML = data.pagination
-            // }else if (this.page === data.pages){
-            //     this.pagination.style.display ='none';
-            // }else{
-            //     this.pagination.style.display =null;
-            // }
             //supprime 'ajax' de l'URL
             params.delete('ajax')
             // Remplace l'URL par une URL découpé à partir du '?' et la première clé + '?' + params en chaine de caractères

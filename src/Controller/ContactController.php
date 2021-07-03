@@ -1,33 +1,36 @@
 <?php
 namespace App\Controller;
+use App\Entity\Contact;
 use App\Form\ContactType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Mime\Email;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 class ContactController extends AbstractController
 {
     /**
      * @Route("/contact", name="contact")
      */
     public function index(Request $request, MailerInterface $mailer)
-    {
-        $form = $this->createForm(ContactType::class);
+    { 
+        $form = $this->createForm(ContactType::class, new Contact);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
-            
-            $message = (new Email())
-                ->from($contactFormData['email'])
-                ->to('ton@gmail.com')
-                ->subject('vous avez reçu un email')
-                ->text('Sender : '.$contactFormData['email'].\PHP_EOL.
-                    $contactFormData['message'],
-                    'text/plain');
+            $message = (new TemplatedEmail())
+            ->from(new Address('test@francecam.fr', 'Francecam Admin'))
+            ->to(new Address('test@francecam.fr', 'Francecam Admin'))
+            ->subject('vous avez reçu un email de' .$contactFormData->getNom())
+            ->htmlTemplate('contact/message.html.twig')
+            ->context([
+                'contact' => $contactFormData
+            ]);
             $mailer->send($message);
-            $this->addFlash('success', 'Votre message a été envoyé');
-            return $this->redirectToRoute('contact');
+            $this->addFlash('success', 'Votre message a bien été envoyé');
+            return $this->redirectToRoute('accueil');
         }
         return $this->render('contact/index.html.twig', [
             'contact_form' => $form->createView()

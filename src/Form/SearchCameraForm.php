@@ -3,47 +3,24 @@
 namespace App\Form;
 
 
-use App\Form\YEAR;
-use App\Entity\Film;
-use App\Entity\Genre;
-
 use App\Entity\Format;
-// use Symfony\Bridge\Doctrine\Form\Type\ChoiceType;
 use App\Entity\Marque;
-use App\Entity\Modele;
-use App\Entity\CameraType;
-use App\Data\FilmSearchData;
 use App\Data\CameraSearchData;
-use App\Repository\FilmRepository;
 use Doctrine\ORM\EntityRepository;
-use App\Repository\ModeleRepository;
-use PhpParser\Node\Expr\AssignOp\Concat;
 use Symfony\Component\Form\AbstractType;
-use DoctrineExtensions\Query\Mysql\Round;
-use DoctrineExtensions\Query\Mysql\ConcatWs;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+
 
 class SearchCameraForm extends AbstractType
 {
-    private $modeleRepository;
-
-    public function __construct(ModeleRepository $modeleRepository)
-    {
-        $this->modeleRepository = $modeleRepository;
-    }
-
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-            
-    
         $builder
             ->add ('q', TextType::class, [
                 'label' => false,

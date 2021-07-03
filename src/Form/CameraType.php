@@ -12,9 +12,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 
@@ -82,26 +80,6 @@ class CameraType extends AbstractType
             }
         );
 
-        // $builder->addEventListener(
-        //     FormEvents::POST_SET_DATA,
-        //     function (FormEvent $event) use ($formModifier) {
-        //         // this would be your entity, i.e. SportMeetup
-        //         // $marque = $event->getData()->getMarque();
-        //         $data = $event->getData();
-        //         $form = $event->getForm();
-        //         $modele = null;
-        //         if ($data != null){
-        //             $modele = $data->getModele();
-        //             $marque = $modele->getMarque();
-        //             $formModifier($form, $marque);
-        //             $form->get('modele')->setData($modele);
-        //             // dd($marque);
-        //         }
- 
- 
-        //         // $formModifier($event->getForm(), $marque->getModele());
-        //     }
-        // );
     }
 
 

@@ -1,0 +1,27 @@
+.titre, .texte, .lien{
+   margin-right: auto;
+   margin-left: auto;
+}
+
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+p{
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+p>strong{
+color: rgb(202, 45, 45);
+font-size: 1.4rem;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(0, 39, 61);
+    font-size: 1.2rem;
+    text-align: center;
+}

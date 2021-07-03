@@ -273,6 +273,13 @@ $('#clickUp').on('click', function(){
 	$('#about').animate({scrollTop: '-=600px'});
 })
 
+//Retire la ligne Captcha Symfony sur le formulaire
+
+$(function(){
+    $("a[title ~= 'BotDetect']").removeAttr("style");
+    $("a[title ~= 'BotDetect']").removeAttr("href");
+    $("a[title ~= 'BotDetect']").css('visibility', 'hidden');
+});
 
 
 

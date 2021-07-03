@@ -15,7 +15,11 @@
 				</div>
 				<div class="flex-row">
 					<div class="form-group">
-						{{ form_row(contact_form.nom, {'attr': {'class': 'form-control'}}) }}
+						<div class="errors">
+							{{ form_errors(contact_form.nom, {'attr': {'class': 'text-error'}})}}
+						</div>
+
+						{{ form_widget(contact_form.nom, {'attr': {'class': 'form-control'}}) }}
 					</div>
 				</div>
 				<div class="flex-row">
@@ -23,6 +27,9 @@
 				</div>
 				<div class="flex-row">
 					{{ form_row(contact_form.message, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="flex-row">
+					{{ form_row(contact_form.captchaCode, {'attr': {'class': 'form-control'}}) }}
 				</div>
 
 				<input type="submit" value="Send" class="lf--submit">

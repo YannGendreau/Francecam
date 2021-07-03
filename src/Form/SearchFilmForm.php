@@ -3,34 +3,21 @@
 namespace App\Form;
 
 
-use App\Form\YEAR;
-use App\Entity\Film;
 use App\Entity\Genre;
 use App\Entity\Marque;
-use App\Entity\Modele;
 use App\Data\FilmSearchData;
-use App\Entity\Camera;
 use App\Repository\FilmRepository;
-use App\Repository\ModeleRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+
 
 class SearchFilmForm extends AbstractType
 {
-    private $filmRepository;
-
-    public function __construct(FilmRepository $filmRepository)
-    {
-        $this->filmRepository = $filmRepository;
-    }
 
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -76,38 +63,14 @@ class SearchFilmForm extends AbstractType
                 'multiple' => true,
                
             ])
-            // ->add('camera', ChoiceType::class, [
-            //     'label' => false,
-            //     'choices' => [
-            //         'Aaton' => 'Aaton',
-            //         'ARRI' => 'ARRI',
-            //         'Eclair' => 'Eclair',
-            //         'Debrie' => '1',
-            //         'Moviecam' => 'Moviecam',
-            //         'Mitchell' => 'Mitchell',
-            //         'Panavision' => 'Panavision',
-                 
-            //     ],
-            //     'expanded' => true,
-            //     'multiple' => true,
-               
-            // ])
-
+          
             ->add('marques', EntityType::class,[
                 'label' => false,
                 'required'=> false,
                 'class' => Marque::class,
                 'expanded'=> true,
                 'multiple' => true,
-               
-            ])
-            ->add('modeles', EntityType::class,[
-                'label' => false,
-                'required'=> false,
-                'class' => Modele::class,
-                'expanded'=> true,
-                'multiple' => true,
-               
+                    
             ])
             ;
     }

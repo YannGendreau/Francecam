@@ -15,6 +15,8 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -48,46 +50,47 @@ class FilmController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $camera = $film->getCamera();
-            foreach($camera as $cam){
-                $marque = $cam->getMarque();
-                $film->addMarque($marque);
-                $modele = $cam->getModele();
-                $film->addModele($modele);
-            }
+            
+                $camera = $film->getCamera();
+                foreach ($camera as $cam) {
+                    $marque = $cam->getMarque();
+                    $film->addMarque($marque);
+                    $modele = $cam->getModele();
+                    if($modele !== null){
+                        $film->addModele($modele);
+                    }
+                }
             
             
-            $film->setUser($this->getUser());
-            $sortie = $film->getSortie();
-            $film->setDecade($sortie);
+                $film->setUser($this->getUser());
+                $sortie = $film->getSortie();
+                $film->setDecade($sortie);
             
-            $entityManager = $this->getDoctrine()->getManager();
-            $film = $form->getData();
-            $entityManager->persist($film);
-            $entityManager->flush();
+                $entityManager = $this->getDoctrine()->getManager();
+                $film = $form->getData();
+                $entityManager->persist($film);
+                $entityManager->flush();
         
-            /*------------------------------------------------------------------------------
-                      
-            ----------------------------------------------------------------------------------------*/
-            // EMAIL
+                /*------------------------------------------------------------------------------
+
+                ----------------------------------------------------------------------------------------*/
+                // EMAIL
                 $email = (new TemplatedEmail())
                 ->from(new Address('test@test.com', 'Francecam Admin'))
-                ->to(new Address('test@test.com', 'Francecam Admin'))
-                ->subject('Francecam | Nouveau film')
+                ->to(new Address('test@test.fr', 'Francecam Admin'))
+                ->subject('Francecam | Nouveau film'. ' ' . $film->getTitle())
                 ->htmlTemplate('film/activation.html.twig')
                 ->context([
                     'film' => $film
                 ])
             ;
 
-            $mailer->send($email);
+                $mailer->send($email);
 
-            $this->addFlash('success', 'Nouveau film enregistré');
-        
+                $this->addFlash('success', 'Nouveau film enregistré');
+            
                 return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
-
         }
-      
             return $this->render('film/new.html.twig', [
                 'film' => $film,
                 'form' => $form->createView(),
@@ -116,26 +119,55 @@ class FilmController extends AbstractController
     
         // Déclaration du formulaire FilmType
         $form = $this->createForm(FilmType::class, $film);
+       
         // Requête
         $form->handleRequest($request);
 
         // Validation du formulaire
          if ($form->isSubmitted() && $form->isValid()) {
-            $camera = $film->getCamera();
-            foreach($camera as $cam){
-                $marque = $cam->getMarque();
-                $film->addMarque($marque);
-                $modele = $cam->getModele();
-                $film->addModele($modele);
-            }
+            $camera =$film->getCamera();
+            // $camera = $form->getData()->getCamera();
+           
+            // $camera = $form['camera'];
+                //   dd($camera);
+                foreach ($camera as $cam) {
+                  if($film->addCamera($cam)){
+                        $marque = $cam->getMarque();
+                        $film->addMarque($marque);
+                        $modele = $cam->getModele();
+                        if ($modele !== null) {
+                            $film->addModele($modele);
+                        }
+                  }elseif($film->removeCamera($cam)){
+                        $marque = $cam->getMarque();
+                        $film->removeMarque($marque);
+                        $modele = $cam->getModele();
+                        if ($modele !== null) {
+                            $film->removeModele($modele);
+                        }
+                    }   
+                       
+                       
+        
+                }
+            
+
+    
+         
+           
+
+          
+         
+           
+          
             //Enregistrement en base de données avec le manager de Doctrine  
             $this->getDoctrine()->getManager()->flush();
             //Message de succès
              // EMAIL
              $email = (new TemplatedEmail())
-             ->from(new Address('test@test.com', 'Francecam Admin'))
+             ->from(new Address('test@test.com ', 'Francecam Admin'))
              ->to(new Address('test@test.com', 'Francecam Admin'))
-             ->subject('Francecam | Modification d\'un film')
+             ->subject('Francecam | Modification du film'. ' ' . $film->getTitle())
              ->htmlTemplate('film/modification.html.twig')
              ->context([
                  'film' => $film
@@ -205,6 +237,8 @@ class FilmController extends AbstractController
         if(!$films){
             // renvoie une exception
             throw new NotFoundHttpException('Pas de films');
+              
+
         }
         // Génération de rendu Twig
         return $this->render('film/film_list.html.twig', [

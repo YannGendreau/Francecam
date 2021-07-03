@@ -6,19 +6,12 @@ use App\Entity\Film;
 use App\Entity\Pays;
 use App\Entity\Genre;
 use App\Entity\Camera;
-use App\Entity\Marque;
-use App\Entity\Modele;
-use App\Entity\Cameras;
 use App\Entity\Director;
 use App\Entity\Dirphoto;
-use App\Form\CameraType;
 use Doctrine\ORM\EntityRepository;
 use App\Repository\MarqueRepository;
 use App\Repository\ModeleRepository;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,23 +19,17 @@ use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Captcha\Bundle\CaptchaBundle\Form\Type\CaptchaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Captcha\Bundle\CaptchaBundle\Validator\Constraints\ValidCaptcha;
 
 class FilmType extends AbstractType
+// class FilmType extends HoneyPotType
 {
-    private $marque;
-    private $modeleRepository;
 
-    public function __construct(MarqueRepository $marque, ModeleRepository $modeleRepository)
-    {
-        $this->marque = $marque;
-        $this->modeleRepository= $modeleRepository;
-    }
-    
     /**
      * Formulaire nouveau Film
      *
@@ -50,8 +37,10 @@ class FilmType extends AbstractType
      * @param array $options
      * @return void
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // parent::buildForm($builder, $options);
+
         $builder
             ->add('title', TextType::class, [
                 'label'         => false,
@@ -159,10 +148,18 @@ class FilmType extends AbstractType
                     ;
                 }
                 ])
-                
-        ;
-
-            
+            ->add('captchaCode', CaptchaType::class, [
+                'captchaConfig' => 'FilmCaptcha',
+                'label'         => false,
+                'constraints' => [
+                    new ValidCaptcha([
+                        'message' => 'Le Captcha ne correspond pas, merci de tenter à nouveau.',
+                    ]),
+                ],
+                'attr'          => [
+                    'class'     => 'cap'
+                ],
+            ]);
         ;
           
 }
