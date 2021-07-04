@@ -21,8 +21,8 @@ class ContactController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
             $message = (new TemplatedEmail())
-            ->from(new Address('test@francecam.fr', 'Francecam Admin'))
-            ->to(new Address('test@francecam.fr', 'Francecam Admin'))
+            ->from(new Address($this->getParameter("mail.admin"), 'Francecam Admin'))
+            ->to(new Address($this->getParameter("mail.admin"), 'Francecam Admin'))
             ->subject('vous avez reçu un email de' .$contactFormData->getNom())
             ->htmlTemplate('contact/message.html.twig')
             ->context([

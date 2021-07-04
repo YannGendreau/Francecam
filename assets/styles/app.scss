@@ -505,7 +505,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
         height: 190px;
         max-width: 300px;
         min-width: 300px;
-        margin: 3px 0 3px 0;
+        margin: 0 3px 3px 0;
         border: 1px solid lightgrey;
         border-radius: 5px;
 
@@ -628,12 +628,12 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
                         font-weight: bolder;
                         text-transform: uppercase;
                         font-size: 2rem;
+                        text-align: center;
                     }
 
                     h3 {
                         color: rgb(255, 255, 255);
                         padding: 5px;
-
                         font-size: 2rem;
                         text-transform: uppercase;
                         font-weight: bold;
@@ -2090,14 +2090,15 @@ a {
 
         .showList {
             width: 100%;
-            @include flex-space-center();
+            @include flex-start-center();
             flex-wrap: wrap;
             margin-top: 10px;
             @include cardGridCam();
             @include cardFilm();
 
             .noresults {
-                height: 400px;
+                height: 600px;
+                width: 100%;
                 @include flex-center();
                 p {
                     font-family: "Roboto Condensed", sans-serif;
@@ -4334,6 +4335,20 @@ PAGE USER PROFILE
 .resultSearch {
     margin-top: $mTop;
     width: 80%;
+    min-height: 700px;
+
+    .noresults {
+        width: 100%;
+        height: 400px;
+        @include flex-center();
+        p {
+            font-family: "Roboto Condensed", sans-serif;
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: $titleCard;
+            margin: 15px 5px;
+        }
+    }
 
     h1 {
         font-family: "Roboto Condensed", sans-serif;

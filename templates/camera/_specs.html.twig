@@ -1,0 +1,214 @@
+<div class="specifications">
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Support</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			{% if camera.modele.type is defined %}
+				{% if camera.modele.type %}
+					<h4>
+						{% for s in camera.modele.type %}
+							{{s.name}}
+						{% endfor %}
+					{% else %}
+						<span>
+							-
+						</span>
+					</h4>
+				{% endif %}
+			{% endif %}
+		</div>
+	</div>
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Magasin</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			{% if camera.modele.magazine is defined %}
+				{% if camera.modele.magazine %}
+					<h4>{{camera.modele.magazine}}
+						mètres</h4>
+				{% else %}
+					<span>
+						-
+					</span>
+				{% endif %}
+			{% endif %}
+		</div>
+	</div>
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Obturateur</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			<h4>
+				{% if camera.modele.shutter is defined %}
+					{% if camera.modele.shutter %}
+						{% for s in camera.modele.shutter %}
+							{{s.angle}}°
+						{% endfor %}
+					{% else %}
+						<span>
+							-
+						</span>
+
+					{% endif %}
+				{% endif %}
+			</h4>
+		</div>
+	</div>
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Fréquence d'images</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			<h4>
+				{% if camera.modele.framerate is defined %}
+					{% if camera.modele.framerate %}
+						<h4>{{ camera.modele.framerate }}
+							images/seconde</h4>
+					{% else %}
+						<span>
+							-
+						</span>
+
+					{% endif %}
+				{% endif %}
+			</h4>
+		</div>
+	</div>
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Monture</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			<h4>
+				{% if camera.modele.mount is defined %}
+					{% if camera.modele.mount %}
+						{% for s in camera.modele.mount %}
+							{{s.name}}
+						{% endfor %}
+					{% else %}
+						<span>
+							-
+						</span>
+					{% endif %}
+				{% endif %}
+			</h4>
+		</div>
+	</div>
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Entrainement</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			{% if camera.modele.modele is defined %}
+				{% if camera.modele.perfs %}
+					<h4>{{camera.modele.perfs}}
+					</h4>
+				{% else %}
+					<span>
+						-
+					</span>
+				{% endif %}
+			{% endif %}
+		</div>
+	</div>
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Bruit</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			<h4>
+				{% if camera.modele.mount is defined %}
+					{% if camera.modele.mount %}
+						{{camera.modele.noise}}db
+					{% else %}
+						<span>
+							-
+						</span>
+					{% endif %}
+				{% endif %}
+			</h4>
+		</div>
+	</div>
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Poids</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			<h4>
+				{% if camera.modele.weight is defined %}
+					{% if camera.modele.weight %}
+						{{camera.modele.weight}}Kg
+					{% else %}
+						<span>
+							-
+						</span>
+					{% endif %}
+				{% endif %}
+			</h4>
+		</div>
+	</div>
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Moteur</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			<div>
+				{% if camera.modele.sync is defined and camera.modele.voltage is defined %}
+					{% if camera.modele.sync or camera.modele.voltage %}
+						<h4>{{camera.modele.sync}}</h4>
+						<span>
+							-
+						</span>
+						<h4>{{camera.modele.voltage}}v</h4>
+					{% else %}
+						<span>
+							-
+						</span>
+					{% endif %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="cell">
+		<div class="option">
+			<strong>
+				<h3>Viewfinder</h3>
+			</strong>
+		</div>
+		<div class="spec">
+			<h4>
+				{% if camera.modele.weight is defined %}
+					{% if camera.modele.view %}
+						{{camera.modele.view}}
+					{% else %}
+						<span>
+							-
+						</span>
+					{% endif %}
+				{% endif %}
+			</h4>
+		</div>
+	</div>
+
+</div>

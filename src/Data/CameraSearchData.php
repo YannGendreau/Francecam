@@ -5,6 +5,7 @@ namespace App\Data;
 use App\Entity\Format;
 use App\Entity\Marque;
 use App\Entity\Modele;
+use App\Entity\Camera;
 
 
 class CameraSearchData{

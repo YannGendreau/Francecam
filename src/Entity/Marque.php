@@ -54,8 +54,6 @@ class Marque
 
     /**
      *
-     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="marques", cascade ={"persist"})
-     *
      */
     private $films;
 

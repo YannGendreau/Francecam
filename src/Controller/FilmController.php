@@ -49,18 +49,6 @@ class FilmController extends AbstractController
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-            
-                $camera = $film->getCamera();
-                foreach ($camera as $cam) {
-                    $marque = $cam->getMarque();
-                    $film->addMarque($marque);
-                    $modele = $cam->getModele();
-                    if($modele !== null){
-                        $film->addModele($modele);
-                    }
-                }
-            
             
                 $film->setUser($this->getUser());
                 $sortie = $film->getSortie();
@@ -76,8 +64,8 @@ class FilmController extends AbstractController
                 ----------------------------------------------------------------------------------------*/
                 // EMAIL
                 $email = (new TemplatedEmail())
-                ->from(new Address('test@test.com', 'Francecam Admin'))
-                ->to(new Address('test@test.fr', 'Francecam Admin'))
+                ->from(new Address($this->getParameter('mail.admin'), 'Francecam Admin'))
+                ->to(new Address($this->getParameter('mail.admin'), 'Francecam Admin'))
                 ->subject('Francecam | Nouveau film'. ' ' . $film->getTitle())
                 ->htmlTemplate('film/activation.html.twig')
                 ->context([
@@ -125,53 +113,19 @@ class FilmController extends AbstractController
 
         // Validation du formulaire
          if ($form->isSubmitted() && $form->isValid()) {
-            $camera =$film->getCamera();
-            // $camera = $form->getData()->getCamera();
            
-            // $camera = $form['camera'];
-                //   dd($camera);
-                foreach ($camera as $cam) {
-                  if($film->addCamera($cam)){
-                        $marque = $cam->getMarque();
-                        $film->addMarque($marque);
-                        $modele = $cam->getModele();
-                        if ($modele !== null) {
-                            $film->addModele($modele);
-                        }
-                  }elseif($film->removeCamera($cam)){
-                        $marque = $cam->getMarque();
-                        $film->removeMarque($marque);
-                        $modele = $cam->getModele();
-                        if ($modele !== null) {
-                            $film->removeModele($modele);
-                        }
-                    }   
-                       
-                       
-        
-                }
-            
-
-    
-         
-           
-
-          
-         
-           
-          
             //Enregistrement en base de données avec le manager de Doctrine  
             $this->getDoctrine()->getManager()->flush();
             //Message de succès
              // EMAIL
              $email = (new TemplatedEmail())
-             ->from(new Address('test@test.com ', 'Francecam Admin'))
-             ->to(new Address('test@test.com', 'Francecam Admin'))
-             ->subject('Francecam | Modification du film'. ' ' . $film->getTitle())
-             ->htmlTemplate('film/modification.html.twig')
-             ->context([
-                 'film' => $film
-             ])
+                ->from(new Address($this->getParameter('mail.admin'), 'Francecam'))
+                ->to(new Address($this->getParameter('mail.admin'), 'Francecam Admin'))
+                ->subject('Francecam | Modification du film'. ' ' . $film->getTitle())
+                ->htmlTemplate('film/modification.html.twig')
+                ->context([
+                    'film' => $film
+                ])
          ;
 
          $mailer->send($email);

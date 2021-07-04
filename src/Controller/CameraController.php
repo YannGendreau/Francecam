@@ -4,28 +4,65 @@ namespace App\Controller;
 
 use App\Entity\Camera;
 use App\Form\CameraType;
+use App\Data\CameraSearchData;
+use App\Form\SearchCameraForm;
 use App\Repository\CameraRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/camera")
  */
 class CameraController extends AbstractController
 {
-    /**
-     * @Route("/", name="camera_index", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+
+  /**
+     * @var CameraRepository
      */
-    public function index(CameraRepository $cameraRepository): Response
+
+    private $repository;
+
+    public function __construct(CameraRepository $repository)
     {
-        return $this->render('camera/index.html.twig', [
-            'cameras' => $cameraRepository->findAll(),
+        $this->repository = $repository;
+    }
+
+
+
+     /**
+     * @Route("/", name="camera", methods={"GET"})
+     */
+    public function filmList(Request $request): Response
+    {        
+        $data = new CameraSearchData;
+        $data->page =$request->get('page', 1);
+        $form = $this->createForm(SearchCameraForm::class, $data);
+        $form->handleRequest($request);
+        $cameras = $this->repository->findSearch($data);
+        if ($request->get('ajax')){
+            return new JsonResponse([
+                'content' => $this->renderView('camera/_camera_list.html.twig', ['cameras' => $cameras]),
+                'sorting' => $this->renderView('camera/_sorting.html.twig', ['cameras' => $cameras]),
+                'pagination' => $this->renderView('camera/_pagination.html.twig', ['cameras' => $cameras]),
+                'pages' => ceil($cameras->getTotalItemCount() / $cameras->getItemNumberPerPage())
+            ]);
+        }
+
+        if(!$cameras){
+            throw new NotFoundHttpException('Pas de films');
+        }
+
+        return $this->render('camera/camera_list.html.twig', [
+            "cameras" => $cameras,
+            'form' => $form->createView()
         ]);
     }
+    
 
     /**
      * Nouvelle caméra
@@ -60,7 +97,7 @@ class CameraController extends AbstractController
 
     /**
      * @Route("/{slug}", name="camera_show", methods={"GET"})
-     * @IsGranted("ROLE_ADMIN")
+    
      */
     public function show(Camera $camera): Response
     {

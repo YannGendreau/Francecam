@@ -1,23 +1,142 @@
-{% extends 'base.html.twig' %}
+{% extends 'navbar/layout.html.twig' %}
 
-{% block title %}Camera
+{% block title %}
+	Francecam |
+	{{camera.name}}
+
 {% endblock %}
 
-{% block body %}
-	<h1>Camera</h1>
+{% block content %}
+	<div class="container">
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ camera.id }}</td>
-			</tr>
-		</tbody>
-	</table>
+		<div
+			class="tableauCamera">
+			<!--AFFICHE-->
+			<div class="imageCam">
+				{% if camera.modele.img is defined %}
 
-	<a href="{{ path('camera_index') }}">back to list</a>
 
-	<a href="{{ path('camera_edit', {'slug': camera.slug}) }}">edit</a>
+					{% if camera.modele.img | length >= 1 and camera.modele.image | length == 0 %}
+						<img class="imgCam" src="/build/images/imagesCam/{{camera.modele.img}}" alt="Photographie de la camera {{camera.modele.marque}} {{camera.modele.name}}">
+					{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
+						<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.modele.marque}} {{camera.modele.name}}">
+					{% else %}
+						<img class="camLogo" src="/build/images/illustrations/camera-logo.png" alt="illustration de camera par défaut">
+					{% endif %}
+					<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
+				{% endif %}
+			</div>
+			<!--DESCRIPTION-->
+			<div class="descriptionCam">
+				<div class="titre">
+					<h1 id="cameraTitre">{{camera.name}}
+					</h1>
+					<div class="overview">
+						<div>
+							<div class="marque">
+								<a href="{{path('marque_show', {slug :camera.marque.slug})}}">
+									<h5>
+										{{camera.marque}}
+									</h5>
+								</a>
+							</div>
+							<span>|</span>
+							<div class="type">
+								{% if camera.modele.type is defined %}
+									{% for f in camera.modele.type %}
+										<h5>{{f.name}}</h5>
+									{% endfor %}
+								{% endif %}
+							</div>
+							<span>|</span>
+							<div class="format">
+								{% if camera.modele.format is defined %}
+									{% for format in camera.modele.format %}
+										<h5>{{format.name}}</h5>
+									{% endfor %}
+								{% endif %}
+							</div>
+							<span>|</span>
+							<div class="sortie">
+								{% if camera.modele.sortie is defined %}
+									<h5>{{camera.modele.sortie}}</h5>
+								{% endif %}
+							</div>
 
-	{{ include('camera/_delete_form.html.twig') }}
+						</div>
+					</div>
+					<div class="trait"></div>
+				</div>
+				<!--SYNOPSIS-->
+				<div class="summary">
+					<h4>Résumé</h4>
+					{% if camera.modele.description is defined %}
+						<p>{{camera.modele.description}}</p>
+					{% endif %}
+				</div>
+			</div>
+
+			<!--INFOS-->
+
+			<div class="specCam">
+				<div class="tabContainer">
+					<div class="buttonContainer">
+						<button class="active">Description</button>
+						{# A AJOUTER PLUS TARD <button>Fiches</button> #}
+						<button>Films</button>
+					</div>
+					<div class="contentCam">
+						<div class="tabPanel" style="display: block;">
+							{% include "camera/_specs.html.twig" %}
+
+						</div>
+						<div class="tabPanel" style="display: none;">
+							<div class="posters">
+								{% if camera.films | length >= 1 %}
+									{% for film in camera.films | slice(0, 6) %}
+										<div class="cardGrid">
+											<div class="cardSm">
+												<div class="imgCard">
+													{% if film.poster %}
+														<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
+													{% else %}
+														<div class="description">
+															<h3 id="over">{{film.title}}</h3>
+															<div class="genreOverlay">
+																{% for g in film.genres %}
+																	<em>{{g.name}}</em>
+																{% endfor %}
+															</div>
+															<em>{{film.sortie}}</em>
+														</div>
+													{% endif %}
+												</div>
+												<a href="{{path('film_show', {slug: film.slug,})}}">
+													<div class="description__overlay description__overlay--blur">
+														<h3 id="over">{{film.title}}</h3>
+														<div class="genreOverlay">
+															{% for g in film.genres %}
+																<em>{{g.name}}</em>
+															{% endfor %}<br>
+
+														</div>
+														<em>{{film.sortie}}</em>
+													</div>
+												</a>
+											</div>
+										</div>
+
+									{% endfor %}
+								{% else %}
+									<div class="noCam">
+										<p>Pas de Films</p>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

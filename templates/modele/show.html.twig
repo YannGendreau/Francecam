@@ -82,7 +82,7 @@
 						<div class="tabPanel" style="display: none;">
 							<div class="posters">
 								{% if modele.films | length >= 1 %}
-									{% for film in modele.films | slice(0, 6) %}
+									{% for film in modele.cameras.films | slice(0, 6) %}
 										<div class="cardGrid">
 											<div class="cardSm">
 												<div class="imgCard">

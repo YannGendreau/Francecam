@@ -57,9 +57,10 @@ class FilmRepository extends ServiceEntityRepository
                     ->createQueryBuilder('f') //Créé une instance de QueryBuilder avec alias
                     ->select('f','m', 'g', 'n', 'c') // Sélectionne les items à retourner dans les résultat de requêtes
                     ->leftJoin('f.genres', 'g') //Joint la relation film.genres avec un alias
-                    ->leftJoin('f.marques', 'm') //Joint la relation film.marques avec un alias
-                    ->leftJoin('f.modeles', 'n') //Joint la relation film.modeles avec un alias
                     ->leftJoin('f.camera', 'c') //Joint la relation film.modeles avec un alias
+                    ->leftJoin('c.marque', 'm') //Joint la relation film.marques avec un alias
+                    ->leftJoin('c.modele', 'n') //Joint la relation film.modeles avec un alias
+                    
                    //évite le problème typique de n+1 de Symfony en joignant les requêtes
                     ;
 
@@ -132,7 +133,8 @@ class FilmRepository extends ServiceEntityRepository
         $query = $this
                     ->createQueryBuilder('f')
                     ->select('f')
-                    ->leftJoin('f.marques', 'm')
+                    ->leftJoin('f.camera', 'c')
+                    ->leftJoin('c.marque', 'm')
                    
                    
                     ;

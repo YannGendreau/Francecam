@@ -1,0 +1,35 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}Francecam | Toutes les caméras.
+{% endblock %}
+
+{% block content %}
+	<div class="container js-filter">
+
+		<aside class="sidepanel" id="mySidepanel">
+			{% include "camera/_camera_list_filter.html.twig" with {form: form} only %}
+		</aside>
+
+
+		<div class="triangle">
+			<button title="Filtres de recherche" id="clickMenu" class="openbtn">
+				<img src="{{asset('build/images/triangle-filter.svg')}}" alt="">
+			</button>
+		</div>
+		<div class="rightside" id="showlist">
+			<div class="sorting js-filter-sorting" id="">
+				{% include "camera/_sorting.html.twig" %}
+			</div>
+
+			<div class="showList js-filter-content">
+				{% include "camera/_camera_list.html.twig" %}
+			</div>
+
+			<div class="paginate js-filter-pagination">
+				{% include "camera/_pagination.html.twig" %}
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}

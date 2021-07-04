@@ -48,7 +48,7 @@ class SecurityController extends AbstractController
 
             // email avec token
             $email = (new TemplatedEmail())
-            ->from(new Address('test@gmail.com', 'Francecam Admin'))
+            ->from(new Address($this->getParameter("mail.admin"), 'Francecam'))
             ->to($user->getEmail())
             ->subject('Francecam | Votre lien d\'activation de compte')
             ->htmlTemplate('email/activation.html.twig')

@@ -80,8 +80,7 @@ class Modele
      */
     private $sync;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Film::class, mappedBy="modeles", cascade={"persist"})
+    /*
      */
     private $films;
 
@@ -163,7 +162,7 @@ class Modele
 
     public function __construct()
     {
-        $this->films = new ArrayCollection();
+        // $this->films = new ArrayCollection();
         $this->format = new ArrayCollection();
         $this->shutter = new ArrayCollection();
         $this->mount = new ArrayCollection();

@@ -3,6 +3,7 @@
 namespace App\Data;
 
 use App\Entity\Film;
+use App\Entity\Camera;
 use App\Entity\Marque;
 use App\Entity\Modele;
 
@@ -44,6 +45,13 @@ class SearchHomeData
      * @var Film
      */
     public $film = [];
+
+    /**
+     *Tableau de camera
+     *
+     * @var Camera
+     */
+    public $camera = [];
 
 
     

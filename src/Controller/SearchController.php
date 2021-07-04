@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\SearchType;
 use App\Data\SearchHomeData;
 use App\Repository\FilmRepository;
+use App\Repository\CameraRepository;
 use App\Repository\MarqueRepository;
 use App\Repository\ModeleRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/search", name="search")
      */
-    public function searchBar(ModeleRepository $modeleRepository, FilmRepository $filmRepository, MarqueRepository $marqueRepository, Request $request)
+    public function searchBar(CameraRepository $cameraRepository, ModeleRepository $modeleRepository, FilmRepository $filmRepository, MarqueRepository $marqueRepository, Request $request)
     {
         //Barre de recherche
         //init data
@@ -31,6 +32,7 @@ class SearchController extends AbstractController
         $films = $filmRepository->findHomeSearch($data);
         $marque = $marqueRepository->findHomeSearch($data);
         $modele = $modeleRepository->findHomeSearch($data);
+        $camera = $cameraRepository->findHomeSearch($data);
       
         //validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
@@ -40,6 +42,7 @@ class SearchController extends AbstractController
                 'films' => $films,
                 'marque' => $marque,
                 'modele' => $modele,
+                'cameras' => $camera,
 
             ]);
         }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\FilmRepository;
+use App\Repository\CameraRepository;
 use App\Repository\ModeleRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,15 +15,15 @@ class HomeController extends AbstractController
      * @Route("/", name="accueil")
      */
 
-    public function index( ModeleRepository $modeleRepository, FilmRepository $filmRepository ): Response
+    public function index( CameraRepository $cameraRepository, FilmRepository $filmRepository ): Response
     {
         //renvoie toutes les cameras et films par date desc
-        $modeles = $modeleRepository->modeleByDateDesc();
+        $cameras = $cameraRepository->modeleByDateDesc();
         $filmResults = $filmRepository->filmByDateDesc();
 
         //retourne un rendu des requètes et la barre de recherche
         return $this->render('home/index.html.twig', [
-            'modele' => $modeles,
+            'cameras' => $cameras,
             'resultFilm' => $filmResults,
         ]);
     }

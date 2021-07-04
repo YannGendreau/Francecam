@@ -62,7 +62,6 @@ class Film
 
     /**
     * @var Collection|Marque[]
-    *@ORM\ManyToMany(targetEntity=Marque::class, inversedBy="films", cascade={"persist", "remove"}, fetch="EAGER")
     */
     private $marques;
 
@@ -83,7 +82,6 @@ class Film
 
     /**
      * @var Collection|Modele[]
-     * @ORM\ManyToMany(targetEntity=Modele::class, inversedBy="films", cascade={"persist", "remove"}, fetch="EAGER")
      */
     private $modeles;
 
@@ -165,9 +163,7 @@ class Film
 
     public function __construct()
     {
-        $this->marques = new ArrayCollection();
         $this->genres = new ArrayCollection();
-        $this->modeles = new ArrayCollection();
   
         $this->updatedAt = new \DateTime();
         $this->directors = new ArrayCollection();
@@ -290,24 +286,21 @@ class Film
      */
     public function getMarques(): Collection
     {
-        return $this->marques;
-    }
-
-    public function addMarque(Marque $marque): self
-    {
-        if (!$this->marques->contains($marque)) {
-            $this->marques[] = $marque;
+        $marques = new ArrayCollection();
+        if ($this->getCamera()){
+            // @todo Gerer les doublons
+           foreach($this->getCamera() as $camera){
+               if($camera->getMarque()){
+                   $marques->add($camera->getMarque());
+               }
+           }
         }
-
-        return $this;
+        return $marques;
     }
 
-    public function removeMarque(Marque $marque): self
-    {
-        $this->marques->removeElement($marque);
 
-        return $this;
-    }
+
+    
 
     /**
      * @return Collection|Genre[]
@@ -344,24 +337,18 @@ class Film
      */
     public function getModeles(): Collection
     {
-        return $this->modeles;
-    }
-
-    public function addModele(Modele $modele): self
-    {
-        if (!$this->modeles->contains($modele)) {
-            $this->modeles[] = $modele;
+        $modeles = new ArrayCollection();
+        if ($this->getCamera()){
+            // @todo Gerer les doublons
+           foreach($this->getCamera() as $camera){
+               if($camera->getModele()){
+                   $modeles->add($camera->getModele());
+               }
+           }
         }
-
-        return $this;
+        return $modeles;
     }
 
-    public function removeModele(Modele $modele): self
-    {
-        $this->modeles->removeElement($modele);
-
-        return $this;
-    }
   
     /**
      * Get

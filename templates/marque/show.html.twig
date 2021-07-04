@@ -67,49 +67,60 @@
 					<div class="contentCam">
 						<div class="tabPanel" style="display: block;">
 							<div class="specifications">
-								{% if marque.modeles | length >= 1 %}
-									{% for camera in marque.modeles %}
+								{% if marque.cameras | length >= 1 %}
+									{% for camera in marque.cameras %}
 										<div class="cardGridCam">
 											<div class="cardSmCam">
 												<div class="imgCardCam">
-													{% if camera.img | length >= 1 and camera.image | length == 0%}
-														<div class="smDescriptionOverlay">
-															<em>{{camera.marque}}
-																{{camera.name}}
-															</em>
-														</div>
-														<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
-													{% elseif camera.img | length == 0 and camera.image | length >= 1 %}
-														<div class="smDescriptionOverlay">
-															<em>{{camera.marque}}
-																{{camera.name}}
-															</em>
-														</div>
-														<img class="imgCam" src="{{camera.image}}" alt="Photographie de la camera {{camera.marque}} {{camera.name}}">
-													{% else %}
-														<div class="description">
-															<h3>{{camera.marque}}</h3>
-															<h2>{{camera.name}}</h2>
-															{% for c in camera.type %}
-																<em>{{c.name}}</em>
-															{% endfor %}
-															{% for f in camera.format %}
-																<em>{{f.name}}</em>
-															{% endfor %}
-														</div>
+													{% if camera.modele.img is defined %}
+
+
+														{% if camera.modele.img | length >= 1 and camera.modele.image | length == 0%}
+															<div class="smDescriptionOverlay">
+																<em>
+																	{{camera.name}}
+																</em>
+															</div>
+															<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
+														{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
+															<div class="smDescriptionOverlay">
+																<em>{{camera.marque}}
+																	{{camera.modele.name}}
+																</em>
+															</div>
+															<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.name}}">
+														{% else %}
+															<div class="description">
+																<h3>{{camera.marque}}</h3>
+																<h2>{{camera.modele.name}}</h2>
+																{% for c in camera.modele.type %}
+																	<em>{{c.name}}</em>
+																{% endfor %}
+																{% for f in camera.modele.format %}
+																	<em>{{f.name}}</em>
+																{% endfor %}
+															</div>
+														{% endif %}
 													{% endif %}
 												</div>
-												<a href="{{path('modele_show', {slug:camera.slug} )}}">
+												<a href="{{path('camera_show', {slug:camera.slug} )}}">
 													<div class="description__overlay description__overlay--blur">
 														<h3>{{camera.marque}}</h3>
-														<h2>
-															{{camera.name}}</h2>
-														{% for c in camera.type %}
-															<em>{{c.name}}</em>
-														{% endfor %}
-														{% for f in camera.format %}
-															<em>{{f.name}}</em>
-														{% endfor %}
+														{% if  camera.modele.name is defined %}
+															<h2>{{camera.modele.name}}</h2>
+														{% endif %}
+														{% if  camera.modele.type is defined %}
+
+
+															{% for c in camera.modele.type %}
+																<em>{{c.name}}</em>
+															{% endfor %}
+														{% endif %}
+														{% if  camera.modele.type is defined %}
+															{% for f in camera.modele.format %}
+																<em>{{f.name}}</em>
+															{% endfor %}
+														{% endif %}
 													</div>
 												</a>
 											</div>
@@ -122,57 +133,51 @@
 						</div>
 						<div class="tabPanel" style="display: none;">
 							<div class="posters">
-								{% if marque.films | length >= 1 %}
-									{% for film in marque.films | slice(0, 6) %}
-
-										<div class="cardGrid">
-											<div class="cardSm">
-												<div class="imgCard">
-													{% if film.poster %}
-														<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
-													{% else %}
-														<div class="description">
-															<h3 id="over">{{film.title}}</h3>
-															<div class="genreOverlay">
-																{% for g in film.genres %}
-																	<em>{{g.name}}</em>
-																{% endfor %}
-
+								{% if marque.cameras | length >= 1 %}
+									{% for camera in marque.cameras %}
+										{% if camera.films | length >= 1 %}
+											{% for film in camera.films %}
+												<div class="cardGrid">
+													<div class="cardSm">
+														<div class="imgCard">
+															{% if film.poster %}
+																<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
+															{% else %}
+																<div class="description">
+																	<h3 id="over">{{film.title}}</h3>
+																	<div class="genreOverlay">
+																		{% for g in film.genres %}
+																			<em>{{g.name}}</em>
+																		{% endfor %}
+																	</div>
+																	<em>{{film.sortie}}</em>
+																</div>
+															{% endif %}
+														</div>
+														<a href="{{path('film_show', {slug: film.slug,})}}">
+															<div class="description__overlay description__overlay--blur">
+																<h3 id="over">{{film.title}}</h3>
+																<div class="genreOverlay">
+																	{% for g in film.genres %}
+																		<em>{{g.name}}</em>
+																	{% endfor %}<br>
+																</div>
+																<em>{{film.sortie}}</em>
 															</div>
-															<em>{{film.sortie}}</em>
-														</div>
-													{% endif %}
-												</div>
-												<a href="{{path('film_show', {slug: film.slug,})}}">
-													<div class="description__overlay description__overlay--blur">
-														<h3 id="over">{{film.title}}</h3>
-														<div class="genreOverlay">
-															{% for g in film.genres %}
-																<em>{{g.name}}</em>
-															{% endfor %}<br>
-
-														</div>
-														<em>{{film.sortie}}</em>
+														</a>
 													</div>
-												</a>
+												</div>
+											{% endfor %}
+										{% elseif  camera.films | length == 0 %}
+											<div class="noCam">
+												<p>Pas de Films</p>
 											</div>
-										</div>
+										{% endif %}
 									{% endfor %}
-									{% if marque | length > 1 %}
-										{# <p>Voir plus</p> #}
-									{% endif %}
-
-								{% else %}
-									<div class="noCam">
-										<p>Pas de Films</p>
-									</div>
-
 								{% endif %}
 							</div>
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 		</div>

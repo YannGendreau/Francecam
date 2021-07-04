@@ -8,9 +8,9 @@
 		<div class="resultSearch">
 			<h1>Résultats de recherche</h1>
 			{# Si pas de films et pas de modèles #}
-			{% if films | length == 0 and modele| length == 0 %}
-				<div>
-					<h2>Pas de résultats</h2>
+			{% if films | length == 0 and cameras | length == 0 %}
+				<div class="noresults">
+					<p>Désolé, pas de résultats</p>
 				</div>
 				{# sinon #}
 			{% else %}
@@ -32,7 +32,7 @@
 							<h2>Cameras</h2>
 						</div>
 						<div class="tableau">
-							{% include "modele/_modele_list.html.twig" %}
+							{% include "camera/_camera_list.html.twig" %}
 						</div>
 					</div>
 				{% endif %}

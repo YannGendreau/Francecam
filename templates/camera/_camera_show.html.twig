@@ -10,7 +10,7 @@
 									{{camera.name}}
 								</em>
 							</div>
-							<a href="{{path('modele_show', {slug:camera.modele.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
+							<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
 						{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
 							<div class="smDescriptionOverlay">
 								<em>
@@ -38,7 +38,7 @@
 						{% endif %}
 					</div>
 					{% if camera.modele.slug is defined %}
-						<a href="{{path('modele_show', {slug:camera.modele.slug} )}}">
+						<a href="{{path('camera_show', {slug:camera.slug} )}}">
 						{% endif %}
 						<div class="description__overlay description__overlay--blur">
 							<h3>{{camera.marque.name}}</h3>

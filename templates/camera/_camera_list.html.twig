@@ -1,0 +1,70 @@
+{% if cameras | length >= 1 %}
+	{% for camera in cameras %}
+		{% if camera.modele %}
+			<div class="cardGridCam">
+				<div class="cardSmCam">
+					<div class="imgCardCam">
+						{% if camera.modele.img is defined %}
+							{% if camera.modele.img | length >= 1 and camera.modele.image | length == 0 %}
+								<div class="smDescriptionOverlay">
+									<em>
+										{{camera.name}}
+									</em>
+								</div>
+								<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
+							{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
+								<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.name}}">
+								<div class="smDescriptionOverlay">
+									<em>
+										{{camera.name}}
+									</em>
+								</div>
+							{% else %}
+								<div class="description">
+									<h3>{{camera.marque.name}}</h3>
+									{% if camera.modele.name %}
+										<h2>{{camera.modele.name}}</h2>
+									{% endif %}
+									{% if camera.modele.type %}
+										{% for g in camera.modele.type %}
+											<em>{{g.name}}</em>
+										{% endfor %}
+									{% endif %}
+									{% if camera.modele.format %}
+										{% for f in camera.modele.format %}
+											<em>{{f.name}}</em>
+										{% endfor %}
+									{% endif %}
+								</div>
+
+							{% endif %}
+						{% endif %}
+					</div>
+					<a href="{{path('camera_show', {slug:camera.slug} )}}">
+						<div class="description__overlay description__overlay--blur">
+							<h3>{{camera.marque.name}}</h3>
+							{% if camera.modele.name is defined %}
+								<h2>{{camera.modele.name}}</h2>
+							{% endif %}
+							{% if camera.modele.type is defined %}
+
+								{% for f in camera.modele.type %}
+									<em>{{f.name}}</em>
+								{% endfor %}
+							{% endif %}
+							{% if camera.modele.format is defined %}
+								{% for f in camera.modele.format %}
+									<em>{{f.name}}</em>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</a>
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+{% else %}
+	<div class="noresults">
+		<p>Désolé, pas de résultats</p>
+	</div>
+{% endif %}

@@ -58,6 +58,7 @@ class ModeleController extends AbstractController
 
     /**
      * @Route("/{slug}", name="modele_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Modele $modele): Response
     {
@@ -105,6 +106,7 @@ class ModeleController extends AbstractController
 
      /**
      * @Route("/", name="modele", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function filmList(Request $request): Response
     {        
