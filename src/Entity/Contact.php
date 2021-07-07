@@ -2,16 +2,14 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Captcha\Bundle\CaptchaBundle\Validator\Constraints as CaptchaAssert;
 
-/**
- * @ORM\Entity(repositoryClass=ContactRepository::class)
- */
+
 class Contact
 {
 
+ 
     /**
    * @Assert\Length(
    *      min = 2,
