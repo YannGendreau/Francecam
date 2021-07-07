@@ -7,8 +7,6 @@
 
 {% block content %}
 	<div class="container">
-
-
 		<div class="tableauMarque">
 			<div class="descriptionMarque">
 				<div class="flexImgMarque">
@@ -69,65 +67,69 @@
 							<div class="specifications">
 								{% if marque.cameras | length >= 1 %}
 									{% for camera in marque.cameras %}
-										<div class="cardGridCam">
-											<div class="cardSmCam">
-												<div class="imgCardCam">
-													{% if camera.modele.img is defined %}
+										{% if camera.modele | length >= 1 %}
+											<div class="cardGridCam">
+												<div class="cardSmCam">
+													<div class="imgCardCam">
+														{% if camera.modele.img is defined %}
 
 
-														{% if camera.modele.img | length >= 1 and camera.modele.image | length == 0%}
-															<div class="smDescriptionOverlay">
-																<em>
-																	{{camera.name}}
-																</em>
-															</div>
-															<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
-														{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
-															<div class="smDescriptionOverlay">
-																<em>{{camera.marque}}
-																	{{camera.modele.name}}
-																</em>
-															</div>
-															<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.name}}">
-														{% else %}
-															<div class="description">
-																<h3>{{camera.marque}}</h3>
+															{% if camera.modele.img | length >= 1 and camera.modele.image | length == 0%}
+																<div class="smDescriptionOverlay">
+																	<em>
+																		{{camera.name}}
+																	</em>
+																</div>
+																<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
+															{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
+																<div class="smDescriptionOverlay">
+																	<em>{{camera.marque}}
+																		{{camera.modele.name}}
+																	</em>
+																</div>
+																<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.name}}">
+															{% else %}
+																<div class="description">
+																	<h3>{{camera.marque}}</h3>
+																	<h2>{{camera.modele.name}}</h2>
+																	{% for c in camera.modele.type %}
+																		<em>{{c.name}}</em>
+																	{% endfor %}
+																	{% for f in camera.modele.format %}
+																		<em>{{f.name}}</em>
+																	{% endfor %}
+																</div>
+															{% endif %}
+														{% endif %}
+													</div>
+													<a href="{{path('camera_show', {slug:camera.slug} )}}">
+														<div class="description__overlay description__overlay--blur">
+															<h3>{{camera.marque}}</h3>
+															{% if  camera.modele.name is defined %}
 																<h2>{{camera.modele.name}}</h2>
+															{% endif %}
+															{% if  camera.modele.type is defined %}
+
+
 																{% for c in camera.modele.type %}
 																	<em>{{c.name}}</em>
 																{% endfor %}
+															{% endif %}
+															{% if  camera.modele.type is defined %}
 																{% for f in camera.modele.format %}
 																	<em>{{f.name}}</em>
 																{% endfor %}
-															</div>
-														{% endif %}
-													{% endif %}
+															{% endif %}
+														</div>
+													</a>
 												</div>
-												<a href="{{path('camera_show', {slug:camera.slug} )}}">
-													<div class="description__overlay description__overlay--blur">
-														<h3>{{camera.marque}}</h3>
-														{% if  camera.modele.name is defined %}
-															<h2>{{camera.modele.name}}</h2>
-														{% endif %}
-														{% if  camera.modele.type is defined %}
-
-
-															{% for c in camera.modele.type %}
-																<em>{{c.name}}</em>
-															{% endfor %}
-														{% endif %}
-														{% if  camera.modele.type is defined %}
-															{% for f in camera.modele.format %}
-																<em>{{f.name}}</em>
-															{% endfor %}
-														{% endif %}
-													</div>
-												</a>
 											</div>
-										</div>
+										{% endif %}
 									{% endfor %}
 								{% else %}
-									<p>pas de camera</p>
+									<div class="noCam">
+										<p>Pas de camera</p>
+									</div>
 								{% endif %}
 							</div>
 						</div>
@@ -135,7 +137,7 @@
 							<div class="posters">
 								{% if marque.cameras | length >= 1 %}
 									{% for camera in marque.cameras %}
-										{% if camera.films | length >= 1 %}
+										{% if camera.films %}
 											{% for film in camera.films %}
 												<div class="cardGrid">
 													<div class="cardSm">
@@ -168,7 +170,7 @@
 													</div>
 												</div>
 											{% endfor %}
-										{% elseif  camera.films | length == 0 %}
+										{% elseif camera.films is null %}
 											<div class="noCam">
 												<p>Pas de Films</p>
 											</div>
@@ -182,4 +184,4 @@
 			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}

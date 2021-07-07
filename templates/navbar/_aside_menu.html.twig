@@ -4,13 +4,13 @@
 			<a href='#'>Caméras</a>
 			<ul>
 				<li class='has-sub'>
-					<a class="tlf" href="{{ path('modele') }}">Toutes les caméras</a>
+					<a class="tlf" href="{{ path('camera') }}">Toutes les caméras</a>
 					<a href='#'>Marques</a>
 					<ul>
 						<li>
 							<a class="" href="{{path('marque_index')}}">Toutes les marques</a>
 						</li>
-						<!-- <li><a class=""href="{{path('modele')}}">Toutes les caméras</a></li> -->
+						<!-- <li><a class=""href="{{path('camera')}}">Toutes les caméras</a></li> -->
 						<li>
 							<a class="" href="{{path('marque_show',{slug:'aaton'})}}">Aaton</a>
 						</li>
@@ -37,39 +37,39 @@
 				<li class='has-sub'>
 					<a href='#'>Formats</a>
 					<ul>
-						<li><a class=""href="{{path('modele',{'q':'','format':'1'})}}">16mm /Super 16</a></li>
-						<li><a class=""href="{{path('modele',{'q':'','format':'2'})}}">35mm / Super 35</a></li>
+						<li><a class=""href="{{path('camera',{'q':'','format':'1'})}}">16mm /Super 16</a></li>
+						<li><a class=""href="{{path('camera',{'q':'','format':'2'})}}">35mm / Super 35</a></li>
 					</ul>
 				</li>
 				<li class='has-sub'>
 					<a href='#'>Décennies</a>
 					<ul id="grid_year">
 						<li>
-							<a href="{{ path('modele', {'q':'', 'decade':'1910'}) }}">1910</a>
+							<a href="{{ path('camera', {'q':'', 'decade':'1910'}) }}">1910</a>
 						</li>
 						<li>
-							<a href="{{ path('modele', {'q':'', 'decade':'1920'}) }}">1920</a>
+							<a href="{{ path('camera', {'q':'', 'decade':'1920'}) }}">1920</a>
 						</li>
 						<li>
-							<a href="{{ path('modele', {'q':'', 'decade':'1930'}) }}">1930</a>
+							<a href="{{ path('camera', {'q':'', 'decade':'1930'}) }}">1930</a>
 						</li>
 						<li>
-							<a href="{{ path('modele', {'q':'', 'decade':'1940'}) }}">1940</a>
+							<a href="{{ path('camera', {'q':'', 'decade':'1940'}) }}">1940</a>
 						</li>
 						<li>
-							<a href="{{ path('modele', {'q':'', 'decade':'1950'}) }}">1950</a>
+							<a href="{{ path('camera', {'q':'', 'decade':'1950'}) }}">1950</a>
 						</li>
 						<li>
-							<a href="{{ path('modele', {'q':'', 'decade':'1960'}) }}">1960</a>
+							<a href="{{ path('camera', {'q':'', 'decade':'1960'}) }}">1960</a>
 						</li>
 						<li>
-							<a href="{{ path('modele', {'q':'', 'decade':'1970'}) }}">1970</a>
+							<a href="{{ path('camera', {'q':'', 'decade':'1970'}) }}">1970</a>
 						</li>
 						<li>
-							<a href="{{ path('modele', {'q':'', 'decade':'1980'}) }}">1980</a>
+							<a href="{{ path('camera', {'q':'', 'decade':'1980'}) }}">1980</a>
 						</li>
 						<li>
-							<a href="{{ path('modele', {'q':'', 'decade':'1990'}) }}">1990</a>
+							<a href="{{ path('camera', {'q':'', 'decade':'1990'}) }}">1990</a>
 						</li>
 					</ul>
 				</li>
@@ -144,6 +144,5 @@
 				</ul>
 			{% endif %}
 		</li>
-		</li>
-	</ul>
-</div>
+	</li>
+</ul></div>

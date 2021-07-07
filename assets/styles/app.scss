@@ -2333,6 +2333,7 @@ ABOUT US
 
                 .logoFc {
                     width: 15%;
+                    margin-bottom: 30px;
 
                     img {
                         width: 100%;
@@ -2347,7 +2348,6 @@ ABOUT US
                     font-family: "Roboto Condensed", sans-serif;
                     width: inherit;
                     line-height: 2.5rem;
-                    text-align: justify;
                     text-justify: inter-word;
                     white-space: pre-line;
                     font-size: 1.7rem;
@@ -2359,6 +2359,7 @@ ABOUT US
 
                     span {
                         color: $titleFont;
+                        white-space: pre;
                     }
                 }
             }
@@ -2380,7 +2381,6 @@ ABOUT US
                     max-width: 50%;
                     width: inherit;
                     line-height: 2.5rem;
-                    text-align: justify;
                     text-justify: inter-word;
                     white-space: pre-line;
                     font-size: 1.7rem;
@@ -4391,6 +4391,32 @@ PAGE USER PROFILE
     @include flex-center();
     flex-wrap: wrap;
     width: 100%;
+    min-height: 300px;
+
+    .noCam {
+        @include flex-center();
+        flex-wrap: wrap;
+        width: 100%;
+        height: 100%;
+        p {
+            width: 100%;
+            font-size: 2rem;
+            color: $titleCard;
+            font-style: italic;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .addCamera,
+        .connect {
+            color: $green-dark;
+            border-bottom: 2px solid $green-dark;
+            font-size: 1.6rem;
+            font-style: italic;
+            font-weight: bold;
+        }
+    }
 
     .cell {
         @include flex-center();

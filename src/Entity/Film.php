@@ -164,10 +164,8 @@ class Film
     public function __construct()
     {
         $this->genres = new ArrayCollection();
-  
         $this->updatedAt = new \DateTime();
         $this->directors = new ArrayCollection();
-  
         $this->dirphoto = new ArrayCollection();
         $this->pays = new ArrayCollection();
         $this->camera = new ArrayCollection();
