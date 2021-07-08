@@ -2587,7 +2587,7 @@ ABOUT US
                     flex-wrap: wrap;
                     h5 {
                         font-size: 1.3rem;
-                        text-justify: center;
+                        text-align: center;
                         font-family: "Roboto Condensed", sans-serif;
                         color: #919ab1;
                         &:after {
@@ -2915,7 +2915,7 @@ ABOUT US
 
             #cameraTitre {
                 font-family: "Oswald", sans-serif;
-                font-size: 4.5rem;
+                font-size: 4rem;
                 color: $nav-color;
                 text-transform: uppercase;
                 padding: 0px;
@@ -3049,6 +3049,7 @@ ABOUT US
                         flex-wrap: wrap;
                         h5 {
                             font-size: 1.3rem;
+                            text-align: center;
                             font-family: "Roboto Condensed", sans-serif;
                             color: #919ab1;
                             &:after {
@@ -4438,6 +4439,7 @@ PAGE USER PROFILE
 
         .spec {
             @include flex-center();
+            text-align: center;
             width: 50%;
             height: 50px;
             background: #e1e7ec;
@@ -5936,7 +5938,7 @@ PAGE USER PROFILE
             .summary {
                 grid-area: summary;
 
-                max-height: 300px;
+                max-height: 500px;
                 margin-top: 10px;
                 width: 100%;
 
@@ -6186,7 +6188,7 @@ PAGE USER PROFILE
     }
 
     .specifications {
-        @include flex-center();
+        @include flex-center-start();
         flex-wrap: wrap;
         width: 100%;
 
