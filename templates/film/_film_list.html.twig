@@ -17,10 +17,10 @@
 							<h3 id="over">{{film.title}}</h3>
 							<div class="genreOverlay">
 								{% for g in film.genres %}
-									<em>{{g.name}}</em>
+									<em>&ensp;{{g.name}}&ensp;</em>
 								{% endfor %}
-
 							</div>
+							<em>{{film.sortie}}</em>
 						</div>
 					{% endif %}
 				</div>

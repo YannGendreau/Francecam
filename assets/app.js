@@ -18,7 +18,6 @@ global.$ = global.jQuery = $;
 import 'select2';                      
 import 'select2/dist/css/select2.css';
 import  './modules/Filter';
-import  './modules/TitleFontSize';
 import  './modules/slideMenu';
 import  './modules/charcount';
 
@@ -45,8 +44,7 @@ checkFontSize();
 
 
 function checkFontSize() {
-  var elems = document.querySelectorAll(".description__overlay");
-  
+  var elems = document.querySelectorAll(".name");
   [].forEach.call(elems, function(el) {
     scaleFontSize(el);
   });  
