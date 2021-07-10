@@ -1658,6 +1658,11 @@ a {
         color: $titleFont;
         text-transform: uppercase;
         font-size: 1.8rem;
+        margin: 30px 0 30px 0;
+
+        span {
+            font-style: italic;
+        }
     }
 
     .searchBlock {
@@ -3319,8 +3324,13 @@ ABOUT US
     @include flex-center();
 
     #film {
-        margin-bottom: 50px;
+        margin-bottom: 100px;
         width: 50%;
+        min-width: 660px;
+        background: rgba($titleDisplay, 0.02);
+        border-radius: 10px;
+        box-shadow: inset 0 -1em 0.5em rgba(0, 0, 0, 0.02), 0 0 0, 0.5em 0.5em 0.3em rgba(0, 0, 0, 0.05);
+        padding: 5px;
 
         form {
             width: 100%;
@@ -3358,68 +3368,136 @@ ABOUT US
             .rowFormDetails {
                 width: 100%;
                 padding-top: $mTopForm;
-                grid-area: details;
                 @include flex-between-start();
                 flex-wrap: wrap;
+                margin-bottom: 10px;
 
-                .sortie {
-                    grid-area: date;
+                .details {
+                    @include flex-between-start();
+                    flex-wrap: wrap;
+                    width: 50%;
 
-                    .form-group {
-                        width: 100%;
-
-                        .select2-selection.select2-selection--multiple {
+                    .sortie {
+                        width: 50%;
+                        .form-group {
                             width: 100%;
                         }
-                    }
 
-                    h3 {
-                        @include font-form-film();
-                        font-size: $formTitleField;
-                    }
-                }
-
-                .duree {
-                    grid-area: duree;
-                    width: 30%;
-                    max-width: 120px;
-
-                    div {
                         h3 {
                             @include font-form-film();
-                            width: 100%;
                             font-size: $formTitleField;
                         }
+                    }
+
+                    .duree {
+                        width: 50%;
+                        padding-right: 20px;
 
                         div {
-                            @include flex-start-center();
+                            h3 {
+                                @include font-form-film();
+                                width: 100%;
+                                font-size: $formTitleField;
+                            }
 
-                            .form-group {
-                                #film_duree {
-                                    width: 90%;
-                                    height: 32px;
-                                    border: none;
-                                    border-radius: 5px;
-                                    border: 1.5px solid rgb(204, 204, 204);
-                                    text-align: center;
-                                    -webkit-appearance: none;
-                                }
+                            div {
+                                @include flex-start-center();
 
-                                #film_duree_help {
-                                    padding-left: 8px;
+                                .form-group {
+                                    input[type="number"]::-webkit-outer-spin-button,
+                                    input[type="number"]::-webkit-inner-spin-button {
+                                        -webkit-appearance: none;
+                                        -moz-appearance: none;
+                                        appearance: none;
+                                        margin: 0;
+                                    }
+
+                                    input[type="number"] {
+                                        -moz-appearance: textfield;
+                                        width: 90%;
+                                        height: 32px;
+                                        border: none;
+                                        border-radius: 5px;
+                                        border: 1.5px solid rgb(204, 204, 204);
+                                        text-align: center;
+                                    }
+
+                                    #film_duree_help {
+                                        padding-left: 8px;
+                                    }
                                 }
                             }
                         }
                     }
-                }
 
-                .pays {
-                    grid-area: pays;
-                    @include flex-center-start();
+                    .pays {
+                        width: 50%;
+                        @include flex-center-start();
+                        div {
+                            width: 90%;
+                            h3 {
+                                @include font-form-film();
+                                font-size: $formTitleField;
+                            }
 
-                    h3 {
-                        @include font-form-film();
-                        font-size: $formTitleField;
+                            .form-group {
+                                span {
+                                    width: 100% !important;
+                                }
+                            }
+                        }
+                    }
+                    .genre {
+                        width: 50%;
+                        @include flex-center-start();
+                        div {
+                            width: 90%;
+                            h3 {
+                                @include font-form-film();
+                                font-size: $formTitleField;
+                            }
+
+                            .form-group {
+                                margin-top: 4px;
+                                border: none;
+                                // height: 100px;
+                                width: 100%;
+
+                                span {
+                                    width: 100% !important;
+                                }
+
+                                #film_genres {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: flex-start;
+                                    flex-wrap: wrap;
+
+                                    .form-check {
+                                        display: inline-flex;
+                                        justify-content: flex-start;
+                                        align-items: center;
+                                        margin-bottom: 10px;
+                                        padding-right: 13px;
+
+                                        input {
+                                            width: 15px;
+                                            height: 15px;
+                                            color: $titleCard;
+                                        }
+
+                                        label {
+                                            font-size: 1.1rem;
+                                            padding-left: 2px;
+                                        }
+                                    }
+                                }
+
+                                span {
+                                    width: 100% !important;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -3470,52 +3548,105 @@ ABOUT US
                 }
             }
 
-            .rowFormSynopsis {
-                @include flex-center();
-                grid-area: synopsis;
-                margin-bottom: 30px;
+            .rowFormSynoPoster {
+                @include flex-start-center();
+                margin: 10px 0 10px 0px;
                 width: 100%;
 
                 .error {
                     color: $titleFont;
                 }
 
-                div {
-                    width: 100%;
-                    @include flex-start-center();
+                .syno {
+                    width: 60%;
+                    height: 300px;
+                    @include flex-start-start();
+                    flex-wrap: wrap;
+                    margin-right: 10px;
+                    h3 {
+                        width: 100%;
+                        @include font-form-film();
+                        font-size: $formTitleField;
+                    }
 
-                    div {
-                        flex-wrap: wrap;
-
-                        h3 {
+                    .form-group {
+                        width: 100%;
+                        #film_synopsis {
                             width: 100%;
-                            @include font-form-film();
-                            font-size: $formTitleField;
+                            height: 210px;
+                            border: 1.5px solid rgb(204, 204, 204);
+                            padding: 5px;
                         }
+                    }
+                    p {
+                        margin-top: 5px;
+                    }
 
+                    .form-control {
+                        height: 80px;
+                        border-radius: 5px;
+                        width: 100%;
+                        resize: none;
+                        border: none;
+                    }
+
+                    em {
+                        margin-top: 5px;
+
+                        span {
+                            font-weight: bold;
+                        }
+                    }
+                }
+
+                .poster {
+                    width: 40%;
+                    height: 300px;
+                    @include flex-center-start();
+                    flex-wrap: wrap;
+                    background: rgb(231, 231, 231);
+                    border-radius: 10px;
+                    padding: 5px;
+
+                    h3 {
+                        width: 100%;
+                        @include font-form-film();
+                        font-size: $formTitleField;
+                    }
+
+                    .imgMovNew {
+                        @include flex-center();
+                        width: 100%;
+
+                        img {
+                            width: 100px;
+                        }
+                    }
+
+                    .posterForm {
+                        width: 100%;
                         .form-group {
-                            #film_synopsis {
-                                border: 1.5px solid rgb(204, 204, 204);
-                                padding: 5px;
-                            }
-                        }
-                        p {
-                            margin-top: 5px;
-                        }
-
-                        .form-control {
-                            height: 80px;
-                            border-radius: 5px;
-                            width: 100%;
-                            resize: none;
                             border: none;
-                        }
 
-                        em {
-                            margin-top: 5px;
+                            .vich-image {
+                                border: none;
+                                .custom-file {
+                                    @include flex-center();
+                                    flex-wrap: wrap;
+                                    border: none;
+                                    margin-bottom: 10px;
 
-                            span {
-                                font-weight: bold;
+                                    input[type="file"] {
+                                        // width: 100%;
+                                        // border: 0;
+                                        // outline: 0;
+                                    }
+                                }
+                                @include flex-evenly-center();
+                                flex-wrap: wrap;
+                                .custom-file {
+                                    width: 100%;
+                                }
                             }
                         }
                     }
@@ -3585,10 +3716,27 @@ ABOUT US
                         }
 
                         .imgMovNew {
-                            width: 100px;
+                            width: 50%;
 
                             img {
                                 width: 100px;
+                            }
+                        }
+
+                        .posterForm {
+                            width: 50%;
+                            .form-group {
+                                .vich-image {
+                                    .custom-file {
+                                        @include flex-center();
+                                        flex-wrap: wrap;
+                                    }
+                                    @include flex-evenly-center();
+                                    flex-wrap: wrap;
+                                    .custom-file {
+                                        width: 100%;
+                                    }
+                                }
                             }
                         }
                     }
@@ -3617,6 +3765,7 @@ ABOUT US
                         width: 50%;
                         @include flex-start-center();
                         flex-wrap: wrap;
+                        padding-left: 5px;
                         h5 {
                             width: 100%;
                         }
@@ -3633,6 +3782,7 @@ ABOUT US
                         width: 50%;
                         @include flex-start-center();
                         flex-wrap: wrap;
+                        padding-left: 5px;
                         h5 {
                             width: 100%;
                         }
@@ -3674,7 +3824,6 @@ ABOUT US
                 width: 100%;
                 margin-top: $mTopForm;
                 padding: 0;
-                grid-area: btn;
                 @include flex-center-end();
 
                 .btn {
@@ -3683,17 +3832,17 @@ ABOUT US
                     border: none;
                     outline: none;
                     cursor: pointer;
-                    background: #cbd6e0;
+                    background: $nav-color;
                     font-family: "Roboto Condensed", sans-serif;
                     font-size: 1.5rem;
                     border-radius: 20px;
                     transition: 250ms;
                     text-transform: uppercase;
+                    color: white;
 
                     &:hover {
                         background: $green-light;
                         color: white;
-                        height: 30px;
                     }
                 }
             }
@@ -5166,17 +5315,40 @@ PAGE USER PROFILE
 
     #film {
         width: 90% !important;
+        min-width: 90% !important;
 
         form {
             .rowFormTitle {
                 width: 100%;
+
+                .form-group > input {
+                    font-size: 0.95rem !important;
+                }
             }
 
             .rowFormDetails {
                 width: 100%;
 
-                .duree {
-                    width: 30%;
+                .details {
+                    width: 100% !important;
+                    margin-bottom: 10px;
+                }
+
+                .pays,
+                .duree,
+                .genre,
+                .sortie {
+                    justify-content: flex-start !important;
+                }
+            }
+
+            .rowFormSynoPoster {
+                justify-content: center !important;
+                flex-wrap: wrap;
+
+                .syno,
+                .poster {
+                    width: 90% !important;
                 }
             }
             .rowFormArtist {
@@ -5185,12 +5357,10 @@ PAGE USER PROFILE
                     @include flex-space-center();
                     flex-wrap: wrap;
 
-                    .realForm {
-                        width: 100% !important;
-                    }
-
+                    .realForm,
                     .dirphotForm {
                         width: 100% !important;
+                        margin-bottom: 10px;
                     }
                 }
             }

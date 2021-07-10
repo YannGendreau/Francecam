@@ -6,7 +6,9 @@
 
 {% block content %}
 	<div class="container">
-		<h1>Modifier"{{film.title}}"</h1>
+		<h1>Modifier
+			<span>"{{film.title}}"</span>
+		</h1>
 		<div class="formulaire">
 			{{ include('film/_form.html.twig', {'button_label': 'Modifier'}) }}
 		</div>

@@ -95,7 +95,7 @@ class FilmType extends AbstractType
                 'placeholder'       => 'Choisir le(s) genre(s)',
                 'required'          => false,
                 'multiple'          => true,
-                'expanded'          => true,
+                // 'expanded'          => true,
                 'query_builder'     => function (EntityRepository $er) {
                     return $er->createQueryBuilder('g')
                     ->orderBy('g.name', 'ASC')
@@ -115,7 +115,10 @@ class FilmType extends AbstractType
 
             ->add('posterFile', VichImageType::class, [
                 'required'          => false,
-                'label'             => false
+                'label'             => false,
+                'allow_delete'      => true,
+                'download_uri'      => false,
+                'image_uri'         => false,
             ])
 
           

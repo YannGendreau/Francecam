@@ -8,61 +8,65 @@
 		</div>
 	</div>
 	<div class="rowFormDetails">
-		<div class="sortie">
-			<div>
-				<h3>Date de sortie</h3>
-				{{form_row(form.sortie)}}
-			</div>
-		</div>
-		<div class="duree">
-			<div>
-				<h3>Durée</h3>
+		<div class="details">
+			<div class="sortie">
 				<div>
-					<span>{{form_row(form.duree)}}</span>
+					<h3>Date de sortie</h3>
+					{{form_row(form.sortie)}}
 				</div>
-
-
+			</div>
+			<div class="duree">
+				<div>
+					<h3>Durée</h3>
+					<div>
+						<span>{{form_row(form.duree)}}</span>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="pays">
-			<div>
-				<h3>Pays de production</h3>
-				{{form_row(form.pays)}}
+		<div class="details">
+			<div class="pays">
+				<div>
+					<h3>Pays de production</h3>
+					{{form_row(form.pays)}}
+				</div>
+			</div>
+			<div class="genre">
+				<div>
+					<h3>Genres</h3>
+					{{form_row(form.genres)}}
+
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="rowFormGenres">
-		<div class="genre">
-			<div>
-				<h3>Genres</h3>
-				{{form_row(form.genres)}}
 
-			</div>
+	<div class="rowFormSynoPoster">
+
+		<div class="syno">
+			<h3>Synopsis</h3>
+			{{form_row(form.synopsis)}}
+			<p>Il reste
+				<span id="count"></span>
+				caractères.</p>
 		</div>
-	</div>
-	<div class="rowFormSynopsis">
-		<div>
-			<div>
-				<h3>Synopsis</h3>
-				{{form_row(form.synopsis)}}
-				<p>Il reste
-					<span id="count"></span>
-					caractères.</p>
-
-			</div>
-
+		<div class="poster">
+			<h3>Poster</h3>
+			<div class="imgMovNew"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
+			<div class="posterForm">{{form_row(form.posterFile)}}</div>
 		</div>
-	</div>
-	<div class="rowFormPoster">
-		<div>
-			<div>
-				<h3>Poster</h3>
-				<div class="imgMovNew"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.poster}}"></div>
-				<div class="posterForm">{{form_row(form.posterFile)}}</div>
-			</div>
 
-		</div>
 	</div>
+	{# <div class="rowFormPoster">
+									<div>
+										<div>
+											<h3>Poster</h3>
+											<div class="imgMovNew"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></div>
+											<div class="posterForm">{{form_row(form.posterFile)}}</div>
+										</div>
+							
+									</div>
+								</div> #}
 	<div class="rowFormArtist">
 		<h3>Artistes</h3>
 		<div class="realPhoto">
