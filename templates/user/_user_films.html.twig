@@ -1,6 +1,14 @@
 <div class="userFilms">
+	<div class="btnNewFilm">
+		<a href="{{ path('film_new') }}">
+			<div class="btn">
+				<h3>Nouveau film</h3>
+			</div>
+		</a>
+	</div>
 	{% for film in app.user.film %}
 		<div class="filmUserList">
+
 			<div class="userfilmLine">
 				{% if film.poster | length >= 1 and film.image | length == 0 %}
 					<a href="{{ path('film_show', {'slug': film.slug} ) }}"><img src="/build/images/posters/{{film.poster}}" alt="affiche du film {{film.title}}"></a>
@@ -27,11 +35,5 @@
 
 
 	{% endfor %}
-	<div class="btnNewFilm">
-		<a href="{{ path('film_new') }}">
-			<div class="btn">
-				<h3>Nouveau film</h3>
-			</div>
-		</a>
-	</div>
+
 </div>

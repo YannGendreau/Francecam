@@ -176,11 +176,16 @@
 			<div>
 				{% if camera.modele.sync is defined and camera.modele.voltage is defined %}
 					{% if camera.modele.sync or camera.modele.voltage %}
-						<h4>{{camera.modele.sync}}</h4>
-						<span>
-							-
-						</span>
-						<h4>{{camera.modele.voltage}}v</h4>
+						<div class="motor">
+							<h4>{{camera.modele.sync}}</h4>
+						</div>
+
+
+						<div class="motor">
+							<h4>{{camera.modele.voltage}}v</h4>
+						</div>
+
+
 					{% else %}
 						<span>
 							-

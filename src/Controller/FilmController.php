@@ -53,6 +53,7 @@ class FilmController extends AbstractController
                 $film->setUser($this->getUser());
                 $sortie = $film->getSortie();
                 $film->setDecade($sortie);
+
             
                 $entityManager = $this->getDoctrine()->getManager();
                 $film = $form->getData();

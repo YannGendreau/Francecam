@@ -95,7 +95,6 @@ class FilmType extends AbstractType
                 'placeholder'       => 'Choisir le(s) genre(s)',
                 'required'          => false,
                 'multiple'          => true,
-                // 'expanded'          => true,
                 'query_builder'     => function (EntityRepository $er) {
                     return $er->createQueryBuilder('g')
                     ->orderBy('g.name', 'ASC')
