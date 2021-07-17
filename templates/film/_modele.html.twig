@@ -4,7 +4,7 @@
 			<div class="cardSmCam">
 				<div class="imgCardCam">
 					{% if camera.img %}
-						<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
+						<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt="Image de la camera {{camera.marque}} {{camera.name}}"></a>
 					{% else %}
 						<div class="description">
 							<h3>{{camera.marque}}</h3>

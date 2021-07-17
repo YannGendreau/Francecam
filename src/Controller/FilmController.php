@@ -50,19 +50,21 @@ class FilmController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             
+                // Récupère l'utilisateur
                 $film->setUser($this->getUser());
+                // Récupère l'année de sortie...
                 $sortie = $film->getSortie();
+                // et l'injecte dans la méthode "décennie"
                 $film->setDecade($sortie);
-
-            
+                // Appelle le manager de Doctrine
                 $entityManager = $this->getDoctrine()->getManager();
+                //Récupère les données du formulaire
                 $film = $form->getData();
+                //Persiste les données
                 $entityManager->persist($film);
+                //Enregistre en base de données
                 $entityManager->flush();
-        
-                /*------------------------------------------------------------------------------
-
-                ----------------------------------------------------------------------------------------*/
+            /*------------------------------------------------------------------------------*/  
                 // EMAIL
                 $email = (new TemplatedEmail())
                 ->from(new Address($this->getParameter('mail.admin'), 'Francecam Admin'))
@@ -75,7 +77,7 @@ class FilmController extends AbstractController
             ;
 
                 $mailer->send($email);
-
+            /*----------------------------------------------------------------------------------------*/
                 $this->addFlash('success', 'Nouveau film enregistré');
             
                 return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);

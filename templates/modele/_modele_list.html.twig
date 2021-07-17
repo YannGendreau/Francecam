@@ -10,7 +10,7 @@
 								{{camera.name}}
 							</em>
 						</div>
-						<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt=""></a>
+						<a href="{{path('modele_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.img}}" alt="Photographie de la camera {{camera.marque}} {{camera.name}}"></a>
 
 					{% elseif camera.img | length == 0 and camera.image | length >= 1 %}
 						<img class="imgCam" src="{{camera.image}}" alt="Photographie de la camera {{camera.marque}} {{camera.name}}">

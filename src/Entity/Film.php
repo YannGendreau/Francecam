@@ -13,7 +13,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Captcha\Bundle\CaptchaBundle\Validator\Constraints as CaptchaAssert;
 
 /**
 *@ORM\Entity(repositoryClass="App\Repository\FilmRepository")
@@ -156,7 +155,8 @@ class Film
     private $isVerified;
 
     /**
-   */
+    * 
+    */
     protected $captchaCode;
 
      

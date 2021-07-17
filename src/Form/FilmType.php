@@ -149,7 +149,8 @@ class FilmType extends AbstractType
                     ->orderBy('g.name', 'ASC')
                     ;
                 }
-                ])
+            ])
+            
             ->add('captchaCode', CaptchaType::class, [
                 'captchaConfig' => 'FilmCaptcha',
                 'label'         => false,

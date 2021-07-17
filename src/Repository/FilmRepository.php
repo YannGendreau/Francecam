@@ -116,7 +116,7 @@ class FilmRepository extends ServiceEntityRepository
             return $this->paginator->paginate(
             $query,
             $search->page,
-            60
+            40
 
         );      
     }
@@ -135,14 +135,11 @@ class FilmRepository extends ServiceEntityRepository
                     ->select('f')
                     ->leftJoin('f.camera', 'c')
                     ->leftJoin('c.marque', 'm')
-                   
-                   
                     ;
 
         if (!empty($search->r)) {
             $query = $query
                     ->andWhere('f.title LIKE :r')
-                   
                     ->setParameter('r', "%{$search->r}%")
                     ;
         }       

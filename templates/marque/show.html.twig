@@ -16,7 +16,7 @@
 						{% else %}
 							<h1>{{marque.name}}</h1>
 						{% endif %}
-						<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt=""></div>
+						<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt="Ombre"></div>
 					</div>
 				</div>
 
@@ -80,7 +80,7 @@
 																		{{camera.name}}
 																	</em>
 																</div>
-																<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
+																<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt="Image de la caméra {{camera.name}} "></a>
 															{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
 																<div class="smDescriptionOverlay">
 																	<em>{{camera.marque}}

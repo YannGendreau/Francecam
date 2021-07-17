@@ -31,7 +31,7 @@ class Modele
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(type="string", length=1000)
      */
     private $description;
 
