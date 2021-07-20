@@ -96,7 +96,7 @@ class Marque
 
     public function __construct()
     {
-        $this->films = new ArrayCollection();
+        // $this->films = new ArrayCollection();
         $this->updatedAt = new \DateTime();
         $this->modeles = new ArrayCollection();
         $this->cameras = new ArrayCollection();
@@ -181,24 +181,24 @@ class Marque
         return $this->films;
     }
 
-    public function addFilm(Film $film): self
-    {
-        if (!$this->films->contains($film)) {
-            $this->films[] = $film;
-            $film->addMarque($this);
-        }
+    // public function addFilm(Film $film): self
+    // {
+    //     if (!$this->films->contains($film)) {
+    //         $this->films[] = $film;
+    //         $film->addMarque($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeFilm(Film $film): self
-    {
-        if ($this->films->removeElement($film)) {
-            $film->removeMarque($this);
-        }
+    // public function removeFilm(Film $film): self
+    // {
+    //     if ($this->films->removeElement($film)) {
+    //         $film->removeMarque($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     
     public function getSlug(): ?string

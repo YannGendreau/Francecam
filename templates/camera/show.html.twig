@@ -95,7 +95,7 @@
 						<div class="tabPanel" style="display: none;">
 							<div class="posters">
 								{% if camera.films | length >= 1 %}
-									{% for film in camera.films | slice(0, 6) %}
+									{% for film in camera.films | slice(0, 30) %}
 										<div class="cardGrid">
 											<div class="cardSm">
 												<div class="imgCard">
@@ -103,7 +103,7 @@
 														<a href="{{path('film_show', {slug: film.slug,})}}"><img src="/build/images/posters/{{film.poster}}" alt="Affiche du film {{film.title}}"></a>
 													{% else %}
 														<div class="description">
-															<h3 id="over">{{film.title}}</h3>
+															<h3>{{film.title}}</h3>
 															<div class="genreOverlay">
 																{% for g in film.genres %}
 																	<em>{{g.name}}</em>
@@ -115,7 +115,7 @@
 												</div>
 												<a href="{{path('film_show', {slug: film.slug,})}}">
 													<div class="description__overlay description__overlay--blur">
-														<h3 id="over">{{film.title}}</h3>
+														<h3>{{film.title}}</h3>
 														<div class="genreOverlay">
 															{% for g in film.genres %}
 																<em>{{g.name}}</em>

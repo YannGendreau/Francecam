@@ -175,7 +175,7 @@
 			</ul>
 		</div>
 		<div class="search">
-			{% if app.request.attributes.get('route') != '/' %}
+			{% if app.request.attributes.get('_route') != 'accueil' %}
 				{{ render(controller('App\\Controller\\SearchController::searchBar'))}}
 			{% endif %}
 		</div>
@@ -234,7 +234,7 @@
 		{% include "navbar/_aside_menu.html.twig" %}
 	</div>
 
-	<main role="main">
+	<main>
 		{% block content %}
 			{# {% include "/includes/flashes/_flash_message.html.twig" %} #}
 		{% endblock %}

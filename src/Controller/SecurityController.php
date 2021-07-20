@@ -81,7 +81,11 @@ class SecurityController extends AbstractController
      * Met le token a NULL si le lien est cliqué
      * @Route("/activation/{token}", name="activation")
      */
-    public function activation($token, UserRepository $userRepository)
+    public function activation(
+        $token,
+        UserRepository $userRepository,
+        MailerInterface $mailer
+        )
     {
         // User = l'utilisateur par token
         $user = $userRepository->findOneBy(['activation_token' => $token]);
@@ -95,6 +99,20 @@ class SecurityController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
+
+        // EMAIL
+        $email = (new TemplatedEmail())
+        ->from(new Address($this->getParameter('mail.admin'), 'Francecam Admin'))
+        ->to(new Address($this->getParameter('mail.admin'), 'Francecam Admin'))
+        ->subject('Francecam | Nouvel utilisateur'. ' ' . $user->getName())
+        ->htmlTemplate('user/_user_register.html.twig')
+        ->context([
+            'user' => $user
+        ])
+        ;
+
+        $mailer->send($email);
+
         // message Flash
         $this->addFlash('success', 'Bienvenue sur Francecam ! Votre compte a bien été crée.');
         // redirection

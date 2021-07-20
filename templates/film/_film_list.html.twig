@@ -14,7 +14,7 @@
 						<a href="{{path('film_show', {slug: film.slug,})}}"><img class="imgCam" src="{{film.image}}" alt="affiche du film {{film.title}}"></a>
 					{% else %}
 						<div class="description">
-							<h3 id="over">{{film.title}}</h3>
+							<h3>{{film.title}}</h3>
 							<div class="genreOverlay">
 								{% for g in film.genres %}
 									<em>&ensp;{{g.name}}&ensp;</em>
@@ -29,7 +29,7 @@
 					<div
 						class="description__overlay description__overlay--blur" id="descOverlay">
 						{# titre #}
-						<h3 id="over">{{film.title}}</h3>
+						<h3>{{film.title}}</h3>
 						{# genres #}
 						<div class="genreOverlay">
 							{% for g in film.genres %}

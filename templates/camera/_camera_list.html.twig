@@ -11,7 +11,7 @@
 										{{camera.name}}
 									</em>
 								</div>
-								<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
+								<a href="{{path('camera_show', {slug:camera.slug} )}}"><img class="imgCam" src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
 							{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
 								<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.name}}">
 								<div class="smDescriptionOverlay">

@@ -16,8 +16,12 @@ use Captcha\Bundle\CaptchaBundle\Validator\Constraints as CaptchaAssert;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="users")
  * @UniqueEntity(
- * *     fields={"email"},
- *       message="Vous êtes déjà enregistré"
+ * *     fields={"name"},
+ *       message="Ce nom est déjà utilisé"
+ * )
+ * @UniqueEntity(
+ *      fields={"email"},
+ *      message="Cet email est déjà utilisé"  
  * )
  */
 class User implements UserInterface

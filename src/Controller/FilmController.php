@@ -132,6 +132,7 @@ class FilmController extends AbstractController
          ;
 
          $mailer->send($email);
+         
             $this->addFlash('success', 'Film modifié avec succès');
             // Redirection
             return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
@@ -146,17 +147,19 @@ class FilmController extends AbstractController
     /**
      * SUPPRIME UN FILM
      * @Route("/{slug}", name="film_delete", methods={"DELETE"})
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Film $film): Response
     {
+        if ($film->getUser()) {
         //Vérifie si le token CSRF est valide, le manager supprime le film
-        if ($this->isCsrfTokenValid('delete'.$film->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($film);
-            $entityManager->flush();
+            if ($this->isCsrfTokenValid('delete'.$film->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($film);
+                $entityManager->flush();
+            }
         }
-
+        
         return $this->redirectToRoute('user');
     }
 

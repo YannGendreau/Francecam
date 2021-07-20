@@ -17,11 +17,8 @@
 					<div class="imgMov"><img class="imgCam" src="{{film.image}}" alt="affiche du film {{film.title}}"></div>
 				{% else %}
 					<div class="addPoster">
-						{% if film.user %}
-							<a href="{{path('film_edit', {slug:film.slug})}}">Ajouter une affiche</a>
-						{% else %}
-							<a href="{{path('app_login')}}">Se connecter pour ajouter</a>
-						{% endif %}
+						<em>Affiche de
+							{{film.title}}</em>
 					</div>
 				{% endif %}
 				<div class="imgMovShadow"><img src="{{asset('build/images/ombre-photo.png')}}" alt="ombre portée d'affiche"></div>

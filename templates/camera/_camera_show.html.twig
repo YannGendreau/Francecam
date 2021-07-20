@@ -10,7 +10,7 @@
 									{{camera.name}}
 								</em>
 							</div>
-							<a href="{{path('camera_show', {slug:camera.slug} )}}"><img src="/build/images/imagesCam/{{camera.modele.img}}" alt=""></a>
+							<a href="{{path('camera_show', {slug:camera.slug} )}}"><img class="imgCam" src="/build/images/imagesCam/{{camera.modele.img}}" alt="image de la caméra {{camera.name}}"></a>
 						{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
 							<div class="smDescriptionOverlay">
 								<em>
@@ -66,7 +66,7 @@
 				<div class="cardSmCam">
 					<div class="imgCardCam">
 						{% if camera.marque.logoName %}
-							<a href="{{path('marque_show', {slug: camera.marque.slug,})}}"><img src="/build/images/marques/{{camera.marque.logoName}}" alt="logo de la marque {{camera.marque.name}}"></a>
+							<a href="{{path('marque_show', {slug: camera.marque.slug,})}}"><img class="imgMarque" src="/build/images/marques/{{camera.marque.logoName}}" alt="logo de la marque {{camera.marque.name}}"></a>
 						{% else %}
 							<a href="{{path('marque_show', {slug: camera.marque.slug} )}}">
 								<div class="smDescriptionOverlay">

@@ -1,0 +1,28 @@
+{% apply inky_to_html|inline_css(source('@styles/email.css')) %}
+<container>
+
+	<row class="titre">
+		<columns>
+			<center>
+				<img src="{{ email.image('@images/FRANCECAM-logo-sm.png') }}" alt="logo du site Francecam">
+				<h1>Francecam</h1>
+			</center>
+
+		</columns>
+	</row>
+
+	<row class="texte">
+		<columns>
+			<p>
+				<strong>{{user.name}}</strong>
+				s'est inscrit à Francecam le
+				<strong>{{user.createdAt |date("d/m/Y") }}</strong>
+				avec l'email:
+				<strong>{{user.email}}</strong>
+			</p>
+
+		</columns>
+	</row>
+
+</container>
+{% endapply %}

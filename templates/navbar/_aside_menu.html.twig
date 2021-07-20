@@ -7,38 +7,25 @@
 					<a class="tlf" href="{{ path('camera') }}">Toutes les caméras</a>
 					<a href='#'>Marques</a>
 					<ul>
-						<li>
-							<a class="" href="{{path('marque_index')}}">Toutes les marques</a>
-						</li>
-						<!-- <li><a class=""href="{{path('camera')}}">Toutes les caméras</a></li> -->
-						<li>
-							<a class="" href="{{path('marque_show',{slug:'aaton'})}}">Aaton</a>
-						</li>
-						<li>
-							<a class="" href="{{path('marque_show',{slug:'arri'})}}">ARRI</a>
-						</li>
-						<li>
-							<a class="" href='{{path('marque_show',{slug:'debrie'})}}'>Debrie</a>
-						</li>
-						<li>
-							<a class="" href='{{path('marque_show',{slug:'eclair'})}}'>Eclair</a>
-						</li>
-						<li>
-							<a class="" href='{{path('marque_show',{slug:'moviecam'})}}'>Moviecam</a>
-						</li>
-						<li>
-							<a class="" href='{{path('marque_show',{slug:'mitchell'})}}'>Mitchell</a>
-						</li>
-						<li>
-							<a class="" href='{{path('marque_show',{slug:'panavision'})}}'>Panavision</a>
-						</li>
+						<li><ahref="{{path('marque_index')}}">Toutes les marques</a></li>
+						<li><ahref="{{path('marque_show',{slug:'aaton'})}}">Aaton</a></li>
+						<li><ahref="{{path('marque_show',{slug:'arri'})}}">ARRI</a></li>
+						<li><ahref='{{path('marque_show',{slug:'debrie'})}}'>Debrie</a></li>
+						<li><ahref='{{path('marque_show',{slug:'eclair'})}}'>Eclair</a></li>
+						<li><ahref='{{path('marque_show',{slug:'moviecam'})}}'>Moviecam</a></li>
+						<li><ahref='{{path('marque_show',{slug:'mitchell'})}}'>Mitchell</a></li>
+						<li><ahref='{{path('marque_show',{slug:'panavision'})}}'>Panavision</a></li>
 					</ul>
 				</li>
 				<li class='has-sub'>
 					<a href='#'>Formats</a>
 					<ul>
-						<li><a class=""href="{{path('camera',{'q':'','format':'1'})}}">16mm /Super 16</a></li>
-						<li><a class=""href="{{path('camera',{'q':'','format':'2'})}}">35mm / Super 35</a></li>
+						<li>
+							<ahref="{{path('camera',{'q':'','format':'1'})}}">16mm /Super 16</ahref=>
+						</li>
+						<li>
+							<ahref="{{path('camera',{'q':'','format':'2'})}}">35mm / Super 35</ahref=>
+						</li>
 					</ul>
 				</li>
 				<li class='has-sub'>
@@ -144,5 +131,5 @@
 				</ul>
 			{% endif %}
 		</li>
-	</li>
-</ul></div>
+	</ul>
+</div>

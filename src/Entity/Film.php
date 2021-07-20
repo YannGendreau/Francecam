@@ -134,10 +134,6 @@ class Film
      */
     private $camera;
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
-    private $activation_token;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -295,6 +291,20 @@ class Film
         }
         return $marques;
     }
+   
+    public function removeMarques(Camera $camera)
+    {
+        $marques = new ArrayCollection();
+        if ($this->removeCamera($camera)){
+            // @todo Gerer les doublons
+           foreach($this->removeCamera($camera) as $cam){
+               if($cam->removeMarque()){
+                   $marques->remove($cam->removeMarque());
+               }
+           }
+        }
+        return $marques;
+    }
 
 
 
@@ -346,6 +356,19 @@ class Film
         }
         return $modeles;
     }
+    // public function removeModeles(Modele $modeles)
+    // {
+    //     // $modeles = new ArrayCollection();
+    //     if ($this->removeCamera($camera)){
+    //         // @todo Gerer les doublons
+    //        foreach($this->getCamera() as $cam){
+    //            if($cam->removeMarque()){
+    //                $marques->remove($cam->removeMarque());
+    //            }
+    //        }
+    //     }
+    //     return $marques;
+    // }
 
   
     /**
@@ -528,17 +551,6 @@ class Film
         return $this;
     }
 
-    public function getActivationToken(): ?string
-    {
-        return $this->activation_token;
-    }
-
-    public function setActivationToken(?string $activation_token): self
-    {
-        $this->activation_token = $activation_token;
-
-        return $this;
-    }
 
     public function getImage(): ?string
     {
