@@ -6,25 +6,41 @@
 				<li class='has-sub'>
 					<a class="tlf" href="{{ path('camera') }}">Toutes les caméras</a>
 					<a href='#'>Marques</a>
-					<ul>
-						<li><ahref="{{path('marque_index')}}">Toutes les marques</a></li>
-						<li><ahref="{{path('marque_show',{slug:'aaton'})}}">Aaton</a></li>
-						<li><ahref="{{path('marque_show',{slug:'arri'})}}">ARRI</a></li>
-						<li><ahref='{{path('marque_show',{slug:'debrie'})}}'>Debrie</a></li>
-						<li><ahref='{{path('marque_show',{slug:'eclair'})}}'>Eclair</a></li>
-						<li><ahref='{{path('marque_show',{slug:'moviecam'})}}'>Moviecam</a></li>
-						<li><ahref='{{path('marque_show',{slug:'mitchell'})}}'>Mitchell</a></li>
-						<li><ahref='{{path('marque_show',{slug:'panavision'})}}'>Panavision</a></li>
+					<ul id="grid_marque">
+						<li>
+							<a href="{{path('marque_index')}}">Toutes les marques</a>
+						</li>
+						<li>
+							<a href="{{path('marque_show',{slug:'aaton'})}}">Aaton</a>
+						</li>
+						<li>
+							<a href="{{path('marque_show',{slug:'arri'})}}">ARRI</a>
+						</li>
+						<li>
+							<a href='{{path('marque_show',{slug:'debrie'})}}'>Debrie</a>
+						</li>
+						<li>
+							<a href='{{path('marque_show',{slug:'eclair'})}}'>Eclair</a>
+						</li>
+						<li>
+							<a href='{{path('marque_show',{slug:'moviecam'})}}'>Moviecam</a>
+						</li>
+						<li>
+							<a href='{{path('marque_show',{slug:'mitchell'})}}'>Mitchell</a>
+						</li>
+						<li>
+							<a href='{{path('marque_show',{slug:'panavision'})}}'>Panavision</a>
+						</li>
 					</ul>
 				</li>
 				<li class='has-sub'>
 					<a href='#'>Formats</a>
-					<ul>
+					<ul id="grid_format">
 						<li>
-							<ahref="{{path('camera',{'q':'','format':'1'})}}">16mm /Super 16</ahref=>
+							<a href="{{path('camera',{'q':'','format':'1'})}}">16mm /Super 16</a>
 						</li>
 						<li>
-							<ahref="{{path('camera',{'q':'','format':'2'})}}">35mm / Super 35</ahref=>
+							<a href="{{path('camera',{'q':'','format':'2'})}}">35mm / Super 35</a>
 						</li>
 					</ul>
 				</li>
@@ -69,30 +85,64 @@
 					<a class="tlf" href="{{ path('films') }}">Tous les films</a>
 
 					<a href='#'>Genres</a>
-					<ul>
-						<li><a class=""href="{{path('films',{'q':'','genres':'1'})}}">Action</a></li>
-						<li><a class=""href="{{path('films',{'q':'','genres':'8'})}}">Aventure</a></li>
-						<li><a class=""href="{{path('films',{'q':'','genres':'2'})}}">Comédie</a></li>
-						<li><a class=""href="{{path('films',{'q':'','genres':'3'})}}">Drame</a></li>
-						<li><a class=""href="{{path('films',{'q':'','genres':'4'})}}">Polar</a></li>
-						<li><a class=""href="{{path('films',{'q':'','genres':'5'})}}">Fantastique</a></li>
-						<li><a class=""href="{{path('films',{'q':'','genres':'6'})}}">Horreur</a></li>
-						<li><a class=""href="{{path('films',{'q':'','genres':'1'})}}">Science-Fiction</a></li>
+					<ul id="grid_year">
+						<li>
+							<a href="{{path('films',{'q':'','genres':'1'})}}">Action</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','genres':'8'})}}">Aventure</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','genres':'2'})}}">Comédie</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','genres':'3'})}}">Drame</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','genres':'4'})}}">Polar</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','genres':'5'})}}">Fantastique</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','genres':'6'})}}">Horreur</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','genres':'1'})}}">Science-Fiction</a>
+						</li>
 					</ul>
 				</li>
 
 				<li class='has-sub'>
 					<a href='#'>Décennies</a>
-					<ul>
-						<li><a class=""href="{{path('films',{'q':'','decade':'1910'})}}">1910</a></li>
-						<li><a class=""href="{{path('films',{'q':'','decade':'1920'})}}">1920</a></li>
-						<li><a class=""href="{{path('films',{'q':'','decade':'1930'})}}">1930</a></li>
-						<li><a class=""href="{{path('films',{'q':'','decade':'1940'})}}">1940</a></li>
-						<li><a class=""href="{{path('films',{'q':'','decade':'1950'})}}">1950</a></li>
-						<li><a class=""href="{{path('films',{'q':'','decade':'1960'})}}">1960</a></li>
-						<li><a class=""href="{{path('films',{'q':'','decade':'1970'})}}">1970</a></li>
-						<li><a class=""href="{{path('films',{'q':'','decade':'1980'})}}">1980</a></li>
-						<li><a class=""href="{{path('films',{'q':'','decade':'1990'})}}">1990</a></li>
+					<ul id="grid_dec">
+						<li>
+							<a href="{{path('films',{'q':'','decade':'1910'})}}">1910</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','decade':'1920'})}}">1920</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','decade':'1930'})}}">1930</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','decade':'1940'})}}">1940</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','decade':'1950'})}}">1950</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','decade':'1960'})}}">1960</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','decade':'1970'})}}">1970</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','decade':'1980'})}}">1980</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','decade':'1990'})}}">1990</a>
+						</li>
 					</ul>
 				</li>
 			</ul>
