@@ -86,16 +86,6 @@
 										<p>{{director.name}}</p>
 									</a>
 									<br>
-								{% else %}
-									{% if app.user %}
-										<a href="{{path('film_edit', {slug:film.slug})}}">
-											<p class="addArtist">Ajouter</p>
-										</a>
-									{% else %}
-										<a href="{{path('app_login')}}">
-											<p class="addArtist">Se connecter pour ajouter</p>
-										</a>
-									{% endif %}
 								{% endif %}
 							</div>
 						</div>
@@ -115,17 +105,7 @@
 								<a href="#">
 									<p>{{director.name}}</p>
 								</a>
-								<br>
-							{% else %}
-								{% if app.user %}
-									<a href="{{path('film_edit', {slug:film.slug})}}">
-										<p class="addArtist">Ajouter</p>
-									</a>
-								{% else %}
-									<a href="{{path('app_login')}}">
-										<p class="addArtist">Se connecter pour ajouter</p>
-									</a>
-								{% endif %}
+
 							{% endif %}
 						</div>
 					</div>
@@ -145,16 +125,6 @@
 							<div>
 								<div class="tableauCamFilm">
 									{% include "camera/_camera_show.html.twig" %}
-								</div>
-								<div class="add">
-
-									{% if app.user %}
-										<a class="addCamera" href="{{path('film_edit', {slug:film.slug})}}">Ajouter/modifier</a>
-									{% else %}
-										<a class="connect" href="{{path('app_login')}}">Ajouter/modifier</a>
-									{% endif %}
-
-
 								</div>
 							</div>
 						</div>

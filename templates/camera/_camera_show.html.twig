@@ -89,11 +89,6 @@
 	<div class="noCam">
 
 		<p>Pas de camera</p>
-		{% if app.user %}
-			<a class="addCamera" href="{{path('film_edit', {slug:film.slug})}}">Ajouter</a>
-		{% else %}
-			<a class="connect" href="{{path('app_login')}}">Se connecter pour ajouter</a>
-		{% endif %}
 	</div>
 
 
