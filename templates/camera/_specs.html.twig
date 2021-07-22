@@ -50,9 +50,8 @@
 			<h4>
 				{% if camera.modele.shutter is defined %}
 					{% if camera.modele.shutter %}
-						{% for s in camera.modele.shutter %}
-							{{s.angle}}°
-						{% endfor %}
+						<h4>{{ camera.modele.shutter }}
+							°</h4>
 					{% else %}
 						<span>
 							-

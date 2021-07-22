@@ -93,9 +93,8 @@ class Modele
      * @ORM\ManyToMany(targetEntity=Format::class, inversedBy="modeles")
      */
     private $format;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Shutter::class, inversedBy="modeles")
+  /**
+     * @ORM\Column(type="string", length=255, nullable= true)
      */
     private $shutter;
 
@@ -159,12 +158,12 @@ class Modele
      */
     private $cameras;
 
+   
+
 
     public function __construct()
     {
-        // $this->films = new ArrayCollection();
         $this->format = new ArrayCollection();
-        $this->shutter = new ArrayCollection();
         $this->mount = new ArrayCollection();
         $this->updatedAt = new \DateTime();
         $this->type = new ArrayCollection();
@@ -382,29 +381,7 @@ class Modele
         return $this;
     }
 
-    /**
-     * @return Collection|Shutter[]
-     */
-    public function getShutter(): Collection
-    {
-        return $this->shutter;
-    }
 
-    public function addShutter(Shutter $shutter): self
-    {
-        if (!$this->shutter->contains($shutter)) {
-            $this->shutter[] = $shutter;
-        }
-
-        return $this;
-    }
-
-    public function removeShutter(Shutter $shutter): self
-    {
-        $this->shutter->removeElement($shutter);
-
-        return $this;
-    }
 
     /**
      * @return Collection|Mount[]
@@ -587,6 +564,18 @@ class Modele
                 $camera->setModele(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getShutter(): ?string
+    {
+        return $this->shutter;
+    }
+
+    public function setShutter(string $shutter): self
+    {
+        $this->shutter = $shutter;
 
         return $this;
     }
