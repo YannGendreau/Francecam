@@ -38,7 +38,7 @@ class ModeleCrudController extends AbstractCrudController
             IntegerField::new('decade'),
             AssociationField::new('type'),
             AssociationField::new('format'),
-            AssociationField::new('shutter'),
+            TextField::new('shutter'),
             // TextField::new('obt'),
             TextField::new('framerate'),
             AssociationField::new('mount'),
