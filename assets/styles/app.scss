@@ -319,7 +319,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
     .cardGrid {
         width: 180px;
         height: $cardFilm;
-        margin: 1px;
+        margin: 5px 0 5px 0;
 
         .cardSm {
             position: relative;
@@ -489,7 +489,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
     .cardGrid {
         max-width: 100px;
         max-height: $cardFilmSm - 20px;
-        // margin: 0 1% 10px 1% !important;
+        margin: 1px 0 1px 0 !important;
 
         .cardSm {
             width: 100%;
@@ -546,7 +546,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
         height: 190px;
         max-width: 300px;
         min-width: 300px;
-        margin: 0 3px 3px 0;
+        margin: 5px 0 10px 0;
         border: 1px solid lightgrey;
         border-radius: 5px;
 
@@ -855,6 +855,7 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
         max-width: 150px !important;
         min-width: 150px !important;
         height: 110px !important;
+        margin: 5px 0 5px 0 !important;
         border: 1px solid lightgrey;
         border-radius: 5px;
 
@@ -2142,7 +2143,7 @@ a {
 
         .showList {
             width: 100%;
-            @include flex-start-center();
+            @include flex-evenly-center();
             flex-wrap: wrap;
             margin-top: 10px;
             @include cardGridCam();
@@ -6588,6 +6589,7 @@ PAGE USER PROFILE
             max-width: 140px !important;
             min-width: 140px !important;
             height: 100px !important;
+            margin: 5px 0 5px 0 !important;
             border: 1px solid lightgrey;
             border-radius: 5px;
 
