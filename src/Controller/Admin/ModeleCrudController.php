@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class ModeleCrudController extends AbstractCrudController
@@ -49,6 +50,8 @@ class ModeleCrudController extends AbstractCrudController
             TextField::new('weight'),
             TextField::new('sync'),
             TextField::new('view'),
+            DateField::new('updated_at'),
+            DateField::new('created_at'),
             TextField::new('slug'),
             TextareaField::new('description'),
            
