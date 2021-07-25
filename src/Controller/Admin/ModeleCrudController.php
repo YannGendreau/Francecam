@@ -50,8 +50,6 @@ class ModeleCrudController extends AbstractCrudController
             TextField::new('weight'),
             TextField::new('sync'),
             TextField::new('view'),
-            DateField::new('updated_at'),
-            DateField::new('created_at'),
             TextField::new('slug'),
             TextareaField::new('description'),
            
