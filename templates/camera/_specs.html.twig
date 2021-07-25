@@ -178,13 +178,9 @@
 						<div class="motor">
 							<h4>{{camera.modele.sync}}</h4>
 						</div>
-
-
 						<div class="motor">
-							<h4>{{camera.modele.voltage}}v</h4>
+							<h4>{{camera.modele.voltage}}</h4>
 						</div>
-
-
 					{% else %}
 						<span>
 							-
@@ -197,12 +193,12 @@
 	<div class="cell">
 		<div class="option">
 			<strong>
-				<h3>Viewfinder</h3>
+				<h3>Viseur</h3>
 			</strong>
 		</div>
 		<div class="spec">
 			<h4>
-				{% if camera.modele.weight is defined %}
+				{% if camera.modele.view is defined %}
 					{% if camera.modele.view %}
 						{{camera.modele.view}}
 					{% else %}

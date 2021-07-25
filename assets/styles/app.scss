@@ -56,7 +56,7 @@ $cardCam: 190px;
 $cardCamSm: 120px;
 
 /*----Margin----*/
-$mTop: 70px;
+$mTop: 50px;
 $mTopForm: 15px;
 $mBtnR: 10px;
 
@@ -2484,6 +2484,7 @@ ABOUT US
         flex-wrap: wrap;
         width: 100%;
         height: 100%;
+        margin: 10%;
         p {
             width: 100%;
             font-size: 2rem;
@@ -2759,7 +2760,7 @@ ABOUT US
 
                 .tabPanel {
                     margin-top: 20px;
-                    min-height: 320px;
+                    min-height: 520px;
 
                     .videoFrame {
                         display: flex;
@@ -2769,7 +2770,7 @@ ABOUT US
 
                     .posters {
                         width: 100%;
-                        @include flex-center();
+                        @include flex-evenly-center();
                         flex-wrap: wrap;
 
                         @include cardFilm();
@@ -2778,6 +2779,7 @@ ABOUT US
                             @include flex-center();
                             width: 100%;
                             height: 100%;
+                            margin: 10%;
                             p {
                                 font-size: 2rem;
                                 color: $titleCard;
@@ -2813,6 +2815,15 @@ ABOUT US
                                 width: 200px;
                                 height: 50px;
                                 background: #e1e7ec;
+                                padding: 5px;
+                                h4 {
+                                    &:after {
+                                        content: " ,  ";
+                                    }
+                                    &:last-child:after {
+                                        content: "";
+                                    }
+                                }
                             }
                         }
                     }
@@ -3265,6 +3276,7 @@ ABOUT US
                     min-height: 320px;
                     .noCam {
                         @include flex-center();
+                        margin: 10%;
                         width: 100%;
                         height: 100%;
                         p {
@@ -3315,6 +3327,7 @@ ABOUT US
                     @include flex-center();
                     width: 100%;
                     height: 100%;
+                    margin: 10%;
                     p {
                         font-size: 2rem;
                         color: $titleCard;
@@ -4600,6 +4613,7 @@ PAGE USER PROFILE
         flex-wrap: wrap;
         width: 100%;
         height: 100%;
+        margin: 10%;
         p {
             width: 100%;
             font-size: 2rem;
@@ -4644,6 +4658,7 @@ PAGE USER PROFILE
             width: 50%;
             height: 50px;
             background: #e1e7ec;
+            padding: 5px;
             div {
                 @include flex-center();
                 flex-wrap: wrap;
@@ -5809,14 +5824,10 @@ PAGE USER PROFILE
                     width: 100%;
                     .tabPanel {
                         margin-top: 20px;
-                        min-height: 320px;
+                        min-height: 560px;
 
                         div {
                             width: 100%;
-                            .tableauCamFilm {
-                                // margin-top: 30px;
-                                // @include cardGridCamSm();
-                            }
                         }
 
                         .videoFrame {
@@ -6436,8 +6447,6 @@ PAGE USER PROFILE
                 height: 50px;
                 background: $gray;
                 margin: 3px 0 3px 0;
-
-                // margin: 5px;
             }
 
             .spec {
@@ -6445,6 +6454,7 @@ PAGE USER PROFILE
                 width: 200px;
                 height: 50px;
                 background: #e1e7ec;
+                padding: 5px;
             }
         }
     }
