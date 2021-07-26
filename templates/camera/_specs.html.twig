@@ -8,15 +8,16 @@
 		<div class="spec">
 			{% if camera.modele.type is defined %}
 				{% if camera.modele.type %}
-					<h4>
-						{% for s in camera.modele.type %}
-							{{s.name}}
-						{% endfor %}
-					{% else %}
-						<span>
-							-
-						</span>
-					</h4>
+
+					{% for s in camera.modele.type %}
+						<h4>
+							{{s.name}}</h4>
+					{% endfor %}
+				{% else %}
+					<span>
+						-
+					</span>
+
 				{% endif %}
 			{% endif %}
 		</div>
@@ -47,19 +48,19 @@
 			</strong>
 		</div>
 		<div class="spec">
-			<h4>
-				{% if camera.modele.shutter is defined %}
-					{% if camera.modele.shutter %}
-						<h4>{{ camera.modele.shutter }}
-							°</h4>
-					{% else %}
-						<span>
-							-
-						</span>
 
-					{% endif %}
+			{% if camera.modele.shutter is defined %}
+				{% if camera.modele.shutter %}
+					<h4>{{ camera.modele.shutter }}
+						°</h4>
+				{% else %}
+					<span>
+						-
+					</span>
+
 				{% endif %}
-			</h4>
+			{% endif %}
+
 		</div>
 	</div>
 	<div class="cell">
@@ -69,19 +70,19 @@
 			</strong>
 		</div>
 		<div class="spec">
-			<h4>
-				{% if camera.modele.framerate is defined %}
-					{% if camera.modele.framerate %}
-						<h4>{{ camera.modele.framerate }}
-							images/seconde</h4>
-					{% else %}
-						<span>
-							-
-						</span>
 
-					{% endif %}
+			{% if camera.modele.framerate is defined %}
+				{% if camera.modele.framerate %}
+					<h4>{{ camera.modele.framerate }}
+						images/seconde</h4>
+				{% else %}
+					<span>
+						-
+					</span>
+
 				{% endif %}
-			</h4>
+			{% endif %}
+
 		</div>
 	</div>
 	<div class="cell">
