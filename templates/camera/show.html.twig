@@ -1,7 +1,6 @@
 {% extends 'navbar/layout.html.twig' %}
 
 {% block title %}
-	Francecam |
 	{{camera.name}}
 
 {% endblock %}
@@ -19,7 +18,8 @@
 					{% if camera.modele.img | length >= 1 and camera.modele.image | length == 0 %}
 						<img class="imgCam" src="/build/images/imagesCam/{{camera.modele.img}}" alt="Photographie de la camera {{camera.modele.marque}} {{camera.modele.name}}">
 					{% elseif camera.modele.img | length == 0 and camera.modele.image | length >= 1 %}
-						<img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.modele.marque}} {{camera.modele.name}}">
+						<a href="{{camera.modele.image}}" target="_blank"><img class="imgCam" src="{{camera.modele.image}}" alt="Photographie de la camera {{camera.modele.marque}} {{camera.modele.name}}"></a>
+
 					{% else %}
 						<img class="camLogo" src="/build/images/illustrations/camera-logo.png" alt="illustration de camera par défaut">
 					{% endif %}
@@ -33,10 +33,11 @@
 						<h1 id="cameraTitre">{{camera.name}}
 						</h1>
 					</div>
+
 					<div class="overview">
 						<div>
 							<div class="marque">
-								<a href="{{path('marque_show', {slug :camera.marque.slug})}}">
+								<a href="{{path('marque_show', {slug :camera.marque.slug})}}" alt="Voir la page de la marque {{camera.marque}}">
 									<h5>
 										{{camera.marque}}
 									</h5>

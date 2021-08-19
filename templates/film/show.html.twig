@@ -1,7 +1,6 @@
 {% extends 'navbar/layout.html.twig' %}
 
 {% block title %}
-	Francecam |
 	{{film.title}}
 {% endblock %}
 
@@ -25,7 +24,10 @@
 			<!--DESCRIPTION-->
 			<div class="descriptionFilm">
 				<div class="titre">
-					<h1 id="titleFilmShow">{{film.title}}</h1>
+					<div class="titreFilm">
+						<h1 id="titleFilmShow">{{film.title}}</h1>
+					</div>
+
 					<div class="overview">
 						<div>
 							<!--DUREE-->
@@ -91,7 +93,7 @@
 					</div>
 					<div class="dpDivD">
 						<div class="dpTitreD">
-							<h4>Direction de la photographie</h4>
+							<h4>Photographie</h4>
 						</div>
 						<div class="dpNameD">
 							{% if film.dirphoto | length > 0 %}

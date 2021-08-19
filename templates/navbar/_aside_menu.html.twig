@@ -99,10 +99,16 @@
 							<a href="{{path('films',{'q':'','genres':'11'})}}">Comédie dramatique</a>
 						</li>
 						<li>
+							<a href="{{path('films',{'q':'','genres':'12'})}}">Comédie musicale</a>
+						</li>
+						<li>
 							<a href="{{path('films',{'q':'','genres':'3'})}}">Drame</a>
 						</li>
 						<li>
 							<a href="{{path('films',{'q':'','genres':'10'})}}">Film historique</a>
+						</li>
+						<li>
+							<a href="{{path('films',{'q':'','genres':'14'})}}">Guerre</a>
 						</li>
 						<li>
 							<a href="{{path('films',{'q':'','genres':'4'})}}">Polar</a>
@@ -110,11 +116,14 @@
 						<li>
 							<a href="{{path('films',{'q':'','genres':'5'})}}">Fantastique</a>
 						</li>
+						{# <li>
+													<a href="{{path('films',{'q':'','genres':'6'})}}">Horreur</a>
+												</li> #}
 						<li>
-							<a href="{{path('films',{'q':'','genres':'6'})}}">Horreur</a>
+							<a href="{{path('films',{'q':'','genres':'7'})}}">Science-Fiction</a>
 						</li>
 						<li>
-							<a href="{{path('films',{'q':'','genres':'1'})}}">Science-Fiction</a>
+							<a href="{{ path('films', {'q':'', 'genres':'13'}) }}">Thriller</a>
 						</li>
 					</ul>
 				</li>

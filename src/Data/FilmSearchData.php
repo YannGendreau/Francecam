@@ -6,6 +6,8 @@ use App\Entity\Film;
 use App\Entity\Genre;
 use App\Entity\Camera;
 use App\Entity\Marque;
+use App\Entity\Director;
+use App\Entity\Dirphoto;
 
 
 class FilmSearchData
@@ -30,6 +32,20 @@ class FilmSearchData
      * @var Genre
      */
     public $genres = [];
+
+    /**
+     * Tableau de réalisateurs
+     *
+     * @var Director
+     */
+    public $director = [];
+
+    /**
+     * Tableau de réalisateurs
+     *
+     * @var Dirphoto
+     */
+    public $dirphoto = [];
 
     /**
      * Tableau de date de sortie

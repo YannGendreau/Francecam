@@ -305,7 +305,6 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
                     }
 
                     em {
-                        // color: $titleFont;
                         color: $green-dark;
                         font-size: 16px;
                     }
@@ -489,7 +488,6 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
     .cardGrid {
         max-width: 100px;
         max-height: $cardFilmSm - 20px;
-        // margin: 1px 0 1px 0 !important;
 
         .cardSm {
             width: 100%;
@@ -851,11 +849,11 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
 
 @mixin cardGridCamSm {
     .cardGridCam {
-        width: 50% !important;
-        max-width: 150px !important;
-        min-width: 150px !important;
-        height: 110px !important;
-        margin: 5px !important;
+        max-width: 150px;
+        min-width: 150px;
+        height: 110px;
+
+        margin: 1px 1px 5px 1px !important;
         border: 1px solid lightgrey;
         border-radius: 5px;
 
@@ -1617,6 +1615,35 @@ a {
     width: 80%;
     min-height: 100vh;
 
+    .notexists {
+        width: 80%;
+        height: 500px;
+        @include flex-center();
+        background-image: url("/build/images/illustrations/frame-th.png");
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: contain;
+
+        .nofilm {
+            width: 100%;
+            text-align: center;
+            color: $titleCard;
+            font-size: 2.5rem;
+
+            span {
+                font-style: italic;
+                color: $titleCard;
+            }
+
+            .filmSpan {
+                font-style: italic;
+                color: $titleFont;
+                margin-bottom: 10px;
+                font-size: 3rem;
+            }
+        }
+    }
+
     .cguContainer {
         width: 60%;
         margin-top: 70px;
@@ -1659,7 +1686,6 @@ a {
         color: $titleFont;
         text-transform: uppercase;
         font-size: 1.8rem;
-        margin: 30px 0 30px 0;
 
         span {
             font-style: italic;
@@ -1667,7 +1693,7 @@ a {
     }
 
     .searchBlock {
-        margin: $mTop 0 $mTop 0;
+        margin-top: 60px;
         min-height: 300px;
         width: 50%;
 
@@ -1753,12 +1779,11 @@ a {
                             border-bottom-right-radius: 7px;
                             padding-left: 10px;
                             font-size: 1.3rem;
-                            transition: 250ms ease-in-out;
+                            transition: 150ms ease-in-out;
                             &:focus {
-                                outline: 1px solid rgb(255, 255, 255);
+                                // outline: 1px solid rgb(212, 212, 212);
                                 transition: transform 0.15s ease;
-                                box-shadow: inset 0 -2em 2em rgba(0, 0, 0, 0.05), 0 0 0,
-                                    0.1em 0.1em 1em rgba(0, 0, 0, 0.2);
+                                box-shadow: inset 0 -2em 2em rgba(93, 104, 126, 0.05);
                             }
                         }
                     }
@@ -2652,6 +2677,20 @@ ABOUT US
                             content: "";
                         }
                     }
+
+                    a {
+                        text-transform: uppercase;
+                        border-bottom: 2px solid #919ab1;
+                        transition: 250ms;
+                        &:hover {
+                            border-bottom: 2px solid $titleFont;
+                        }
+                        h5 {
+                            font-size: 1rem;
+                            font-family: "Roboto Condensed", sans-serif;
+                            color: #919ab1;
+                        }
+                    }
                 }
 
                 span {
@@ -2853,6 +2892,7 @@ ABOUT US
     @include flex-center-start();
     flex-wrap: wrap;
     width: 85%;
+    min-width: 820px;
     margin: 15px 0 15px 0;
     padding: 0 15px 0 15px;
     margin-top: $mTop;
@@ -2888,7 +2928,9 @@ ABOUT US
             }
 
             em {
+                width: 50%;
                 color: rgb(168, 168, 168);
+                text-align: center;
             }
         }
 
@@ -3041,6 +3083,20 @@ ABOUT US
                                 content: "";
                             }
                         }
+
+                        a {
+                            text-transform: uppercase;
+                            border-bottom: 2px solid #919ab1;
+                            transition: 250ms;
+                            &:hover {
+                                border-bottom: 2px solid $titleFont;
+                            }
+                            h5 {
+                                font-size: 1rem;
+                                font-family: "Roboto Condensed", sans-serif;
+                                color: #919ab1;
+                            }
+                        }
                     }
 
                     span {
@@ -3075,18 +3131,16 @@ ABOUT US
 
     .descriptionFilm {
         width: 55%;
-        grid-area: desc;
         @include flex-center-start();
         flex-wrap: wrap;
 
         .titre {
-            grid-area: titre;
             width: 100%;
             text-align: center;
             top: 0;
             align-items: flex-start;
 
-            h1 {
+            #titleFilmShow {
                 font-family: "Oswald", sans-serif;
                 font-size: 3.5rem;
                 color: #283149;
@@ -3101,7 +3155,6 @@ ABOUT US
             }
 
             .overview {
-                grid-area: overview;
                 @include flex-space-center();
                 margin-bottom: 10px;
 
@@ -3877,15 +3930,18 @@ ABOUT US
 
 //Flash Message --------------------------------------------
 .alert {
+    position: absolute;
+    top: 58px;
     padding: 10px;
     text-align: center;
-    z-index: 1;
+    z-index: 10;
     max-height: 70px;
     width: 100%;
     font-family: "Roboto Condensed", "Open Sans", sans-serif;
     color: white;
     font-size: 2rem;
     text-transform: uppercase;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .alert-success {
@@ -4682,9 +4738,6 @@ PAGE USER PROFILE
             }
         }
     }
-}
-
-@media (min-width: 1024px) {
 }
 
 @media (max-width: 1024px) {
@@ -6398,7 +6451,7 @@ PAGE USER PROFILE
                 .contentCam {
                     .tabPanel {
                         margin-top: 20px;
-                        min-height: 320px;
+                        min-height: 650px;
 
                         .videoFrame {
                             display: flex;
@@ -6781,7 +6834,9 @@ PAGE USER PROFILE
     }
 
     #containerMarque {
-        margin-top: 80px;
+        margin-top: 0px !important;
+        min-height: 50vh !important;
+        align-items: flex-start !important;
 
         .flexMarque {
             @include flex-center();
@@ -7097,4 +7152,16 @@ PAGE USER PROFILE
 #cssmenu ul ul > li.has-sub > a:before {
     top: 20px;
     background: #dddddd;
+}
+
+@media (max-width: 529px) {
+    .tableau {
+        .cardGridCam {
+            max-width: 100% !important;
+            min-width: 100% !important;
+            height: 110px !important;
+            margin: 5px !important;
+            // margin-bottom: 5px;
+        }
+    }
 }

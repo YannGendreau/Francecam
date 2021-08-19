@@ -55,11 +55,14 @@ class FilmRepository extends ServiceEntityRepository
         //Sélection des champs sur FilmSearchData
         $query = $this
                     ->createQueryBuilder('f') //Créé une instance de QueryBuilder avec alias
-                    ->select('f','m', 'g', 'n', 'c') // Sélectionne les items à retourner dans les résultat de requêtes
+                    ->select('f','m', 'g', 'n', 'c', 'd', 'p') // Sélectionne les items à retourner dans les résultat de requêtes
                     ->leftJoin('f.genres', 'g') //Joint la relation film.genres avec un alias
                     ->leftJoin('f.camera', 'c') //Joint la relation film.modeles avec un alias
                     ->leftJoin('c.marque', 'm') //Joint la relation film.marques avec un alias
                     ->leftJoin('c.modele', 'n') //Joint la relation film.modeles avec un alias
+                    ->leftJoin('f.directors', 'd') //Joint la relation film.modeles avec un alias
+                    ->leftJoin('f.dirphoto', 'p') //Joint la relation film.modeles avec un alias
+                    ->orderBy('f.createdAt', 'DESC')
                     
                    //évite le problème typique de n+1 de Symfony en joignant les requêtes
                     ;
@@ -69,7 +72,9 @@ class FilmRepository extends ServiceEntityRepository
         if (!empty($search->q)) {
             $query = $query
                     ->andWhere('f.title LIKE :q')//Le texte comporte une partie du titre.  
-                    ->setParameter('q', "%{$search->q}%") // Désigne 'q' comme alias de la propriété q partielle
+                    ->orWhere('d.Name LIKE :q')//Le texte comporte une partie du titre.  
+                    ->orWhere('p.name LIKE :q')//Le texte comporte une partie du titre.  
+                    ->setParameter('q', "%{$search->q}%") // Désigne 'q' comme alias de la propriété q partielle, début de mot
                     ;
         }
 

@@ -9,6 +9,7 @@
 
 //FICHIER CSS principal
 import './styles/app.scss';
+// import '/bundles/mercuryseriesflashy/css/flashy.css';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 //JQUERY
@@ -20,6 +21,8 @@ import 'select2/dist/css/select2.css';
 import  './modules/Filter';
 import  './modules/slideMenu';
 import  './modules/charcount';
+import  './modules/jquery.fittext.js';
+// import 	'/bundles/mercuryseriesflashy/js/flashy.js';
 
 $('select').select2();
 $('.cameras').select2({width:'resolve'});
@@ -33,6 +36,8 @@ require('../assets/images/francecam-bg.jpg');
 const imagesContext = require.context('../assets/images', true, /\.(png|jpg|jpeg|gif|ico|svg|webp)$/);
 imagesContext.keys().forEach(imagesContext);
 
+
+$("#titleFilmShow").fitText(1.2);
 
 
 $("#clickMenu").on("click", function(){

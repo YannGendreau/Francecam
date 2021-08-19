@@ -4,6 +4,7 @@ namespace App\Form;
 
 
 use App\Entity\Genre;
+use App\Entity\Camera;
 use App\Entity\Marque;
 use App\Data\FilmSearchData;
 use App\Repository\FilmRepository;
@@ -72,6 +73,22 @@ class SearchFilmForm extends AbstractType
                 'multiple' => true,
                     
             ])
+            // ->add('camera', EntityType::class,[
+            //     'label' => false,
+            //     'required'=> false,
+            //     'class' => Camera::class,
+            //     'expanded'=> true,
+            //     'multiple' => true,
+            //     'query_builder'     => function (EntityRepository $er) {
+            //         return $er->createQueryBuilder('c')
+            //         ->select('c', 'ma', 'mo')
+            //         ->leftJoin('c.marque', 'ma')
+            //         ->leftJoin('c.modele', 'mo')
+            //         ->orderBy('c.marque', 'ASC')
+            //         ;
+            //     }
+                    
+            // ])
             ;
     }
 

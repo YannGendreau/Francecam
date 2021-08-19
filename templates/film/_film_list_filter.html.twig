@@ -29,5 +29,17 @@
 	<div class="content">
 		{{form_row(form.marques)}}
 	</div>
+	{# <div class="coll">
+					<h4>Marques</h4>
+				</div>
+				<div class="content">
+					{% for camera in form.camera %}
+						{% for c in camera %}
+							{{form_widget(c.marque)}}
+						{% endfor %}
+			
+					{% endfor %}
+					{# {{form_row(form.camera)}} #}
+	{# </div> #}
 	{{form_end(form)}}
 </div>

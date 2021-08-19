@@ -1,0 +1,18 @@
+{% extends 'navbar/layout.html.twig' %}
+
+{% block title %}Le film n'existe pas.
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="notexists">
+			<h1 class="nofilm">
+				<span class="filmSpan">{{film.title}}</span><br>
+				n'est pas
+				<span>(encore)</span>
+				validé.
+			</h1>
+		</div>
+	</div>
+
+{% endblock %}

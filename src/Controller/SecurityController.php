@@ -8,6 +8,7 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\Mailer\Mailer;
 use App\Form\UserRegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -21,6 +22,11 @@ class SecurityController extends AbstractController
 
     //permet de garder en mémoire le dernier email 
     public const LAST_EMAIL = 'app_login_form_last_email';
+
+    public function __construct(FlashyNotifier $flashy)
+    {
+        $this->flashy = $flashy;
+    }
 
     /**
      * Page d'inscription 
@@ -140,7 +146,8 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
 
-        $this->addFlash('info', 'Vous avez bien été déconnecté.');
+        $this->addFlash('error', 'Vous avez bien été déconnecté.');
+        // $this->flashy->error('Vous avez bien été déconnecté.');
 
         //Redirection vers la page de connexion
         return $this->redirectToRoute('app_login');

@@ -9,6 +9,7 @@ use App\Form\SearchFilmForm;
 use App\Repository\FilmRepository;
 use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -33,9 +34,12 @@ class FilmController extends AbstractController
 
     private $repository;
 
-    public function __construct(FilmRepository $repository)
+    public function __construct(
+        FilmRepository $repository,
+        FlashyNotifier $flashy)
     {
         $this->repository = $repository;
+        $this->flashy = $flashy;
     }
 
     /**
@@ -43,7 +47,7 @@ class FilmController extends AbstractController
      * @Route("/new", name="film_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function new(Request $request, MailerInterface $mailer ): Response
+    public function new(Request $request, MailerInterface $mailer, FlashyNotifier $flashy ): Response
     {
         $film = new Film;
         $form = $this->createForm(FilmType::class, $film);
@@ -67,7 +71,7 @@ class FilmController extends AbstractController
             /*------------------------------------------------------------------------------*/  
                 // EMAIL
                 $email = (new TemplatedEmail())
-                ->from(new Address($this->getParameter('mail.admin'), 'Francecam Admin'))
+                ->from(new Address($this->getParameter('mail.admin'), 'Francecam'))
                 ->to(new Address($this->getParameter('mail.admin'), 'Francecam Admin'))
                 ->subject('Francecam | Nouveau film'. ' ' . $film->getTitle())
                 ->htmlTemplate('film/activation.html.twig')
@@ -78,7 +82,8 @@ class FilmController extends AbstractController
 
                 $mailer->send($email);
             /*----------------------------------------------------------------------------------------*/
-                $this->addFlash('success', 'Nouveau film enregistré');
+                // $this->addFlash('success', 'Nouveau film enregistré');
+                $flashy->success('success', 'Nouveau film enregistré');
             
                 return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
         }
@@ -94,9 +99,19 @@ class FilmController extends AbstractController
      */
     public function show(Film $film): Response
     {
-        return $this->render('film/show.html.twig', [
+
+        if($film->getIsVerified() == true || $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+
+            return $this->render('film/show.html.twig', [
+                'film' => $film,
+            ]);  
+        }
+
+        // throw new NotFoundHttpException('Le film n\'existe pas (encore)');
+        return $this->render('film/film_notexists.html.twig', [
             'film' => $film,
-        ]);
+        ]); 
+        
     }
 
     /**

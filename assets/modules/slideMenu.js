@@ -54,7 +54,7 @@ function filterLeft(mediaQueryList) {
   }
 
 // Récupère la taille de la fenêtre
-var mediaQueryList = window.matchMedia("(max-width: 767px)")
+var mediaQueryList = window.matchMedia("(max-width: 1024px)")
 // injecté dans la fonction filterLeft
 filterLeft(mediaQueryList) 
 mediaQueryList.addListener(filterLeft)
