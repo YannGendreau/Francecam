@@ -31,11 +31,14 @@ class FilmCrudController extends AbstractCrudController
         
 
         $imageFile = Field::new('posterFile')
-        ->setFormType(VichImageType::class);
+        ->setFormType(VichImageType::class)
+        ->setLabel('Affiche')
+        ;
         $image = ImageField::new('poster')
         ->setBasePath('build/images/posters')
         ->setUploadDir('/public/build/images/posters/')
-        ->hideOnForm();
+        
+        ;
         
 
         $fields = [
@@ -59,7 +62,7 @@ class FilmCrudController extends AbstractCrudController
 
         ];
 
-        if($pageName==Crud::PAGE_INDEX || $pageName==Crud::PAGE_DETAIL){
+        if($pageName===Crud::PAGE_INDEX || $pageName===Crud::PAGE_DETAIL){
             $fields[] = $image;
         }else{
             $fields[] = $imageFile;
