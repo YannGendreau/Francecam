@@ -152,9 +152,10 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
 
 @mixin cardCamera {
     .cardGridCam {
-        width: 30%;
+        // width: 30%;
+        width: 25%;
         height: 190px;
-        max-width: 280px;
+        // max-width: 280px;
         min-width: 280px;
         margin: 3px;
         border: 1px solid lightgrey;
@@ -540,9 +541,10 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
 
 @mixin cardGridCam {
     .cardGridCam {
-        width: 33%;
+        // width: 33%;
+        width: 25%;
         height: 190px;
-        max-width: 300px;
+        // max-width: 300px;
         min-width: 300px;
         margin: 5px 0 10px 0;
         border: 1px solid lightgrey;
@@ -705,153 +707,11 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
     }
 }
 
-@mixin cardMarque {
-    .cardGridMarque {
-        width: 30%;
-        border-radius: 5px;
-        min-width: 200px;
-        max-width: 200px;
-        height: 200px;
-        margin: 15px;
-
-        .cardSmMarque {
-            position: relative;
-            height: $cardCam;
-
-            .smDescriptionOverlay {
-                position: absolute;
-                top: 2px;
-                left: 5px;
-
-                h5 {
-                    color: rgba(32, 48, 46, 0.7);
-                    margin-bottom: 5px;
-                }
-
-                @include camDescTop;
-            }
-
-            .imgCardMarque {
-                display: block;
-                height: $cardCam;
-                background: white;
-                border-radius: 10px;
-
-                a {
-                    img {
-                        width: 100%;
-                        height: $cardCam;
-                        object-fit: contain;
-                    }
-                }
-            }
-
-            a {
-                .description__overlay--blur {
-                    backdrop-filter: blur(2px);
-                }
-
-                .description__overlay > * {
-                    transition: transform 0.25s;
-                }
-
-                .description__overlay {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 10px;
-                    background: rgba(32, 48, 46, 0.7);
-                    @include flex-center();
-                    flex-direction: column;
-                    opacity: 0;
-                    transition: opacity 0.25s, transform 0.25s;
-                    padding: 5px;
-
-                    &:hover {
-                        opacity: 1;
-                    }
-
-                    h3 {
-                        color: lightgrey;
-                        text-transform: uppercase;
-                    }
-
-                    h2 {
-                        color: rgb(255, 255, 255);
-
-                        text-transform: uppercase;
-                        font-weight: bold;
-
-                        text-align: center;
-                    }
-
-                    h5 {
-                        color: $megamenu-bg;
-                        opacity: 0.5;
-                        margin-bottom: 5px;
-                    }
-
-                    .genreOverlay {
-                        align-items: flex-end;
-                        color: grey;
-
-                        em {
-                            color: grey;
-                        }
-                    }
-
-                    em {
-                        color: $green-light;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@mixin checkBoxes {
-    .form-check-input {
-        -webkit-appearance: none;
-        background-color: #fafafa;
-        border: 1px solid #cacece;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
-        padding: 7px;
-        border-radius: 3px;
-        position: relative;
-    }
-
-    .form-check-input:active,
-    .form-check-input:checked:active {
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-check-input:checked {
-        background-color: rgb(39, 129, 182);
-        border: 1px solid #ffffff;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
-            inset 15px 10px -12px rgba(255, 255, 255, 0.1);
-        color: #99a1a7;
-    }
-
-    .form-check-input:checked:after {
-        content: "\2714";
-        font-size: 14px;
-        position: absolute;
-        top: -5px;
-        left: 2px;
-        color: #ffffff;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
-            inset 15px 10px -12px rgba(255, 255, 255, 0.1);
-    }
-}
-
 @mixin cardGridCamSm {
     .cardGridCam {
-        max-width: 150px;
-        min-width: 150px;
-        height: 110px;
+        // max-width: 150px;
+        min-width: 150px !important;
+        height: 110px !important;
 
         margin: 1px 1px 5px 1px !important;
         border: 1px solid lightgrey;
@@ -1010,6 +870,149 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
         }
     }
 }
+
+@mixin cardMarque {
+    .cardGridMarque {
+        width: 30%;
+        border-radius: 5px;
+        min-width: 200px;
+        max-width: 200px;
+        height: 200px;
+        margin: 15px;
+
+        .cardSmMarque {
+            position: relative;
+            height: $cardCam;
+
+            .smDescriptionOverlay {
+                position: absolute;
+                top: 2px;
+                left: 5px;
+
+                h5 {
+                    color: rgba(32, 48, 46, 0.7);
+                    margin-bottom: 5px;
+                }
+
+                @include camDescTop;
+            }
+
+            .imgCardMarque {
+                display: block;
+                height: $cardCam;
+                background: white;
+                border-radius: 10px;
+
+                a {
+                    img {
+                        width: 100%;
+                        height: $cardCam;
+                        object-fit: contain;
+                    }
+                }
+            }
+
+            a {
+                .description__overlay--blur {
+                    backdrop-filter: blur(2px);
+                }
+
+                .description__overlay > * {
+                    transition: transform 0.25s;
+                }
+
+                .description__overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                    background: rgba(32, 48, 46, 0.7);
+                    @include flex-center();
+                    flex-direction: column;
+                    opacity: 0;
+                    transition: opacity 0.25s, transform 0.25s;
+                    padding: 5px;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    h3 {
+                        color: lightgrey;
+                        text-transform: uppercase;
+                    }
+
+                    h2 {
+                        color: rgb(255, 255, 255);
+
+                        text-transform: uppercase;
+                        font-weight: bold;
+
+                        text-align: center;
+                    }
+
+                    h5 {
+                        color: $megamenu-bg;
+                        opacity: 0.5;
+                        margin-bottom: 5px;
+                    }
+
+                    .genreOverlay {
+                        align-items: flex-end;
+                        color: grey;
+
+                        em {
+                            color: grey;
+                        }
+                    }
+
+                    em {
+                        color: $green-light;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin checkBoxes {
+    .form-check-input {
+        -webkit-appearance: none;
+        background-color: #fafafa;
+        border: 1px solid #cacece;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+        padding: 7px;
+        border-radius: 3px;
+        position: relative;
+    }
+
+    .form-check-input:active,
+    .form-check-input:checked:active {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-check-input:checked {
+        background-color: rgb(39, 129, 182);
+        border: 1px solid #ffffff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+            inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+        color: #99a1a7;
+    }
+
+    .form-check-input:checked:after {
+        content: "\2714";
+        font-size: 14px;
+        position: absolute;
+        top: -5px;
+        left: 2px;
+        color: #ffffff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+            inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+    }
+}
+
 /*-------------------------------------------------
     Fonts
   --------------------------------------------------*/
@@ -2500,7 +2503,7 @@ ABOUT US
 .tableauCamFilm {
     margin-top: 20px;
     min-height: 220px;
-    @include flex-evenly-center();
+    @include flex-center-start();
     flex-wrap: wrap;
 
     @include cardGridCam();
@@ -5632,7 +5635,6 @@ PAGE USER PROFILE
                         min-height: 420px;
 
                         div {
-                            width: 100%;
                             .tableauCamFilm {
                                 margin-top: 30px;
                                 @include cardGridCamSm();
@@ -5898,7 +5900,11 @@ PAGE USER PROFILE
                         min-height: 560px;
 
                         div {
-                            width: 100%;
+                            // width: 100%;
+                            .tableauCamFilm {
+                                margin-top: 30px;
+                                @include cardGridCamSm();
+                            }
                         }
 
                         .videoFrame {
@@ -7157,11 +7163,25 @@ PAGE USER PROFILE
 @media (max-width: 529px) {
     .tableau {
         .cardGridCam {
-            max-width: 100% !important;
-            min-width: 100% !important;
-            height: 110px !important;
+            width: 100% !important;
+            // height: 110px !important;
             margin: 5px !important;
-            // margin-bottom: 5px;
+        }
+    }
+
+    .specifications {
+        .cardGridCam {
+            width: 100% !important;
+            // height: 110px !important;
+            margin: 5px !important;
+        }
+    }
+
+    .tableauCamFilm {
+        .cardGridCam {
+            width: 100% !important;
+            // height: 110px !important;
+            margin: 5px !important;
         }
     }
 }
