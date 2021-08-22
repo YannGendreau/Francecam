@@ -82,8 +82,7 @@ class FilmController extends AbstractController
 
                 $mailer->send($email);
             /*----------------------------------------------------------------------------------------*/
-                // $this->addFlash('success', 'Nouveau film enregistré');
-                $flashy->success('success', 'Nouveau film enregistré');
+                $this->addFlash('success', 'Nouveau film enregistré');
             
                 return $this->redirectToRoute('film_show', ['slug' => $film->getSlug()]);
         }

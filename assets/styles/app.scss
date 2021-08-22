@@ -1055,6 +1055,7 @@ a {
     min-height: 57px;
     background: rgba(174, 216, 233, 0.2);
     transition: 200ms;
+    z-index: 10;
 
     &:hover {
         background: rgba(177, 202, 212, 0.97);
@@ -1165,10 +1166,11 @@ a {
 
         li.drop-down.user {
             margin-left: 10%;
+            z-index: 10;
 
             .flyout-right {
                 position: relative;
-                z-index: 2;
+                z-index: 10;
 
                 a {
                     border-right: 0px;
@@ -3935,36 +3937,43 @@ ABOUT US
 .alert {
     position: absolute;
     top: 58px;
+    left: 25%;
     padding: 10px;
     text-align: center;
-    z-index: 10;
+    z-index: 3;
     max-height: 70px;
-    width: 100%;
+    width: 50%;
     font-family: "Roboto Condensed", "Open Sans", sans-serif;
     color: white;
     font-size: 2rem;
     text-transform: uppercase;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .alert-success {
     background: $green-light;
     @include flex-center();
+    z-index: 3;
 }
 
 .alert-error {
     background: $titleFont;
     @include flex-center();
+    z-index: 3;
 }
 
 .alert-danger {
     background: $titleFont;
     @include flex-center();
+    z-index: 3;
 }
 
 .alert-info {
     background: rgb(0, 110, 255);
     @include flex-center();
+    z-index: 3;
 }
 
 .hidden {

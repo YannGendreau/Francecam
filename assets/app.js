@@ -200,11 +200,11 @@ tabs.forEach(function(tab, tab_index){
 
 setTimeout(function() {
 	$ ('#showflash').slideUp("slow");
-}, 5000)
+}, 3000)
 
 setTimeout(function() {
 	$ ('.success').slideUp("slow");
-}, 5000)
+}, 3000)
 
 /*-------------------------------------------------------------------------------------
 					IMPORT FILTRE AJAX FILM/CAMERA
