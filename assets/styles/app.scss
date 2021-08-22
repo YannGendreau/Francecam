@@ -1888,7 +1888,7 @@ a {
     .sidepanel {
         width: 17%;
         // height: 100vh;
-        height: 100%;
+        height: 900px;
         @include flex-center-start();
         top: 78px;
         left: 0;
@@ -2671,7 +2671,7 @@ ABOUT US
                     @include flex-center();
                     flex-wrap: wrap;
                     h5 {
-                        font-size: 1.3rem;
+                        font-size: 1rem;
                         text-align: center;
                         font-family: "Roboto Condensed", sans-serif;
                         color: #919ab1;
@@ -2702,7 +2702,7 @@ ABOUT US
                     font-weight: bold;
                     font-size: 1.5rem;
                     font-family: "Roboto Condensed", sans-serif;
-                    color: #c1c6d3;
+                    color: #d9dce6;
                     margin: 2% 2%;
                 }
             }
@@ -3078,7 +3078,7 @@ ABOUT US
                         @include flex-center();
                         flex-wrap: wrap;
                         h5 {
-                            font-size: 1.3rem;
+                            font-size: 1rem;
                             font-family: "Roboto Condensed", sans-serif;
                             color: #919ab1;
                             &:after {
@@ -3108,12 +3108,12 @@ ABOUT US
                         font-weight: bold;
                         font-size: 1.5rem;
                         font-family: "Roboto Condensed", sans-serif;
-                        color: #c1c6d3;
+                        color: #dee1eb;
                         margin: 2% 2%;
                     }
 
                     p {
-                        font-size: 1.5rem;
+                        font-size: 1.3rem;
                         font-family: "Roboto Condensed", sans-serif;
                         color: #919ab1;
                     }
@@ -3174,7 +3174,7 @@ ABOUT US
                         @include flex-center();
                         flex-wrap: wrap;
                         h5 {
-                            font-size: 1.3rem;
+                            font-size: 1rem;
                             text-align: center;
                             font-family: "Roboto Condensed", sans-serif;
                             color: #919ab1;
@@ -3197,7 +3197,7 @@ ABOUT US
                         font-weight: bold;
                         font-size: 1.5rem;
                         font-family: "Roboto Condensed", sans-serif;
-                        color: #c1c6d3;
+                        color: #dee1eb;
                         margin: 2% 2%;
                     }
                 }
@@ -6375,42 +6375,6 @@ PAGE USER PROFILE
                     margin-bottom: 10px;
                 }
             }
-
-            .artisteDivD {
-                grid-area: artiste;
-                flex-wrap: wrap;
-                margin-bottom: 25px;
-
-                h4 {
-                    font-family: "Roboto Condensed", sans-serif;
-                    font-size: 1.7rem;
-                    color: $titleFont;
-                }
-
-                p {
-                    font-family: "Roboto Condensed", sans-serif;
-                    font-size: 1.7rem;
-                    color: $titleCard;
-                }
-
-                .addArtist {
-                    font-family: "Roboto Condensed", sans-serif;
-                    font-size: 1.7rem;
-                    font-style: italic;
-                    color: grey;
-                }
-
-                .realDivD {
-                    grid-area: real;
-                    width: 100%;
-                    margin-bottom: 20px;
-                }
-
-                .dpDivD {
-                    grid-area: dp;
-                    width: 100%;
-                }
-            }
         }
 
         .specCam {
@@ -7191,6 +7155,42 @@ PAGE USER PROFILE
             width: 100% !important;
             // height: 110px !important;
             margin: 5px !important;
+        }
+    }
+    .descriptionFilm {
+        .artisteDivD {
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+
+            h4 {
+                font-family: "Roboto Condensed", sans-serif;
+                font-size: 1.7rem;
+                color: $titleFont;
+            }
+
+            p {
+                font-family: "Roboto Condensed", sans-serif;
+                font-size: 1.7rem;
+                color: $titleCard;
+            }
+
+            .addArtist {
+                font-family: "Roboto Condensed", sans-serif;
+                font-size: 1.7rem;
+                font-style: italic;
+                color: grey;
+            }
+
+            .realDivD {
+                grid-area: real;
+                width: 100% !important;
+                margin-bottom: 20px;
+            }
+
+            .dpDivD {
+                grid-area: dp;
+                width: 100% !important;
+            }
         }
     }
 }
