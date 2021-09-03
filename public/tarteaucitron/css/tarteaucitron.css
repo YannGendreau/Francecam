@@ -487,7 +487,9 @@ span#tarteaucitronDisclaimerAlert {
 }
 
 #tarteaucitronRoot #tarteaucitronAlertBig {
-    background: #333;
+    /*background: #333;*/
+    background: rgba(78, 80, 88, 0.9);
+    background: #191e2b;
     color: #fff;
     display: none;
     font-size: 15px !important;
@@ -526,7 +528,8 @@ span#tarteaucitronDisclaimerAlert {
 #tarteaucitron #tarteaucitronPrivacyUrlDialog,
 #tarteaucitronRoot .tarteaucitronDeny,
 #tarteaucitronRoot .tarteaucitronAllow {
-    background: #008300;
+    /*background: #008300;*/
+    background: #00d6b7;
     color: #fff;
     cursor: pointer;
     display: inline-block;
@@ -535,10 +538,13 @@ span#tarteaucitronDisclaimerAlert {
     padding: 5px 10px;
     text-decoration: none;
     margin-left: 7px;
+    border-radius: 10px;
 }
 
 #tarteaucitronRoot .tarteaucitronDeny {
-    background: #9C1A1A;
+    /*background: #9C1A1A;*/
+    background: #f73859;
+    border-radius: 10px;
 }
 
 #tarteaucitronAlertBig #tarteaucitronCloseAlert, #tarteaucitron #tarteaucitronPrivacyUrl, #tarteaucitron #tarteaucitronPrivacyUrlDialog {
