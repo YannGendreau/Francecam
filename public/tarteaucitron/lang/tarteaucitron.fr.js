@@ -10,7 +10,7 @@ tarteaucitron.lang = {
     "alertBigClick": "En poursuivant votre navigation,",
     "alertBig": "vous acceptez l'utilisation de services tiers pouvant installer des cookies",
     
-    "alertBigPrivacy": "Ce site utilise des cookies et vous donne le contrôle sur ceux que vous souhaitez activer. <br> Voir les <a style=font-weight=bold; text-decoration=underline; href= https://francecam.fr/cgu >conditions générales d'utilisation</a> pour plus de détails.",
+    "alertBigPrivacy": "<p style=\"color:white;\">Ce site utilise des cookies et vous donne le contrôle sur ceux que vous souhaitez activer.</p> <br> <p style=\"color:white;\">Voir les <a style=\"font-weight:bold; text-decoration:underline; color:white\" href= \"https://francecam.fr/cgu\" target=\"_blank\" >conditions générales d'utilisation</a> pour plus de détails.</p>",
     "alertSmall": "Gestion des services",
     "acceptAll": "Tout accepter",
     "personalize": "Personnaliser",

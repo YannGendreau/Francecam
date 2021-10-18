@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .tarteaucitron-modal-open{
     overflow: hidden;
     height: 100%;
@@ -204,6 +206,7 @@ div#tarteaucitronServices {
     box-sizing: initial;
     color: #333;
     font-family: sans-serif !important;
+    /* font-family: 'Roboto', sans-serif; */
     font-size: 14px;
     line-height: normal;
     vertical-align: initial;
@@ -488,10 +491,15 @@ span#tarteaucitronDisclaimerAlert {
 
 #tarteaucitronRoot #tarteaucitronAlertBig {
     /*background: #333;*/
-    background: rgba(78, 80, 88, 0.9);
+    /* background: rgba(78, 80, 88, 0.9); */
+    /* background: #06080e; */
     background: #191e2b;
     color: #fff;
-    display: none;
+    /* display: none; */
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     font-size: 15px !important;
     left: 0;
     position: fixed;
@@ -501,6 +509,7 @@ span#tarteaucitronDisclaimerAlert {
     padding: 10px 0 10px 0;
     margin: auto;
     width: 100%;
+    border: #eee !important;
 }
 
 #tarteaucitronAlertBig #tarteaucitronPrivacyUrl,
@@ -533,6 +542,8 @@ span#tarteaucitronDisclaimerAlert {
     color: #fff;
     cursor: pointer;
     display: inline-block;
+    /* font-family:Georgia, 'Times New Roman', Times, serif !important; */
+    font-family: 'Roboto', sans-serif !important;
     font-size: 16px!important;
     line-height: 1.2;
     padding: 5px 10px;
