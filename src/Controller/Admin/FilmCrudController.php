@@ -51,7 +51,7 @@ class FilmCrudController extends AbstractCrudController
             AssociationField::new('pays'),
             AssociationField::new('directors'),
             AssociationField::new('dirphoto'),
-            TextEditorField::new('synopsis')->setFormType(CKEditorType::class),
+            TextEditorField::new('synopsis'),
             IntegerField::new('duree'),
             IntegerField::new('sortie'),
             IntegerField::new('decade'),
