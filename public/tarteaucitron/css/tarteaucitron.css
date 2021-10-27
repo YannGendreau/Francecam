@@ -490,15 +490,9 @@ span#tarteaucitronDisclaimerAlert {
 }
 
 #tarteaucitronRoot #tarteaucitronAlertBig {
-    /*background: #333;*/
-    /* background: rgba(78, 80, 88, 0.9); */
-    /* background: #06080e; */
-    background: #191e2b;
+    background: rgba(25, 30, 43, 0.9);
     color: #fff;
-    /* display: none; */
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
+    display: none;
     flex-wrap: wrap;
     font-size: 15px !important;
     left: 0;
@@ -549,6 +543,8 @@ span#tarteaucitronDisclaimerAlert {
     padding: 5px 10px;
     text-decoration: none;
     margin-left: 7px;
+    margin-top: 10px;
+    margin-bottom: 7px;
     border-radius: 10px;
 }
 
@@ -562,7 +558,7 @@ span#tarteaucitronDisclaimerAlert {
     background: #fff;
     color: #333;
     font-size: 13px;
-    margin-bottom: 3px;
+    /* margin-bottom: 3px; */
     margin-left: 7px;
     padding: 5px 10px;
 }
@@ -907,3 +903,9 @@ span.tarteaucitronTitle.tarteaucitronH3 {
 .tarteaucitron-display-none {
     display: none;
 }
+
+/* @media (max-width: 1024px){
+    button {
+        margin-top: 5px;
+    }
+} */

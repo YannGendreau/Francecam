@@ -1578,6 +1578,7 @@ a {
     background: $titleDisplay;
     @include flex-center();
     height: 150px;
+    border-top: 1px solid white;
 
     .copyright {
         width: 50%;
@@ -2719,7 +2720,7 @@ ABOUT US
 
         .summary {
             width: 100%;
-            min-height: 250px;
+            min-height: 100px;
             grid-area: summary;
             margin-top: 10px;
             padding: 0 0 5% 0;
@@ -2769,7 +2770,7 @@ ABOUT US
                 justify-content: flex-start;
                 align-content: center;
                 background: #cbd6e0;
-                height: 15%;
+                height: 25px;
                 border-radius: 20px;
                 margin-right: 20px;
 
@@ -3049,8 +3050,9 @@ ABOUT US
 
             .overview {
                 grid-area: overview;
+                height: 40px;
                 @include flex-space-center();
-                margin-bottom: 10px;
+                margin-bottom: 2px;
                 div {
                     width: 100%;
                     @include flex-space-center();
@@ -3123,7 +3125,7 @@ ABOUT US
 
         .summary {
             width: 100%;
-            min-height: 250px;
+            min-height: 100px;
             margin-top: 10px;
             width: 100%;
             padding: 0 0 5% 0;
@@ -3161,7 +3163,7 @@ ABOUT US
 
             .overview {
                 @include flex-space-center();
-                margin-bottom: 10px;
+                margin-bottom: 2px;
 
                 div {
                     width: 100%;
@@ -3206,7 +3208,7 @@ ABOUT US
 
         .summary {
             width: 100%;
-            min-height: 250px;
+            min-height: 100px;
             padding: 0 0 5% 0;
             margin-top: 10px;
             text-align: justify;
@@ -3332,7 +3334,7 @@ ABOUT US
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    min-height: 320px;
+                    min-height: 300px;
                     .noCam {
                         @include flex-center();
                         margin: 10%;
@@ -4753,6 +4755,10 @@ PAGE USER PROFILE
 }
 
 @media (max-width: 1024px) {
+    .alert {
+        font-size: 1.5rem;
+    }
+
     .container {
         width: 100% !important;
         max-width: 800px;
@@ -5552,7 +5558,7 @@ PAGE USER PROFILE
             .overview {
                 grid-area: overview;
                 @include flex-center();
-                margin-bottom: 10px;
+                margin-bottom: 2px;
                 min-width: 100%;
                 div {
                     width: 100%;
@@ -5821,7 +5827,7 @@ PAGE USER PROFILE
                     justify-content: flex-start;
                     align-content: center;
                     background: #cbd6e0;
-                    height: 15%;
+                    height: 25px;
                     border-radius: 20px;
 
                     button {
@@ -5911,7 +5917,7 @@ PAGE USER PROFILE
                         div {
                             // width: 100%;
                             .tableauCamFilm {
-                                margin-top: 30px;
+                                margin-top: 20px;
                                 @include cardGridCamSm();
                             }
                         }
@@ -6214,7 +6220,7 @@ PAGE USER PROFILE
                 .overview {
                     grid-area: overview;
                     @include flex-space-center();
-                    margin-bottom: 10px;
+                    margin-bottom: 2px;
                     div {
                         width: 100%;
                         @include flex-space-center();
@@ -6360,9 +6366,9 @@ PAGE USER PROFILE
 
             .summary {
                 grid-area: summary;
-                padding: 3% 0 5% 0;
-                margin-top: 10px;
-
+                padding: 1.5% 0 2% 0;
+                margin-top: 5px;
+                min-height: 100px;
                 text-align: justify;
                 font-family: "Roboto Condensed", sans-serif;
                 color: $titleCard;
@@ -6430,7 +6436,8 @@ PAGE USER PROFILE
                 .contentCam {
                     .tabPanel {
                         margin-top: 20px;
-                        min-height: 650px;
+                        min-height: 300px;
+                        margin-bottom: 20px;
 
                         .videoFrame {
                             display: flex;
@@ -6487,13 +6494,13 @@ PAGE USER PROFILE
         @include cardGridCamSm();
 
         .cell {
-            @include flex-center();
+            @include flex-space-center();
             width: 100%;
             margin: 0;
 
             .option {
                 @include flex-center();
-                width: 200px;
+                width: 49%;
                 height: 50px;
                 background: $gray;
                 margin: 3px 0 3px 0;
@@ -6501,7 +6508,7 @@ PAGE USER PROFILE
 
             .spec {
                 @include flex-center();
-                width: 200px;
+                width: 49%;
                 height: 50px;
                 background: #e1e7ec;
                 padding: 5px;
