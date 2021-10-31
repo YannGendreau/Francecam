@@ -17,10 +17,9 @@ fos_ck_editor:
   js_path: "build/ckeditor/ckeditor.js"
   configs:
     my_config:
-      toolbar: full
-      filebrowserBrowseRoute: elfinder
+      toolbar: basic
+      # filebrowserBrowseRoute: elfinder
       filebrowserBrowseRouteParameters: []
 twig:
   form_themes:
-    # - "@EasyAdmin/form/bootstrap_4.html.twig"
     - "@FOSCKEditor/Form/ckeditor_widget.html.twig"

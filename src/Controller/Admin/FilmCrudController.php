@@ -17,12 +17,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class FilmCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
         return Film::class;
+    }
+
+        public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
 
     
@@ -51,12 +57,13 @@ class FilmCrudController extends AbstractCrudController
             AssociationField::new('pays'),
             AssociationField::new('directors'),
             AssociationField::new('dirphoto'),
-            TextEditorField::new('synopsis'),
+            // TextField::new('synopsis')->setFormType(CKEditorType::class),
+            TextareaField::new('synopsis'),
             IntegerField::new('duree'),
             IntegerField::new('sortie'),
             IntegerField::new('decade'),
             AssociationField::new('camera'),
-            DateTimeField::new('createdAt'),
+            DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->HideOnForm(),
             AssociationField::new('user'),
 
@@ -71,5 +78,7 @@ class FilmCrudController extends AbstractCrudController
         return $fields;
         
     }
+
+    
     
 }

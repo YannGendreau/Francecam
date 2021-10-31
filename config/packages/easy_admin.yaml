@@ -14,11 +14,15 @@ easy_admin:
           - { property: "imageFile", type: "file" }
           - { property: "description", type: "fos_ckeditor" }
           - { property: "image", template: "vich_uploader_image.html.twig" }
-      Modele:
+    Modele:
+      class: App\Entity\Modele
+      form:
         fields:
           - { property: "image", template: "vich_uploader_image.html.twig" }
           - { property: "description", type: "fos_ckeditor" }
-      Film:
+    Film:
+      class: App\Entity\Modele
+      form:
         fields:
           - { property: "image", template: "vich_uploader_image.html.twig" }
           - { property: "description", type: "fos_ckeditor" }

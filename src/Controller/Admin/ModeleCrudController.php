@@ -3,15 +3,17 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Modele;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class ModeleCrudController extends AbstractCrudController
@@ -19,6 +21,11 @@ class ModeleCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Modele::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
 
     
@@ -40,7 +47,6 @@ class ModeleCrudController extends AbstractCrudController
             AssociationField::new('type'),
             AssociationField::new('format'),
             TextField::new('shutter'),
-            // TextField::new('obt'),
             TextField::new('framerate'),
             AssociationField::new('mount'),
             IntegerField::new('noise'),
@@ -51,7 +57,9 @@ class ModeleCrudController extends AbstractCrudController
             TextField::new('sync'),
             TextField::new('view'),
             TextField::new('slug'),
+            // TextEditorField::new('description')->setFormType(CKEditorType::class),
             TextareaField::new('description'),
+
            
         ];
     }
