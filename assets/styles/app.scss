@@ -141,6 +141,11 @@ $main-color: gradient(rgb(164, 164, 202), rgb(68, 63, 88));
     justify-content: flex-start;
     align-items: flex-start;
 }
+@mixin flex-evenly-start {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
 
 @mixin font-form-film {
     font-family: "Roboto Condensed", sans-serif;
@@ -2506,7 +2511,7 @@ ABOUT US
 .tableauCamFilm {
     margin-top: 20px;
     min-height: 220px;
-    @include flex-center-start();
+    @include flex-evenly-start();
     flex-wrap: wrap;
 
     @include cardGridCam();
@@ -3126,7 +3131,7 @@ ABOUT US
         .summary {
             width: 100%;
             min-height: 100px;
-            margin-top: 10px;
+            margin-top: 20px;
             width: 100%;
             padding: 0 0 5% 0;
             text-align: justify;
@@ -4674,7 +4679,7 @@ PAGE USER PROFILE
 }
 
 .specifications {
-    @include flex-center();
+    @include flex-evenly-start();
     flex-wrap: wrap;
     width: 100%;
     min-height: 300px;
@@ -6273,7 +6278,7 @@ PAGE USER PROFILE
                 grid-area: summary;
 
                 max-height: 500px;
-                margin-top: 10px;
+                margin-top: 20px;
                 width: 100%;
 
                 padding: 0 0 5% 0;
@@ -6487,7 +6492,7 @@ PAGE USER PROFILE
     }
 
     .specifications {
-        @include flex-center-start();
+        @include flex-evenly-start();
         flex-wrap: wrap;
         width: 100%;
 
