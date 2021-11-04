@@ -39,11 +39,12 @@ class ModeleCrudController extends AbstractCrudController
                 ->setBasePath('build/images/imagesCam')
                 ->setUploadDir('/public/build/images/imagesCam/')
                 ->hideOnForm(),
-            TextField::new('image'),
+            TextField::new('image')->HideOnIndex(),
             AssociationField::new('marque'),
             TextField::new('name'),
+            TextEditorField::new('description')->setFormType(CKEditorType::class),
             IntegerField::new('sortie'),
-            IntegerField::new('decade'),
+            IntegerField::new('decade')->hideOnIndex(),
             AssociationField::new('type'),
             AssociationField::new('format'),
             TextField::new('shutter'),
@@ -57,8 +58,8 @@ class ModeleCrudController extends AbstractCrudController
             TextField::new('sync'),
             TextField::new('view'),
             TextField::new('slug'),
-            // TextEditorField::new('description')->setFormType(CKEditorType::class),
-            TextareaField::new('description'),
+          
+            // TextareaField::new('description'),
 
            
         ];

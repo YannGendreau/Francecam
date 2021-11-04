@@ -13,11 +13,14 @@
 #   js_path: "build/ckeditor/ckeditor.js"
 
 fos_ck_editor:
+  default_config: my_config
+  input_sync: true
   base_path: "build/ckeditor"
   js_path: "build/ckeditor/ckeditor.js"
   configs:
     my_config:
-      toolbar: basic
+      contentsLanguage: fr
+      toolbar: full
       # filebrowserBrowseRoute: elfinder
       filebrowserBrowseRouteParameters: []
 twig:
