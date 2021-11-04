@@ -37,7 +37,7 @@ const imagesContext = require.context('../assets/images', true, /\.(png|jpg|jpeg
 imagesContext.keys().forEach(imagesContext);
 
 
-$("#titleFilmShow").fitText(1.1);
+$("#titleFilmShow").fitText(1.2);
 
 
 $("#clickMenu").on("click", function(){

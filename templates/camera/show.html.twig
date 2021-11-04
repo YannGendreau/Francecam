@@ -73,7 +73,7 @@
 				<!--SYNOPSIS-->
 				<div class="summary">
 					{% if camera.modele.description is defined %}
-						<p>{{camera.modele.description}}</p>
+						{{camera.modele.description | raw}}
 					{% endif %}
 				</div>
 			</div>
